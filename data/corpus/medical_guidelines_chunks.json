@@ -1,0 +1,402 @@
+[
+  {
+    "doc_id": "NHS-CARDIO-001",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Chest pain - Triage & When to Get Medical Help",
+    "url": "https://www.nhs.uk/conditions/chest-pain/",
+    "red_flags": [
+      "Sudden pain or discomfort in the chest that does not go away and feels like squeezing, pressure, tightness, or crushing",
+      "Chest pain that spreads to the left or right arm, neck, jaw, stomach, or back",
+      "Chest pain accompanied by sweating, feeling sick (nausea), lightheadedness, or shortness of breath"
+    ],
+    "recommended_specialty_ar": "أمراض القلب والأوعية الدموية (أو طوارئ المستشفى فوراً عند وجود علامات خطر)",
+    "recommended_specialty_en": "Cardiology / Emergency Medicine",
+    "content": "Chest pain has many potential causes ranging from benign digestive or muscular issues to life-threatening cardiac events. While many cases of chest discomfort are not caused by a heart problem, every patient presenting with chest pain requires structured triage to rule out acute coronary syndrome or myocardial infarction. Immediate emergency escalation (calling ambulance services or going directly to the nearest hospital emergency department) is mandatory if a patient experiences sudden pain or discomfort in the chest that does not resolve within a few minutes. This high-risk pain often feels like heavy squeezing, tightness, crushing pressure, or severe indigestion inside the central chest. Emergency care is also required if the chest pain radiates to the left or right arm, neck, jaw, back, or stomach, or if the discomfort occurs alongside profuse sweating, nausea, lightheadedness, or shortness of breath. Patients must be advised not to drive themselves to the emergency hospital. When emergency red flags are absent, an urgent or routine medical consultation with a general practitioner or cardiology specialist is still warranted if chest pain comes and goes intermittently, or if it resolves quickly but leaves the patient concerned. Differentiating non-cardiac causes during clinical evaluation involves assessing associated symptoms: pain starting after meals with regurgitation of bitter fluids, fullness, and bloating often points toward heartburn or gastroesophageal reflux; localized chest wall pain starting after physical exercise or chest trauma that worsens upon inspiration and improves with rest suggests a pectoral muscle strain or costochondritis; sharp, continuous pain triggered by acute worry accompanied by a racing heartbeat, sweating, and dizziness may indicate a panic attack or anxiety; and pleuritic pain that worsens with deep breathing alongside fever and yellow or green productive cough points toward a lower respiratory chest infection, pneumonia, or pleurisy. Conversely, pericarditis typically causes a sudden, sharp, stabbing retrosternal pain that intensifies when lying flat or breathing deeply. Cardiovascular risk stratification must always account for advanced age, tobacco smoking, obesity, hypertension, diabetes mellitus, hypercholesterolemia, and a family history of premature coronary heart disease under age 60. Do not self-diagnose or initiate prescription cardiovascular medications without formal diagnostic evaluation."
+  },
+  {
+    "doc_id": "NHS-CARDIO-002",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Shortness of breath - Emergency Signs, Urgent Triage & Causes",
+    "url": "https://www.nhs.uk/conditions/shortness-of-breath/",
+    "red_flags": [
+      "Severe difficulty breathing where the patient is gasping, choking, or unable to speak full sentences",
+      "Shortness of breath accompanied by a tight or heavy chest or pain spreading to the arms, back, neck, and jaw",
+      "Lips, tongue, or skin turning very pale, blue, or grey (or visible pallor/cyanosis on palms and soles in darker skin) or sudden confusion"
+    ],
+    "recommended_specialty_ar": "الأمراض الصدرية والجهاز التنفسي / أمراض القلب (أو طوارئ المستشفى فوراً عند الاختناق)",
+    "recommended_specialty_en": "Pulmonology / Cardiology / Emergency Medicine",
+    "content": "Shortness of breath (dyspnea) ranges from mild exertional breathlessness to acute, life-threatening respiratory failure or cardiopulmonary collapse. Immediate emergency hospital care is required if a patient experiences severe difficulty breathing characterized by gasping for air, choking sensations, or an inability to speak complete words or sentences. Emergency escalation is equally critical if breathlessness is accompanied by a tight or heavy sensation in the chest, pain radiating to the arms, back, neck, or jaw, sudden confusion or agitation, or central cyanosis where the lips, tongue, or skin turn pale, blue, or grey (which may be more easily observed on the palms of the hands or soles of the feet in individuals with brown or black skin). In pediatric patients, emergency signs also include grunting noises, intercostal or subcostal recessions where the stomach sucks in under the ribcage, extreme limpness, or unresponsiveness. When immediate life-threatening red flags are absent, urgent medical assessment is required if a patient develops worsening breathlessness accompanied by nausea or vomiting, coughing up blood (hemoptysis), unilateral leg pain or swelling suggestive of deep vein thrombosis and secondary pulmonary embolism, or noticeable heart palpitations where the heart races, skips beats, or flutters. A routine specialist consultation with a pulmonologist, cardiologist, or primary care physician should be scheduled if shortness of breath progressively worsens during normal daily activities, intensifies when lying flat (orthopnea), is accompanied by bilateral swollen ankles (pedal edema), or persists alongside a chronic cough lasting three weeks or more. Common acute causes of dyspnea include bronchial asthma flares, lower respiratory chest infections, and acute panic attacks, whereas chronic or progressive breathlessness may stem from physical deconditioning, obesity, smoking-related chronic obstructive pulmonary disease (COPD), idiopathic pulmonary fibrosis, congestive heart failure, or thoracic malignancy. Patients should never attempt to self-diagnose unexplained dyspnea or take unprescribed bronchodilators, steroids, or diuretics prior to clinical evaluation and diagnostic pulmonary or cardiac testing."
+  },
+  {
+    "doc_id": "NHS-CARDIO-003",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Heart palpitations - Rhythm Triage & Cardiology Referral Guidelines",
+    "url": "https://www.nhs.uk/conditions/heart-palpitations/",
+    "red_flags": [
+      "Ongoing heart palpitations that do not go away after a few minutes",
+      "Heart palpitations accompanied by chest pain, pressure, or tightness",
+      "Heart palpitations occurring with shortness of breath, dizziness, feeling faint, or actual syncope (fainting)"
+    ],
+    "recommended_specialty_ar": "أمراض القلب وكهرباء القلب (أو طوارئ المستشفى فوراً عند الإغماء أو ألم الصدر)",
+    "recommended_specialty_en": "Cardiology / Cardiac Electrophysiology / Emergency Medicine",
+    "content": "Heart palpitations describe the subjective awareness of an uncomfortable, rapid, or irregular heartbeat felt in the chest, neck, or throat. Patients commonly report that their heart is racing, pounding, thumping, fluttering, or skipping and adding extra beats (ectopic beats). While brief, isolated episodes lasting a few seconds are frequently benign and triggered by strenuous exercise, sleep deprivation, emotional stress, anxiety, caffeine, nicotine, alcohol, pregnancy, or menopause, palpitations can also signify serious underlying cardiac arrhythmias or systemic disorders. Immediate emergency medical care must be sought if a patient currently has persistent heart palpitations that do not resolve, or if palpitations are accompanied by any red-flag warning signs including chest pain, shortness of breath, severe lightheadedness, feeling faint, or actual loss of consciousness (syncope). Patients experiencing active palpitations with red-flag symptoms must not drive themselves to the hospital and should call emergency ambulance services immediately. If a patient experienced these high-risk symptoms alongside palpitations and the episode has recently stopped, an urgent same-day medical evaluation is still necessary to rule out paroxysmal life-threatening arrhythmias such as ventricular tachycardia or atrial fibrillation with rapid ventricular response. A routine consultation with a cardiologist or general practitioner is indicated when a patient feels otherwise well during episodes, but the palpitations keep recurring, increase in frequency, last longer than a few minutes, or occur in an individual with a known personal history of heart disease or a family history of sudden cardiac problems or inherited cardiomyopathies. Medical evaluation typically includes a 12-lead electrocardiogram (ECG), ambulatory Holter monitoring, and blood tests to record the electrical signals of the heart and identify rhythm disturbances, structural heart valve disease, iron-deficiency anemia, or hyperthyroidism (overactive thyroid). Lifestyle modifications—such as reducing caffeine and tobacco intake, managing stress, and ensuring adequate hydration and sleep—can mitigate benign triggers, whereas confirmed cardiac arrhythmias require specialist cardiology management without self-prescribing antiarrhythmic or beta-blocker medications."
+  },
+  {
+    "doc_id": "NHS-CARDIO-004",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Cough - Persistent Cough Triage, Red Flags & Respiratory Evaluation",
+    "url": "https://www.nhs.uk/conditions/cough/",
+    "red_flags": [
+      "Coughing up blood or blood-streaked sputum (hemoptysis)",
+      "Severe or rapidly worsening cough accompanied by chest pain or difficulty breathing",
+      "Persistent cough lasting more than 3 weeks accompanied by unexplained weight loss, fever, or painful swollen neck glands"
+    ],
+    "recommended_specialty_ar": "الأمراض الصدرية والجهاز التنفسي",
+    "recommended_specialty_en": "Pulmonology / Respiratory Medicine",
+    "content": "Most acute coughs are caused by self-limiting upper or lower respiratory tract viral infections, such as the common cold, influenza, acute bronchitis, or COVID-19, and typically resolve on their own within three to four weeks. However, careful triage is essential to identify patients who require urgent or specialist pulmonology intervention. An urgent medical evaluation or emergency respiratory assessment is mandatory if a patient is coughing up blood (hemoptysis) regardless of the amount, experiences difficulty breathing or shortness of breath, develops concurrent chest pain, has a severe hacking cough that rapidly worsens or prevents stopping to catch a breath, feels systemically very unwell with high fever, or notices painful swelling and lumps on the side of the neck (cervical lymphadenopathy). A scheduled outpatient consultation with a pulmonologist or general practitioner is required if a cough persists for more than three weeks (chronic or persistent cough), if the patient experiences unexplained weight loss or night sweats, or if the patient has a weakened immune system due to conditions such as diabetes mellitus, HIV, or ongoing chemotherapy. Clinical evaluation of a persistent or complicated cough involves auscultating the chest with a stethoscope, collecting sputum samples for microbiological culture and sensitivity, ordering a chest radiograph (X-ray) to screen for pneumonia, tuberculosis, or pulmonary malignancy, and performing spirometry or allergy testing to assess for asthma or chronic obstructive pulmonary disease (COPD). Common non-infectious causes of chronic cough include tobacco smoking, gastroesophageal reflux disease (heartburn and acid reflux), allergic rhinitis with post-nasal drip, and medication side effects such as angiotensin-converting enzyme (ACE) inhibitors. Patients should be counselled on supportive self-care—including adequate rest, oral hydration, and warm honey-and-lemon drinks for adults and children over one year old—while strictly avoiding unprescribed antibiotics, as antibiotics are ineffective for viral coughs and must only be prescribed by a physician when a bacterial infection is clinically confirmed."
+  },
+  {
+    "doc_id": "WHO-CARDIO-005",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "cardiopulmonary",
+    "title": "Cardiovascular diseases (CVDs) - Acute Coronary & Thromboembolic Warning Signs",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+    "red_flags": [
+      "Acute pain or discomfort in the centre of the chest radiating to the arms, left shoulder, elbows, jaw, or back",
+      "Chest discomfort accompanied by cold sweat, pallor, nausea, vomiting, lightheadedness, or acute dyspnea",
+      "Atypical acute presentation (more common in women) featuring sudden shortness of breath, unexplained nausea/vomiting, and back or jaw pain"
+    ],
+    "recommended_specialty_ar": "أمراض القلب والأوعية الدموية / طوارئ القلب والعناية المركزة",
+    "recommended_specialty_en": "Cardiology / Vascular Medicine / Emergency Medicine",
+    "content": "Cardiovascular diseases (CVDs) encompass a critical spectrum of disorders affecting the heart and blood vessels, including coronary heart disease, cerebrovascular disease, peripheral arterial disease, rheumatic heart disease, congenital heart defects, and venous thromboembolism (deep vein thrombosis and pulmonary embolism). Because underlying atherosclerosis and vascular narrowing frequently progress silently without warning symptoms, an acute myocardial infarction (heart attack) or pulmonary embolism is often the first clinical manifestation of disease. Triage systems must immediately recognize both classic and atypical presentations of acute myocardial ischemia. Classic emergency red flags include acute pain, tightness, or discomfort in the centre of the chest coupled with radiating pain or discomfort in the arms, the left shoulder, elbows, jaw, or back. Accompanying autonomic and hemodynamic signs include difficulty breathing or acute shortness of breath, nausea or vomiting, lightheadedness or faintness, breaking into a cold sweat, and sudden pallor. Crucially, clinical triage must account for sex-specific symptom variations: women are significantly more likely than men to present with shortness of breath, nausea, vomiting, and isolated back or jaw pain without classic crushing retrosternal chest pain. Any patient exhibiting these acute warning signs must be directed to emergency hospital care immediately for electrocardiogram diagnostics and reperfusion evaluation. Beyond acute coronary events, WHO guidance highlights venous thromboembolism, where blood clots form in the deep veins of the legs (causing unilateral calf or thigh swelling, warmth, and pain) and can dislodge to travel to the heart and lungs, causing life-threatening pulmonary embolism characterized by sudden dyspnea, pleuritic chest pain, tachycardia, and hemoptysis. Furthermore, in low- and middle-income regions, rheumatic heart disease—resulting from valvular scarring after untreated streptococcal pharyngitis—presents with progressive exertional shortness of breath, chronic fatigue, irregular heartbeats (arrhythmias), chest pain, and syncope, requiring specialist cardiology echocardiography and longitudinal medical or surgical valve management. Patients with intermediate risk factors—including hypertension, diabetes, dyslipidemia, tobacco use, or obesity—require regular primary care and cardiology screening rather than unguided self-medication."
+  },
+  {
+    "doc_id": "NHS-NEURO-001",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Headaches - Red Flag Triage, Secondary Causes & Neurology Referral",
+    "url": "https://www.nhs.uk/conditions/headaches/",
+    "red_flags": [
+      "Sudden, extremely painful headache reaching maximum intensity rapidly (thunderclap headache)",
+      "Headache accompanied by fever, stiff neck, photophobia (pain looking at bright lights), or a non-blanching rash",
+      "Headache with neurological deficits including seizure, numbness/weakness in the face or body, slurred speech, confusion, vision loss, or recent head injury"
+    ],
+    "recommended_specialty_ar": "المخ والأعصاب (أو طوارئ المستشفى فوراً عند الاشتباه في نزيف أو التهاب سحائي)",
+    "recommended_specialty_en": "Neurology / Emergency Medicine",
+    "content": "While the majority of headaches represent primary headache disorders—such as tension-type headaches, migraines, or cluster headaches—or mild secondary responses to dehydration, viral colds, eye strain, or stress, structured triage is essential to detect life-threatening intracranial emergencies. Immediate emergency hospital care (calling an ambulance or attending A&E) is mandatory if a headache starts suddenly and is extremely painful (thunderclap headache suggestive of subarachnoid hemorrhage), or if a headache is accompanied by any neurological or meningeal red flags. These emergency red flags include having a seizure (fit), numbness or weakness in the face, arm, or leg, difficulty speaking, walking, balancing, or remembering things, drowsiness or acute confusion, sudden loss of vision, a very high temperature with a stiff neck and photophobia (discomfort looking at bright lights), a skin rash that does not fade when pressed with a glass, or onset within three months of a head injury or fall. Patients with these emergency warning signs must not drive themselves to the hospital. When emergency signs are absent, an urgent same-day medical consultation is required if a headache is accompanied by new blurred or double vision, is triggered or worsened by coughing, sneezing, bending down, or physical exertion (indicative of raised intracranial pressure), occurs alongside persistent vomiting, wakes a child from sleep, or presents with jaw pain while chewing (jaw claudication) and a sore, tender scalp—which are classic warning signs of giant cell (temporal) arteritis requiring urgent intervention to prevent permanent blindness. A routine neurology or general practitioner appointment is appropriate when headaches occur regularly, fail to improve with standard hydration and rest, or progressively interfere with daily life. Patients should be advised to maintain a headache diary tracking frequency, duration, dietary triggers, and sleep patterns, stay well hydrated, avoid skipping meals, and strictly avoid taking over-the-counter painkillers more than two days per week to prevent medication-overuse headaches."
+  },
+  {
+    "doc_id": "MAYO-NEURO-002",
+    "source": "Mayo Clinic",
+    "license": "Fair Use Educational Synthesis (Authoritative Clinical Reference)",
+    "category": "neurological_ent_ophth",
+    "title": "Dizziness and Vertigo - Stroke Differentiation & Vestibular Triage",
+    "url": "https://www.mayoclinic.org/symptoms/dizziness/basics/causes/sym-20050886",
+    "red_flags": [
+      "New, severe dizziness or vertigo accompanied by sudden, severe headache or chest pain",
+      "Dizziness with loss of feeling or weakness in the face, arms, or legs, or stumbling and inability to walk",
+      "Dizziness accompanied by slurred speech, confusion, double vision, sudden hearing change, rapid/irregular heartbeat, fainting, or ongoing vomiting"
+    ],
+    "recommended_specialty_ar": "المخ والأعصاب / الأذن والأنف والحنجرة والاتزان (أو طوارئ المستشفى فوراً عند علامات الجلطة)",
+    "recommended_specialty_en": "Neurology / Otolaryngology (ENT) / Emergency Medicine",
+    "content": "Dizziness encompasses a broad range of sensations including feeling lightheaded or faint (presyncope), feeling unsteady or off-balance (disequilibrium), and experiencing a false sense that oneself or the surrounding environment is spinning (vertigo). Because dizziness can originate from benign inner-ear vestibular disorders or life-threatening cerebrovascular and cardiovascular events, triage must prioritize ruling out acute stroke, transient ischemic attack (TIA), and cardiac arrhythmia. Immediate emergency medical care is mandatory if new, severe dizziness or vertigo occurs alongside any central neurological or cardiopulmonary red flags: a sudden, severe headache or chest pain; rapid or irregular heartbeat; loss of sensation, numbness, or motor weakness in the face, arms, or legs; stumbling or inability to walk (ataxia); trouble breathing; fainting (syncope) or seizures; double vision or a sudden change in hearing; acute confusion or slurred speech (dysarthria); or ongoing, intractable vomiting. When emergency warning signs are excluded, an outpatient evaluation with a neurologist or otolaryngologist (ENT and balance specialist) is warranted if dizziness is recurrent, persistent, unexplained, or accompanied by auditory symptoms such as tinnitus or muffled hearing. Clinical differentiation depends on trigger patterns and associated signs: brief spinning vertigo triggered by specific head movements (such as rolling over in bed or looking up) typically indicates benign paroxysmal positional vertigo (BPPV); sustained vertigo with imbalance following a viral cold or flu suggests vestibular neuritis or labyrinthitis; and episodic vertigo lasting hours accompanied by unilateral ear fullness, fluctuating hearing loss, and ringing in the ears (tinnitus) points toward Ménière's disease. Conversely, lightheadedness occurring specifically when standing up quickly from a sitting or lying position reflects orthostatic (postural) hypotension, dehydration, iron-deficiency anemia, hypoglycemia, or medication side effects. Patients experiencing acute dizziness should lie down immediately until the sensation passes, rise slowly, maintain adequate hydration, avoid caffeine, alcohol, and tobacco, and refrain from driving or operating machinery until medically cleared."
+  },
+  {
+    "doc_id": "NHS-NEURO-003",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Vision loss and Eye Pain - Ophthalmic Emergencies & Specialist Referral",
+    "url": "https://www.nhs.uk/conditions/vision-loss/",
+    "red_flags": [
+      "Sudden loss of vision in one or both eyes, even if temporary",
+      "Sudden, severe eye pain accompanied by a red eye, headache, or nausea",
+      "New onset of flashing lights, a shower of dark floating spots, or a dark curtain/shadow moving across the field of vision"
+    ],
+    "recommended_specialty_ar": "طب وجراحة العيون (طوارئ العيون فوراً عند فقدان البصر المفاجئ أو الستارة المظلمة)",
+    "recommended_specialty_en": "Ophthalmology / Emergency Medicine",
+    "content": "Changes in vision or acute ocular pain require rapid, structured ophthalmic triage because several underlying conditions can cause irreversible blindness within hours if left untreated. Immediate emergency department or emergency eye hospital attendance is mandatory if a patient suddenly loses sight in one or both eyes, or develops sudden, severe eye pain. Urgent same-day ophthalmic evaluation is also required if a patient experiences acute visual disturbances such as sudden blurred vision or double vision (diplopia), sees new flashing lights (photopsia), notices a sudden shower of dark dots, lines, or cobwebs (floaters), or perceives a dark shadow or curtain moving across their field of vision. These acute visual phenomena—dots, flashes, and a spreading dark shadow—are hallmark warning signs of a detached retina (retinal detachment) or vitreous hemorrhage, which require urgent surgical or laser intervention by an ophthalmologist to preserve sight. Similarly, blurred vision accompanied by severe aching eye pain, a red eye, glowing halos around lights, frontal headache, and nausea or vomiting indicates acute angle-closure glaucoma, an ophthalmic emergency involving rapidly rising intraocular pressure. Urgent assessment is also necessary for any painful red eye, marked photophobia (pain or extreme sensitivity in bright light), contact-lens-associated eye pain, or suspected corneal ulcer or chemical/foreign body injury. In contrast, a routine consultation with an ophthalmologist or optometrist is appropriate for gradual, painless visual decline over months or years. Common chronic causes of progressive vision loss include adult cataracts (characterized by cloudy or misty vision, faded colours, glare, and glowing rings around nighttime lights), age-related macular degeneration (causing a distorted or blurry area in the centre of vision that impairs reading and facial recognition), and diabetic retinopathy (gradual worsening of sight in patients with diabetes mellitus). Patients with visual changes must never drive themselves to the hospital and should avoid applying unprescribed steroid or anaesthetic eye drops prior to a formal slit-lamp and dilated fundus examination."
+  },
+  {
+    "doc_id": "NHS-NEURO-004",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Ear infections (Otitis Media, Externa & Interna) - ENT Triage & Complications",
+    "url": "https://www.nhs.uk/conditions/ear-infections/",
+    "red_flags": [
+      "Painful swelling, redness, or tenderness behind or around the ear (suspected mastoiditis)",
+      "Earache accompanied by a very high fever, severe dizziness/vertigo, vomiting, or new hearing loss",
+      "Ear infection symptoms in an immunocompromised patient, someone with diabetes/cardiac disease, or an infant under 12 months with bilateral earache"
+    ],
+    "recommended_specialty_ar": "الأذن والأنف والحنجرة (أو الطوارئ عند وجود تورم خلف الأذن أو حمى شديدة ودوار)",
+    "recommended_specialty_en": "Otolaryngology (ENT)",
+    "content": "Ear infections affect the outer ear canal (otitis externa), the middle ear behind the eardrum (otitis media), or the inner ear vestibular labyrinth (otitis interna or labyrinthitis). Typical symptoms begin rapidly and include localized earache, a sensation of fullness or pressure inside the ear, muffled or reduced hearing, purulent or watery discharge running out of the ear (otorrhea), and itching, irritation, or scaling around the external ear canal. In infants and young children, non-specific signs include pulling or rubbing at the ear, irritability, restlessness, poor feeding, and loss of balance. While many uncomplicated viral middle ear infections resolve spontaneously within three days, careful clinical triage is essential to identify patients at risk of severe intracranial or temporal bone complications such as acute mastoiditis, meningitis, facial nerve palsy, or malignant (necrotizing) otitis externa. An urgent same-day medical consultation with an otolaryngologist (ENT specialist) or physician is required if ear infection symptoms are accompanied by swelling, redness, or tenderness around or behind the ear pinna (over the mastoid bone), a very high temperature with shivering (rigors), fluid or pus draining from the ear, acute hearing loss, severe dizziness or spinning vertigo, persistent vomiting, or a severe sore throat. Urgent evaluation is also mandatory for infants under 12 months old, patients with diabetes mellitus or underlying heart, lung, kidney, or neurological conditions, and immunocompromised individuals (such as those receiving chemotherapy), as diabetic and immunocompromised patients are highly vulnerable to invasive necrotizing otitis externa. A routine ENT or primary care visit is recommended if an earache fails to improve after three days, or if a patient experiences recurrent ear infections. During examination, a clinician inspects the ear canal and tympanic membrane using an otoscope. Patients should keep the affected ear dry during bathing, avoid swimming, wipe outer discharge gently with cotton wool, and strictly avoid inserting cotton buds, fingers, or unprescribed drops into the ear canal, especially if a perforated eardrum is suspected."
+  },
+  {
+    "doc_id": "NHS-NEURO-005",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Sinusitis (Sinus Infection) - Facial Pain Triage & ENT Referral Criteria",
+    "url": "https://www.nhs.uk/conditions/sinusitis-sinus-infection/",
+    "red_flags": [
+      "Sinus pain accompanied by swelling or redness around the eye, double vision, or reduced visual acuity (suspected orbital cellulitis)",
+      "Severe frontal headache, high fever, neck stiffness, confusion, or photophobia",
+      "Unilateral sinus symptoms (pain, blockage, or bloody discharge on only one side of the face) or symptoms in an immunocompromised patient"
+    ],
+    "recommended_specialty_ar": "الأذن والأنف والحنجرة",
+    "recommended_specialty_en": "Otolaryngology (ENT)",
+    "content": "Sinusitis is inflammation and swelling of the mucosal lining of the paranasal sinuses—the air-filled cavities behind the cheekbones, forehead, and eyes—most commonly triggered by an upper respiratory viral cold or influenza, or secondary to allergic rhinitis. Characteristic symptoms include facial pain, pressure, swelling, and tenderness around the cheeks, eyes, or forehead (which often worsens when leaning forward), a blocked or runny nose, thick green or yellow nasal mucus, reduced sense of smell (hyposmia), sinus headache, upper jaw toothache, halitosis, and ear pressure. Most acute viral sinusitis resolves within two to four weeks with conservative supportive care, including rest, oral hydration, warm steam inhalation, and nasal irrigation using a sterile saline (salt water and bicarbonate) solution. However, urgent medical evaluation is required if a patient with sinusitis becomes systemically very unwell with a high fever, experiences severe facial pain or headache that continues to worsen despite standard over-the-counter analgesia, has a weakened immune system (such as from chemotherapy or immunosuppressive therapy), or develops periorbital red flags including swelling and redness around the eyelids, eye pain, diplopia (double vision), displacement of the eyeball, or visual changes, which indicate spread of infection to the eye socket (orbital cellulitis) or intracranial venous sinuses. A scheduled referral to an ear, nose, and throat (ENT) specialist is indicated when sinusitis symptoms fail to improve after seven days of initial medical treatment or three weeks of self-care, when sinusitis persists beyond three months (chronic rhinosinusitis), when episodes keep recurring frequently, or when symptoms occur strictly on one side of the face (unilateral sinus disease, which requires endoscopic evaluation to rule out nasal polyps, fungal balls, foreign bodies, or sinonasal tumors). Because acute sinusitis is predominantly viral, patients should not self-medicate with oral antibiotics; clinicians typically manage persistent cases with intranasal corticosteroid sprays or antihistamines before considering targeted therapy or functional endoscopic sinus surgery (FESS)."
+  },
+  {
+    "doc_id": "NHS-GI-001",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Indigestion, Heartburn and Acid Reflux - Dyspepsia Triage & Alarm Symptoms",
+    "url": "https://www.nhs.uk/conditions/indigestion/",
+    "red_flags": [
+      "Difficulty swallowing (dysphagia) or feeling that food is getting stuck in the throat or chest",
+      "Indigestion or epigastric pain accompanied by vomiting blood, coffee-ground emesis, or black tarry stools (melena)",
+      "Persistent indigestion associated with unexplained weight loss, persistent vomiting, iron-deficiency anemia, or a palpable abdominal lump"
+    ],
+    "recommended_specialty_ar": "الجهاز الهضمي والكبد والمناظير / الباطنة العامة",
+    "recommended_specialty_en": "Gastroenterology / Internal Medicine",
+    "content": "Indigestion (dyspepsia) and gastroesophageal reflux disease (GERD) are common upper gastrointestinal complaints caused by stomach acid irritating the mucosal lining of the stomach, duodenum, or esophagus. Typical symptoms occur shortly after eating or drinking and include heartburn (a painful burning sensation rising behind the breastbone), epigastric fullness and bloating, early satiety, nausea, frequent belching, and regurgitation of sour or bitter-tasting fluid into the throat or mouth, often worsening when bending over or lying down at night. While mild, occasional indigestion can be managed with lifestyle modifications—such as eating smaller, more frequent meals, avoiding rich, fatty, spicy, or acidic foods (like tomatoes and chocolate), cutting down on coffee, tea, cola, alcohol, and smoking, avoiding meals within three to four hours of bedtime, elevating the head and shoulders in bed, losing excess weight, and discontinuing non-steroidal anti-inflammatory drugs (NSAIDs) like ibuprofen, diclofenac, or aspirin—clinical triage must screen rigorously for upper gastrointestinal alarm symptoms. Urgent or specialist gastroenterology evaluation (including upper GI diagnostic endoscopy) is mandatory if a patient experiences difficulty or pain when swallowing (dysphagia), unintentional weight loss, recurrent or persistent vomiting, known iron-deficiency anemia, a palpable lump or mass in the upper abdomen, or overt gastrointestinal bleeding such as vomiting blood or passing black, tarry stools. Furthermore, clinicians must remember that sudden, severe epigastric burning accompanied by sweating, shortness of breath, or arm and jaw radiation can mimic indigestion while actually representing acute myocardial ischemia, requiring immediate emergency cardiac rule-out. A routine consultation with a gastroenterologist or internal medicine specialist is advised when indigestion keeps recurring, fails to respond to initial pharmacy antacids, alginates, or short-term acid suppression, or begins newly in patients over middle age. Underlying organic etiologies that require specialist diagnosis include peptic ulcer disease, Helicobacter pylori gastritis, hiatus hernia, erosive esophagitis, and gastric or esophageal malignancy requiring targeted biopsy and specialist management."
+  },
+  {
+    "doc_id": "NHS-GI-002",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Stomach ache and Abdominal Pain - Acute Abdomen Red Flags & Triage",
+    "url": "https://www.nhs.uk/conditions/stomach-ache/",
+    "red_flags": [
+      "Sudden, severe abdominal pain that makes it impossible to move, sit still, or touch the abdomen (board-like rigidity/peritonitis)",
+      "Abdominal pain accompanied by vomiting blood, coffee-ground vomit, bright red rectal bleeding, or black sticky stools",
+      "Abdominal pain with complete inability to pass urine, inability to pass stool or gas (bowel obstruction), difficulty breathing, or collapse"
+    ],
+    "recommended_specialty_ar": "الجهاز الهضمي والباطنة / الجراحة العامة (أو طوارئ المستشفى فوراً عند البطن الجراحي الحاد)",
+    "recommended_specialty_en": "Gastroenterology / General Surgery / Emergency Medicine",
+    "content": "Abdominal pain ('stomach ache') encompasses a wide spectrum of visceral, parietal, and referred pain patterns ranging from self-limiting trapped wind or viral gastroenteritis to life-threatening surgical emergencies. Immediate emergency hospital care is required if abdominal pain starts suddenly and is excruciatingly severe—defined clinically as pain so intense that the patient cannot sleep, think, talk, or move comfortably, or exhibits severe tenderness and involuntary guarding when touching the abdomen (peritonism). Emergency escalation is also mandatory if abdominal pain occurs alongside vomiting blood or dark 'ground coffee' material, green bilious vomit in adults, heavy rectal bleeding or black, sticky tarry stools (melena), complete urinary retention (inability to pass urine at all), absolute constipation (inability to pass stool or flatus, indicating acute intestinal obstruction), difficulty breathing, a non-blanching skin rash, chest pressure, or acute dizziness and fainting. In older adults with vascular risk factors, sudden severe abdominal pain radiating to the back requires immediate exclusion of a ruptured abdominal aortic aneurysm or acute mesenteric ischemia. When immediate life-threatening signs are absent, an urgent same-day medical or surgical evaluation is warranted if abdominal pain rapidly worsens, occurs in a pregnant patient (to rule out ectopic pregnancy), is accompanied by high fever, jaundice, or persistent vomiting and diarrhea lasting several days, or is associated with bloody stools or abnormal vaginal bleeding. Anatomical localization helps guide specialist referral: acute periumbilical pain migrating to the lower right iliac fossa suggests acute appendicitis requiring urgent general surgery assessment; severe colicky pain in the upper right quadrant under the ribs lasting up to eight hours (often after fatty meals) points toward biliary colic or acute cholecystitis (gallstones); severe loin-to-groin pain with hematuria or dysuria indicates renal colic (kidney stones); and chronic, recurrent cramping accompanied by bloating and alternating diarrhea or constipation is characteristic of irritable bowel syndrome (IBS) or inflammatory bowel disease, warranting a routine gastroenterology consultation. Patients with acute severe abdominal pain must avoid taking NSAIDs or laxatives before medical evaluation."
+  },
+  {
+    "doc_id": "NHS-GI-003",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Vomiting blood (Haematemesis) & Upper GI Bleeding - Emergency Triage",
+    "url": "https://www.nhs.uk/conditions/vomiting-blood/",
+    "red_flags": [
+      "Vomiting bright red blood, dark brown/black blood, or material resembling coffee granules",
+      "Haematemesis accompanied by dizziness, feeling faint, confusion, or cold, clammy, pale skin (signs of hypovolemic shock)",
+      "Vomiting blood accompanied by rapid, shallow breathing, severe abdominal pain, or black tarry stools (melena)"
+    ],
+    "recommended_specialty_ar": "طوارئ المستشفى فوراً / مناظير الجهاز الهضمي والكبد والعناية المركزة",
+    "recommended_specialty_en": "Emergency Medicine / Gastroenterology & Hepatology",
+    "content": "Vomiting blood (haematemesis) is a high-priority medical emergency that almost always indicates active or recent bleeding within the upper gastrointestinal tract—specifically the esophagus, stomach, or duodenum. Vomited blood can vary in appearance depending on the rate of bleeding and duration of contact with gastric acid: brisk, active arterial or variceal bleeding typically produces bright red liquid blood or clots, whereas slower or partially digested bleeding appears dark brown or black with a granular texture resembling ground coffee. Every patient reporting haematemesis requires prompt medical evaluation, and immediate emergency hospital admission (via ambulance or A&E) is mandatory if the patient is actively vomiting blood or has vomited blood accompanied by any signs of hemodynamic instability or hypovolemic shock. These critical red flags include feeling faint, dizzy, or lightheaded, acute confusion or drowsiness, rapid or shallow breathing (tachypnea), cold, clammy, and pale skin, severe abdominal pain, or passing black, tarry, foul-smelling stools (melena). Even if the vomiting of blood has stopped and the patient currently has no other systemic symptoms, an urgent same-day medical assessment and gastroenterology referral remain essential to identify the bleeding source and prevent catastrophic re-bleeding. In Egypt and globally, major causes of upper gastrointestinal bleeding include peptic ulcer disease (gastric or duodenal ulcers), severe erosive gastritis, gastroesophageal varices secondary to chronic liver disease, hepatitis, or portal hypertension, Mallory-Weiss mucosal tears at the gastroesophageal junction caused by forceful retching or coughing, severe esophagitis, blood clotting disorders, and upper GI malignancies. Bleeding risk is substantially heightened in patients taking non-steroidal anti-inflammatory drugs (such as ibuprofen, diclofenac, or ketoprofen), aspirin, corticosteroids, or oral anticoagulants. Clinicians must also verify whether the blood was swallowed from a severe posterior nosebleed (epistaxis). Patients must never drive themselves to the hospital and must remain nil by mouth (NPO) in preparation for urgent diagnostic and therapeutic upper GI endoscopy."
+  },
+  {
+    "doc_id": "NHS-GI-004",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Diarrhoea and Vomiting (Gastroenteritis) - Dehydration Triage & Red Flags",
+    "url": "https://www.nhs.uk/conditions/diarrhoea-and-vomiting/",
+    "red_flags": [
+      "Inability to keep any fluids down due to continuous vomiting, or persistent signs of severe dehydration (little/no urination, extreme dizziness, confusion)",
+      "Vomiting green or yellow-green bile, vomiting blood/coffee grounds, or passing bloody diarrhoea",
+      "Diarrhoea or vomiting accompanied by sudden severe abdominal pain, high fever with stiff neck and photophobia, or blue/pale/blotchy skin"
+    ],
+    "recommended_specialty_ar": "الجهاز الهضمي والباطنة العامة (أو طوارئ المستشفى عند الجفاف الشديد أو القيء المدمم)",
+    "recommended_specialty_en": "Gastroenterology / Internal Medicine / Emergency Medicine",
+    "content": "Acute diarrhoea and vomiting are common clinical presentations in adults and children, most frequently caused by viral or bacterial gastroenteritis ('stomach bug') or foodborne toxins (food poisoning). In uncomplicated cases, vomiting usually subsides within one to two days and diarrhoea resolves within five to seven days. However, triage must focus on detecting life-threatening surgical mimics, systemic sepsis, and severe dehydration. Immediate emergency hospital care is mandatory if a patient vomits blood or material looking like ground coffee, vomits green or yellow-green bilious fluid (which may signify intestinal obstruction), may have ingested a poisonous substance, experiences a sudden, severe abdominal ache, develops a stiff neck with photophobia and severe headache, exhibits rapid or laboured breathing, shows pale, grey, blue, or blotchy skin, or becomes acutely confused, lethargic, or unresponsive. Urgent medical evaluation is required if a patient cannot keep any oral fluids down due to intractable vomiting, continues to show clinical signs of dehydration (such as dark, concentrated, smelly urine, decreased urination, dry mouth, sunken eyes, or postural dizziness) despite using oral rehydration solution (ORS) sachets, passes bloody diarrhoea or bleeding from the rectum (suggestive of bacterial dysentery, amoebiasis, enterohemorrhagic infection, or inflammatory bowel disease), or has vomiting lasting more than two days or diarrhoea lasting more than seven days. Vulnerable populations—including frail older adults, infants under 12 months, pregnant women, immunocompromised patients, and individuals with chronic kidney disease, heart failure, or diabetes—require early medical review due to rapid decompensation from fluid and electrolyte loss. Supportive home care centers on frequent small sips of water and oral rehydration salts, resting, eating bland meals when able while avoiding fruit juices, carbonated sodas, and fatty or spicy foods, and practicing strict hand hygiene with soap and water. Patients should not take over-the-counter anti-motility drugs or unprescribed antibiotics when high fever or bloody stools are present."
+  },
+  {
+    "doc_id": "NHS-GI-005",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Constipation - Bowel Habit Changes, Obstruction Triage & Colorectal Screening",
+    "url": "https://www.nhs.uk/conditions/constipation/",
+    "red_flags": [
+      "Complete inability to pass stool or gas (wind) accompanied by severe abdominal pain, distension, and vomiting (acute bowel obstruction)",
+      "Constipation or recent change in bowel habits accompanied by blood in the stool or rectal bleeding",
+      "Persistent constipation associated with unintentional weight loss, chronic fatigue/iron-deficiency anemia, or palpable abdominal/rectal mass"
+    ],
+    "recommended_specialty_ar": "الجهاز الهضمي والقولون / الجراحة العامة",
+    "recommended_specialty_en": "Gastroenterology / Colorectal Surgery",
+    "content": "Constipation in adults is defined clinically by infrequent bowel movements (passing stool fewer than three times per week), passing unusually hard, dry, or lumpy stools, straining or experiencing pain during defecation, or feeling an incomplete evacuation of the rectum, often accompanied by mild abdominal bloating, cramps, or nausea. Most functional constipation stems from low dietary fibre intake, inadequate fluid consumption, physical inactivity or prolonged bed rest, ignoring the urge to defecate, pregnancy, stress, or medication side effects (particularly opioid analgesics, iron supplements, calcium channel blockers, and anticholinergics). While uncomplicated acute constipation responds well to gradual increases in dietary fibre (fruits containing sorbitol such as apples, apricots, and grapes, vegetables, oats, wheat bran, and linseed), increased water intake, regular daily walking, optimal toilet posture (raising the knees on a low footstool), and short-term pharmacist-recommended osmotic or bulk-forming laxatives, clinical triage must distinguish benign constipation from acute mechanical bowel obstruction and colorectal pathology. Immediate emergency hospital care is required if a patient cannot pass stool or gas (flatus) at all alongside severe, worsening abdominal pain, progressive abdominal distension, and vomiting—which indicates acute intestinal obstruction (due to hernia, volvulus, adhesions, or stricture) requiring urgent surgical decompression. A scheduled outpatient consultation with a gastroenterologist or colorectal specialist is necessary if constipation does not improve with lifestyle and initial pharmacy measures, occurs regularly without a clear trigger, represents a sudden, persistent change in baseline bowel habits (especially in adults over age 45–50), or is accompanied by red-flag alarm features: blood mixed in or on the stool, unintentional weight loss, persistent abdominal pain, or chronic tiredness suggestive of occult gastrointestinal blood loss and iron-deficiency anemia. Long-term untreated constipation can also cause faecal impaction in the rectum, which paradoxically presents as overflow watery diarrhoea leaking past a solid faecal mass and requires medical disimpaction rather than anti-diarrhoeal medication."
+  },
+  {
+    "doc_id": "NHS-MSK-001",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Back pain - Cauda Equina Red Flags, Spinal Triage & Physiotherapy",
+    "url": "https://www.nhs.uk/conditions/back-pain/",
+    "red_flags": [
+      "Back pain accompanied by loss of feeling (saddle anaesthesia) around the genitals, perineum, or anus",
+      "Back pain with new bladder or bowel dysfunction, such as difficulty starting urination, urinary retention, or incontinence of urine or stool",
+      "Back pain with pain, tingling, weakness, or numbness in both legs, chest pain, or onset immediately after a serious trauma/car accident"
+    ],
+    "recommended_specialty_ar": "جراحة العظام والعمود الفقري / جراحة المخ والأعصاب (أو طوارئ المستشفى فوراً عند علامات ذيل الفرس)",
+    "recommended_specialty_en": "Orthopedics & Spine Surgery / Neurosurgery / Physical Therapy",
+    "content": "Lower back pain is a highly prevalent musculoskeletal presentation most commonly caused by mechanical muscle or ligament strains, postural stress, intervertebral disc prolapse (slipped disc), facet joint arthropathy, or ankylosing spondylitis. Although most non-specific mechanical back pain improves within a few weeks through staying gently active, avoiding prolonged bed rest, applying alternating heat or ice packs wrapped in a towel, and engaging in targeted physiotherapy stretches, every patient with back pain must be screened for neurological and spinal emergencies—specifically cauda equina syndrome, spinal cord compression, aortic dissection, and vertebral fracture or infection. Immediate emergency hospital care (attending A&E or calling an ambulance) is mandatory if back pain is accompanied by bilateral neurological deficits (pain, tingling, weakness, or numbness in both legs), saddle anaesthesia (loss of sensation around the genitals, buttocks, perineum, or anus), acute bladder or bowel changes (such as inability to urinate, urinary retention, or incontinence of urine or faeces), sudden sexual dysfunction, concurrent chest pain, or onset following a high-impact trauma such as a road traffic accident or fall from height. When emergency cauda equina or trauma red flags are absent, an urgent medical consultation is required if severe back pain starts suddenly or worsens rapidly, or if back pain is accompanied by systemic infection signs including high fever, chills, and shivering (suggestive of spinal epidural abscess, vertebral osteomyelitis, or infectious discitis). A routine orthopedic, rheumatology, or spine specialist consultation is indicated if back pain fails to improve after a few weeks of home care, prevents daily activities, is accompanied by unexplained weight loss or a visible spinal lump or deformity, worsens at night or does not improve when lying down (a red flag for spinal malignancy or inflammatory spondyloarthropathy), worsens when coughing, sneezing, or straining, or originates in the upper thoracic spine between the shoulder blades rather than the lower lumbar region."
+  },
+  {
+    "doc_id": "NHS-MSK-002",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Sciatica and Radiculopathy - Nerve Compression Triage & Cauda Equina Screening",
+    "url": "https://www.nhs.uk/conditions/sciatica/",
+    "red_flags": [
+      "Sciatica symptoms (shooting leg pain, numbness, or tingling) affecting both legs simultaneously (bilateral sciatica)",
+      "Severe or progressively worsening motor weakness or numbness in the leg or foot (such as acute foot drop)",
+      "Numbness around or under the genitals or anus, or new difficulty controlling or initiating bladder or bowel function"
+    ],
+    "recommended_specialty_ar": "جراحة المخ والأعصاب والعمود الفقري / جراحة العظام والعلاج الطبيعي",
+    "recommended_specialty_en": "Neurosurgery / Orthopedics / Physical Medicine & Rehabilitation",
+    "content": "Sciatica (lumbar radiculopathy) occurs when the sciatic nerve or its contributing lumbosacral nerve roots become compressed or irritated, most frequently due to a herniated intervertebral disc ('slipped disc'), lumbar spinal stenosis (narrowing of the spinal canal), or spondylolisthesis (vertebral slippage). Unlike isolated lower back strain, true sciatica radiates from the lower back and buttock down the posterior or lateral aspect of one leg, frequently extending into the calf, foot, and toes, and the radiating leg pain is typically more severe than the back ache itself. Characteristic symptoms include a sharp, shooting, burning, or electric-shock-like pain down the leg, paraesthesia (pins and needles or tingling), dermatomal numbness, and myotomal weakness, which often intensify when moving, coughing, sneezing, or sitting for prolonged periods. While unilateral sciatica without severe motor deficit typically resolves over several weeks to months with active physical therapy and conservative care, triage must immediately identify cauda equina syndrome and progressive neurological loss. Immediate emergency hospital admission is mandatory if a patient develops bilateral sciatica (radiating pain, tingling, or numbness affecting both legs), experiences severe or rapidly worsening weakness or numbness in the legs (such as an inability to lift the front of the foot, known as foot drop), notices numbness around or under the genital area or anus, or experiences any new bladder or bowel disturbance—including difficulty starting urination, urinary retention, or loss of urinary or faecal continence. These red flags indicate critical compression of the lumbosacral nerve bundle requiring emergency MRI and surgical decompression to prevent permanent paralysis and incontinence. A routine consultation with a spine specialist, neurosurgeon, orthopedic surgeon, or physiotherapist is recommended if unilateral sciatica does not begin to improve after a few weeks of gentle exercise, heat pack application, and posture modification, progressively worsens, or significantly impairs mobility and sleep. Patients are advised to remain gently active and avoid prolonged sitting or bed rest."
+  },
+  {
+    "doc_id": "NHS-MSK-003",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Cervical Spondylosis and Neck Pain - Myelopathy Red Flags & Spine Triage",
+    "url": "https://www.nhs.uk/conditions/cervical-spondylosis/",
+    "red_flags": [
+      "Neck pain accompanied by new difficulty walking, unsteadiness, or sudden lack of coordination in the hands (e.g., buttoning a shirt)",
+      "Neck pain with loss of bladder or bowel control, or stroke-like signs (facial drooping, inability to lift both arms, slurred speech)",
+      "Severe neck pain that starts suddenly or worsens rapidly alongside heaviness, weakness, or pins and needles in the arms or legs"
+    ],
+    "recommended_specialty_ar": "جراحة العظام والعمود الفقري / جراحة المخ والأعصاب",
+    "recommended_specialty_en": "Orthopedics / Neurosurgery / Neurology",
+    "content": "Neck pain and stiffness are frequently caused by mechanical muscle strain, poor ergonomics, or cervical spondylosis—age-related wear and tear affecting the cervical vertebrae and intervertebral discs, particularly in adults over age 40. Common uncomplicated symptoms include intermittent pain and stiffness in the neck and shoulders that may worsen with movement, alongside occipital headaches originating at the base of the skull. However, because the cervical spine houses the spinal cord and vertebral arteries, clinical triage must screen for cervical myelopathy (spinal cord compression), acute cervical radiculopathy, and cerebrovascular dissection. Immediate emergency hospital care is mandatory if neck pain occurs alongside signs of spinal cord compression or acute stroke: new problems walking or gait unsteadiness, sudden loss of fine motor coordination in the hands (such as difficulty buttoning a shirt, writing, or handling small objects), loss of bladder or bowel control, unilateral facial drooping, inability to raise both arms and keep them elevated, or slurred and garbled speech. Furthermore, neck stiffness accompanied by high fever, severe headache, and photophobia is a classic red flag for acute meningitis requiring emergency hospital admission, and neck pain following high-energy trauma requires cervical spine immobilization and emergency imaging. When emergency signs are absent, an urgent medical evaluation is required if a patient develops sudden, severe neck pain or rapidly worsening pain, experiences heaviness or motor weakness in the arms or legs, notices persistent pins and needles (tingling) or numbness radiating down a shoulder and arm (cervical radiculopathy), or has unexplained pain between the shoulder blades. A routine orthopedic, neurology, or physiotherapy consultation is appropriate when localized neck pain and stiffness persist for more than a few weeks despite posture correction and gentle range-of-motion exercises. Diagnostic workup by a specialist typically involves neurological reflex, sensory, and gait testing, cervical spine radiographs, or magnetic resonance imaging (MRI) to evaluate for disc herniation or cord impingement."
+  },
+  {
+    "doc_id": "MAYO-MSK-004",
+    "source": "Mayo Clinic",
+    "license": "Fair Use Educational Synthesis (Authoritative Clinical Reference)",
+    "category": "musculoskeletal",
+    "title": "Joint Pain and Swelling - Septic Arthritis Red Flags & Rheumatology Triage",
+    "url": "https://www.mayoclinic.org/symptoms/joint-pain/basics/when-to-see-doctor/sym-20050668",
+    "red_flags": [
+      "Acute, severe joint pain with rapid swelling, redness, warmth, inability to move the joint, and systemic fever (suspected septic arthritis)",
+      "Traumatic joint injury where the joint looks deformed/out of shape, cannot bear weight or be used at all, or has severe sudden swelling",
+      "Joint pain accompanied by numbness, tingling, or pale/bluish discoloration distal to the joint"
+    ],
+    "recommended_specialty_ar": "أمراض الروماتيزم والمناعة / جراحة العظام والمفاصل (أو الطوارئ عند التهاب المفصل الصديدي أو الخلع)",
+    "recommended_specialty_en": "Rheumatology / Orthopedics / Emergency Medicine",
+    "content": "Joint pain (arthralgia) and joint inflammation (arthritis) can affect a single joint (monoarticular) or multiple joints (polyarticular) and stem from degenerative, autoimmune, crystal-induced, infectious, or traumatic etiologies. Clinical triage must first exclude orthopedic and rheumatologic emergencies—specifically acute septic arthritis (a bacterial infection inside the joint space that rapidly destroys articular cartilage and can lead to systemic sepsis) and acute joint dislocation or intra-articular fracture. Immediate or urgent same-day emergency evaluation is required if a joint injury causes the joint to look visibly deformed or out of shape, renders the patient completely unable to use the joint or bear weight, or produces sudden, severe swelling and intense pain. Urgent same-day medical assessment is equally critical if a patient develops an acutely swollen, hot, red, and exquisitely tender joint accompanied by a high fever or chills, as this presentation demands prompt synovial fluid aspiration (arthrocentesis) and microbiological analysis to rule out septic arthritis versus acute crystal arthropathy (gout or pseudogout). When acute emergency signs are absent, a scheduled outpatient appointment with a rheumatologist or orthopedic specialist is indicated if joint pain is accompanied by persistent swelling, redness, tenderness, and warmth around the joint, morning stiffness lasting more than 30 to 60 minutes that improves with movement, symmetrical involvement of small joints in the hands, wrists, and feet, or systemic symptoms such as unexplained fatigue, weight loss, oral ulcers, or skin rashes. Common chronic causes evaluated by specialists include osteoarthritis (degenerative wear-and-tear affecting knees, hips, spine, and hands), rheumatoid arthritis, psoriatic arthritis, ankylosing spondylitis, systemic lupus erythematosus, reactive arthritis, gout (often affecting the base of the big toe), bursitis, and tendinitis. While mild mechanical joint soreness can be supported at home with rest, ice application for 15 to 20 minutes, and joint protection, patients must avoid self-medicating with systemic corticosteroids or unprescribed immunosuppressants prior to specialist diagnosis."
+  },
+  {
+    "doc_id": "NHS-MSK-005",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Sprains, Strains and Limb Trauma - Fracture Red Flags & Orthopedic Triage",
+    "url": "https://www.nhs.uk/conditions/sprains-and-strains/",
+    "red_flags": [
+      "Audible crack or snap at the time of injury, or the injured limb/joint has changed shape or is pointing at an odd angle",
+      "Injured limb or extremity is numb, tingling (pins and needles), or the skin around/below the injury turns blue, grey, pale, or cold to touch",
+      "Complete inability to bear weight on the injured leg/ankle or walk more than a few steps, or severe worsening pain and swelling"
+    ],
+    "recommended_specialty_ar": "جراحة العظام والكسور والإصابات (طوارئ العظام فوراً عند الاشتباه في كسر أو انقطاع التروية)",
+    "recommended_specialty_en": "Orthopedics & Trauma Surgery / Physical Therapy",
+    "content": "Sprains (torn or twisted ligaments connecting bones around a joint, commonly affecting the ankle, knee, wrist, or thumb) and strains (overstretched or torn muscle fibres or tendons, commonly affecting the hamstring, calf, or back) are frequent acute musculoskeletal injuries. While uncomplicated minor sprains and strains can be managed conservatively at home, initial triage must rigorously apply fracture and neurovascular compromise rules (such as the Ottawa Ankle and Knee principles) to identify patients who require immediate emergency imaging and orthopedic stabilization. Immediate emergency hospital care (A&E) is mandatory if the patient heard a distinct crack or snap when the injury occurred, if the injured body part looks deformed, misshapen, or points at an abnormal angle (indicative of a displaced fracture or joint dislocation), if the injured extremity becomes numb, tingling, or develops pins and needles (nerve compression), or if the skin distal to the injury changes colour—turning pale, blue, or grey—or feels cold to the touch (acute vascular compromise or compartment syndrome). When immediate neurovascular or deformity red flags are absent, an urgent orthopedic assessment (including diagnostic X-rays) is required if the injury is severely painful or rapidly worsening, exhibits massive swelling or bruising, prevents the patient from putting any weight on the injured leg or walking more than a few steps, feels locked or extremely stiff, or is accompanied by a high fever and shivering. A routine orthopedic or physiotherapy consultation is advised if a presumed sprain or strain fails to improve after two weeks of home care. For confirmed minor soft-tissue injuries during the first 48 to 72 hours, standard PRICE self-care applies: Protection (supportive footwear or brace), Rest (avoiding weight-bearing exercise), Ice (wrapped ice pack for up to 20 minutes every 2 to 3 hours), Compression (supportive elastic bandage without constricting circulation), and Elevation above heart level while avoiding hot baths, heat packs, alcohol, and vigorous massage during the first 48 hours."
+  },
+  {
+    "doc_id": "NHS-SYS-001",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Sepsis and Systemic Infection - Life-Threatening Red Flags & Emergency Triage",
+    "url": "https://www.nhs.uk/conditions/sepsis/",
+    "red_flags": [
+      "Acute confusion, slurred speech, disorientation, or extreme drowsiness/difficulty waking up in a patient with suspected infection",
+      "Blue, grey, pale, or blotchy skin, lips, or tongue (visible on palms or soles in brown/black skin) or a non-blanching rash that does not fade when pressed",
+      "Severe difficulty breathing or very fast breathing (tachypnea), uncontrollable shivering/rigors, or not passing urine all day (anuria/oliguria for 12-18 hours)"
+    ],
+    "recommended_specialty_ar": "طوارئ المستشفى والعناية المركزة فوراً (قسم الحميات والأمراض المعدية)",
+    "recommended_specialty_en": "Emergency Medicine / Critical Care / Infectious Diseases",
+    "content": "Sepsis is a life-threatening medical emergency caused by a dysregulated, overwhelming immune system response to an infection that begins to damage the body's own tissues and vital organs. Without rapid hospital recognition and treatment, sepsis quickly progresses to septic shock, multiorgan failure, and death. Any localized infection—most commonly bacterial pneumonia (chest infection), urinary tract infections (pyelonephritis), intra-abdominal infections (appendicitis, cholecystitis, peritonitis), or skin and soft-tissue infections (cellulitis, infected wounds, or burns)—can trigger sepsis. Immediate emergency hospital admission (calling an ambulance or going straight to A&E) is mandatory if an adult or child with a known or suspected infection develops any sepsis red flag: acting confused, having slurred speech, or not making sense; blue, pale, grey, or mottled/blotchy skin, lips, or tongue (which may be easier to detect on the palms of the hands or soles of the feet in patients with brown or black skin); a purpuric or petechial skin rash that does not fade when a clear glass is pressed firmly against it; severe difficulty breathing, breathlessness, or breathing very rapidly; a very high fever or an abnormally low body temperature accompanied by uncontrollable shivering (rigors) and severe muscle pain; or severe oliguria/anuria (not passing urine all day or for 18 hours in adults, or 12 hours in children). Higher-risk groups include infants under one year old, adults over age 75, pregnant or recently postpartum women, individuals with diabetes, cirrhosis, or kidney disease, patients with indwelling urinary catheters or intravenous lines, and immunocompromised patients receiving chemotherapy or corticosteroids. Hospital management requires immediate intravenous broad-spectrum antibiotics, intravenous fluid resuscitation, oxygen therapy, and source control. Patients or caregivers suspecting sepsis must never wait to see if symptoms improve at home and must seek emergency hospital care immediately without driving themselves, as rapid hospital resuscitation is critical to survival and preventing long-term post-sepsis organ and neurological complications."
+  },
+  {
+    "doc_id": "NHS-SYS-002",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Anaphylaxis and Severe Allergic Reactions - Airway & Shock Emergency Triage",
+    "url": "https://www.nhs.uk/conditions/anaphylaxis/",
+    "red_flags": [
+      "Sudden swelling of the lips, tongue, mouth, or throat (angioedema) or tightness in the throat with difficulty swallowing or hoarse voice",
+      "Rapid onset of difficulty breathing, wheezing, noisy breathing (stridor), choking, or gasping for air after exposure to an allergen",
+      "Sudden dizziness, feeling faint, confusion, collapse/unconsciousness, or pale, cold, clammy, or bluish skin alongside an itchy raised rash (hives)"
+    ],
+    "recommended_specialty_ar": "طوارئ المستشفى فوراً (ثم استشاري الحساسية والمناعة للمتابعة)",
+    "recommended_specialty_en": "Emergency Medicine / Allergy & Clinical Immunology",
+    "content": "Anaphylaxis is a severe, potentially fatal systemic hypersensitivity (allergic) reaction that develops rapidly—typically within minutes of exposure to a trigger such as foods (nuts, milk, eggs, fish, shellfish, sesame), medications (penicillin and other antibiotics, NSAIDs like ibuprofen, diclofenac, or aspirin, intravenous contrast, or general anaesthetics), insect stings (bees, wasps), or latex. Immediate emergency medical intervention (calling an ambulance and attending the nearest hospital emergency department) is mandatory at the first sign of airway, breathing, or circulatory compromise. Critical anaphylaxis red flags include sudden swelling of the lips, tongue, mouth, or throat; a feeling of tightness or closure in the throat accompanied by difficulty swallowing (dysphagia) or a hoarse, raspy voice; rapid breathing, severe shortness of breath, audible wheezing, persistent coughing, or high-pitched noisy breathing (stridor); skin, lips, or tongue turning pale, grey, or blue (visible on the palms or soles in darker skin tones); sudden confusion, drowsiness, dizziness, or fainting/collapse due to hypotensive shock; and an accompanying widespread itchy, raised, red or skin-coloured wheal rash (urticaria/hives) or deep tissue swelling (angioedema). While waiting for emergency transport, if the patient carries a prescribed adrenaline (epinephrine) auto-injector, it must be injected immediately into the outer mid-thigh, and the patient must lie down flat (with legs elevated if feeling faint, or slightly propped up at the shoulders if struggling to breathe, or on the left side if pregnant) and must never stand or walk, even if symptoms appear to improve, as standing can precipitate fatal cardiovascular collapse. If symptoms do not improve after five minutes, a second adrenaline dose should be administered. Following hospital stabilization with intravenous fluids, oxygen, antihistamines, and corticosteroids, patients require observation for 2 to 12 hours to monitor for biphasic reactions and must be referred to an allergy and clinical immunology specialist for allergen testing and long-term avoidance planning."
+  },
+  {
+    "doc_id": "WHO-SYS-003",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "systemic_fever_derm",
+    "title": "Meningitis and Acute Febrile Syndromes - Meningeal & Petechial Rash Triage",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/meningitis",
+    "red_flags": [
+      "Sudden high fever accompanied by neck stiffness (nuchal rigidity), severe headache, and sensitivity to bright light (photophobia)",
+      "Fever with a characteristic non-blanching petechial or purpuric skin rash, cold hands and feet, rapid breathing, or low blood pressure",
+      "Fever accompanied by confusion, altered mental status, extreme lethargy/difficulty waking, seizures, coma, or focal limb weakness"
+    ],
+    "recommended_specialty_ar": "طوارئ المستشفى فوراً / الحميات والأمراض المعدية والمخ والأعصاب",
+    "recommended_specialty_en": "Emergency Medicine / Infectious Diseases / Neurology",
+    "content": "Meningitis—inflammation of the protective meningeal membranes and cerebrospinal fluid surrounding the brain and spinal cord—is a devastating medical emergency caused by bacterial, viral, fungal, or parasitic pathogens. Bacterial meningitis (most commonly caused by Neisseria meningitidis, Streptococcus pneumoniae, Haemophilus influenzae, or Group B Streptococcus in neonates) carries a high case fatality rate (approximately 1 in 6 patients die) and leaves 1 in 5 survivors with permanent neurological sequelae (such as hearing loss, seizures, cognitive impairment, or limb weakness) if hospital treatment is delayed. Triage systems must recognize that early symptoms can mimic influenza, a stomach bug, or a viral illness before escalating rapidly over a few hours. Immediate emergency hospital admission is mandatory whenever a patient presents with the classic meningeal triad or associated warning signs: acute high fever, neck stiffness (inability to flex the neck forward due to nuchal rigidity), severe worsening headache, and photophobia (pain or intolerance when looking at bright light), often accompanied by nausea and projectile vomiting. Additional critical red flags include confusion, delirium, or altered mental status, extreme drowsiness or difficulty waking up, new-onset seizures (fits), focal neurological deficits such as limb weakness or cranial nerve palsies, and signs of meningococcal bloodstream infection (meningococcemia and sepsis) including very cold hands and feet, severe limb or joint pain, rapid breathing, and a characteristic non-blanching haemorrhagic (petechial or purpuric) skin rash that does not fade under pressure. In infants, where classic neck stiffness may be absent, emergency signs include a bulging fontanelle (soft spot on the head), a weak high-pitched continuous cry, extreme irritability when picked up, poor feeding, and lethargy or floppiness. Because bacterial meningitis requires immediate hospital lumbar puncture and empirical intravenous antibiotics plus corticosteroids without delay, patients must never be managed at home with oral antipyretics or self-prescribed oral antibiotics, and close household contacts of patients with meningococcal meningitis require medical evaluation for preventive antibiotic chemoprophylaxis."
+  },
+  {
+    "doc_id": "NHS-SYS-004",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Hives (Urticaria) and Acute Skin Rashes - Dermatology & Allergy Triage",
+    "url": "https://www.nhs.uk/conditions/hives/",
+    "red_flags": [
+      "Skin rash or hives accompanied by swelling of the lips, tongue, mouth, or throat, or difficulty breathing/swallowing (anaphylaxis)",
+      "A rash that does not fade when pressed with a glass (non-blanching petechial/purpuric rash) accompanied by fever or feeling unwell",
+      "Rapidly spreading painful red skin rash with blistering, skin peeling, mucosal ulcers, or high fever and shivering"
+    ],
+    "recommended_specialty_ar": "الأمراض الجلدية والتناسلية / الحساسية والمناعة",
+    "recommended_specialty_en": "Dermatology / Allergy & Immunology",
+    "content": "Hives (urticaria) and acute skin rashes are frequent dermatological presentations triggered by histamine release in the skin following exposure to food allergens, medications (such as antibiotics or NSAIDs), insect bites or stings, viral or bacterial infections, physical stimuli (cold water or wind, heat, sweat from exercise, sunlight, or pressure from tight clothing), or emotional stress. Classic hives appear as raised, itchy, stinging, or burning wheals (bumps or plaques) of varying shapes and sizes that may look pink or red on lighter skin or match skin tone as raised puffy patches on brown and black skin. While uncomplicated acute hives typically resolve within a few days with trigger avoidance and pharmacist-guided oral antihistamines or soothing menthol cream, structured triage is vital to differentiate benign urticaria from life-threatening dermatological and systemic emergencies. Immediate emergency hospital care is mandatory if a rash is accompanied by any sign of anaphylaxis—specifically swelling of the lips, mouth, tongue, or throat, tightness in the throat, hoarseness, wheezing, shortness of breath, dizziness, or fainting—or if the patient develops a non-blanching rash (spots or blotches that do not fade when pressed with a clear glass) alongside fever, headache, or confusion, or if a medication-induced rash blisters and peels across the skin and mucous membranes (suspected Stevens-Johnson syndrome or toxic epidermal necrolysis). When emergency red flags are absent, an urgent or prompt medical consultation is required if hives or an acute rash are accompanied by a high temperature and systemic malaise, deep subcutaneous swelling under the skin around the eyes, lips, hands, or feet (angioedema), or rapid spreading across the body. Furthermore, a unilateral, painful, burning or tingling blistering rash following a single dermatomal band on one side of the trunk, back, chest, or face (characteristic of shingles / herpes zoster) requires urgent dermatology or medical assessment within 72 hours of rash onset to evaluate for targeted antiviral therapy and prevent post-herpetic neuralgia. A routine consultation with a dermatologist or allergy specialist is indicated if hives fail to improve after two days of symptomatic care, keep recurring frequently, or persist beyond six weeks (chronic spontaneous urticaria) requiring specialist immunological evaluation and long-term dermatology management."
+  },
+  {
+    "doc_id": "NHS-SYS-005",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Unexplained Tiredness, Chronic Fatigue & Systemic Malaise - Internal Medicine Triage",
+    "url": "https://www.nhs.uk/conditions/chronic-fatigue-syndrome-cfs/",
+    "red_flags": [
+      "Severe acute exhaustion accompanied by chest pain, shortness of breath, palpitations, or syncope",
+      "Persistent fatigue accompanied by unintentional weight loss, drenching night sweats, persistent fever, or painless swollen lymph glands",
+      "Extreme lethargy where the patient is confused, slurring speech, or difficult to wake up"
+    ],
+    "recommended_specialty_ar": "الباطنة العامة وأمراض الدم والغدد الصماء",
+    "recommended_specialty_en": "Internal Medicine / Endocrinology / Hematology",
+    "content": "Persistent tiredness and severe fatigue (exhaustion that does not resolve with adequate sleep and interferes with daily work, study, or self-care) is a common systemic symptom requiring methodical internal medicine triage to distinguish lifestyle factors from underlying endocrine, hematologic, infectious, cardiopulmonary, or neoplastic diseases. Immediate emergency care is required if acute exhaustion presents as lethargy where the patient is difficult to wake, confused, or slurring speech, or if fatigue is accompanied by acute chest pain, shortness of breath, haemoptysis, or fainting. When acute emergencies are excluded, an urgent or prioritized specialist consultation with an internal medicine physician, hematologist, or endocrinologist is warranted if persistent fatigue is accompanied by systemic alarm ('B-symptom') features: unintentional weight loss, drenching night sweats that soak bedclothes, recurrent or persistent unexplained fever, painless firm or enlarging lymph nodes in the neck, collarbone (supraclavicular), axilla, or groin, pallor with exertional dyspnea, or abnormal bruising and bleeding (which require prompt exclusion of lymphoma, leukemia, occult malignancy, or chronic infections such as tuberculosis, viral hepatitis, or brucellosis). A routine internal medicine evaluation is indicated whenever unexplained tiredness lasts for several weeks without a clear lifestyle cause. Comprehensive diagnostic screening typically includes a complete blood count (to detect iron-deficiency or vitamin B12 and folate deficiency anemia), thyroid function tests (to identify hypothyroidism), fasting blood glucose and HbA1c (for diabetes mellitus), renal and hepatic function panels, inflammatory markers (ESR and CRP), and vitamin D levels. When organic, endocrine, and hematologic causes are ruled out, clinicians evaluate for obstructive sleep apnea, depressive or anxiety disorders, or myalgic encephalomyelitis / chronic fatigue syndrome (ME/CFS)—characterized by debilitating fatigue lasting at least three months, unrefreshing sleep, cognitive 'brain fog', and post-exertional malaise (PEM) where symptoms worsen markedly after minor physical or mental effort. Patients should avoid self-medicating with unprescribed stimulants, hormones, or high-dose iron supplements before laboratory confirmation."
+  }
+]

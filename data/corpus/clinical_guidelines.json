@@ -1,0 +1,56 @@
+[
+  {
+    "doc_id": "WHO-EMR-CARDIO-001",
+    "source": "WHO",
+    "title": "WHO Clinical Management of Acute Coronary Syndromes and Chest Pain",
+    "url": "https://www.who.int/health-topics/cardiovascular-diseases",
+    "symptom_category": "cardiopulmonary",
+    "specialty_ar": "طوارئ القلب والأوعية الدموية",
+    "snippet": "Patients presenting with acute substernal chest pressure, pain radiating to the left arm or jaw, or severe acute dyspnea require immediate emergency evaluation to rule out acute myocardial infarction."
+  },
+  {
+    "doc_id": "NHS-NEURO-002",
+    "source": "NHS",
+    "title": "NHS Clinical Guidelines: Stroke, TIA, and Migraine Triage",
+    "url": "https://www.nhs.uk/conditions/stroke/",
+    "symptom_category": "neurological_ent_ophth",
+    "specialty_ar": "مخ وأعصاب",
+    "snippet": "Sudden unilateral numbness, facial drooping, or speech difficulty (FAST criteria) mandates emergency stroke pathway activation. Recurrent throbbing unilateral headaches without focal neurological deficits should be referred to a neurologist."
+  },
+  {
+    "doc_id": "NHS-ENT-003",
+    "source": "NHS",
+    "title": "NHS Guidance on Acute Otitis Media, Tinnitus, and Pharyngitis",
+    "url": "https://www.nhs.uk/conditions/earache/",
+    "symptom_category": "neurological_ent_ophth",
+    "specialty_ar": "أنف وأذن وحنجرة",
+    "snippet": "Persistent earache accompanied by tinnitus, muffled hearing, or severe sore throat without airway compromise warrants evaluation by an Ear, Nose, and Throat (ENT) specialist."
+  },
+  {
+    "doc_id": "MAYO-GI-004",
+    "source": "Mayo Clinic",
+    "title": "Mayo Clinic: Gastroesophageal Reflux Disease (GERD) and Acute GI Bleeding",
+    "url": "https://www.mayoclinic.org/diseases-conditions/gerd/symptoms-causes/syc-20361940",
+    "symptom_category": "gastrointestinal",
+    "specialty_ar": "أمراض الجهاز الهضمي والباطنة",
+    "snippet": "Epigastric burning, heartburn after meals, and non-bloody diarrhea are managed by a gastroenterologist or internist. Hematemesis (vomiting blood) or melena requires immediate emergency intervention."
+  },
+  {
+    "doc_id": "MAYO-MSK-005",
+    "source": "Mayo Clinic",
+    "title": "Mayo Clinic: Sciatica, Lower Back Pain, and Joint Disorders",
+    "url": "https://www.mayoclinic.org/diseases-conditions/sciatica/symptoms-causes/syc-20377435",
+    "symptom_category": "musculoskeletal",
+    "specialty_ar": "جراحة العظام والعمود الفقري",
+    "snippet": "Lower back pain radiating down the leg (sciatica) or chronic knee joint stiffness without acute bowel/bladder incontinence should be evaluated by an orthopedic and spine specialist."
+  },
+  {
+    "doc_id": "WHO-DERM-SYS-006",
+    "source": "WHO",
+    "title": "WHO Primary Care Triage for Fever and Dermatological Eruptions",
+    "url": "https://www.who.int/publications/i/item/clinical-care-for-fevers",
+    "symptom_category": "systemic_fever_derm",
+    "specialty_ar": "الأمراض الباطنية أو الجلدية",
+    "snippet": "Low-to-moderate grade fever with generalized fatigue or localized pruritic skin rash without mucosal swelling should be assessed by an internal medicine or dermatology specialist."
+  }
+]
