@@ -1,0 +1,65 @@
+services:
+  fastapi-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shefaguide-api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - APP_NAME=ShefaGuide AI
+      - APP_VERSION=0.1.0
+      - PHASE=walking-skeleton
+      - API_V1_PREFIX=/api/v1
+      - RATE_LIMIT=15/minute
+      - RATE_LIMIT_REQUESTS=15
+      - RATE_LIMIT_WINDOW_SECONDS=60
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_COLLECTION=shefaguide_medical_chunks
+      - DATABASE_URL=postgresql+asyncpg://shefaguide:shefaguide_secret@postgres:5432/shefaguide_audit
+    depends_on:
+      qdrant:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: shefaguide-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: shefaguide-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: shefaguide
+      POSTGRES_PASSWORD: shefaguide_secret
+      POSTGRES_DB: shefaguide_audit
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shefaguide -d shefaguide_audit"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  qdrant_storage:
+  postgres_data:

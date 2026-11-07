@@ -66,6 +66,12 @@ class UrgencyLevel(IntEnum):
     AMBIGUOUS_SEE_DOCTOR = 3
     EMERGENCY_ESCALATION = 4
 
+    # Backward-compatible integer aliases
+    ROUTINE_1 = 1
+    URGENT_2 = 2
+    URGENT_3 = 3
+    EMERGENCY_4 = 4
+
 
 class SourceCitation(BaseModel):
     """Authoritative clinical guideline citation backing a triage recommendation."""
