@@ -1,0 +1,12 @@
+# Core contracts & tests
+pydantic>=2.7
+pytest>=8.0
+
+# RAG: Qdrant hybrid search (dense + BM25 sparse) with FastEmbed models
+qdrant-client>=1.12
+fastembed>=0.5
+
+# Audit & escalation storage (PostgreSQL via asyncpg; aiosqlite for local tests)
+sqlalchemy[asyncio]>=2.0
+asyncpg>=0.29
+aiosqlite>=0.20
