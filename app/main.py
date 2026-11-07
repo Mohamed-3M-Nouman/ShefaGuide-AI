@@ -9,9 +9,11 @@ from __future__ import annotations
 import json
 import logging
 import re
+import time
+from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import APIRouter, FastAPI, Request, status
+from fastapi import APIRouter, BackgroundTasks, FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -25,6 +27,75 @@ from app.services.triage_service import create_fallback_triage_response
 from app.schemas.triage import TriageRequest, TriageResponse
 
 logger = logging.getLogger("shefaguide.gateway")
+
+
+async def persist_audit_log(
+    session_id: str,
+    user_input: str,
+    response: Any,
+    latency_ms: float | None = None,
+) -> None:
+    """Asynchronously persist audit log and human escalation without slowing down triage response."""
+    try:
+        from app.db.crud import AuditLogCreate, create_engine, create_session_factory, log_interaction
+        from app.schemas.triage import SymptomCategory, UrgencyLevel
+
+        engine = getattr(app.state, "db_engine", None)
+        if engine is None:
+            return
+
+        session_factory = create_session_factory(engine)
+        doc_ids = []
+        if hasattr(response, "citations") and response.citations:
+            doc_ids = [c.doc_id for c in response.citations]
+
+        safe_sid = str(session_id or "session_fallback").strip()
+        if not re.match(r"^[A-Za-z0-9_\-]+$", safe_sid):
+            safe_sid = re.sub(r"[^A-Za-z0-9_\-]", "_", safe_sid)
+        if len(safe_sid) < 8:
+            safe_sid = f"session_{safe_sid}"[:64]
+        elif len(safe_sid) > 64:
+            safe_sid = safe_sid[:64]
+
+        cat = getattr(response, "symptom_category", SymptomCategory.UNKNOWN)
+        if isinstance(cat, str):
+            try:
+                cat = SymptomCategory(cat)
+            except ValueError:
+                cat = SymptomCategory.UNKNOWN
+
+        urg = getattr(response, "urgency_level", UrgencyLevel.AMBIGUOUS_SEE_DOCTOR)
+        if isinstance(urg, int) and not isinstance(urg, UrgencyLevel):
+            try:
+                urg = UrgencyLevel(urg)
+            except ValueError:
+                urg = UrgencyLevel.AMBIGUOUS_SEE_DOCTOR
+
+        rec_spec = getattr(response, "recommended_specialty", None)
+        rationale = getattr(response, "rationale_ar", None)
+        escalated = bool(getattr(response, "escalation_triggered", False))
+
+        audit_data = AuditLogCreate(
+            session_id=safe_sid,
+            user_input=user_input or "no_input",
+            symptom_category=cat,
+            urgency_level=urg,
+            recommended_specialty=rec_spec,
+            rationale=rationale,
+            retrieved_doc_ids=doc_ids,
+            tool_calls=[],
+            escalation_triggered=escalated,
+            latency_ms=latency_ms,
+        )
+
+        detected_flags = []
+        if escalated or urg == UrgencyLevel.EMERGENCY_ESCALATION:
+            detected_flags = ["Emergency escalation triggered"]
+
+        async with session_factory() as session, session.begin():
+            await log_interaction(session, audit_data, detected_red_flags=detected_flags)
+    except Exception as exc:
+        logger.warning("Audit DB interaction logging skipped: %s", exc)
 
 
 class HealthResponse(BaseModel):
@@ -66,10 +137,32 @@ def _extract_session_id_safely(request: Request) -> str:
 
 def create_app() -> FastAPI:
     """Create and configure the core FastAPI application instance."""
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        from app.db.crud import create_engine, init_db
+
+        engine = None
+        try:
+            engine = create_engine(settings.DATABASE_URL)
+            await init_db(engine)
+            app.state.db_engine = engine
+            logger.info("Zero-PHI audit database initialized successfully.")
+        except Exception as exc:
+            logger.warning("Audit DB init deferred / unreachable: %s", exc)
+            app.state.db_engine = None
+        yield
+        if getattr(app.state, "db_engine", None) is not None:
+            try:
+                await app.state.db_engine.dispose()
+            except Exception:
+                pass
+
     app = FastAPI(
         title=settings.APP_NAME,
         version=settings.APP_VERSION,
         description="Clinical Pre-Care & Specialist Referral Triage Gateway for Egyptian Arabic Patients.",
+        lifespan=lifespan,
     )
 
     # Attach shared rate limiter to application state
@@ -204,7 +297,11 @@ def create_app() -> FastAPI:
         response_model=TriageResponse,
         summary="Clinical Pre-Care Triage & Specialist Referral",
     )
-    async def triage_endpoint(request: Request, payload: TriageRequest) -> Any:
+    async def triage_endpoint(
+        request: Request,
+        payload: TriageRequest,
+        background_tasks: BackgroundTasks,
+    ) -> Any:
         client_ip = extract_client_ip(request)
         allowed, retry_after = rate_limiter.is_allowed(client_ip)
         if not allowed:
@@ -215,13 +312,29 @@ def create_app() -> FastAPI:
                     "للحفاظ على سلامتك، يرجى التوجه للفحص الطبي المباشر لدى طبيب مختص أو الانتظار قبل المحاولة مرة أخرى."
                 ),
             )
+            background_tasks.add_task(
+                persist_audit_log,
+                session_id=payload.session_id,
+                user_input=payload.user_input,
+                response=fallback,
+            )
             return JSONResponse(
                 status_code=status.HTTP_429_TOO_MANY_REQUESTS,
                 content=fallback.model_dump(mode="json"),
                 headers={"Retry-After": str(retry_after)},
             )
         try:
-            return await triage_service.process_triage(payload)
+            start_t = time.perf_counter()
+            response = await triage_service.process_triage(payload)
+            elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+            background_tasks.add_task(
+                persist_audit_log,
+                session_id=payload.session_id,
+                user_input=payload.user_input,
+                response=response,
+                latency_ms=elapsed_ms,
+            )
+            return response
         except Exception as exc:
             logger.error("Internal triage exception: %s", exc, exc_info=True)
             fallback = triage_service.create_fallback_triage_response(
@@ -230,6 +343,12 @@ def create_app() -> FastAPI:
                     "حدث خطأ غير متوقع أثناء معالجة الطلب. للحفاظ على سلامتك، "
                     "يرجى التوجه للفحص الطبي المباشر لدى طبيب مختص."
                 ),
+            )
+            background_tasks.add_task(
+                persist_audit_log,
+                session_id=payload.session_id,
+                user_input=payload.user_input,
+                response=fallback,
             )
             return JSONResponse(
                 status_code=status.HTTP_200_OK,
@@ -245,8 +364,14 @@ def create_app() -> FastAPI:
         response_model=TriageResponse,
         include_in_schema=False,
     )
-    async def triage_alias(request: Request, payload: TriageRequest) -> Any:
-        return await triage_endpoint(request=request, payload=payload)
+    async def triage_alias(
+        request: Request,
+        payload: TriageRequest,
+        background_tasks: BackgroundTasks,
+    ) -> Any:
+        return await triage_endpoint(
+            request=request, payload=payload, background_tasks=background_tasks
+        )
 
     return app
 

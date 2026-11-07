@@ -1,3 +1,13 @@
+# Local infrastructure for ShefaGuide AI:
+# - fastapi-backend: LangGraph Agent Gateway
+# - qdrant: Vector store for Egyptian slang & clinical guidelines
+# - postgres: Zero-PHI audit logs and human escalation queue
+#
+# Quickstart:
+#   docker compose up -d
+#   DATABASE_URL=postgresql+asyncpg://shefaguide:shefaguide_secret@localhost:5432/shefaguide_audit
+#   QDRANT_URL=http://localhost:6333
+
 services:
   fastapi-backend:
     build:

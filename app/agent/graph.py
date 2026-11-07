@@ -201,6 +201,15 @@ def normalize_dialect_node(state: TriageState) -> TriageState:
 
     if teammate_matches is not None:
         matched_terms = teammate_matches
+        for m in matched_terms:
+            if primary_category == SymptomCategory.UNKNOWN and m.get("category"):
+                try:
+                    primary_category = SymptomCategory(m["category"])
+                except ValueError:
+                    pass
+            for doc_id in m.get("linked_doc_ids", []):
+                if doc_id not in linked_docs:
+                    linked_docs.append(doc_id)
     else:
         for entry in _SLANG_INDEX:
             for norm_phrase in entry.get("_norm_phrases", []):
