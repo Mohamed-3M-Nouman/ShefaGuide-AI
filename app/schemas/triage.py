@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from datetime import datetime
 from enum import Enum, IntEnum
 from typing import Literal
 
@@ -177,3 +178,70 @@ class TriageResponse(BaseModel):
             )
 
         return self
+
+
+# ===========================================================================
+# Internal Supervisor Dashboard & Zero-PHI Audit Schemas (FR-11, FR-12)
+# ===========================================================================
+
+
+class EscalationItem(BaseModel):
+    """Zero-PHI escalation alert for internal supervisor dashboard."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    id: str
+    audit_log_id: str
+    session_id: str
+    created_at: datetime | str
+    symptom_category: str
+    detected_red_flags: list[str] = Field(default_factory=list)
+    scrubbed_summary: str | None = None
+    status: str
+    acknowledged_at: datetime | str | None = None
+    resolved_at: datetime | str | None = None
+
+
+class EscalationListResponse(BaseModel):
+    """Response payload containing list of Zero-PHI escalation alerts."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    items: list[EscalationItem] = Field(default_factory=list)
+    count: int = 0
+
+
+class EscalationUpdateRequest(BaseModel):
+    """Payload to transition an escalation status."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    status: Literal["acknowledged", "resolved"]
+
+
+class AuditLogItem(BaseModel):
+    """Zero-PHI audit log entry for clinical interaction audit trail."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    id: str
+    session_id: str
+    created_at: datetime | str
+    scrubbed_input: str
+    symptom_category: str
+    urgency_level: int
+    recommended_specialty: str | None = None
+    retrieved_doc_ids: list[str] = Field(default_factory=list)
+    escalation_triggered: bool = False
+    latency_ms: float | None = None
+
+
+class AuditLogsResponse(BaseModel):
+    """Response payload containing audit log entries and summary metrics."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    items: list[AuditLogItem] = Field(default_factory=list)
+    total_count: int = 0
+    escalated_count: int = 0
+    avg_latency_ms: float = 0.0

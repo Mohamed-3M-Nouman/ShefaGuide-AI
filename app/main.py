@@ -22,7 +22,15 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.core.config import settings
 from app.core.rate_limiter import extract_client_ip, rate_limiter
-from app.schemas.triage import TriageRequest, TriageResponse
+from app.schemas.triage import (
+    AuditLogItem,
+    AuditLogsResponse,
+    EscalationItem,
+    EscalationListResponse,
+    EscalationUpdateRequest,
+    TriageRequest,
+    TriageResponse,
+)
 from app.services import triage_service
 from app.services.triage_service import create_fallback_triage_response
 
@@ -94,7 +102,17 @@ async def persist_audit_log(
 
         detected_flags = []
         if escalated or urg == UrgencyLevel.EMERGENCY_ESCALATION:
-            detected_flags = ["Emergency escalation triggered"]
+            try:
+                from app.safety.pii_scrubber import scrub_pii
+                from app.safety.red_flags import evaluate_red_flags
+
+                rf_eval = evaluate_red_flags(scrub_pii(user_input or ""))
+                if rf_eval.matched_phrases_ar:
+                    detected_flags = list(rf_eval.matched_phrases_ar)
+                else:
+                    detected_flags = ["Emergency escalation triggered"]
+            except Exception:
+                detected_flags = ["Emergency escalation triggered"]
 
         async with session_factory() as session, session.begin():
             await log_interaction(session, audit_data, detected_red_flags=detected_flags)
@@ -146,17 +164,19 @@ def create_app() -> FastAPI:
     async def lifespan(app: FastAPI):
         from app.db.crud import create_engine, init_db
 
-        engine = None
-        try:
-            engine = create_engine(settings.DATABASE_URL)
-            await init_db(engine)
-            app.state.db_engine = engine
-            logger.info("Zero-PHI audit database initialized successfully.")
-        except Exception as exc:
-            logger.warning("Audit DB init deferred / unreachable: %s", exc)
-            app.state.db_engine = None
+        injected = getattr(app.state, "db_engine", None) is not None
+        if not injected:
+            engine = None
+            try:
+                engine = create_engine(settings.DATABASE_URL)
+                await init_db(engine)
+                app.state.db_engine = engine
+                logger.info("Zero-PHI audit database initialized successfully.")
+            except Exception as exc:
+                logger.warning("Audit DB init deferred / unreachable: %s", exc)
+                app.state.db_engine = None
         yield
-        if getattr(app.state, "db_engine", None) is not None:
+        if not injected and getattr(app.state, "db_engine", None) is not None:
             try:
                 await app.state.db_engine.dispose()
             except Exception:
@@ -308,6 +328,36 @@ def create_app() -> FastAPI:
     ) -> Any:
         client_ip = extract_client_ip(request)
         allowed, retry_after = rate_limiter.is_allowed(client_ip)
+
+        sync_mode = getattr(app.state, "sync_audit", True)
+        if (
+            request.headers.get("X-Sync-Audit", "").lower() == "false"
+            or request.query_params.get("sync_audit", "").lower() == "false"
+        ):
+            sync_mode = False
+        elif (
+            request.headers.get("X-Sync-Audit", "").lower() == "true"
+            or request.query_params.get("sync_audit", "").lower() == "true"
+        ):
+            sync_mode = True
+
+        async def _schedule_audit(resp_obj: Any, lat_ms: float | None = None) -> None:
+            if sync_mode:
+                await persist_audit_log(
+                    session_id=payload.session_id,
+                    user_input=payload.user_input,
+                    response=resp_obj,
+                    latency_ms=lat_ms,
+                )
+            else:
+                background_tasks.add_task(
+                    persist_audit_log,
+                    session_id=payload.session_id,
+                    user_input=payload.user_input,
+                    response=resp_obj,
+                    latency_ms=lat_ms,
+                )
+
         if not allowed:
             fallback = create_fallback_triage_response(
                 session_id=payload.session_id,
@@ -316,12 +366,7 @@ def create_app() -> FastAPI:
                     "للحفاظ على سلامتك، يرجى التوجه للفحص الطبي المباشر لدى طبيب مختص أو الانتظار قبل المحاولة مرة أخرى."
                 ),
             )
-            background_tasks.add_task(
-                persist_audit_log,
-                session_id=payload.session_id,
-                user_input=payload.user_input,
-                response=fallback,
-            )
+            await _schedule_audit(fallback)
             return JSONResponse(
                 status_code=status.HTTP_429_TOO_MANY_REQUESTS,
                 content=fallback.model_dump(mode="json"),
@@ -331,13 +376,7 @@ def create_app() -> FastAPI:
             start_t = time.perf_counter()
             response = await triage_service.process_triage(payload)
             elapsed_ms = (time.perf_counter() - start_t) * 1000.0
-            background_tasks.add_task(
-                persist_audit_log,
-                session_id=payload.session_id,
-                user_input=payload.user_input,
-                response=response,
-                latency_ms=elapsed_ms,
-            )
+            await _schedule_audit(response, elapsed_ms)
             return response
         except Exception as exc:
             logger.error("Internal triage exception: %s", exc, exc_info=True)
@@ -348,16 +387,166 @@ def create_app() -> FastAPI:
                     "يرجى التوجه للفحص الطبي المباشر لدى طبيب مختص."
                 ),
             )
-            background_tasks.add_task(
-                persist_audit_log,
-                session_id=payload.session_id,
-                user_input=payload.user_input,
-                response=fallback,
-            )
+            await _schedule_audit(fallback)
             return JSONResponse(
                 status_code=status.HTTP_200_OK,
                 content=fallback.model_dump(mode="json"),
             )
+
+    @api_v1_router.get(
+        "/escalations",
+        response_model=EscalationListResponse,
+        summary="List Zero-PHI Escalations for Supervisor Dashboard",
+        tags=["Supervisor Dashboard"],
+    )
+    async def get_escalations(
+        status: str | None = None,
+        limit: int = 50,
+    ) -> EscalationListResponse:
+        engine = getattr(app.state, "db_engine", None)
+        if engine is None:
+            return EscalationListResponse(items=[], count=0)
+        try:
+            from app.db.crud import create_session_factory, list_escalations
+
+            session_factory = create_session_factory(engine)
+            async with session_factory() as session:
+                records = await list_escalations(session, status=status, limit=limit)
+                items = [
+                    EscalationItem(
+                        id=str(r.id),
+                        audit_log_id=str(r.audit_log_id),
+                        session_id=r.session_id,
+                        created_at=r.created_at.isoformat() if r.created_at else "",
+                        symptom_category=r.symptom_category,
+                        detected_red_flags=list(r.detected_red_flags or []),
+                        scrubbed_summary=r.scrubbed_summary,
+                        status=r.status,
+                        acknowledged_at=r.acknowledged_at.isoformat() if r.acknowledged_at else None,
+                        resolved_at=r.resolved_at.isoformat() if r.resolved_at else None,
+                    )
+                    for r in records
+                ]
+                return EscalationListResponse(items=items, count=len(items))
+        except Exception as exc:
+            logger.warning("Fail-safe: error fetching escalations: %s", exc)
+            return EscalationListResponse(items=[], count=0)
+
+    @api_v1_router.patch(
+        "/escalations/{escalation_id}",
+        response_model=EscalationItem,
+        summary="Acknowledge or Resolve Escalation Alert",
+        tags=["Supervisor Dashboard"],
+    )
+    async def patch_escalation(
+        escalation_id: str,
+        payload: EscalationUpdateRequest,
+    ) -> Any:
+        engine = getattr(app.state, "db_engine", None)
+        if engine is None:
+            raise StarletteHTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Audit database is currently unavailable",
+            )
+        import uuid
+        from app.db.crud import (
+            acknowledge_escalation,
+            create_session_factory,
+            resolve_escalation,
+        )
+
+        try:
+            target_uuid = uuid.UUID(escalation_id)
+        except ValueError:
+            raise StarletteHTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Escalation {escalation_id} not found",
+            )
+
+        try:
+            session_factory = create_session_factory(engine)
+            async with session_factory() as session, session.begin():
+                if payload.status == "acknowledged":
+                    updated = await acknowledge_escalation(session, target_uuid)
+                elif payload.status == "resolved":
+                    updated = await resolve_escalation(session, target_uuid)
+                else:
+                    raise StarletteHTTPException(
+                        status_code=status.HTTP_400_BAD_REQUEST,
+                        detail="Invalid status transition",
+                    )
+
+                return EscalationItem(
+                    id=str(updated.id),
+                    audit_log_id=str(updated.audit_log_id),
+                    session_id=updated.session_id,
+                    created_at=updated.created_at.isoformat() if updated.created_at else "",
+                    symptom_category=updated.symptom_category,
+                    detected_red_flags=list(updated.detected_red_flags or []),
+                    scrubbed_summary=updated.scrubbed_summary,
+                    status=updated.status,
+                    acknowledged_at=updated.acknowledged_at.isoformat() if updated.acknowledged_at else None,
+                    resolved_at=updated.resolved_at.isoformat() if updated.resolved_at else None,
+                )
+        except LookupError:
+            raise StarletteHTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Escalation {escalation_id} not found",
+            )
+        except StarletteHTTPException:
+            raise
+        except Exception as exc:
+            logger.error("Error updating escalation %s: %s", escalation_id, exc, exc_info=True)
+            raise StarletteHTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Failed to update escalation: {exc}",
+            )
+
+    @api_v1_router.get(
+        "/audit-logs",
+        response_model=AuditLogsResponse,
+        summary="List Zero-PHI Anonymized Interaction Audit Logs",
+        tags=["Supervisor Dashboard"],
+    )
+    async def get_audit_logs(
+        limit: int = 50,
+        escalated_only: bool = False,
+    ) -> AuditLogsResponse:
+        engine = getattr(app.state, "db_engine", None)
+        if engine is None:
+            return AuditLogsResponse(items=[], total_count=0, escalated_count=0, avg_latency_ms=0.0)
+        try:
+            from app.db.crud import create_session_factory, list_audit_logs
+
+            session_factory = create_session_factory(engine)
+            async with session_factory() as session:
+                records, total_cnt, esc_cnt, avg_lat = await list_audit_logs(
+                    session, limit=limit, escalated_only=escalated_only
+                )
+                items = [
+                    AuditLogItem(
+                        id=str(r.id),
+                        session_id=r.session_id,
+                        created_at=r.created_at.isoformat() if r.created_at else "",
+                        scrubbed_input=r.scrubbed_input,
+                        symptom_category=r.symptom_category,
+                        urgency_level=r.urgency_level,
+                        recommended_specialty=r.recommended_specialty,
+                        retrieved_doc_ids=list(r.retrieved_doc_ids or []),
+                        escalation_triggered=r.escalation_triggered,
+                        latency_ms=r.latency_ms,
+                    )
+                    for r in records
+                ]
+                return AuditLogsResponse(
+                    items=items,
+                    total_count=total_cnt,
+                    escalated_count=esc_cnt,
+                    avg_latency_ms=avg_lat,
+                )
+        except Exception as exc:
+            logger.warning("Fail-safe: error fetching audit logs: %s", exc)
+            return AuditLogsResponse(items=[], total_count=0, escalated_count=0, avg_latency_ms=0.0)
 
     # Mount API v1 router
     app.include_router(api_v1_router)
@@ -376,6 +565,41 @@ def create_app() -> FastAPI:
         return await triage_endpoint(
             request=request, payload=payload, background_tasks=background_tasks
         )
+
+    # Root alias paths for Supervisor Dashboard & Audit API
+    @app.get(
+        "/escalations",
+        response_model=EscalationListResponse,
+        include_in_schema=False,
+    )
+    async def escalations_alias(
+        status: str | None = None,
+        limit: int = 50,
+    ) -> EscalationListResponse:
+        return await get_escalations(status=status, limit=limit)
+
+    @app.patch(
+        "/escalations/{escalation_id}",
+        response_model=EscalationItem,
+        include_in_schema=False,
+    )
+    async def patch_escalation_alias(
+        escalation_id: str,
+        payload: EscalationUpdateRequest,
+    ) -> Any:
+        return await patch_escalation(escalation_id=escalation_id, payload=payload)
+
+    @app.get(
+        "/audit-logs",
+        response_model=AuditLogsResponse,
+        include_in_schema=False,
+    )
+    async def audit_logs_alias(
+        limit: int = 50,
+        escalated_only: bool = False,
+    ) -> AuditLogsResponse:
+        return await get_audit_logs(limit=limit, escalated_only=escalated_only)
+
 
     return app
 

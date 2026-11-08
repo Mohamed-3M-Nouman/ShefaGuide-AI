@@ -20,7 +20,7 @@ from datetime import UTC, datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -183,9 +183,15 @@ async def log_interaction(
 
 
 async def update_escalation_status(
-    session: AsyncSession, escalation_id: uuid.UUID, status: EscalationStatus
+    session: AsyncSession,
+    escalation_id: uuid.UUID | str,
+    status: EscalationStatus | str,
 ) -> EscalationQueue:
     """Move an escalation through pending -> acknowledged -> resolved."""
+    if isinstance(escalation_id, str):
+        escalation_id = uuid.UUID(escalation_id)
+    if isinstance(status, str):
+        status = EscalationStatus(status.lower())
     row = await session.get(EscalationQueue, escalation_id)
     if row is None:
         raise LookupError(f"Escalation {escalation_id} not found")
@@ -200,20 +206,70 @@ async def update_escalation_status(
     return row
 
 
+async def acknowledge_escalation(
+    session: AsyncSession, escalation_id: uuid.UUID | str
+) -> EscalationQueue:
+    """Transition an alert from pending to acknowledged."""
+    return await update_escalation_status(session, escalation_id, EscalationStatus.ACKNOWLEDGED)
+
+
+async def resolve_escalation(
+    session: AsyncSession, escalation_id: uuid.UUID | str
+) -> EscalationQueue:
+    """Transition an alert to resolved."""
+    return await update_escalation_status(session, escalation_id, EscalationStatus.RESOLVED)
+
+
 # --------------------------------------------------------------------------- reads
 
 
-async def get_audit_log(session: AsyncSession, audit_log_id: uuid.UUID) -> AuditLog | None:
+async def get_audit_log(session: AsyncSession, audit_log_id: uuid.UUID | str) -> AuditLog | None:
+    if isinstance(audit_log_id, str):
+        audit_log_id = uuid.UUID(audit_log_id)
     return await session.get(AuditLog, audit_log_id)
+
+
+async def get_escalation(
+    session: AsyncSession, escalation_id: uuid.UUID | str
+) -> EscalationQueue | None:
+    if isinstance(escalation_id, str):
+        escalation_id = uuid.UUID(escalation_id)
+    return await session.get(EscalationQueue, escalation_id)
 
 
 async def list_escalations(
     session: AsyncSession,
-    status: EscalationStatus | None = EscalationStatus.PENDING,
+    status: EscalationStatus | str | None = EscalationStatus.PENDING,
     limit: int = 50,
 ) -> list[EscalationQueue]:
-    """Escalations for the internal dashboard, newest first (pending only by default)."""
+    """Escalations for the internal dashboard, newest first."""
     query = select(EscalationQueue).order_by(EscalationQueue.created_at.desc()).limit(limit)
     if status is not None:
-        query = query.where(EscalationQueue.status == status.value)
+        status_val = status.value if isinstance(status, EscalationStatus) else str(status)
+        if status_val:
+            query = query.where(EscalationQueue.status == status_val)
     return list((await session.scalars(query)).all())
+
+
+async def list_audit_logs(
+    session: AsyncSession,
+    limit: int = 50,
+    escalated_only: bool = False,
+) -> tuple[list[AuditLog], int, int, float]:
+    """Retrieve anonymized interaction audit logs and summary metrics (FR-12, SLO-08)."""
+    query = select(AuditLog).order_by(AuditLog.created_at.desc())
+    if escalated_only:
+        query = query.where(AuditLog.escalation_triggered.is_(True))
+    items = list((await session.scalars(query.limit(limit))).all())
+
+    total_count = (await session.scalar(select(func.count(AuditLog.id)))) or 0
+    escalated_count = (
+        await session.scalar(
+            select(func.count(AuditLog.id)).where(AuditLog.escalation_triggered.is_(True))
+        )
+    ) or 0
+    avg_latency = await session.scalar(select(func.avg(AuditLog.latency_ms)))
+    avg_latency_ms = round(float(avg_latency), 2) if avg_latency is not None else 0.0
+
+    return items, total_count, escalated_count, avg_latency_ms
+
