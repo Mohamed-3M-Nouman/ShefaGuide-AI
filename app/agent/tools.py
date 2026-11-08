@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from app.agent.state import TriageState
 from app.core.config import settings
-from app.safety.red_flags import apply_supremacy_rule, normalize_arabic
+from app.safety.red_flags import normalize_arabic
 from app.schemas.triage import (
     FORBIDDEN_DIAGNOSIS_PATTERNS,
     FORBIDDEN_MEDICATION_PATTERNS,
@@ -192,7 +192,7 @@ def symptom_severity_tool(
     )
 
 
-import json  # noqa: E402
+import json
 
 
 def specialty_mapping_tool(

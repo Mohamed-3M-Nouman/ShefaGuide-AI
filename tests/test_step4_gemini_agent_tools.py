@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -10,7 +11,6 @@ from app.agent import (
     SeverityAssessmentOutput,
     SpecialtyMappingOutput,
     TriageState,
-    assess_with_agent_tools,
     clinical_assessment_node,
     invoke_triage_graph_state,
     set_agent_llm,

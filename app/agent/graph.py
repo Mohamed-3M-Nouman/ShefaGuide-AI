@@ -5,8 +5,9 @@ from __future__ import annotations
 import importlib
 import json
 import logging
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 
@@ -35,7 +36,6 @@ from app.schemas.triage import (
     UrgencyLevel,
 )
 from app.services.triage_service import (
-    _infer_non_emergency_route,
     create_fallback_triage_response,
     get_default_citation,
 )

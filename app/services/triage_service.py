@@ -6,9 +6,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-from app.safety.pii_scrubber import scrub_pii
-from app.safety.red_flags import apply_supremacy_rule, evaluate_red_flags, normalize_arabic
-from app.safety.validator import validate_user_input
 from app.schemas.triage import (
     DEFAULT_DISCLAIMER_AR,
     SourceCitation,

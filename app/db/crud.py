@@ -16,12 +16,17 @@ from __future__ import annotations
 import os
 import uuid
 from collections.abc import Sequence
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import (
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 
 from app.db.models import AuditLog, Base, EscalationQueue, EscalationStatus, scrub_value
 from app.safety.pii_scrubber import contains_pii, scrub_pii
@@ -184,7 +189,7 @@ async def update_escalation_status(
     row = await session.get(EscalationQueue, escalation_id)
     if row is None:
         raise LookupError(f"Escalation {escalation_id} not found")
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     row.status = status.value
     if status is EscalationStatus.ACKNOWLEDGED and row.acknowledged_at is None:
         row.acknowledged_at = now

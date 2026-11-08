@@ -21,7 +21,11 @@ from collections.abc import Sequence
 from pydantic import BaseModel, ConfigDict, Field
 from qdrant_client import QdrantClient, models
 
-from app.rag.dialect_normalizer import DialectNormalizer, NormalizationResult, get_dialect_normalizer
+from app.rag.dialect_normalizer import (
+    DialectNormalizer,
+    NormalizationResult,
+    get_dialect_normalizer,
+)
 from app.rag.vector_store import (
     DENSE_VECTOR_NAME,
     SPARSE_VECTOR_NAME,

@@ -15,22 +15,22 @@ Covers:
 from __future__ import annotations
 
 import time
-from typing import Generator
+from collections.abc import Generator
+
 import pytest
 from fastapi.testclient import TestClient
 
 from app.core.config import (
+    API_V1_PREFIX,
     APP_NAME,
     APP_VERSION,
     PHASE,
-    API_V1_PREFIX,
     RATE_LIMIT_REQUESTS,
     RATE_LIMIT_WINDOW_SECONDS,
     settings,
 )
 from app.core.rate_limiter import rate_limiter
 from app.main import app
-from app.safety.pii_scrubber import REDACTED_TOKEN
 from app.schemas.triage import (
     DEFAULT_DISCLAIMER_AR,
     TriageResponse,

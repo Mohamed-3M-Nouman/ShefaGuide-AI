@@ -87,7 +87,7 @@ def _strings(value: Any) -> list[str]:
 
 
 async def _raw_rows(session: AsyncSession, table: str) -> list[dict[str, Any]]:
-    result = await session.execute(text(f"SELECT * FROM {table}"))  # noqa: S608 - fixed table names
+    result = await session.execute(text(f"SELECT * FROM {table}"))
     return [dict(row) for row in result.mappings().all()]
 
 

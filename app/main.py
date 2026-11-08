@@ -22,9 +22,9 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.core.config import settings
 from app.core.rate_limiter import extract_client_ip, rate_limiter
+from app.schemas.triage import TriageRequest, TriageResponse
 from app.services import triage_service
 from app.services.triage_service import create_fallback_triage_response
-from app.schemas.triage import TriageRequest, TriageResponse
 
 logger = logging.getLogger("shefaguide.gateway")
 
@@ -37,7 +37,11 @@ async def persist_audit_log(
 ) -> None:
     """Asynchronously persist audit log and human escalation without slowing down triage response."""
     try:
-        from app.db.crud import AuditLogCreate, create_engine, create_session_factory, log_interaction
+        from app.db.crud import (
+            AuditLogCreate,
+            create_session_factory,
+            log_interaction,
+        )
         from app.schemas.triage import SymptomCategory, UrgencyLevel
 
         engine = getattr(app.state, "db_engine", None)

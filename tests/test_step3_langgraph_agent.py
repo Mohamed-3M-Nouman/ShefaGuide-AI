@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import time
+
 import pytest
 
 import app.agent.graph as graph_module
@@ -12,8 +13,6 @@ from app.agent import (
     clinical_assessment_node,
     invoke_triage_graph_state,
     normalize_dialect_node,
-    route_after_red_flag_check,
-    route_after_validation,
     run_triage_agent,
     run_triage_agent_sync,
     scrub_and_validate_node,

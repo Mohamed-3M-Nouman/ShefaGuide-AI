@@ -29,7 +29,7 @@ explicitly before it builds the rows.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Any
 
@@ -54,7 +54,7 @@ from app.safety.pii_scrubber import scrub_pii
 
 
 def _utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def scrub_value(value: Any) -> Any:
