@@ -40,7 +40,7 @@ class RAGSettings:
         default_factory=lambda: os.getenv("QDRANT_PATH", str(REPO_ROOT / ".qdrant"))
     )
     collection_name: str = field(
-        default_factory=lambda: os.getenv("QDRANT_COLLECTION", "medical_guidelines")
+        default_factory=lambda: os.getenv("QDRANT_COLLECTION", "shefaguide_medical_chunks")
     )
     dense_model: str = field(
         default_factory=lambda: os.getenv(
