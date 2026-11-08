@@ -78,6 +78,28 @@ class Settings(BaseSettings):
         description="Async SQLAlchemy PostgreSQL connection URL for Zero-PHI audit logging.",
     )
 
+    # Voice Adapter (STT / TTS) Settings
+    GROQ_API_KEY: str = Field(
+        default="",
+        description="Groq API key for Whisper STT audio transcription.",
+    )
+    GROQ_STT_MODEL: str = Field(
+        default="whisper-large-v3",
+        description="Groq Speech-to-Text model identifier.",
+    )
+    GROQ_API_URL: str = Field(
+        default="https://api.groq.com/openai/v1/audio/transcriptions",
+        description="Groq Whisper STT transcription endpoint URL.",
+    )
+    VOICE_TIMEOUT_SECONDS: float = Field(
+        default=2.5,
+        description="Strict upper-bound timeout in seconds for STT and TTS voice operations.",
+    )
+    TTS_PROVIDER: str = Field(
+        default="edge-or-browser-fallback",
+        description="Text-to-Speech synthesis provider or fallback strategy.",
+    )
+
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
     def assemble_cors_origins(cls, value: Any) -> list[str]:
@@ -116,3 +138,8 @@ GEMINI_MODEL = settings.GEMINI_MODEL
 QDRANT_URL = settings.QDRANT_URL
 QDRANT_COLLECTION = settings.QDRANT_COLLECTION
 DATABASE_URL = settings.DATABASE_URL
+GROQ_API_KEY = settings.GROQ_API_KEY
+GROQ_STT_MODEL = settings.GROQ_STT_MODEL
+GROQ_API_URL = settings.GROQ_API_URL
+VOICE_TIMEOUT_SECONDS = settings.VOICE_TIMEOUT_SECONDS
+TTS_PROVIDER = settings.TTS_PROVIDER

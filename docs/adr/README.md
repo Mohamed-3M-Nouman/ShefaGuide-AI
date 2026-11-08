@@ -1,0 +1,10 @@
+# ShefaGuide AI — Architecture Decision Records (ADR Index)
+
+This directory contains the production Architecture Decision Records (ADRs) for **ShefaGuide AI** (DEPI Capstone Project), documenting the key clinical safety, hybrid retrieval, Zero-PHI privacy, and fault-tolerance decisions governing the system.
+
+| ADR ID | Title | Status | Targeted DEPI SLOs | Primary Code Modules |
+| :--- | :--- | :---: | :--- | :--- |
+| **[ADR-001](./ADR-001-langgraph-state-machine-and-supremacy-rule.md)** | LangGraph Deterministic State Machine & The Supremacy Rule for Clinical Triage | Accepted — Production Baseline | **SLO-01** (100% Urgent Escalation Recall)<br>**SLO-02** (>= 80% Specialty Accuracy)<br>**SLO-05** (Emergency P99 <= 1.5s) | `app/agent/graph.py`<br>`app/agent/state.py`<br>`app/agent/tools.py`<br>`app/safety/red_flags.py` |
+| **[ADR-002](./ADR-002-qdrant-hybrid-rag-and-egyptian-dialect-normalization.md)** | Two-Stage Egyptian Dialect Normalization & Qdrant Hybrid RAG Retrieval | Accepted — Production Baseline | **SLO-02** (>= 80% Specialty Accuracy)<br>**SLO-03** (100% Citation Compliance)<br>**Recall@5** (`91.88%` vs >= 90% target) | `app/rag/dialect_normalizer.py`<br>`app/rag/retriever.py`<br>`app/rag/vector_store.py`<br>`app/rag/ingest.py` |
+| **[ADR-003](./ADR-003-zero-phi-privacy-architecture-and-pii-scrubbing.md)** | Zero-PHI Privacy Architecture & Multi-Layered PII Scrubbing | Accepted — Production Baseline | **SLO-08** (0.00% PHI Leakage Rate) | `app/safety/pii_scrubber.py`<br>`app/db/models.py`<br>`app/db/crud.py`<br>`app/core/sse.py`<br>`app/voice/adapter.py` |
+| **[ADR-004](./ADR-004-fault-tolerant-voice-adapter-and-global-safe-fallback.md)** | Fault-Tolerant Bi-Directional Voice Adapter & Global Safe Fallback Architecture | Accepted — Production Baseline | **SLO-03** (100% Disclaimer Compliance)<br>**SLO-06** (Voice Timeout <= 2.5s)<br>**SLO-07** (0.00% Unhandled Exceptions) | `app/voice/adapter.py`<br>`app/main.py`<br>`app/core/config.py`<br>`app/services/triage_service.py` |

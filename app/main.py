@@ -1,6 +1,7 @@
 """FastAPI Gateway Core for ShefaGuide AI.
 
-Exposes health endpoints, deterministic clinical triage, in-memory sliding-window
+Exposes health endpoints, deterministic clinical triage, fault-tolerant bi-directional
+voice endpoints, real-time Zero-PHI SSE escalation streaming, in-memory sliding-window
 rate limiting, and global safe fallback handlers.
 """
 
@@ -16,28 +17,45 @@ from typing import Any
 from fastapi import APIRouter, BackgroundTasks, FastAPI, Query, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 from sqlalchemy.exc import SQLAlchemyError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.core.config import settings
 from app.core.rate_limiter import extract_client_ip, rate_limiter
+from app.core.sse import escalation_broadcaster
 from app.schemas.triage import (
+    DEFAULT_DISCLAIMER_AR,
     AuditLogItem,
     AuditLogsResponse,
     EscalationItem,
     EscalationListResponse,
     EscalationUpdateRequest,
+    SymptomCategory,
+    SynthesisResult,
+    TranscriptionResult,
     TriageRequest,
     TriageResponse,
+    UrgencyLevel,
+    VoiceSynthesizeRequest,
+    VoiceTranscribeRequest,
+    VoiceTriageRequest,
+    VoiceTriageResponse,
 )
 from app.services import triage_service
 from app.services.triage_service import create_fallback_triage_response
+from app.voice import decode_audio_base64, ensure_spoken_disclaimer, voice_adapter
 
 logger = logging.getLogger("shefaguide.gateway")
 
 HTTP_422_STATUS = getattr(status, "HTTP_422_UNPROCESSABLE_CONTENT", 422)
+
+SSE_STREAM_HEADERS: dict[str, str] = {
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive",
+    "X-Accel-Buffering": "no",
+}
 
 
 def _format_datetime(dt: Any) -> str | None:
@@ -66,6 +84,55 @@ def _safe_str_list(val: Any) -> list[str]:
     return [str(val)]
 
 
+def _publish_sse_escalation_if_needed(
+    session_id: str,
+    user_input: str,
+    response: Any,
+) -> None:
+    """Immediately broadcast a Zero-PHI SSE alert when a Level 4 emergency escalation occurs."""
+    try:
+        escalated = bool(getattr(response, "escalation_triggered", False))
+        urg = getattr(response, "urgency_level", UrgencyLevel.AMBIGUOUS_SEE_DOCTOR)
+        try:
+            urg_int = int(urg)
+        except (TypeError, ValueError):
+            urg_int = int(UrgencyLevel.AMBIGUOUS_SEE_DOCTOR)
+
+        if not escalated and urg_int != int(UrgencyLevel.EMERGENCY_ESCALATION):
+            return
+
+        from app.safety.pii_scrubber import scrub_pii
+        from app.safety.red_flags import evaluate_red_flags
+
+        scrubbed_input = scrub_pii(user_input or "")
+        detected_flags: list[str] = []
+        try:
+            rf_eval = evaluate_red_flags(scrubbed_input)
+            if rf_eval.matched_phrases_ar:
+                detected_flags = list(rf_eval.matched_phrases_ar)
+        except Exception:
+            pass
+        if not detected_flags:
+            detected_flags = ["Emergency escalation triggered"]
+
+        cat = getattr(response, "symptom_category", SymptomCategory.UNKNOWN)
+        rec_spec = getattr(response, "recommended_specialty", None)
+
+        escalation_broadcaster.publish_escalation(
+            {
+                "session_id": session_id,
+                "symptom_category": cat.value if hasattr(cat, "value") else str(cat),
+                "recommended_specialty": rec_spec,
+                "detected_red_flags": detected_flags,
+                "urgency_level": int(UrgencyLevel.EMERGENCY_ESCALATION),
+                "status": "pending",
+                "scrubbed_summary": scrubbed_input[:280] if scrubbed_input else None,
+            }
+        )
+    except Exception as exc:
+        logger.warning("Zero-PHI SSE escalation broadcast skipped: %s", exc)
+
+
 async def persist_audit_log(
     session_id: str,
     user_input: str,
@@ -79,7 +146,6 @@ async def persist_audit_log(
             create_session_factory,
             log_interaction,
         )
-        from app.schemas.triage import SymptomCategory, UrgencyLevel
 
         engine = getattr(app.state, "db_engine", None)
         if engine is None:
@@ -135,11 +201,12 @@ async def persist_audit_log(
                 from app.safety.pii_scrubber import scrub_pii
                 from app.safety.red_flags import evaluate_red_flags
 
-                rf_eval = evaluate_red_flags(scrub_pii(user_input or ""))
+                rf_eval = evaluate_red_flags(scrubbed_text := scrub_pii(user_input or ""))
                 if rf_eval.matched_phrases_ar:
                     detected_flags = list(rf_eval.matched_phrases_ar)
                 else:
                     detected_flags = ["Emergency escalation triggered"]
+                _ = scrubbed_text
             except Exception:
                 detected_flags = ["Emergency escalation triggered"]
 
@@ -158,11 +225,72 @@ class HealthResponse(BaseModel):
 
 
 def _is_triage_path(path: str) -> bool:
-    """Check if the request path targets clinical triage."""
+    """Check if the request path targets clinical text triage."""
     return (
         path == "/triage"
         or path == f"{settings.API_V1_PREFIX}/triage"
         or path.startswith(f"{settings.API_V1_PREFIX}/triage/")
+    )
+
+
+def _is_voice_triage_path(path: str) -> bool:
+    """Check if the request path targets clinical voice triage."""
+    return (
+        path == "/voice/triage"
+        or path == f"{settings.API_V1_PREFIX}/voice/triage"
+        or path.startswith(f"{settings.API_V1_PREFIX}/voice/triage/")
+    )
+
+
+def _is_voice_transcribe_path(path: str) -> bool:
+    """Check if the request path targets voice STT transcription."""
+    return path == "/voice/transcribe" or path == f"{settings.API_V1_PREFIX}/voice/transcribe"
+
+
+def _is_voice_synthesize_path(path: str) -> bool:
+    """Check if the request path targets voice TTS synthesis."""
+    return path == "/voice/synthesize" or path == f"{settings.API_V1_PREFIX}/voice/synthesize"
+
+
+def create_fallback_voice_triage_response(
+    session_id: str = "fallback-session",
+    rationale_ar: str | None = None,
+    error_reason_ar: str | None = None,
+) -> VoiceTriageResponse:
+    """Construct a schema-valid Level 3 VoiceTriageResponse when voice processing fails."""
+    if not rationale_ar or not rationale_ar.strip():
+        rationale_ar = (
+            "تعذر سماع أو تحويل التسجيل الصوتي إلى نص واضح. للحفاظ على سلامتك، "
+            "يرجى كتابة الأعراض التي تشعر بها نصياً أو التوجه مباشرة لاستشارة طبيب مختص."
+        )
+    fallback_triage = create_fallback_triage_response(
+        session_id=session_id,
+        rationale_ar=rationale_ar,
+    )
+    fallback_transcription = TranscriptionResult(
+        success=False,
+        text="",
+        provider="fallback_text",
+        fallback_to_text=True,
+        latency_ms=0.0,
+        error_reason_ar=error_reason_ar or "تعذر معالجة التسجيل الصوتي؛ تم التحويل للإدخال النصي.",
+    )
+    fallback_synthesis = SynthesisResult(
+        success=False,
+        spoken_text_ar=ensure_spoken_disclaimer(
+            fallback_triage.rationale_ar, include_disclaimer=True
+        ),
+        audio_base64=None,
+        mime_type="audio/wav",
+        provider=settings.TTS_PROVIDER,
+        fallback_to_text=True,
+        latency_ms=0.0,
+        error_reason_ar=error_reason_ar or "يتم عرض التوجيهات الطبية نصياً.",
+    )
+    return VoiceTriageResponse(
+        triage=fallback_triage,
+        transcription=fallback_transcription,
+        synthesis=fallback_synthesis,
     )
 
 
@@ -218,8 +346,9 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
-    # Attach shared rate limiter to application state
+    # Attach shared rate limiter and SSE broadcaster to application state
     app.state.rate_limiter = rate_limiter
+    app.state.escalation_broadcaster = escalation_broadcaster
 
     # CORS Middleware
     app.add_middleware(
@@ -235,8 +364,9 @@ def create_app() -> FastAPI:
     async def validation_exception_handler(
         request: Request, exc: RequestValidationError
     ) -> JSONResponse:
-        """Catch malformed payloads or schema validation errors and return Level 3 fallback."""
-        if _is_triage_path(request.url.path):
+        """Catch malformed payloads or schema validation errors and return safe fallbacks."""
+        path = request.url.path
+        if _is_triage_path(path):
             session_id = _extract_session_id_safely(request)
             fallback = create_fallback_triage_response(
                 session_id=session_id,
@@ -249,6 +379,41 @@ def create_app() -> FastAPI:
                 status_code=status.HTTP_200_OK,
                 content=fallback.model_dump(mode="json"),
             )
+        if _is_voice_triage_path(path):
+            session_id = _extract_session_id_safely(request)
+            fb_voice = create_fallback_voice_triage_response(session_id=session_id)
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_voice.model_dump(mode="json"),
+            )
+        if _is_voice_transcribe_path(path):
+            fb_stt = TranscriptionResult(
+                success=False,
+                text="",
+                provider="fallback_text",
+                fallback_to_text=True,
+                latency_ms=0.0,
+                error_reason_ar="بيانات الطلب الصوتي غير مكتملة؛ يرجى كتابة الأعراض نصياً.",
+            )
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_stt.model_dump(mode="json"),
+            )
+        if _is_voice_synthesize_path(path):
+            fb_tts = SynthesisResult(
+                success=False,
+                spoken_text_ar=DEFAULT_DISCLAIMER_AR,
+                audio_base64=None,
+                mime_type="audio/wav",
+                provider=settings.TTS_PROVIDER,
+                fallback_to_text=True,
+                latency_ms=0.0,
+                error_reason_ar="بيانات طلب النطق الصوتي غير صالحة؛ يتم عرض التنبيه الطبي نصياً.",
+            )
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_tts.model_dump(mode="json"),
+            )
         return JSONResponse(
             status_code=HTTP_422_STATUS,
             content={"detail": exc.errors()},
@@ -258,8 +423,9 @@ def create_app() -> FastAPI:
     async def http_exception_handler(
         request: Request, exc: StarletteHTTPException
     ) -> JSONResponse:
-        """Handle HTTP errors on triage routes safely."""
-        if _is_triage_path(request.url.path):
+        """Handle HTTP errors on triage and voice routes safely."""
+        path = request.url.path
+        if _is_triage_path(path):
             session_id = _extract_session_id_safely(request)
             if exc.status_code == status.HTTP_429_TOO_MANY_REQUESTS:
                 fallback = create_fallback_triage_response(
@@ -289,6 +455,16 @@ def create_app() -> FastAPI:
                     status_code=status.HTTP_200_OK,
                     content=fallback.model_dump(mode="json"),
                 )
+        if _is_voice_triage_path(path) and exc.status_code in (
+            status.HTTP_400_BAD_REQUEST,
+            HTTP_422_STATUS,
+        ):
+            session_id = _extract_session_id_safely(request)
+            fb_voice = create_fallback_voice_triage_response(session_id=session_id)
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_voice.model_dump(mode="json"),
+            )
         return JSONResponse(
             status_code=exc.status_code,
             content={"detail": exc.detail},
@@ -298,7 +474,8 @@ def create_app() -> FastAPI:
     async def global_exception_handler(request: Request, exc: Exception) -> JSONResponse:
         """Global catch-all exception handler enforcing SLO-07 safe fallback."""
         logger.error("Unhandled gateway exception on %s: %s", request.url.path, exc, exc_info=True)
-        if _is_triage_path(request.url.path):
+        path = request.url.path
+        if _is_triage_path(path):
             session_id = _extract_session_id_safely(request)
             fallback = create_fallback_triage_response(
                 session_id=session_id,
@@ -310,6 +487,41 @@ def create_app() -> FastAPI:
             return JSONResponse(
                 status_code=status.HTTP_200_OK,
                 content=fallback.model_dump(mode="json"),
+            )
+        if _is_voice_triage_path(path):
+            session_id = _extract_session_id_safely(request)
+            fb_voice = create_fallback_voice_triage_response(session_id=session_id)
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_voice.model_dump(mode="json"),
+            )
+        if _is_voice_transcribe_path(path):
+            fb_stt = TranscriptionResult(
+                success=False,
+                text="",
+                provider="fallback_text",
+                fallback_to_text=True,
+                latency_ms=0.0,
+                error_reason_ar="حدث خطأ غير متوقع أثناء معالجة الصوت؛ يرجى كتابة الأعراض نصياً.",
+            )
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_stt.model_dump(mode="json"),
+            )
+        if _is_voice_synthesize_path(path):
+            fb_tts = SynthesisResult(
+                success=False,
+                spoken_text_ar=DEFAULT_DISCLAIMER_AR,
+                audio_base64=None,
+                mime_type="audio/wav",
+                provider=settings.TTS_PROVIDER,
+                fallback_to_text=True,
+                latency_ms=0.0,
+                error_reason_ar="حدث خطأ غير متوقع أثناء توليد الصوت؛ يتم عرض الإرشادات نصياً.",
+            )
+            return JSONResponse(
+                status_code=status.HTTP_200_OK,
+                content=fb_tts.model_dump(mode="json"),
             )
         return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -371,6 +583,11 @@ def create_app() -> FastAPI:
             sync_mode = True
 
         async def _schedule_audit(resp_obj: Any, lat_ms: float | None = None) -> None:
+            _publish_sse_escalation_if_needed(
+                session_id=payload.session_id,
+                user_input=payload.user_input,
+                response=resp_obj,
+            )
             if sync_mode:
                 await persist_audit_log(
                     session_id=payload.session_id,
@@ -421,6 +638,229 @@ def create_app() -> FastAPI:
                 status_code=status.HTTP_200_OK,
                 content=fallback.model_dump(mode="json"),
             )
+
+    # =======================================================================
+    # Fault-Tolerant Bi-Directional Voice Endpoints (Step 1 Voice Module)
+    # =======================================================================
+
+    @api_v1_router.post(
+        "/voice/transcribe",
+        response_model=TranscriptionResult,
+        summary="In-Memory Speech-to-Text Transcription with 2.5s Timeout & Graceful Fallback",
+        tags=["Voice Triage"],
+    )
+    async def voice_transcribe_endpoint(
+        request: Request,
+        payload: VoiceTranscribeRequest,
+    ) -> Any:
+        client_ip = extract_client_ip(request)
+        allowed, retry_after = rate_limiter.is_allowed(client_ip)
+        if not allowed:
+            fb_stt = TranscriptionResult(
+                success=False,
+                text="",
+                provider="rate_limited",
+                fallback_to_text=True,
+                latency_ms=0.0,
+                error_reason_ar=(
+                    "تم تجاوز الحد الأقصى للطلبات المسموح بها (15 طلب في الدقيقة). "
+                    "يرجى كتابة الأعراض نصياً أو الانتظار قبل المحاولة مرة أخرى."
+                ),
+            )
+            return JSONResponse(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                content=fb_stt.model_dump(mode="json"),
+                headers={"Retry-After": str(retry_after)},
+            )
+
+        audio_bytes = decode_audio_base64(payload.audio_base64)
+        return await voice_adapter.transcribe_audio(
+            audio_bytes=audio_bytes,
+            filename=payload.filename,
+            language=payload.language,
+            fallback_text=payload.fallback_text,
+        )
+
+    @api_v1_router.post(
+        "/voice/synthesize",
+        response_model=SynthesisResult,
+        summary="In-Memory Arabic Text-to-Speech Synthesis Guaranteeing Disclaimer Compliance",
+        tags=["Voice Triage"],
+    )
+    async def voice_synthesize_endpoint(
+        request: Request,
+        payload: VoiceSynthesizeRequest,
+    ) -> Any:
+        client_ip = extract_client_ip(request)
+        allowed, retry_after = rate_limiter.is_allowed(client_ip)
+        if not allowed:
+            fb_tts = SynthesisResult(
+                success=False,
+                spoken_text_ar=ensure_spoken_disclaimer(
+                    payload.text, include_disclaimer=payload.include_disclaimer
+                ),
+                audio_base64=None,
+                mime_type="audio/wav",
+                provider=settings.TTS_PROVIDER,
+                fallback_to_text=True,
+                latency_ms=0.0,
+                error_reason_ar="تم تجاوز الحد الأقصى للطلبات المسموح بها (15 طلب في الدقيقة).",
+            )
+            return JSONResponse(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                content=fb_tts.model_dump(mode="json"),
+                headers={"Retry-After": str(retry_after)},
+            )
+
+        return await voice_adapter.synthesize_speech(
+            text=payload.text,
+            include_disclaimer=payload.include_disclaimer,
+        )
+
+    @api_v1_router.post(
+        "/voice/triage",
+        response_model=VoiceTriageResponse,
+        summary="End-to-End Bi-Directional Voice Triage (STT -> Triage Pipeline -> TTS)",
+        tags=["Voice Triage"],
+    )
+    async def voice_triage_endpoint(
+        request: Request,
+        payload: VoiceTriageRequest,
+        background_tasks: BackgroundTasks,
+    ) -> Any:
+        client_ip = extract_client_ip(request)
+        allowed, retry_after = rate_limiter.is_allowed(client_ip)
+
+        sync_mode = getattr(app.state, "sync_audit", True)
+        if (
+            request.headers.get("X-Sync-Audit", "").lower() == "false"
+            or request.query_params.get("sync_audit", "").lower() == "false"
+        ):
+            sync_mode = False
+        elif (
+            request.headers.get("X-Sync-Audit", "").lower() == "true"
+            or request.query_params.get("sync_audit", "").lower() == "true"
+        ):
+            sync_mode = True
+
+        async def _schedule_voice_audit(
+            raw_input_text: str, resp_obj: Any, lat_ms: float | None = None
+        ) -> None:
+            _publish_sse_escalation_if_needed(
+                session_id=payload.session_id,
+                user_input=raw_input_text,
+                response=resp_obj,
+            )
+            if sync_mode:
+                await persist_audit_log(
+                    session_id=payload.session_id,
+                    user_input=raw_input_text,
+                    response=resp_obj,
+                    latency_ms=lat_ms,
+                )
+            else:
+                background_tasks.add_task(
+                    persist_audit_log,
+                    session_id=payload.session_id,
+                    user_input=raw_input_text,
+                    response=resp_obj,
+                    latency_ms=lat_ms,
+                )
+
+        if not allowed:
+            fb_voice = create_fallback_voice_triage_response(
+                session_id=payload.session_id,
+                rationale_ar=(
+                    "تم تجاوز الحد الأقصى للطلبات المسموح بها (15 طلب في الدقيقة). "
+                    "للحفاظ على سلامتك، يرجى التوجه للفحص الطبي المباشر لدى طبيب مختص أو الانتظار قبل المحاولة مرة أخرى."
+                ),
+                error_reason_ar="تم تجاوز الحد الأقصى للطلبات المسموح بها (15 طلب في الدقيقة).",
+            )
+            await _schedule_voice_audit("rate_limited_voice", fb_voice.triage)
+            return JSONResponse(
+                status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                content=fb_voice.model_dump(mode="json"),
+                headers={"Retry-After": str(retry_after)},
+            )
+
+        # Step A: Run STT transcription with strict 2.5s timeout
+        audio_bytes = decode_audio_base64(payload.audio_base64)
+        transcription = await voice_adapter.transcribe_audio(
+            audio_bytes=audio_bytes,
+            filename=payload.filename,
+            language=payload.language,
+            fallback_text=payload.fallback_text,
+        )
+
+        # Step B & Step C: Run clinical triage pipeline or construct safe Level 3 fallback
+        start_t = time.perf_counter()
+        transcribed_text = (transcription.text or "").strip()
+        if transcribed_text and len(transcribed_text) >= 2:
+            try:
+                triage_req = TriageRequest(
+                    session_id=payload.session_id,
+                    user_input=transcribed_text[:1500],
+                    input_mode="voice",
+                )
+                triage_response = await triage_service.process_triage(triage_req)
+                elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+                await _schedule_voice_audit(transcribed_text, triage_response, elapsed_ms)
+            except Exception as exc:
+                logger.error("Voice triage pipeline exception: %s", exc, exc_info=True)
+                triage_response = create_fallback_triage_response(
+                    session_id=payload.session_id,
+                    rationale_ar=(
+                        "حدث خطأ غير متوقع أثناء معالجة الأعراض الصوتية. للحفاظ على سلامتك، "
+                        "يرجى كتابة الأعراض نصياً أو التوجه للفحص الطبي المباشر لدى طبيب مختص."
+                    ),
+                )
+                elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+                await _schedule_voice_audit(transcribed_text, triage_response, elapsed_ms)
+        else:
+            # Step C: STT failed/timed out and no fallback_text is available -> Level 3 safe fallback
+            triage_response = create_fallback_triage_response(
+                session_id=payload.session_id,
+                rationale_ar=(
+                    "تعذر سماع أو تحويل التسجيل الصوتي إلى نص واضح. للحفاظ على سلامتك، "
+                    "يرجى كتابة الأعراض التي تشعر بها نصياً أو التوجه مباشرة لاستشارة طبيب مختص."
+                ),
+            )
+            elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+            await _schedule_voice_audit("voice_stt_fallback", triage_response, elapsed_ms)
+
+        # Step D: Synthesize Arabic speech for rationale_ar with mandatory disclaimer (2.5s timeout)
+        synthesis = await voice_adapter.synthesize_speech(
+            text=triage_response.rationale_ar,
+            include_disclaimer=True,
+        )
+
+        return VoiceTriageResponse(
+            triage=triage_response,
+            transcription=transcription,
+            synthesis=synthesis,
+        )
+
+    @api_v1_router.get(
+        "/escalations/stream",
+        summary="Real-Time Zero-PHI Server-Sent Events (SSE) Emergency Escalation Stream",
+        tags=["Supervisor Dashboard"],
+    )
+    async def stream_escalations(
+        replay_recent: bool = Query(default=True),
+        max_events: int | None = Query(default=None, ge=1, le=100),
+        once: bool = Query(default=False),
+        heartbeat_interval: float = Query(default=2.0, ge=0.1, le=30.0),
+    ) -> StreamingResponse:
+        return StreamingResponse(
+            escalation_broadcaster.stream_events(
+                replay_recent=replay_recent,
+                max_events=max_events,
+                once=once,
+                heartbeat_interval=heartbeat_interval,
+            ),
+            media_type="text/event-stream",
+            headers=dict(SSE_STREAM_HEADERS),
+        )
 
     @api_v1_router.get(
         "/escalations",
@@ -482,6 +922,7 @@ def create_app() -> FastAPI:
                 detail="Audit database is currently unavailable",
             )
         import uuid
+
         from app.db.crud import (
             acknowledge_escalation,
             create_session_factory,
@@ -529,7 +970,12 @@ def create_app() -> FastAPI:
         except StarletteHTTPException:
             raise
         except SQLAlchemyError as db_err:
-            logger.error("DB operational error updating escalation %s: %s", escalation_id, db_err, exc_info=True)
+            logger.error(
+                "DB operational error updating escalation %s: %s",
+                escalation_id,
+                db_err,
+                exc_info=True,
+            )
             raise StarletteHTTPException(
                 status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
                 detail="Audit database is currently unavailable",
@@ -605,7 +1051,61 @@ def create_app() -> FastAPI:
             request=request, payload=payload, background_tasks=background_tasks
         )
 
+    # Root alias paths for Voice Endpoints
+    @app.post(
+        "/voice/transcribe",
+        response_model=TranscriptionResult,
+        include_in_schema=False,
+    )
+    async def voice_transcribe_alias(
+        request: Request,
+        payload: VoiceTranscribeRequest,
+    ) -> Any:
+        return await voice_transcribe_endpoint(request=request, payload=payload)
+
+    @app.post(
+        "/voice/synthesize",
+        response_model=SynthesisResult,
+        include_in_schema=False,
+    )
+    async def voice_synthesize_alias(
+        request: Request,
+        payload: VoiceSynthesizeRequest,
+    ) -> Any:
+        return await voice_synthesize_endpoint(request=request, payload=payload)
+
+    @app.post(
+        "/voice/triage",
+        response_model=VoiceTriageResponse,
+        include_in_schema=False,
+    )
+    async def voice_triage_alias(
+        request: Request,
+        payload: VoiceTriageRequest,
+        background_tasks: BackgroundTasks,
+    ) -> Any:
+        return await voice_triage_endpoint(
+            request=request, payload=payload, background_tasks=background_tasks
+        )
+
     # Root alias paths for Supervisor Dashboard & Audit API
+    @app.get(
+        "/escalations/stream",
+        include_in_schema=False,
+    )
+    async def stream_escalations_alias(
+        replay_recent: bool = Query(default=True),
+        max_events: int | None = Query(default=None, ge=1, le=100),
+        once: bool = Query(default=False),
+        heartbeat_interval: float = Query(default=2.0, ge=0.1, le=30.0),
+    ) -> StreamingResponse:
+        return await stream_escalations(
+            replay_recent=replay_recent,
+            max_events=max_events,
+            once=once,
+            heartbeat_interval=heartbeat_interval,
+        )
+
     @app.get(
         "/escalations",
         response_model=EscalationListResponse,
@@ -638,7 +1138,6 @@ def create_app() -> FastAPI:
         escalated_only: bool = Query(default=False),
     ) -> AuditLogsResponse:
         return await get_audit_logs(limit=limit, escalated_only=escalated_only)
-
 
     return app
 

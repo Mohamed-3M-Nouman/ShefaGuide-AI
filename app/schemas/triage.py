@@ -252,3 +252,91 @@ class AuditLogsResponse(BaseModel):
     total_count: int = 0
     escalated_count: int = 0
     avg_latency_ms: float = 0.0
+
+
+# ===========================================================================
+# Fault-Tolerant Bi-Directional Voice Adapter Schemas (Step 1 Voice Module)
+# ===========================================================================
+
+
+class VoiceTranscribeRequest(BaseModel):
+    """Incoming JSON payload for audio transcription (Speech-to-Text)."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
+    audio_base64: str | None = Field(
+        default=None, description="Base64-encoded patient audio payload (processed strictly in-memory)."
+    )
+    filename: str = Field(default="audio.webm", description="Audio filename hint for MIME/format detection.")
+    language: str = Field(default="ar", description="BCP-47 / ISO-639-1 language code (default Arabic).")
+    fallback_text: str | None = Field(
+        default=None, description="Optional client-side text fallback if STT fails or times out."
+    )
+
+
+class TranscriptionResult(BaseModel):
+    """Result contract for Speech-to-Text transcription with graceful fallback metadata."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    success: bool
+    text: str
+    provider: str
+    fallback_to_text: bool
+    latency_ms: float
+    error_reason_ar: str | None = None
+
+
+class VoiceSynthesizeRequest(BaseModel):
+    """Incoming JSON payload for Arabic speech synthesis (Text-to-Speech)."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
+    text: str = Field(..., min_length=1, description="Arabic text to synthesize into speech.")
+    include_disclaimer: bool = Field(
+        default=True,
+        description="Whether to guarantee DEFAULT_DISCLAIMER_AR is appended to spoken_text_ar (SLO-03).",
+    )
+
+
+class SynthesisResult(BaseModel):
+    """Result contract for Text-to-Speech synthesis guaranteeing disclaimer compliance."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    success: bool
+    spoken_text_ar: str
+    audio_base64: str | None = None
+    mime_type: str = "audio/wav"
+    provider: str
+    fallback_to_text: bool
+    latency_ms: float
+    error_reason_ar: str | None = None
+
+
+class VoiceTriageRequest(BaseModel):
+    """End-to-end bi-directional voice clinical triage request payload."""
+
+    model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
+
+    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
+    audio_base64: str | None = Field(
+        default=None, description="Base64-encoded patient audio payload (processed strictly in-memory)."
+    )
+    filename: str = Field(default="audio.webm", description="Audio filename hint.")
+    language: str = Field(default="ar", description="Language hint for STT (default 'ar').")
+    fallback_text: str | None = Field(
+        default=None, description="Optional text fallback when audio is absent or STT times out."
+    )
+
+
+class VoiceTriageResponse(BaseModel):
+    """End-to-end bi-directional voice triage response wrapping triage, STT, and TTS results."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    triage: TriageResponse
+    transcription: TranscriptionResult
+    synthesis: SynthesisResult
