@@ -413,3 +413,103 @@ def test_patch_escalation_error_handling(db_client: TestClient) -> None:
         json={"status": "deleted"},
     )
     assert resp_invalid_status.status_code == 422
+
+
+# ===========================================================================
+# 8. Robustness & Edge Cases: Case-Insensitivity, Short Session ID, Boundaries
+# ===========================================================================
+
+
+def test_case_insensitive_status_and_all_filtering(db_client: TestClient) -> None:
+    """Escalation queries and patch payloads handle mixed case and whitespace robustly."""
+    triage_resp = db_client.post(
+        "/api/v1/triage",
+        json={
+            "session_id": "sess_case_test_01",
+            "user_input": "حاسس بسكاكين في صدري وعرق غزير ومش قادر آخد نفسي",
+        },
+    )
+    assert triage_resp.status_code == 200
+    alert_id = triage_resp.json().get("session_id")
+
+    # 1. Query with uppercase ?status=PENDING
+    resp_upper = db_client.get("/api/v1/escalations?status=PENDING")
+    assert resp_upper.status_code == 200
+    assert resp_upper.json()["count"] == 1
+    assert resp_upper.json()["items"][0]["status"] == "pending"
+
+    # 2. Query with title case ?status=Pending
+    resp_title = db_client.get("/api/v1/escalations?status=Pending")
+    assert resp_title.status_code == 200
+    assert resp_title.json()["count"] == 1
+
+    # 3. Query with ?status=all
+    resp_all = db_client.get("/api/v1/escalations?status=all")
+    assert resp_all.status_code == 200
+    assert resp_all.json()["count"] == 1
+
+    esc_item_id = resp_upper.json()["items"][0]["id"]
+
+    # 4. PATCH with mixed case payload {"status": "Acknowledged"}
+    patch_upper = db_client.patch(
+        f"/api/v1/escalations/{esc_item_id}",
+        json={"status": "Acknowledged"},
+    )
+    assert patch_upper.status_code == 200
+    assert patch_upper.json()["status"] == "acknowledged"
+
+    # 5. Query with ?status=ACKNOWLEDGED
+    resp_ack = db_client.get("/api/v1/escalations?status=ACKNOWLEDGED")
+    assert resp_ack.status_code == 200
+    assert resp_ack.json()["count"] == 1
+
+    # 6. PATCH with uppercase {"status": "RESOLVED"}
+    patch_res = db_client.patch(
+        f"/api/v1/escalations/{esc_item_id}",
+        json={"status": "  RESOLVED  "},
+    )
+    assert patch_res.status_code == 200
+    assert patch_res.json()["status"] == "resolved"
+
+
+def test_short_session_id_preserved_verbatim(db_client: TestClient) -> None:
+    """Short session_ids (< 8 chars) are not mangled by padding and match exactly in audit-logs."""
+    short_sid = "s1"
+    triage_resp = db_client.post(
+        "/api/v1/triage",
+        json={"session_id": short_sid, "user_input": "عندي كحة خفيفة من يومين"},
+    )
+    assert triage_resp.status_code == 200
+    assert triage_resp.json()["session_id"] == short_sid
+
+    audit_resp = db_client.get("/api/v1/audit-logs")
+    assert audit_resp.status_code == 200
+    items = audit_resp.json()["items"]
+    found = next((i for i in items if i["session_id"] == short_sid), None)
+    assert found is not None, f"Expected exact session_id '{short_sid}', found items: {items}"
+    assert found["session_id"] == short_sid
+
+
+def test_pagination_limits_and_boundary_checks(db_client: TestClient) -> None:
+    """Clamped pagination limits (1..500) and multi-item metric computations work accurately."""
+    # Post 2 interactions
+    db_client.post(
+        "/api/v1/triage",
+        json={"session_id": "sess_bound_1", "user_input": "صداع خفيف في الجبهة"},
+    )
+    db_client.post(
+        "/api/v1/triage",
+        json={
+            "session_id": "sess_bound_2",
+            "user_input": "حاسس بطابوقة على صدري ومسمعة في دراعي الشمال وعرق بارد",
+        },
+    )
+
+    # limit=1 should return exactly 1 item while total_count reflects all items
+    resp_l1 = db_client.get("/api/v1/audit-logs?limit=1")
+    assert resp_l1.status_code == 200
+    data_l1 = resp_l1.json()
+    assert len(data_l1["items"]) == 1
+    assert data_l1["total_count"] == 2
+    assert data_l1["escalated_count"] == 1
+    assert data_l1["avg_latency_ms"] >= 0

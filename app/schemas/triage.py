@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 from datetime import datetime
 from enum import Enum, IntEnum
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import (
     BaseModel,
@@ -217,6 +217,13 @@ class EscalationUpdateRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     status: Literal["acknowledged", "resolved"]
+
+    @field_validator("status", mode="before")
+    @classmethod
+    def normalize_status(cls, value: Any) -> Any:
+        if isinstance(value, str):
+            return value.strip().lower()
+        return value
 
 
 class AuditLogItem(BaseModel):

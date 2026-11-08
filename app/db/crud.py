@@ -20,7 +20,7 @@ from datetime import UTC, datetime
 from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
-from sqlalchemy import func, select
+from sqlalchemy import case, func, select
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -69,7 +69,7 @@ class AuditLogCreate(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    session_id: str = Field(..., min_length=8, max_length=64, pattern=r"^[A-Za-z0-9_\-]+$")
+    session_id: str = Field(..., min_length=1, max_length=64, pattern=r"^[A-Za-z0-9_\-]+$")
     user_input: str = Field(..., min_length=1)
     symptom_category: SymptomCategory = SymptomCategory.UNKNOWN
     urgency_level: UrgencyLevel
@@ -243,9 +243,16 @@ async def list_escalations(
     limit: int = 50,
 ) -> list[EscalationQueue]:
     """Escalations for the internal dashboard, newest first."""
+    limit = max(1, min(int(limit), 500))
     query = select(EscalationQueue).order_by(EscalationQueue.created_at.desc()).limit(limit)
     if status is not None:
-        status_val = status.value if isinstance(status, EscalationStatus) else str(status)
+        status_val = (
+            status.value
+            if isinstance(status, EscalationStatus)
+            else str(status).strip().lower()
+        )
+        if status_val in ("all", ""):
+            status_val = None
         if status_val:
             query = query.where(EscalationQueue.status == status_val)
     return list((await session.scalars(query)).all())
@@ -257,18 +264,21 @@ async def list_audit_logs(
     escalated_only: bool = False,
 ) -> tuple[list[AuditLog], int, int, float]:
     """Retrieve anonymized interaction audit logs and summary metrics (FR-12, SLO-08)."""
+    limit = max(1, min(int(limit), 500))
     query = select(AuditLog).order_by(AuditLog.created_at.desc())
     if escalated_only:
         query = query.where(AuditLog.escalation_triggered.is_(True))
     items = list((await session.scalars(query.limit(limit))).all())
 
-    total_count = (await session.scalar(select(func.count(AuditLog.id)))) or 0
-    escalated_count = (
-        await session.scalar(
-            select(func.count(AuditLog.id)).where(AuditLog.escalation_triggered.is_(True))
-        )
-    ) or 0
-    avg_latency = await session.scalar(select(func.avg(AuditLog.latency_ms)))
+    summary_stmt = select(
+        func.count(AuditLog.id),
+        func.count(case((AuditLog.escalation_triggered.is_(True), 1))),
+        func.avg(AuditLog.latency_ms),
+    )
+    summary_res = (await session.execute(summary_stmt)).one()
+    total_count = int(summary_res[0] or 0)
+    escalated_count = int(summary_res[1] or 0)
+    avg_latency = summary_res[2]
     avg_latency_ms = round(float(avg_latency), 2) if avg_latency is not None else 0.0
 
     return items, total_count, escalated_count, avg_latency_ms

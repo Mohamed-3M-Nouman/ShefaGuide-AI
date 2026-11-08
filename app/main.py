@@ -13,11 +13,12 @@ import time
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import APIRouter, BackgroundTasks, FastAPI, Request, status
+from fastapi import APIRouter, BackgroundTasks, FastAPI, Query, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
+from sqlalchemy.exc import SQLAlchemyError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.core.config import settings
@@ -35,6 +36,34 @@ from app.services import triage_service
 from app.services.triage_service import create_fallback_triage_response
 
 logger = logging.getLogger("shefaguide.gateway")
+
+HTTP_422_STATUS = getattr(status, "HTTP_422_UNPROCESSABLE_CONTENT", 422)
+
+
+def _format_datetime(dt: Any) -> str | None:
+    """Safely format datetime instances to ISO 8601 strings across all database drivers."""
+    if dt is None:
+        return None
+    if hasattr(dt, "isoformat"):
+        return dt.isoformat()
+    return str(dt)
+
+
+def _safe_str_list(val: Any) -> list[str]:
+    """Safely convert database JSON or collection values into a clean list of strings."""
+    if val is None:
+        return []
+    if isinstance(val, str):
+        try:
+            parsed = json.loads(val)
+            if isinstance(parsed, list):
+                return [str(x) for x in parsed]
+            return [str(parsed)]
+        except Exception:
+            return [val]
+    if isinstance(val, (list, tuple, set)):
+        return [str(x) for x in val]
+    return [str(val)]
 
 
 async def persist_audit_log(
@@ -64,8 +93,8 @@ async def persist_audit_log(
         safe_sid = str(session_id or "session_fallback").strip()
         if not re.match(r"^[A-Za-z0-9_\-]+$", safe_sid):
             safe_sid = re.sub(r"[^A-Za-z0-9_\-]", "_", safe_sid)
-        if len(safe_sid) < 8:
-            safe_sid = f"session_{safe_sid}"[:64]
+        if not safe_sid:
+            safe_sid = "session_fallback"
         elif len(safe_sid) > 64:
             safe_sid = safe_sid[:64]
 
@@ -221,7 +250,7 @@ def create_app() -> FastAPI:
                 content=fallback.model_dump(mode="json"),
             )
         return JSONResponse(
-            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            status_code=HTTP_422_STATUS,
             content={"detail": exc.errors()},
         )
 
@@ -247,7 +276,7 @@ def create_app() -> FastAPI:
                 )
             if exc.status_code in (
                 status.HTTP_400_BAD_REQUEST,
-                status.HTTP_422_UNPROCESSABLE_ENTITY,
+                HTTP_422_STATUS,
             ):
                 fallback = create_fallback_triage_response(
                     session_id=session_id,
@@ -400,8 +429,8 @@ def create_app() -> FastAPI:
         tags=["Supervisor Dashboard"],
     )
     async def get_escalations(
-        status: str | None = None,
-        limit: int = 50,
+        status: str | None = Query(default=None),
+        limit: int = Query(default=50, ge=1, le=500),
     ) -> EscalationListResponse:
         engine = getattr(app.state, "db_engine", None)
         if engine is None:
@@ -409,21 +438,25 @@ def create_app() -> FastAPI:
         try:
             from app.db.crud import create_session_factory, list_escalations
 
+            norm_status = status.strip().lower() if status else None
+            if norm_status in ("all", ""):
+                norm_status = None
+
             session_factory = create_session_factory(engine)
             async with session_factory() as session:
-                records = await list_escalations(session, status=status, limit=limit)
+                records = await list_escalations(session, status=norm_status, limit=limit)
                 items = [
                     EscalationItem(
                         id=str(r.id),
                         audit_log_id=str(r.audit_log_id),
                         session_id=r.session_id,
-                        created_at=r.created_at.isoformat() if r.created_at else "",
+                        created_at=_format_datetime(r.created_at) or "",
                         symptom_category=r.symptom_category,
-                        detected_red_flags=list(r.detected_red_flags or []),
+                        detected_red_flags=_safe_str_list(r.detected_red_flags),
                         scrubbed_summary=r.scrubbed_summary,
                         status=r.status,
-                        acknowledged_at=r.acknowledged_at.isoformat() if r.acknowledged_at else None,
-                        resolved_at=r.resolved_at.isoformat() if r.resolved_at else None,
+                        acknowledged_at=_format_datetime(r.acknowledged_at),
+                        resolved_at=_format_datetime(r.resolved_at),
                     )
                     for r in records
                 ]
@@ -456,7 +489,7 @@ def create_app() -> FastAPI:
         )
 
         try:
-            target_uuid = uuid.UUID(escalation_id)
+            target_uuid = uuid.UUID(str(escalation_id).strip())
         except ValueError:
             raise StarletteHTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -480,13 +513,13 @@ def create_app() -> FastAPI:
                     id=str(updated.id),
                     audit_log_id=str(updated.audit_log_id),
                     session_id=updated.session_id,
-                    created_at=updated.created_at.isoformat() if updated.created_at else "",
+                    created_at=_format_datetime(updated.created_at) or "",
                     symptom_category=updated.symptom_category,
-                    detected_red_flags=list(updated.detected_red_flags or []),
+                    detected_red_flags=_safe_str_list(updated.detected_red_flags),
                     scrubbed_summary=updated.scrubbed_summary,
                     status=updated.status,
-                    acknowledged_at=updated.acknowledged_at.isoformat() if updated.acknowledged_at else None,
-                    resolved_at=updated.resolved_at.isoformat() if updated.resolved_at else None,
+                    acknowledged_at=_format_datetime(updated.acknowledged_at),
+                    resolved_at=_format_datetime(updated.resolved_at),
                 )
         except LookupError:
             raise StarletteHTTPException(
@@ -495,6 +528,12 @@ def create_app() -> FastAPI:
             )
         except StarletteHTTPException:
             raise
+        except SQLAlchemyError as db_err:
+            logger.error("DB operational error updating escalation %s: %s", escalation_id, db_err, exc_info=True)
+            raise StarletteHTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Audit database is currently unavailable",
+            )
         except Exception as exc:
             logger.error("Error updating escalation %s: %s", escalation_id, exc, exc_info=True)
             raise StarletteHTTPException(
@@ -509,8 +548,8 @@ def create_app() -> FastAPI:
         tags=["Supervisor Dashboard"],
     )
     async def get_audit_logs(
-        limit: int = 50,
-        escalated_only: bool = False,
+        limit: int = Query(default=50, ge=1, le=500),
+        escalated_only: bool = Query(default=False),
     ) -> AuditLogsResponse:
         engine = getattr(app.state, "db_engine", None)
         if engine is None:
@@ -527,12 +566,12 @@ def create_app() -> FastAPI:
                     AuditLogItem(
                         id=str(r.id),
                         session_id=r.session_id,
-                        created_at=r.created_at.isoformat() if r.created_at else "",
+                        created_at=_format_datetime(r.created_at) or "",
                         scrubbed_input=r.scrubbed_input,
                         symptom_category=r.symptom_category,
                         urgency_level=r.urgency_level,
                         recommended_specialty=r.recommended_specialty,
-                        retrieved_doc_ids=list(r.retrieved_doc_ids or []),
+                        retrieved_doc_ids=_safe_str_list(r.retrieved_doc_ids),
                         escalation_triggered=r.escalation_triggered,
                         latency_ms=r.latency_ms,
                     )
@@ -573,8 +612,8 @@ def create_app() -> FastAPI:
         include_in_schema=False,
     )
     async def escalations_alias(
-        status: str | None = None,
-        limit: int = 50,
+        status: str | None = Query(default=None),
+        limit: int = Query(default=50, ge=1, le=500),
     ) -> EscalationListResponse:
         return await get_escalations(status=status, limit=limit)
 
@@ -595,8 +634,8 @@ def create_app() -> FastAPI:
         include_in_schema=False,
     )
     async def audit_logs_alias(
-        limit: int = 50,
-        escalated_only: bool = False,
+        limit: int = Query(default=50, ge=1, le=500),
+        escalated_only: bool = Query(default=False),
     ) -> AuditLogsResponse:
         return await get_audit_logs(limit=limit, escalated_only=escalated_only)
 
