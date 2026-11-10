@@ -5,14 +5,19 @@ export const mockResponses = [
   {
     session_id: "sess-001",
     urgency_level: 4,
-    recommended_specialty: "طوارئ المستشفى فورًا",
+    recommended_specialty: "طوارئ المستشفى فوراً",
     rationale_ar: "هذه حالة تجريبية لعرض تنبيه يتطلب تقييمًا طبيًا طارئًا.",
     clarifying_questions: [],
     citations: [],
     disclaimer_ar: disclaimer,
     escalation_triggered: true,
     escalation_note:
-      "يرجى التوجه فورًا لأقرب قسم طوارئ أو الاتصال بالإسعاف (123).",
+      "يرجى التوجه فوراً لأقرب قسم طوارئ أو الاتصال بالإسعاف (123).",
+    detected_red_flags: [
+      "ألم حاد ومفاجئ في الصدر",
+      "صعوبة وضيق في التنفس",
+      "تعرق بارد مصاحب للدوخة",
+    ],
   },
   {
     session_id: "sess-002",
@@ -29,6 +34,8 @@ export const mockResponses = [
         source: "NHS",
         title: "Heartburn and acid reflux",
         url: "https://www.nhs.uk/conditions/heartburn-and-acid-reflux/",
+        snippet:
+          "Severe or frequent heartburn can be a sign of gastro-oesophageal reflux disease (GORD) and requires medical evaluation.",
       },
     ],
     disclaimer_ar: disclaimer,
@@ -59,6 +66,8 @@ export const mockResponses = [
         source: "NHS",
         title: "Joint pain",
         url: "https://www.nhs.uk/conditions/joint-pain/",
+        snippet:
+          "Joint pain is a common symptom that can be caused by arthritis, sprains or strains, requiring specialist outpatient review.",
       },
     ],
     disclaimer_ar: disclaimer,

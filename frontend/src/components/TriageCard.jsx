@@ -45,6 +45,9 @@ export default function TriageCard({ response }) {
     escalation_note,
   } = response;
 
+  const redFlags =
+    response.detected_red_flags || response.red_flags_detected || [];
+
   const isEmergency = urgency_level === 4 || escalation_triggered === true;
 
   const style = isEmergency
@@ -67,8 +70,29 @@ export default function TriageCard({ response }) {
 
       <p className="mt-3 leading-8">{rationale_ar}</p>
 
-      {isEmergency && escalation_note && (
-        <p className="mt-4 text-lg font-bold leading-8">{escalation_note}</p>
+      {isEmergency && (
+        <p className="mt-4 text-lg font-bold leading-8 text-red-900">
+          {escalation_note ||
+            "يرجى التوجه فوراً لأقرب قسم طوارئ مستشفى أو الاتصال بالإسعاف (123)."}
+        </p>
+      )}
+
+      {isEmergency && redFlags.length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-sm font-bold text-red-900">
+            علامات الخطر المرصودة:
+          </h3>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {redFlags.map((flag, idx) => (
+              <span
+                key={`${idx}-${flag}`}
+                className="inline-flex items-center rounded-full bg-red-200 px-3 py-1 text-xs font-bold text-red-900"
+              >
+                {flag}
+              </span>
+            ))}
+          </div>
+        </div>
       )}
 
       {!isEmergency && clarifying_questions.length > 0 && (
@@ -92,24 +116,38 @@ export default function TriageCard({ response }) {
               const href = getSafeUrl(citation.url);
 
               return (
-                <li key={`${citation.doc_id}-${index}`}>
-                  {href ? (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
-                    >
-                      <bdi>{citation.title}</bdi>
-                      {" — "}
-                      <bdi>{citation.source}</bdi>
-                    </a>
-                  ) : (
-                    <span>
-                      <bdi>{citation.title}</bdi>
-                      {" — "}
-                      <bdi>{citation.source}</bdi>
-                    </span>
+                <li
+                  key={`${citation.doc_id || index}-${index}`}
+                  className="rounded-lg bg-white/60 p-2.5"
+                >
+                  <div>
+                    {href ? (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded font-medium underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      >
+                        <bdi>{citation.title}</bdi>
+                        {" — "}
+                        <span className="inline-block rounded bg-slate-200 px-1.5 py-0.5 text-xs font-semibold text-slate-800">
+                          {citation.source}
+                        </span>
+                      </a>
+                    ) : (
+                      <span className="font-medium">
+                        <bdi>{citation.title}</bdi>
+                        {" — "}
+                        <span className="inline-block rounded bg-slate-200 px-1.5 py-0.5 text-xs font-semibold text-slate-800">
+                          {citation.source}
+                        </span>
+                      </span>
+                    )}
+                  </div>
+                  {citation.snippet && (
+                    <p className="mt-1 text-xs leading-5 text-slate-600">
+                      <bdi>{citation.snippet}</bdi>
+                    </p>
                   )}
                 </li>
               );
