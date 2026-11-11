@@ -19,6 +19,11 @@ class TriageState(TypedDict, total=False):
     raw_input: str
     input_mode: Literal["text", "voice"]
     scrubbed_input: str
+    current_turn_scrubbed: str
+    conversation_history: list[str]
+    clarification_count: int
+    max_clarification_reached: bool
+    execution_latency_ms: float
     pii_redacted_types: list[str]
     is_valid_input: bool
     rejection_reason_ar: str | None
@@ -41,5 +46,6 @@ class TriageState(TypedDict, total=False):
         "safe_rejection",
         "clinical_assessment",
         "safe_fallback",
+        "max_clarification_fallback",
     ]
     response: TriageResponse

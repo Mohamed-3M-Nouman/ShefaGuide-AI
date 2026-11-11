@@ -283,3 +283,19 @@ async def list_audit_logs(
 
     return items, total_count, escalated_count, avg_latency_ms
 
+
+
+async def list_audit_logs_for_session(
+    session: AsyncSession,
+    session_id: str,
+    limit: int = 20,
+) -> list[AuditLog]:
+    """Retrieve Zero-PHI audit rows for one session, most recent first (NFR-04 traceability)."""
+    limit = max(1, min(int(limit), 100))
+    query = (
+        select(AuditLog)
+        .where(AuditLog.session_id == session_id)
+        .order_by(AuditLog.created_at.desc())
+        .limit(limit)
+    )
+    return list((await session.scalars(query)).all())

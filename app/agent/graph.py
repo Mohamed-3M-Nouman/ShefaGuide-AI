@@ -5,12 +5,18 @@ from __future__ import annotations
 import importlib
 import json
 import logging
+import time
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 
+from app.agent.session_store import (
+    MAX_CLARIFICATION_TURNS,
+    TURN_SEPARATOR,
+    session_store,
+)
 from app.agent.state import TriageState
 from app.safety.pii_scrubber import (
     ARABIC_NAME_INTRO_PATTERN,
@@ -55,6 +61,23 @@ EMERGENCY_SPECIALTY_AR: str = (
 REJECTION_SPECIALTY_AR: str = (
     "طبيب مختص (أمراض صدرية / عظام وروماتيزم / أطفال وجهاز هضمي / مخ وأعصاب وأنف وأذن / جلدية وحساسية / عيون / باطنة)"
 )
+
+MAX_CLARIFICATION_SPECIALTY_AR: str = "طب الأسرة / طوارئ الباطنة العامة (تقييم طبي مباشر)"
+
+MAX_CLARIFICATION_RATIONALE_AR: str = (
+    "بعد عدة جولات من الأسئلة التوضيحية ما زالت الأعراض غير محسومة وتحتاج إلى فحص إكلينيكي مباشر. "
+    "يُنصح بمراجعة الطبيب فوراً لإجراء الكشف الطبي المباشر وتقييم حالتك بدقة، "
+    "وفي حال ظهور أي علامات خطورة جديدة توجه إلى أقرب طوارئ أو اتصل بالإسعاف (123)."
+)
+
+
+def _merge_unique(base: list[str] | tuple[str, ...], extra: list[str] | tuple[str, ...]) -> list[str]:
+    """Order-preserving union of two string sequences."""
+    merged = list(base)
+    for item in extra:
+        if item not in merged:
+            merged.append(item)
+    return merged
 
 
 def _load_slang_index() -> list[dict[str, Any]]:
@@ -122,44 +145,84 @@ def build_safe_fallback_response(
 def scrub_and_validate_node(state: TriageState) -> TriageState:
     """Node 1: Scrub PII/PHI FIRST (SLO-08), then evaluate red flags and input safety."""
     raw_input = state.get("raw_input", "")
+    session_id = state.get("session_id", "")
     pii_types = _detect_pii_types(raw_input)
-    scrubbed_input = scrub_pii(raw_input)
 
-    # Evaluate deterministic red flags on scrubbed input
-    rf_eval = evaluate_red_flags(scrubbed_input)
+    # SLO-08: scrub first; only the scrubbed turn is ever validated, merged, or stored.
+    current_turn_scrubbed = scrub_pii(raw_input)
 
     # Evaluate deterministic safety validator (prompt injection & medication requests)
-    validation = validate_user_input(scrubbed_input)
+    validation = validate_user_input(current_turn_scrubbed)
     if not validation.rejection_flag and raw_input:
         raw_validation = validate_user_input(raw_input)
         if raw_validation.rejection_flag:
             validation = raw_validation
 
-    # Precedence Rule: Life-threatening emergencies override prescription/injection rejections
-    if rf_eval.urgency_level == UrgencyLevel.EMERGENCY_ESCALATION:
+    # Red flags on the current turn alone (guards against cross-turn negation bleed-through)
+    rf_current = evaluate_red_flags(current_turn_scrubbed)
+    current_has_red_flag = rf_current.urgency_level == UrgencyLevel.EMERGENCY_ESCALATION
+
+    # Multi-turn context merging (FR-10)
+    state_count = int(state.get("clarification_count", 0) or 0)
+    prior_session = session_store.get_session(session_id) if session_id else None
+    prior_history: list[str] = []
+    prior_negated: list[str] = []
+    if prior_session is not None and (not validation.rejection_flag or current_has_red_flag):
+        prior_history = list(prior_session.scrubbed_history)
+        prior_negated = list(prior_session.cumulative_negated_red_flags)
+        scrubbed_input = TURN_SEPARATOR.join([*prior_history, current_turn_scrubbed])
+        clarification_count = max(state_count, prior_session.clarification_count + 1)
+    else:
+        scrubbed_input = current_turn_scrubbed
+        clarification_count = state_count
+
+    conversation_history = [*prior_history, current_turn_scrubbed]
+    max_reached = clarification_count >= MAX_CLARIFICATION_TURNS
+
+    # Red flags on the combined multi-turn picture
+    rf_combined = (
+        evaluate_red_flags(scrubbed_input) if prior_history else rf_current
+    )
+    combined_has_red_flag = rf_combined.urgency_level == UrgencyLevel.EMERGENCY_ESCALATION
+    rf_eval = rf_combined if combined_has_red_flag or not current_has_red_flag else rf_current
+
+    negated_red_flags = _merge_unique(prior_negated, rf_combined.negated_red_flags)
+    negated_red_flags = _merge_unique(negated_red_flags, rf_current.negated_red_flags)
+
+    base_update: TriageState = {
+        "scrubbed_input": scrubbed_input,
+        "current_turn_scrubbed": current_turn_scrubbed,
+        "conversation_history": conversation_history,
+        "clarification_count": clarification_count,
+        "max_clarification_reached": max_reached,
+        "pii_redacted_types": pii_types,
+    }
+
+    # Precedence Rule: Life-threatening emergencies (on ANY turn) override rejections and clarification
+    if current_has_red_flag or combined_has_red_flag:
+        matched = _merge_unique(rf_combined.matched_phrases_ar, rf_current.matched_phrases_ar)
+        doc_ids = _merge_unique(rf_combined.linked_doc_ids, rf_current.linked_doc_ids)
         return {
-            "scrubbed_input": scrubbed_input,
-            "pii_redacted_types": pii_types,
+            **base_update,
             "is_valid_input": True,
             "rejection_reason_ar": None,
             "rule_urgency": UrgencyLevel.EMERGENCY_ESCALATION,
-            "red_flags_detected": list(rf_eval.matched_phrases_ar),
-            "negated_red_flags": list(rf_eval.negated_red_flags),
+            "red_flags_detected": matched,
+            "negated_red_flags": negated_red_flags,
             "primary_category": rf_eval.primary_category,
-            "linked_doc_ids": list(rf_eval.linked_doc_ids),
+            "linked_doc_ids": doc_ids,
         }
 
     is_valid = not validation.rejection_flag
     rejection_reason = validation.safe_response_ar if validation.rejection_flag else None
 
     return {
-        "scrubbed_input": scrubbed_input,
-        "pii_redacted_types": pii_types,
+        **base_update,
         "is_valid_input": is_valid,
         "rejection_reason_ar": rejection_reason,
         "rule_urgency": UrgencyLevel.ROUTINE_SPECIALIST,
         "red_flags_detected": [],
-        "negated_red_flags": list(rf_eval.negated_red_flags),
+        "negated_red_flags": negated_red_flags,
         "primary_category": rf_eval.primary_category,
         "linked_doc_ids": list(rf_eval.linked_doc_ids),
     }
@@ -486,6 +549,22 @@ def clinical_assessment_node(state: TriageState) -> TriageState:
     )
     escalation_triggered = final_urgency == UrgencyLevel.EMERGENCY_ESCALATION
 
+    # Deterministic Max-3-Turns Safety Guardrail (FR-10): stop clarifying, direct to a doctor.
+    clarification_count = int(state.get("clarification_count", 0) or 0)
+    max_reached = clarification_count >= MAX_CLARIFICATION_TURNS
+    route_taken = "clinical_assessment"
+    still_unresolved = (
+        final_urgency == UrgencyLevel.AMBIGUOUS_SEE_DOCTOR
+        or bool(questions)
+        or category == SymptomCategory.UNKNOWN
+    )
+    if max_reached and not escalation_triggered and still_unresolved:
+        final_urgency = max(final_urgency, UrgencyLevel.AMBIGUOUS_SEE_DOCTOR)
+        questions = []
+        specialty = MAX_CLARIFICATION_SPECIALTY_AR
+        rationale_ar = MAX_CLARIFICATION_RATIONALE_AR
+        route_taken = "max_clarification_fallback"
+
     response = TriageResponse(
         session_id=session_id,
         urgency_level=final_urgency,
@@ -508,7 +587,8 @@ def clinical_assessment_node(state: TriageState) -> TriageState:
         "clarifying_questions": questions,
         "retrieved_citations": final_citations,
         "escalation_triggered": escalation_triggered,
-        "route_taken": "clinical_assessment",
+        "max_clarification_reached": max_reached,
+        "route_taken": route_taken,
         "response": response,
     }
 
@@ -572,6 +652,39 @@ def build_triage_graph() -> Any:
 triage_graph = build_triage_graph()
 
 
+def _persist_session_turn(request: TriageRequest, final_state: TriageState) -> None:
+    """Persist the scrubbed turn + routing metadata (zero PHI) so the next turn can merge context.
+
+    Safe-rejection turns are never stored, so injected/prescription text cannot poison history.
+    Persistence failures must never break triage (SLO-07).
+    """
+    try:
+        response = final_state.get("response")
+        route_taken = final_state.get("route_taken")
+        current_turn = final_state.get("current_turn_scrubbed")
+        if (
+            not isinstance(response, TriageResponse)
+            or route_taken in (None, "safe_rejection")
+            or not current_turn
+        ):
+            return
+        session_store.update_session(
+            request.session_id,
+            current_turn,
+            negated_red_flags=final_state.get("negated_red_flags", []),
+            urgency=int(final_state.get("final_urgency", response.urgency_level)),
+            route_taken=route_taken,
+            retrieved_doc_ids=[c.doc_id for c in response.citations],
+            red_flags_detected=final_state.get("red_flags_detected", []),
+            latency_ms=float(final_state.get("execution_latency_ms", 0.0)),
+            clarification_count=int(final_state.get("clarification_count", 0) or 0),
+            recommended_specialty=response.recommended_specialty,
+            symptom_category=response.symptom_category.value,
+        )
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.warning("Session persistence skipped: %s", exc)
+
+
 def invoke_triage_graph_state(request: TriageRequest) -> TriageState:
     """Execute the compiled LangGraph state machine and return the full final `TriageState`."""
     initial_state: TriageState = {
@@ -579,7 +692,10 @@ def invoke_triage_graph_state(request: TriageRequest) -> TriageState:
         "raw_input": request.user_input,
         "input_mode": request.input_mode,
     }
+    started = time.perf_counter()
     result: TriageState = triage_graph.invoke(initial_state)
+    result["execution_latency_ms"] = (time.perf_counter() - started) * 1000.0
+    _persist_session_turn(request, result)
     return result
 
 

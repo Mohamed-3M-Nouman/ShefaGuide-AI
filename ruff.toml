@@ -1,0 +1,12 @@
+# Ruff lint gate used by .github/workflows/ci.yml (`ruff check app/ tests/ eval/`).
+# Baseline: pycodestyle errors, pyflakes, and import sorting. Pin explicitly so the gate does not
+# silently change when ruff's built-in default rule set evolves between releases.
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[lint.per-file-ignores]
+# eval/ scripts intentionally extend sys.path before importing project modules.
+"eval/*" = ["E402", "I001"]

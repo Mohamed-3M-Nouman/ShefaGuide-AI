@@ -22,9 +22,11 @@ from pydantic import BaseModel, Field
 from sqlalchemy.exc import SQLAlchemyError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from app.agent.session_store import SessionRecord, session_store
 from app.core.config import settings
 from app.core.rate_limiter import extract_client_ip, rate_limiter
 from app.core.sse import escalation_broadcaster
+from app.safety.pii_scrubber import REDACTED_TOKEN, contains_pii, scrub_pii
 from app.schemas.triage import (
     DEFAULT_DISCLAIMER_AR,
     AuditLogItem,
@@ -82,6 +84,129 @@ def _safe_str_list(val: Any) -> list[str]:
     if isinstance(val, (list, tuple, set)):
         return [str(x) for x in val]
     return [str(val)]
+
+
+def _scrub_trace_value(value: Any) -> Any:
+    """Recursively PII-scrub every string in a traceability payload (SLO-08 defense in depth)."""
+    if isinstance(value, str):
+        scrubbed = scrub_pii(value)
+        return REDACTED_TOKEN if contains_pii(scrubbed) else scrubbed
+    if isinstance(value, dict):
+        return {k: _scrub_trace_value(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple, set)):
+        return [_scrub_trace_value(v) for v in value]
+    return value
+
+
+def _iter_trace_strings(value: Any) -> Any:
+    """Yield every string contained in a nested traceability payload."""
+    if isinstance(value, str):
+        yield value
+    elif isinstance(value, dict):
+        for v in value.values():
+            yield from _iter_trace_strings(v)
+    elif isinstance(value, (list, tuple, set)):
+        for v in value:
+            yield from _iter_trace_strings(v)
+
+
+def _normalize_audit_session_id(session_id: str) -> str:
+    """Mirror the session_id sanitization applied by `persist_audit_log` for DB lookups."""
+    safe_sid = str(session_id or "session_fallback").strip()
+    safe_sid = re.sub(r"[^A-Za-z0-9_\-]", "_", safe_sid) or "session_fallback"
+    return safe_sid[:64]
+
+
+def _build_traceability_payload(
+    session_id: str,
+    record: SessionRecord | None,
+    audit_rows: list[Any],
+) -> dict[str, Any]:
+    """Assemble the NFR-04 Zero-PHI traceability payload from RAM state and audit rows."""
+    latest = audit_rows[0] if audit_rows else None
+
+    scrubbed_history: list[str]
+    if record is not None:
+        scrubbed_history = list(record.scrubbed_history)
+    else:
+        scrubbed_history = [str(r.scrubbed_input) for r in reversed(audit_rows)]
+
+    route_taken = record.last_route_taken if record is not None else None
+    if route_taken is None and latest is not None:
+        # Audit rows do not persist the LangGraph route; derive the only unambiguous case.
+        route_taken = (
+            "fast_path_emergency" if latest.escalation_triggered else "clinical_assessment"
+        )
+
+    urgency = record.last_urgency if record is not None else None
+    if urgency is None and latest is not None:
+        urgency = int(latest.urgency_level)
+
+    specialty = record.recommended_specialty if record is not None else None
+    if specialty is None and latest is not None:
+        specialty = latest.recommended_specialty
+
+    category = record.symptom_category if record is not None else None
+    if category is None and latest is not None:
+        category = latest.symptom_category
+
+    doc_ids = list(record.last_retrieved_doc_ids) if record is not None else []
+    if not doc_ids and latest is not None:
+        doc_ids = _safe_str_list(latest.retrieved_doc_ids)
+
+    latency = record.last_latency_ms if record is not None and record.last_latency_ms else None
+    if latency is None and latest is not None and latest.latency_ms is not None:
+        latency = float(latest.latency_ms)
+
+    if record is not None:
+        clarification_count = record.clarification_count
+    else:
+        clarification_count = max(len(audit_rows) - 1, 0)
+
+    sources = []
+    if record is not None:
+        sources.append("session_store")
+    if audit_rows:
+        sources.append("audit_log")
+
+    audit_records = [
+        {
+            "id": str(r.id),
+            "created_at": _format_datetime(r.created_at),
+            "scrubbed_input": r.scrubbed_input,
+            "symptom_category": r.symptom_category,
+            "urgency_level": int(r.urgency_level),
+            "recommended_specialty": r.recommended_specialty,
+            "retrieved_doc_ids": _safe_str_list(r.retrieved_doc_ids),
+            "escalation_triggered": bool(r.escalation_triggered),
+            "latency_ms": r.latency_ms,
+        }
+        for r in audit_rows
+    ]
+
+    payload: dict[str, Any] = {
+        "session_id": session_id,
+        "trace_found": True,
+        "trace_source": "+".join(sources),
+        "clarification_count": clarification_count,
+        "scrubbed_history": scrubbed_history,
+        "route_taken": route_taken,
+        "urgency_level": urgency,
+        "recommended_specialty": specialty,
+        "symptom_category": category,
+        "red_flags_detected": list(record.last_red_flags_detected) if record is not None else [],
+        "negated_red_flags": (
+            list(record.cumulative_negated_red_flags) if record is not None else []
+        ),
+        "retrieved_doc_ids": doc_ids,
+        "execution_latency_ms": latency if latency is not None else 0.0,
+        "audit_log_records": audit_records,
+    }
+
+    # SLO-08: scrub every string, then verify; zero_phi_verified is computed after sanitization.
+    payload = _scrub_trace_value(payload)
+    payload["zero_phi_verified"] = not any(contains_pii(s) for s in _iter_trace_strings(payload))
+    return payload
 
 
 def _publish_sse_escalation_if_needed(
@@ -1033,8 +1158,55 @@ def create_app() -> FastAPI:
             logger.warning("Fail-safe: error fetching audit logs: %s", exc)
             return AuditLogsResponse(items=[], total_count=0, escalated_count=0, avg_latency_ms=0.0)
 
+    @api_v1_router.get(
+        "/traceability/{session_id}",
+        summary="NFR-04 Zero-PHI Clinical Decision Traceability (LangGraph route -> doc_ids)",
+        tags=["Supervisor Dashboard"],
+    )
+    async def get_traceability(session_id: str) -> JSONResponse:
+        record = session_store.get_session(session_id)
+
+        audit_rows: list[Any] = []
+        engine = getattr(app.state, "db_engine", None)
+        if engine is not None:
+            try:
+                from app.db.crud import create_session_factory, list_audit_logs_for_session
+
+                session_factory = create_session_factory(engine)
+                async with session_factory() as db_session:
+                    audit_rows = await list_audit_logs_for_session(
+                        db_session, _normalize_audit_session_id(session_id)
+                    )
+            except Exception as exc:
+                logger.warning("Traceability DB lookup degraded to session_store: %s", exc)
+                audit_rows = []
+
+        if record is None and not audit_rows:
+            return JSONResponse(
+                status_code=status.HTTP_404_NOT_FOUND,
+                content={
+                    "detail": "No traceability record found for session_id",
+                    "session_id": _scrub_trace_value(session_id),
+                    "trace_found": False,
+                },
+            )
+
+        try:
+            payload = _build_traceability_payload(session_id, record, audit_rows)
+        except Exception as exc:
+            logger.warning("Traceability payload build degraded to session_store only: %s", exc)
+            payload = _build_traceability_payload(session_id, record, [])
+        return JSONResponse(status_code=status.HTTP_200_OK, content=payload)
+
     # Mount API v1 router
     app.include_router(api_v1_router)
+
+    @app.get(
+        "/traceability/{session_id}",
+        include_in_schema=False,
+    )
+    async def traceability_alias(session_id: str) -> JSONResponse:
+        return await get_traceability(session_id=session_id)
 
     # Optional alias: POST /triage -> delegates to triage_endpoint
     @app.post(

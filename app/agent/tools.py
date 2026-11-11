@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 from typing import Any
 
@@ -190,9 +191,6 @@ def symptom_severity_tool(
             f"تقييم تحفظي مبدئي للأعراض يوجه إلى تخصص {det_specialty} لدرجة استعجال ({int(det_urgency)})."
         ),
     )
-
-
-import json
 
 
 def specialty_mapping_tool(

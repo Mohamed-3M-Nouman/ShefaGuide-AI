@@ -17,13 +17,12 @@ from __future__ import annotations
 import asyncio
 from collections.abc import Generator
 from pathlib import Path
-from typing import Any
 
 import pytest
 from fastapi.testclient import TestClient
 
 from app.core.rate_limiter import rate_limiter
-from app.db.crud import create_engine, init_db
+from app.db.crud import create_engine
 from app.db.models import Base
 from app.main import app
 from app.safety.pii_scrubber import contains_pii
@@ -430,7 +429,7 @@ def test_case_insensitive_status_and_all_filtering(db_client: TestClient) -> Non
         },
     )
     assert triage_resp.status_code == 200
-    alert_id = triage_resp.json().get("session_id")
+    assert triage_resp.json().get("session_id")
 
     # 1. Query with uppercase ?status=PENDING
     resp_upper = db_client.get("/api/v1/escalations?status=PENDING")

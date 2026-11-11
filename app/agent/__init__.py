@@ -21,6 +21,7 @@ from app.agent.graph import (
     set_clinical_assessor_hook,
     triage_graph,
 )
+from app.agent.session_store import EphemeralSessionStore, SessionRecord, session_store
 from app.agent.state import TriageState
 from app.agent.tools import (
     SeverityAssessmentOutput,
@@ -33,6 +34,8 @@ from app.agent.tools import (
 )
 
 __all__ = [
+    "EphemeralSessionStore",
+    "SessionRecord",
     "SeverityAssessmentOutput",
     "SpecialtyMappingOutput",
     "TriageState",
@@ -53,6 +56,7 @@ __all__ = [
     "safe_rejection_node",
     "sanitize_rationale_ar",
     "scrub_and_validate_node",
+    "session_store",
     "set_agent_llm",
     "set_clinical_assessor_hook",
     "specialty_mapping_tool",
