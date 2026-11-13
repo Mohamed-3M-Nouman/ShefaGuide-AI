@@ -19,7 +19,7 @@ import asyncio
 import time
 from collections.abc import Generator
 from pathlib import Path
-from unittest.mock import AsyncMock, patch
+from unittest.mock import patch
 
 import pytest
 from starlette.testclient import TestClient
@@ -27,7 +27,7 @@ from starlette.testclient import TestClient
 from app.db.crud import create_engine
 from app.db.models import Base
 from app.main import app, rate_limiter
-from app.schemas.triage import DEFAULT_DISCLAIMER_AR, TriageResponse
+from app.schemas.triage import TriageResponse
 
 
 @pytest.fixture
