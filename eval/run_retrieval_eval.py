@@ -6,24 +6,29 @@ emergency red-flag cases; adversarial inputs are rejected by the input validator
 score over every case that lists expected documents is reported as well.
 
 Usage:
-    python -m eval.run_retrieval_eval              # in-memory index, rebuilt from the corpus
-    python -m eval.run_retrieval_eval --persistent # use the configured Qdrant (QDRANT_URL/PATH)
+    python eval/run_retrieval_eval.py              # in-memory index, rebuilt from the corpus
+    python eval/run_retrieval_eval.py --persistent # use the configured Qdrant (QDRANT_URL/PATH)
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from app.rag.ingest import ingest_corpus
 from app.rag.retriever import DEFAULT_TOP_K, HybridRetriever, recall_at_k
 from app.rag.vector_store import RAGSettings, create_qdrant_client
 
-LABELED_CASES_PATH: Path = Path(__file__).resolve().parent / "labeled_cases.json"
+LABELED_CASES_PATH: Path = PROJECT_ROOT / "eval" / "labeled_cases.json"
 RETRIEVAL_CASE_TYPES: frozenset[str] = frozenset({"clinical", "emergency_red_flag"})
 RECALL_TARGET: float = 0.90
 

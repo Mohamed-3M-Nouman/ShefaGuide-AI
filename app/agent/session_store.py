@@ -158,7 +158,7 @@ class EphemeralSessionStore:
                 record.recommended_specialty = _guard_scrubbed(recommended_specialty)
             if symptom_category is not None:
                 record.symptom_category = symptom_category
-            record.last_latency_ms = float(latency_ms)
+            record.last_latency_ms = round(float(latency_ms), 2)
             record.updated_at = now
 
             self._sessions[session_id] = record

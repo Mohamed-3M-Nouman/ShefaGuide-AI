@@ -138,6 +138,7 @@ def _build_default_gemini_llm() -> Any | None:
             model=settings.GEMINI_MODEL,
             google_api_key=settings.GEMINI_API_KEY,
             temperature=0.0,
+            timeout=2.5,
             max_retries=1,
         )
     except Exception as exc:

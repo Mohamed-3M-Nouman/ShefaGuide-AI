@@ -9,7 +9,7 @@ REDACTED_TOKEN: str = "[REDACTED]"
 # 1. Egyptian 14-digit National ID (starts with century digit 2 or 3, followed by YYMMDD, governorate, etc.)
 # Also catches general 14-digit continuous numbers to ensure zero PHI leakage.
 EGYPTIAN_NATIONAL_ID_PATTERN: re.Pattern[str] = re.compile(
-    r"(?<!\d)[23]\d{13}(?!\d)|(?<!\d)\d{14}(?!\d)"
+    r"(?<!\d)(?<!\d\.)(?:[23]\d{13}|\d{14})(?!\d)(?!\.\d)"
 )
 
 # 2. Egyptian mobile phone numbers:

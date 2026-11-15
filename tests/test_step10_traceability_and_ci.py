@@ -15,7 +15,7 @@ from app.core.rate_limiter import rate_limiter
 from app.db.crud import create_engine
 from app.db.models import Base
 from app.main import app
-from app.safety.pii_scrubber import contains_pii
+from app.safety.pii_scrubber import contains_pii, scrub_pii
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CI_WORKFLOW_PATH = PROJECT_ROOT / ".github" / "workflows" / "ci.yml"
@@ -221,3 +221,15 @@ def test_github_actions_ci_workflow_exists_and_valid() -> None:
     ):
         assert required in text
     assert "\t" not in text, "YAML must not contain tab indentation"
+
+
+def test_pii_scrubber_ignores_high_precision_floating_point_latencies() -> None:
+    """Verify 14-digit fractional floats (e.g. latency measurements) do not trigger false-positive PII matches."""
+    sample_float_str = "148.85770000000775"
+    assert not contains_pii(sample_float_str)
+    assert not contains_pii(f'{{"execution_latency_ms": {sample_float_str}}}')
+    assert not contains_pii(f'{{"session_id": "test", "latency_ms": {sample_float_str}}}')
+    assert not contains_pii(f"Execution finished in {sample_float_str} ms.")
+    assert contains_pii("الرقم القومي هو 29801011234567.")
+    assert contains_pii("My ID is 29801011234567.")
+    assert scrub_pii("My ID is 29801011234567.") == "My ID is [REDACTED]."

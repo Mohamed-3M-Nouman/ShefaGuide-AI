@@ -179,7 +179,7 @@ def _build_traceability_payload(
             "recommended_specialty": r.recommended_specialty,
             "retrieved_doc_ids": _safe_str_list(r.retrieved_doc_ids),
             "escalation_triggered": bool(r.escalation_triggered),
-            "latency_ms": r.latency_ms,
+            "latency_ms": round(float(r.latency_ms), 2) if r.latency_ms is not None else None,
         }
         for r in audit_rows
     ]
@@ -199,7 +199,7 @@ def _build_traceability_payload(
             list(record.cumulative_negated_red_flags) if record is not None else []
         ),
         "retrieved_doc_ids": doc_ids,
-        "execution_latency_ms": latency if latency is not None else 0.0,
+        "execution_latency_ms": round(float(latency), 2) if latency is not None else 0.0,
         "audit_log_records": audit_records,
     }
 
@@ -317,7 +317,7 @@ async def persist_audit_log(
             retrieved_doc_ids=doc_ids,
             tool_calls=[],
             escalation_triggered=escalated,
-            latency_ms=latency_ms,
+            latency_ms=round(float(latency_ms), 2) if latency_ms is not None else None,
         )
 
         detected_flags = []
@@ -746,7 +746,7 @@ def create_app() -> FastAPI:
         try:
             start_t = time.perf_counter()
             response = await triage_service.process_triage(payload)
-            elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+            elapsed_ms = round((time.perf_counter() - start_t) * 1000.0, 2)
             await _schedule_audit(response, elapsed_ms)
             return response
         except Exception as exc:
@@ -928,7 +928,7 @@ def create_app() -> FastAPI:
                     input_mode="voice",
                 )
                 triage_response = await triage_service.process_triage(triage_req)
-                elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+                elapsed_ms = round((time.perf_counter() - start_t) * 1000.0, 2)
                 await _schedule_voice_audit(transcribed_text, triage_response, elapsed_ms)
             except Exception as exc:
                 logger.error("Voice triage pipeline exception: %s", exc, exc_info=True)
@@ -939,7 +939,7 @@ def create_app() -> FastAPI:
                         "يرجى كتابة الأعراض نصياً أو التوجه للفحص الطبي المباشر لدى طبيب مختص."
                     ),
                 )
-                elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+                elapsed_ms = round((time.perf_counter() - start_t) * 1000.0, 2)
                 await _schedule_voice_audit(transcribed_text, triage_response, elapsed_ms)
         else:
             # Step C: STT failed/timed out and no fallback_text is available -> Level 3 safe fallback
@@ -950,7 +950,7 @@ def create_app() -> FastAPI:
                     "يرجى كتابة الأعراض التي تشعر بها نصياً أو التوجه مباشرة لاستشارة طبيب مختص."
                 ),
             )
-            elapsed_ms = (time.perf_counter() - start_t) * 1000.0
+            elapsed_ms = round((time.perf_counter() - start_t) * 1000.0, 2)
             await _schedule_voice_audit("voice_stt_fallback", triage_response, elapsed_ms)
 
         # Step D: Synthesize Arabic speech for rationale_ar with mandatory disclaimer (2.5s timeout)
@@ -1144,7 +1144,7 @@ def create_app() -> FastAPI:
                         recommended_specialty=r.recommended_specialty,
                         retrieved_doc_ids=_safe_str_list(r.retrieved_doc_ids),
                         escalation_triggered=r.escalation_triggered,
-                        latency_ms=r.latency_ms,
+                        latency_ms=round(float(r.latency_ms), 2) if r.latency_ms is not None else None,
                     )
                     for r in records
                 ]

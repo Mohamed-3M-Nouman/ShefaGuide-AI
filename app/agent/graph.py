@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import importlib
 import json
 import logging
@@ -110,6 +111,13 @@ def _load_corpus_chunks() -> list[dict[str, Any]]:
 
 _SLANG_INDEX: list[dict[str, Any]] = _load_slang_index()
 _CORPUS_CHUNKS: list[dict[str, Any]] = _load_corpus_chunks()
+
+try:
+    from app.rag.dialect_normalizer import get_dialect_normalizer as _get_dn
+
+    _get_dn()
+except Exception:
+    pass
 
 
 def _detect_pii_types(raw_text: str) -> list[str]:
@@ -676,7 +684,7 @@ def _persist_session_turn(request: TriageRequest, final_state: TriageState) -> N
             route_taken=route_taken,
             retrieved_doc_ids=[c.doc_id for c in response.citations],
             red_flags_detected=final_state.get("red_flags_detected", []),
-            latency_ms=float(final_state.get("execution_latency_ms", 0.0)),
+            latency_ms=round(float(final_state.get("execution_latency_ms", 0.0)), 2),
             clarification_count=int(final_state.get("clarification_count", 0) or 0),
             recommended_specialty=response.recommended_specialty,
             symptom_category=response.symptom_category.value,
@@ -694,7 +702,7 @@ def invoke_triage_graph_state(request: TriageRequest) -> TriageState:
     }
     started = time.perf_counter()
     result: TriageState = triage_graph.invoke(initial_state)
-    result["execution_latency_ms"] = (time.perf_counter() - started) * 1000.0
+    result["execution_latency_ms"] = round((time.perf_counter() - started) * 1000.0, 2)
     _persist_session_turn(request, result)
     return result
 
@@ -715,7 +723,7 @@ def run_triage_agent_sync(request: TriageRequest) -> TriageResponse:
 async def run_triage_agent(request: TriageRequest) -> TriageResponse:
     """Async entrypoint executing the LangGraph triage state machine with SLO-07 fallback."""
     try:
-        final_state = invoke_triage_graph_state(request)
+        final_state = await asyncio.to_thread(invoke_triage_graph_state, request)
         response = final_state.get("response")
         if isinstance(response, TriageResponse):
             return response

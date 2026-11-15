@@ -115,6 +115,13 @@ flowchart TD
 
 ## ⚡ Core Engineering Innovations
 
+### The 4 DEPI Pillars
+
+1. **Pillar 1 — Agentic Clinical State Machine & Deterministic Safety (`app/agent/`, `app/safety/`)**: LangGraph state machine, Supremacy Rule (`max(rule_urgency, llm_urgency)`), multi-turn ephemeral session store, and Zero-PHI scrubbing.
+2. **Pillar 2 — High-Recall Egyptian Dialect & Hybrid RAG (`app/rag/`, `data/`)**: Two-stage Egyptian colloquial normalizer and Qdrant hybrid retrieval (Dense `BAAI/bge-m3` + Sparse BM25 with Reciprocal Rank Fusion).
+3. **Pillar 3 — Bi-Directional Voice & Real-Time Emergency Streaming (`app/voice/`, `app/core/sse.py`, `frontend/`)**: Fault-tolerant Whisper STT/TTS voice adapter, React 19 RTL UI, and live SSE emergency escalation stream.
+4. **Pillar 4 — Zero-PHI Persistence, Clinical Traceability & CI/CD SLO Gates (`app/db/`, `eval/`, `.github/workflows/ci.yml`)**: Scrubbed SQLAlchemy audit persistence, end-to-end clinical traceability, and automated DEPI SLO evaluation gates.
+
 ### 1. Multi-Tier Zero-PHI Privacy Engine
 *File: `app/safety/pii_scrubber.py`*
 - **Egyptian National ID Scrubber:** Matches 14-digit Egyptian National ID patterns starting with century digits `2` or `3`, alongside general 14-digit sequences.
@@ -414,6 +421,9 @@ Server-Sent Events (SSE) stream broadcasting Level 4 emergency escalations in re
 ### 4. Zero-PHI Audit Logs (`GET /api/v1/audit/logs`)
 Provides paginated, filtered audit trails of clinical consultations with guaranteed zero-PHI retention.
 
+### 5. End-to-End Clinical Traceability (`GET /api/v1/traceability/{session_id}`)
+Delivers NFR-04 end-to-end clinical decision traceability linking scrubbed session history, LangGraph execution routes, retrieved Qdrant guideline chunk IDs, and persisted Zero-PHI audit rows.
+
 ---
 
 ## 🏛️ Architecture Decision Records (ADRs)
@@ -424,6 +434,7 @@ Production design choices are documented in [`docs/adr/`](./docs/adr/README.md):
 - **[ADR-002](./docs/adr/ADR-002-qdrant-hybrid-rag-and-egyptian-dialect-normalization.md):** Two-Stage Egyptian Dialect Normalization & Qdrant Hybrid RAG.
 - **[ADR-003](./docs/adr/ADR-003-zero-phi-privacy-architecture-and-pii-scrubbing.md):** Multi-Tiered Zero-PHI Privacy Architecture & PII Scrubbing.
 - **[ADR-004](./docs/adr/ADR-004-fault-tolerant-voice-adapter-and-global-safe-fallback.md):** Fault-Tolerant Voice Adapter & Global Safe Fallbacks.
+- **[Capstone Defense Demo Script & System Limitations](./docs/DEMO_SCRIPT_AND_LIMITATIONS.md):** Walkthrough of verified clinical scenarios and operational boundaries (`docs/DEMO_SCRIPT_AND_LIMITATIONS.md`).
 
 ---
 
