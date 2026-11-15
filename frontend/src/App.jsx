@@ -15,20 +15,20 @@ function getNavClass({ isActive }) {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex h-dvh flex-col overflow-hidden bg-slate-50">
+      <div className="flex h-dvh flex-col overflow-hidden bg-slate-50 print:h-auto print:overflow-visible print:bg-white">
         <MedicalDisclaimer />
 
         <nav
           aria-label="التنقل الرئيسي"
-          className="shrink-0 border-b border-slate-200 bg-white"
+          className="shrink-0 border-b border-slate-200 bg-white print:hidden"
         >
           <div className="mx-auto flex max-w-6xl gap-2 px-4 py-2">
             <NavLink to="/" end className={getNavClass}>
-              الشات
+              شات الفرز الطبي
             </NavLink>
 
             <NavLink to="/dashboard" className={getNavClass}>
-              الداشبورد التجريبي
+              لوحة تحكم الطوارئ والتدقيق
             </NavLink>
           </div>
         </nav>
