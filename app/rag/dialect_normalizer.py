@@ -264,6 +264,8 @@ class _LexiconEntry:
     exact_pattern: re.Pattern[str]
     phrase_bigrams: tuple[frozenset[tuple[str, str]], ...]
     leading_bigrams: frozenset[tuple[str, str]]
+    alternation: str = ""
+    max_phrase_len: int = 0
 
 
 @dataclass(frozen=True)
@@ -293,6 +295,9 @@ class DialectNormalizer:
         self.lexicon_path = Path(lexicon_path)
         self.min_partial_score = min_partial_score
         self._entries: tuple[_LexiconEntry, ...] = self._load_entries(self.lexicon_path)
+        self._master_pattern, self._group_to_entry_idx = self._build_master_pattern(
+            self._entries
+        )
         self._cue_index: dict[tuple[str, str], tuple[_Cue, ...]] = self._build_cue_index(
             self._entries
         )
@@ -339,6 +344,8 @@ class DialectNormalizer:
                     exact_pattern=exact_pattern,
                     phrase_bigrams=phrase_bigrams,
                     leading_bigrams=leading_bigrams,
+                    alternation=alternation,
+                    max_phrase_len=len(normalize_arabic(ordered[0])),
                 )
             )
         return tuple(entries)
@@ -371,6 +378,35 @@ class DialectNormalizer:
             )
         return index
 
+    @staticmethod
+    def _build_master_pattern(
+        entries: tuple[_LexiconEntry, ...],
+    ) -> tuple[re.Pattern[str] | None, dict[str, int]]:
+        if not entries:
+            return None, {}
+        # Sort entry indices by maximum phrase length descending so more specific phrases match first
+        sorted_indices = sorted(
+            range(len(entries)),
+            key=lambda idx: entries[idx].max_phrase_len,
+            reverse=True,
+        )
+        pattern_parts: list[str] = []
+        group_to_idx: dict[str, int] = {}
+        for group_num, entry_idx in enumerate(sorted_indices):
+            entry = entries[entry_idx]
+            if not entry.alternation:
+                continue
+            group_name = f"e_{group_num}"
+            group_to_idx[group_name] = entry_idx
+            pattern_parts.append(rf"(?P<{group_name}>{entry.alternation})")
+        if not pattern_parts:
+            return None, {}
+        master_regex = re.compile(
+            rf"(?<![{_ARABIC_LETTERS}\d])[وبف]?(?:{'|'.join(pattern_parts)})",
+            re.IGNORECASE,
+        )
+        return master_regex, group_to_idx
+
     def normalize(self, text: str) -> NormalizationResult:
         """Find Egyptian slang expressions in a PII-scrubbed complaint and map them to clinical terms."""
         started = time.perf_counter()
@@ -381,17 +417,33 @@ class DialectNormalizer:
         matches: list[tuple[float, SlangMatch]] = []
         exact_entries: set[int] = set()
 
-        for entry_idx, entry in enumerate(self._entries):
-            found = entry.exact_pattern.search(normalized)
-            if found is None:
-                continue
-            exact_entries.add(entry_idx)
-            matches.append(
-                (
-                    float("inf"),
-                    self._build_match(entry, normalized, found.start(), found.end(), MatchType.EXACT, 1.0),
+        if self._master_pattern is not None:
+            for m in self._master_pattern.finditer(normalized):
+                if m.lastgroup is not None:
+                    entry_idx = self._group_to_entry_idx[m.lastgroup]
+                    if entry_idx not in exact_entries:
+                        exact_entries.add(entry_idx)
+                        entry = self._entries[entry_idx]
+                        matches.append(
+                            (
+                                float("inf"),
+                                self._build_match(
+                                    entry, normalized, m.start(), m.end(), MatchType.EXACT, 1.0
+                                ),
+                            )
+                        )
+        else:
+            for entry_idx, entry in enumerate(self._entries):
+                found = entry.exact_pattern.search(normalized)
+                if found is None:
+                    continue
+                exact_entries.add(entry_idx)
+                matches.append(
+                    (
+                        float("inf"),
+                        self._build_match(entry, normalized, found.start(), found.end(), MatchType.EXACT, 1.0),
+                    )
                 )
-            )
 
         for entry_idx, candidate in self._score_partial(normalized).items():
             if entry_idx in exact_entries or candidate.score < self.min_partial_score:

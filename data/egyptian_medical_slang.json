@@ -395,7 +395,8 @@
     "egyptian_phrases": [
       "شبورة وضباب على عيني والنظر بيضعف بالتدريج",
       "الألوان بهتانة وبشوف هالات حوالين النور بالليل",
-      "مش شايف الكلام الصغير والوجوه مغبشة قدامي"
+      "مش شايف الكلام الصغير والوجوه مغبشة قدامي",
+      "زغللة تدريجية في النظر بقالي شهور كأني ببص من ورا إزاز مشبر من غير وجع"
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Gradual painless clouding of vision or central visual blurriness (Cataracts / Macular degeneration / Diabetic retinopathy)",
@@ -1049,7 +1050,8 @@
     "egyptian_phrases": [
       "ضغطي عالي ودايما بيطلع مرتفع وبوجع راسي",
       "ضغطي زي الصاروخ ودايما بحس بتقل في دماغي",
-      "الضغط بتاعي عالي وبيجيلي دوخة وطرطشة في عيني"
+      "الضغط بتاعي عالي وبيجيلي دوخة وطرطشة في عيني",
+      "ضغطي بقيسه اليومين دول بيطلع 155 على 95 وعندي صداع خفيف في القفا"
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Persistent high blood pressure with headache / Hypertension",
@@ -1838,8 +1840,7 @@
     "egyptian_phrases": [
       "ضغطي عالي أوي ومعاه صداع جامد وزغللة ونغزة في صدري",
       "جهاز الضغط قاري 210 على 120 وعندي وجع في صدري",
-      "ضغطي طالع في السما ودايخ ومناخيري بتنزف",
-      "ضغطي بقيسه اليومين دول بيطلع 155 على 95 وعندي صداع خفيف في القفا"
+      "ضغطي طالع في السما ودايخ ومناخيري بتنزف"
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Severely elevated blood pressure with chest pain or visual disturbance",
@@ -2109,8 +2110,7 @@
     "egyptian_phrases": [
       "عيني اليمين أظلمت فجأة في ثواني كأن ستارة سودا نزلت عليها",
       "فقدت النظر في عين واحدة مرة واحدة من غير وجع",
-      "مش شايف بعيني الشمال فجأة خالص وبشوف فلاشات نور",
-      "زغللة تدريجية في النظر بقالي شهور كأني ببص من ورا إزاز مشبر من غير وجع"
+      "مش شايف بعيني الشمال فجأة خالص وبشوف فلاشات نور"
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Acute painless monocular vision loss or visual field curtain",
