@@ -1,57 +1,53 @@
-import { BrowserRouter, NavLink, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, Link } from "react-router";
 
+import AppProvider from "./context/AppProvider";
 import MedicalDisclaimer from "./components/MedicalDisclaimer";
+import TopNavbar from "./components/TopNavbar";
+import DoctorPassModal from "./components/DoctorPassModal";
 import ChatInterface from "./components/ChatInterface";
+import LandingPage from "./pages/LandingPage";
+import AuthPage from "./pages/AuthPage";
+import ProfileVaultPage from "./pages/ProfileVaultPage";
+import HistoryArchivePage from "./pages/HistoryArchivePage";
 import Dashboard from "./pages/Dashboard";
-
-function getNavClass({ isActive }) {
-  const base = "rounded-lg px-4 py-2 text-sm font-semibold transition-colors";
-
-  return `${base} ${
-    isActive ? "bg-teal-700 text-white" : "text-slate-600 hover:bg-slate-100"
-  }`;
-}
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <div className="flex h-dvh flex-col overflow-hidden bg-slate-50">
-        <MedicalDisclaimer />
+    <AppProvider>
+      <BrowserRouter>
+        <div className="flex h-dvh flex-col overflow-hidden bg-[#F8FAFC] text-slate-900 dark:bg-[#0F172A] dark:text-slate-100 print:h-auto print:overflow-visible print:bg-white">
+          <MedicalDisclaimer />
+          <TopNavbar />
 
-        <nav
-          aria-label="التنقل الرئيسي"
-          className="shrink-0 border-b border-slate-200 bg-white"
-        >
-          <div className="mx-auto flex max-w-6xl gap-2 px-4 py-2">
-            <NavLink to="/" end className={getNavClass}>
-              الشات
-            </NavLink>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/profile" element={<ProfileVaultPage />} />
+            <Route path="/triage" element={<ChatInterface />} />
+            <Route path="/history" element={<HistoryArchivePage />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="*"
+              element={
+                <main className="flex flex-1 flex-col items-center justify-center p-8 text-center">
+                  <h1 className="text-2xl font-black">الصفحة غير موجودة</h1>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                    يمكنك الرجوع إلى الصفحة الرئيسية أو بدء الفرز الطبي مباشرة.
+                  </p>
+                  <Link
+                    to="/"
+                    className="mt-4 rounded-xl bg-[#0D9488] px-5 py-2.5 text-sm font-bold text-white"
+                  >
+                    العودة للرئيسية
+                  </Link>
+                </main>
+              }
+            />
+          </Routes>
 
-            <NavLink to="/dashboard" className={getNavClass}>
-              الداشبورد التجريبي
-            </NavLink>
-          </div>
-        </nav>
-
-        <Routes>
-          <Route path="/" element={<ChatInterface />} />
-
-          <Route path="/dashboard" element={<Dashboard />} />
-
-          <Route
-            path="*"
-            element={
-              <main className="p-8 text-center">
-                <h1 className="text-xl font-bold">الصفحة غير موجودة</h1>
-
-                <p className="mt-3 text-slate-600">
-                  استخدم روابط التنقل بالأعلى للرجوع.
-                </p>
-              </main>
-            }
-          />
-        </Routes>
-      </div>
-    </BrowserRouter>
+          <DoctorPassModal />
+        </div>
+      </BrowserRouter>
+    </AppProvider>
   );
 }
