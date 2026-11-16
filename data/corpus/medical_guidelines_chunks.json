@@ -398,5 +398,737 @@
     "recommended_specialty_ar": "الباطنة العامة وأمراض الدم والغدد الصماء",
     "recommended_specialty_en": "Internal Medicine / Endocrinology / Hematology",
     "content": "Persistent tiredness and severe fatigue (exhaustion that does not resolve with adequate sleep and interferes with daily work, study, or self-care) is a common systemic symptom requiring methodical internal medicine triage to distinguish lifestyle factors from underlying endocrine, hematologic, infectious, cardiopulmonary, or neoplastic diseases. Immediate emergency care is required if acute exhaustion presents as lethargy where the patient is difficult to wake, confused, or slurring speech, or if fatigue is accompanied by acute chest pain, shortness of breath, haemoptysis, or fainting. When acute emergencies are excluded, an urgent or prioritized specialist consultation with an internal medicine physician, hematologist, or endocrinologist is warranted if persistent fatigue is accompanied by systemic alarm ('B-symptom') features: unintentional weight loss, drenching night sweats that soak bedclothes, recurrent or persistent unexplained fever, painless firm or enlarging lymph nodes in the neck, collarbone (supraclavicular), axilla, or groin, pallor with exertional dyspnea, or abnormal bruising and bleeding (which require prompt exclusion of lymphoma, leukemia, occult malignancy, or chronic infections such as tuberculosis, viral hepatitis, or brucellosis). A routine internal medicine evaluation is indicated whenever unexplained tiredness lasts for several weeks without a clear lifestyle cause. Comprehensive diagnostic screening typically includes a complete blood count (to detect iron-deficiency or vitamin B12 and folate deficiency anemia), thyroid function tests (to identify hypothyroidism), fasting blood glucose and HbA1c (for diabetes mellitus), renal and hepatic function panels, inflammatory markers (ESR and CRP), and vitamin D levels. When organic, endocrine, and hematologic causes are ruled out, clinicians evaluate for obstructive sleep apnea, depressive or anxiety disorders, or myalgic encephalomyelitis / chronic fatigue syndrome (ME/CFS)—characterized by debilitating fatigue lasting at least three months, unrefreshing sleep, cognitive 'brain fog', and post-exertional malaise (PEM) where symptoms worsen markedly after minor physical or mental effort. Patients should avoid self-medicating with unprescribed stimulants, hormones, or high-dose iron supplements before laboratory confirmation."
+  },
+  {
+    "doc_id": "NHS-CARDIO-006",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Pulmonary Embolism – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/pulmonary-embolism/",
+    "red_flags": [
+      "Sudden breathlessness or difficulty breathing",
+      "Sharp chest pain that worsens on breathing in",
+      "Coughing up blood",
+      "Fast heart rate (tachycardia) with collapse or loss of consciousness"
+    ],
+    "recommended_specialty_ar": "أمراض القلب والصدر أو طوارئ المستشفى فوراً",
+    "recommended_specialty_en": "Pulmonology / Emergency Medicine",
+    "content": "A pulmonary embolism (PE) is a life-threatening blockage in one of the pulmonary arteries in the lungs, usually caused by blood clots that travel from the deep veins of the leg (deep vein thrombosis, DVT). The condition demands immediate emergency assessment because it can be rapidly fatal. Typical presenting symptoms include sudden onset of breathlessness, pleuritic chest pain (sharp pain that worsens when breathing in), and haemoptysis (coughing up blood). Patients may also complain of palpitations, dizziness, and in severe cases may collapse. Risk factors include prolonged immobility (long-haul travel, bed rest), recent surgery, pregnancy, combined oral contraceptive pill use, cancer, and inherited thrombophilia. Diagnosis is confirmed with CT pulmonary angiography (CTPA) or a V/Q scan. Treatment involves anticoagulation therapy (heparin followed by oral anticoagulants such as warfarin or direct oral anticoagulants). Thrombolysis or surgical embolectomy may be required in massive PE with haemodynamic compromise. All patients with suspected PE should call emergency services immediately. Do not delay seeking care."
+  },
+  {
+    "doc_id": "WHO-CARDIO-007",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "cardiopulmonary",
+    "title": "Hypertension – WHO Fact Sheet",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hypertension",
+    "red_flags": [
+      "Severe headache with blood pressure > 180/120 mmHg",
+      "Blurred vision or visual disturbance with hypertension",
+      "Chest pain or difficulty breathing associated with very high blood pressure",
+      "Confusion or neurological signs with hypertensive crisis"
+    ],
+    "recommended_specialty_ar": "الباطنة العامة وأمراض القلب والأوعية الدموية",
+    "recommended_specialty_en": "Internal Medicine / Cardiology",
+    "content": "Hypertension (high blood pressure) is a major global health concern and a leading risk factor for cardiovascular disease, stroke, kidney disease, and premature death. The WHO defines hypertension as a systolic blood pressure of 140 mmHg or higher, or a diastolic blood pressure of 90 mmHg or higher. The condition is often asymptomatic ('the silent killer'), meaning individuals may not know they are hypertensive until a complication occurs. When symptoms do arise they may include headache, nosebleeds, irregular heartbeat, vision changes, and ringing in the ears. A hypertensive crisis (blood pressure above 180/120 mmHg) with associated symptoms such as severe headache, chest pain, shortness of breath, or neurological disturbance constitutes a medical emergency. Lifestyle modifications are first-line management: reducing salt intake to below 5 g per day, following a balanced diet rich in fruits and vegetables, regular physical activity, limiting alcohol consumption, maintaining a healthy body weight, and stopping smoking. When lifestyle changes are insufficient, antihypertensive medications (ACE inhibitors, ARBs, calcium channel blockers, thiazide diuretics) are prescribed. Blood pressure targets vary with comorbidities; patients with diabetes or chronic kidney disease often require lower targets. Regular monitoring and adherence to medication are critical to prevent end-organ damage."
+  },
+  {
+    "doc_id": "NHS-CARDIO-008",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Atrial Fibrillation – Symptoms, Diagnosis & Treatment",
+    "url": "https://www.nhs.uk/conditions/atrial-fibrillation/",
+    "red_flags": [
+      "Sudden onset of an irregular, very rapid heartbeat",
+      "Fainting or near-fainting (syncope) with palpitations",
+      "Chest pain or severe breathlessness accompanying irregular heartbeat",
+      "Stroke symptoms (facial droop, arm weakness, speech difficulty) in a patient with AF"
+    ],
+    "recommended_specialty_ar": "أمراض القلب والأوعية الدموية",
+    "recommended_specialty_en": "Cardiology",
+    "content": "Atrial fibrillation (AF) is the most common sustained cardiac arrhythmia, characterised by rapid, irregular electrical activity in the atria of the heart. The condition affects millions worldwide and significantly increases the risk of stroke, heart failure, and other cardiovascular complications. Patients typically present with palpitations (a sensation of a rapid, fluttering, or pounding heartbeat), fatigue, dizziness, breathlessness, and reduced ability to exercise. Some patients are entirely asymptomatic and are diagnosed incidentally on an ECG. AF can be paroxysmal (self-terminating), persistent, long-standing persistent, or permanent. The primary risk of AF is thromboembolic stroke: the irregular atrial contraction allows blood to pool and form clots that may travel to the brain. Stroke risk is assessed using the CHA₂DS₂-VASc score, and anticoagulation is recommended for most patients with a score of 2 or more. Rate control (using beta-blockers or calcium-channel blockers) and rhythm control (cardioversion, antiarrhythmic drugs, catheter ablation) are the two treatment strategies. New-onset or worsening AF with haemodynamic compromise requires urgent hospital assessment."
+  },
+  {
+    "doc_id": "NHS-NEURO-006",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Stroke – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/stroke/",
+    "red_flags": [
+      "Sudden facial drooping on one side",
+      "Sudden weakness or numbness in one arm or leg",
+      "Sudden slurred speech or inability to speak",
+      "Sudden severe headache with no known cause",
+      "Sudden loss of vision in one or both eyes"
+    ],
+    "recommended_specialty_ar": "طوارئ المستشفى فوراً – أمراض الأعصاب والجراحة العصبية",
+    "recommended_specialty_en": "Emergency Medicine / Neurology",
+    "content": "A stroke is a medical emergency that occurs when the blood supply to part of the brain is cut off, causing brain cells to die within minutes. There are two main types: ischaemic stroke (caused by a blood clot blocking an artery supplying the brain, accounting for about 85% of strokes) and haemorrhagic stroke (caused by bleeding into or around the brain). The FAST acronym is the primary public awareness tool: Face drooping, Arm weakness, Speech difficulty, Time to call emergency services. Additional symptoms include sudden severe headache with no known cause, sudden loss of vision or blurred vision in one or both eyes, sudden dizziness or loss of balance, and confusion. A transient ischaemic attack (TIA or 'mini-stroke') causes the same symptoms that resolve within 24 hours; it is also a medical emergency because stroke risk is very high in the following days. Treatment for ischaemic stroke includes thrombolysis with alteplase (within 4.5 hours of onset) and mechanical thrombectomy for large vessel occlusion. Haemorrhagic stroke management focuses on blood pressure control and may require neurosurgical intervention. Time is brain: the sooner treatment is given, the better the outcome. Call emergency services immediately if any stroke symptom is present."
+  },
+  {
+    "doc_id": "MAYO-NEURO-007",
+    "source": "Mayo Clinic",
+    "license": "© 1998-2024 Mayo Foundation for Medical Education and Research",
+    "category": "neurological_ent_ophth",
+    "title": "Epilepsy – Symptoms & Causes",
+    "url": "https://www.mayoclinic.org/diseases-conditions/epilepsy/symptoms-causes/syc-20350093",
+    "red_flags": [
+      "Seizure lasting more than 5 minutes (status epilepticus) – call emergency services",
+      "Failure to regain consciousness after a seizure",
+      "A second seizure occurring shortly after the first",
+      "Seizure occurring in water or during other high-risk activities",
+      "Seizure in a pregnant woman or someone with diabetes"
+    ],
+    "recommended_specialty_ar": "أمراض الأعصاب",
+    "recommended_specialty_en": "Neurology",
+    "content": "Epilepsy is a chronic neurological disorder characterised by recurrent, unprovoked seizures resulting from abnormal electrical activity in the brain. Seizures can manifest in many ways depending on which part of the brain is affected: focal (partial) seizures affect one area and may cause twitching, sensory changes, or altered awareness; generalised seizures involve the whole brain and include tonic-clonic (grand mal) seizures with rhythmic jerking movements and loss of consciousness, absence seizures (brief staring spells), myoclonic jerks, atonic ('drop') attacks, and tonic seizures. Diagnosis is primarily clinical, supported by electroencephalography (EEG) and neuroimaging (MRI). Common causes include genetic factors, brain injury, stroke, brain tumours, and infections. Antiseizure medications (ASMs) such as levetiracetam, valproate, lamotrigine, and carbamazepine control seizures in about 70% of patients. Drug-resistant epilepsy may be managed with ketogenic diet, vagus nerve stimulation, or epilepsy surgery. Status epilepticus (a seizure lasting more than 5 minutes or repeated seizures without recovery) is a life-threatening emergency requiring immediate emergency services. Patients with epilepsy should be counselled on safety (driving restrictions, swimming precautions, medication adherence) and should wear a medical alert bracelet."
+  },
+  {
+    "doc_id": "NHS-NEURO-008",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Tinnitus – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/tinnitus/",
+    "red_flags": [
+      "Pulsatile tinnitus (heartbeat sound in ear) – may indicate vascular abnormality",
+      "Sudden one-sided hearing loss with tinnitus",
+      "Tinnitus with neurological symptoms (dizziness, facial weakness, speech difficulty)",
+      "Rapidly progressive tinnitus with hearing loss in both ears"
+    ],
+    "recommended_specialty_ar": "أمراض الأنف والأذن والحنجرة",
+    "recommended_specialty_en": "ENT (Otolaryngology)",
+    "content": "Tinnitus is the perception of sound in the ears or head when no external sound source is present. It is commonly described as ringing, buzzing, hissing, whistling, whooshing, or clicking. Tinnitus is very common and affects up to 15% of the general population. In most cases it is a symptom rather than a disease itself, arising from disorders of the auditory system including noise-induced hearing loss, age-related hearing loss (presbycusis), earwax build-up, ear infections, Ménière's disease, otosclerosis, and certain medications (ototoxic drugs such as high-dose aspirin, loop diuretics, aminoglycoside antibiotics, and platinum-based chemotherapy). Pulsatile tinnitus synchronised with the heartbeat warrants urgent investigation to exclude vascular causes such as arteriovenous malformation, carotid artery stenosis, or glomus tumour. Sudden-onset unilateral tinnitus with hearing loss may indicate sudden sensorineural hearing loss, a medical emergency requiring urgent ENT assessment and oral corticosteroids. Although there is no cure for most forms of chronic tinnitus, management strategies include sound therapy, hearing aids (if hearing loss is present), cognitive behavioural therapy (CBT), and tinnitus retraining therapy (TRT) to help the brain habituate to the perceived sound and reduce its impact on quality of life."
+  },
+  {
+    "doc_id": "NHS-GI-006",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Pancreatitis – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/pancreatitis/",
+    "red_flags": [
+      "Severe upper abdominal pain radiating to the back",
+      "Fever with rapid heart rate and abdominal pain",
+      "Yellowing of the skin and eyes (jaundice) with severe abdominal pain",
+      "Vomiting that cannot be controlled with abdominal pain"
+    ],
+    "recommended_specialty_ar": "الجهاز الهضمي والجراحة العامة أو طوارئ المستشفى",
+    "recommended_specialty_en": "Gastroenterology / General Surgery / Emergency Medicine",
+    "content": "Pancreatitis is inflammation of the pancreas that can occur as a sudden acute episode or as a long-term chronic condition. Acute pancreatitis most commonly presents with sudden severe pain in the upper abdomen that may radiate to the back, often described as a persistent dull ache or severe boring pain that is worse when lying flat and slightly relieved by leaning forwards. Associated symptoms include nausea, vomiting, fever, rapid heartbeat, and in severe cases jaundice, diarrhoea, and indigestion. The two most common causes of acute pancreatitis are gallstones (which block the pancreatic duct) and excessive alcohol consumption. Other causes include hypertriglyceridaemia, hypercalcaemia, certain medications (azathioprine, thiazide diuretics), and trauma. Severity is assessed using scoring systems (Ranson criteria, APACHE II, BISAP); severe acute pancreatitis with organ failure carries a mortality of up to 30%. Management includes IV fluid resuscitation, analgesia, nutritional support (early enteral feeding is preferred), and treatment of the underlying cause. Chronic pancreatitis results in progressive destruction of pancreatic tissue, causing chronic pain, exocrine insufficiency (malabsorption, steatorrhoea), and endocrine insufficiency (diabetes mellitus). All cases of suspected acute pancreatitis require hospital admission."
+  },
+  {
+    "doc_id": "WHO-GI-007",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "gastrointestinal",
+    "title": "Hepatitis B – WHO Fact Sheet",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hepatitis-b",
+    "red_flags": [
+      "Jaundice (yellow skin and eyes) with dark urine",
+      "Severe fatigue with right upper quadrant abdominal pain",
+      "Swelling of the abdomen (ascites) with jaundice",
+      "Confusion or altered consciousness in a patient with liver disease (hepatic encephalopathy)"
+    ],
+    "recommended_specialty_ar": "أمراض الجهاز الهضمي والكبد",
+    "recommended_specialty_en": "Hepatology / Gastroenterology",
+    "content": "Hepatitis B is a potentially life-threatening liver infection caused by the hepatitis B virus (HBV). It is a major global health problem and can cause chronic liver disease, cirrhosis, and hepatocellular carcinoma (liver cancer). HBV is transmitted through contact with the blood or other body fluids (semen, vaginal secretions) of an infected person, through perinatal transmission from mother to child, through sexual contact, and through sharing of contaminated needles. The incubation period is 30 to 180 days. Acute hepatitis B presents with jaundice (yellowing of the skin and whites of the eyes), dark urine, fatigue, nausea, vomiting, and abdominal pain. Most adults (over 95%) clear the infection spontaneously; however, 5–10% develop chronic infection. The risk of chronicity is highest in those infected in infancy (up to 90%). Chronic hepatitis B may be asymptomatic for decades before progressing to cirrhosis or liver cancer. Diagnosis is confirmed by serological markers (HBsAg, anti-HBc, anti-HBs) and HBV DNA. Antiviral therapy (tenofovir or entecavir) suppresses viral replication and reduces complications but rarely achieves a cure. The hepatitis B vaccine is safe and highly effective (90–95% protection), and vaccination is the cornerstone of prevention. WHO recommends universal infant vaccination and vaccination of high-risk groups. Signs of acute liver failure (encephalopathy, coagulopathy, jaundice) require immediate emergency hospital admission."
+  },
+  {
+    "doc_id": "MAYO-GI-008",
+    "source": "Mayo Clinic",
+    "license": "© 1998-2024 Mayo Foundation for Medical Education and Research",
+    "category": "gastrointestinal",
+    "title": "Inflammatory Bowel Disease – Symptoms & Causes",
+    "url": "https://www.mayoclinic.org/diseases-conditions/inflammatory-bowel-disease/symptoms-causes/syc-20353315",
+    "red_flags": [
+      "Severe abdominal pain with rigidity or rebound tenderness (suspected perforation)",
+      "Significant rectal bleeding with haemodynamic compromise",
+      "High fever with severe diarrhoea and abdominal distension (toxic megacolon)",
+      "Rapid unintentional weight loss with bloody stool"
+    ],
+    "recommended_specialty_ar": "أمراض الجهاز الهضمي",
+    "recommended_specialty_en": "Gastroenterology",
+    "content": "Inflammatory bowel disease (IBD) is a term that encompasses two main chronic, relapsing inflammatory conditions of the gastrointestinal tract: Crohn's disease and ulcerative colitis. Crohn's disease can affect any part of the GI tract from mouth to anus, with transmural (full-thickness) inflammation and skip lesions being characteristic features. Ulcerative colitis is limited to the colon and rectum, with continuous mucosal inflammation. Common symptoms of IBD include persistent diarrhoea (often with blood or mucus), abdominal pain and cramping, rectal bleeding, unintentional weight loss, fatigue, and urgency to defecate. Extra-intestinal manifestations are common and include arthritis, uveitis, primary sclerosing cholangitis, skin lesions (erythema nodosum, pyoderma gangrenosum), and anaemia. Diagnosis is made through a combination of clinical assessment, laboratory tests (full blood count, CRP, faecal calprotectin), endoscopy with biopsy, and imaging (MRI enterography, CT). Treatment aims to induce and maintain remission using aminosalicylates (for ulcerative colitis), corticosteroids (for acute flares), immunomodulators (azathioprine, 6-mercaptopurine, methotrexate), and biological therapies (anti-TNF agents such as infliximab and adalimumab, anti-integrin agents such as vedolizumab). Surgery may be required for complications such as perforation, fistula, stricture, or refractory disease. Regular colonoscopic surveillance is recommended due to the increased risk of colorectal cancer in long-standing colitis."
+  },
+  {
+    "doc_id": "NHS-MSK-006",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Fibromyalgia – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/fibromyalgia/",
+    "red_flags": [
+      "Widespread pain with new neurological deficits (requires urgent investigation)",
+      "Severe unexplained weight loss with diffuse pain",
+      "High fever with diffuse muscle and joint pain (exclude septic arthritis or systemic infection)"
+    ],
+    "recommended_specialty_ar": "أمراض الروماتيزم والعظام والعلاج الطبيعي",
+    "recommended_specialty_en": "Rheumatology / Pain Medicine",
+    "content": "Fibromyalgia is a long-term condition characterised by widespread musculoskeletal pain, fatigue, sleep disturbance, and often cognitive difficulties ('fibro fog'). It is one of the most common musculoskeletal conditions, affecting approximately 2–4% of the population, with a significantly higher prevalence in women. The pain of fibromyalgia is typically described as a constant dull ache felt throughout the body, often worse in the morning and exacerbated by cold, stress, or physical activity. Associated symptoms include headaches (including migraine), irritable bowel syndrome (IBS), urinary frequency, restless legs syndrome, anxiety, and depression. The exact cause is not fully understood, but central sensitisation – an amplified pain response due to altered pain processing in the central nervous system – is the leading hypothesis. Diagnosis is clinical (based on the revised 2016 ACR diagnostic criteria) after excluding other conditions with blood tests and imaging. There is no cure, but a multimodal approach combining pharmacological therapy (low-dose amitriptyline, duloxetine, pregabalin), structured graded exercise therapy, cognitive behavioural therapy (CBT), sleep hygiene measures, and patient education has the best evidence. Opioids are not recommended. Referral to rheumatology is appropriate when the diagnosis is uncertain or the condition is refractory to initial management."
+  },
+  {
+    "doc_id": "MAYO-MSK-007",
+    "source": "Mayo Clinic",
+    "license": "© 1998-2024 Mayo Foundation for Medical Education and Research",
+    "category": "musculoskeletal",
+    "title": "Osteoporosis – Symptoms & Causes",
+    "url": "https://www.mayoclinic.org/diseases-conditions/osteoporosis/symptoms-causes/syc-20351968",
+    "red_flags": [
+      "Sudden back pain after minimal trauma (suspected vertebral fracture)",
+      "Loss of height or spinal deformity (kyphosis) suggesting vertebral collapse",
+      "Hip pain with inability to weight-bear after a fall in an older patient"
+    ],
+    "recommended_specialty_ar": "أمراض العظام والروماتيزم",
+    "recommended_specialty_en": "Rheumatology / Orthopaedics / Endocrinology",
+    "content": "Osteoporosis is a systemic skeletal disease characterised by low bone mass and deterioration of bone microarchitecture, resulting in increased bone fragility and susceptibility to fracture. It is often called a 'silent disease' because bone loss occurs without symptoms until a fracture occurs. The most common osteoporotic fracture sites are the vertebral column (spine), hip (proximal femur), and wrist (Colles' fracture). Vertebral compression fractures cause acute or chronic back pain, loss of height, and progressive kyphosis ('dowager's hump'). Hip fractures in the elderly are associated with significant morbidity and mortality. Risk factors include advancing age, female sex (especially post-menopause due to oestrogen deficiency), low body weight, smoking, excessive alcohol consumption, prolonged corticosteroid use, calcium and vitamin D deficiency, immobility, and a family history of osteoporosis or fracture. Diagnosis is made by dual-energy X-ray absorptiometry (DXA) measuring bone mineral density (BMD); a T-score of -2.5 or below defines osteoporosis. The FRAX tool estimates 10-year fracture probability. Prevention and treatment include adequate calcium and vitamin D supplementation, weight-bearing exercise, fall prevention, and pharmacological therapy: bisphosphonates (alendronate, risedronate) are first-line; alternatives include denosumab, raloxifene, teriparatide, and romosozumab."
+  },
+  {
+    "doc_id": "WHO-MSK-008",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "musculoskeletal",
+    "title": "Musculoskeletal Conditions – WHO Fact Sheet",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/musculoskeletal-conditions",
+    "red_flags": [
+      "Sudden joint swelling with fever suggesting septic arthritis",
+      "Bone pain in an older adult with unexplained weight loss (exclude malignancy)",
+      "Spinal pain with neurological deficits in the limbs (cauda equina or cord compression)"
+    ],
+    "recommended_specialty_ar": "أمراض الروماتيزم والعظام والعلاج الطبيعي",
+    "recommended_specialty_en": "Rheumatology / Orthopaedics / Physiotherapy",
+    "content": "Musculoskeletal conditions comprise more than 150 different diseases and syndromes that affect the locomotor system including joints, bones, muscles, spine, and connective tissues. They are the leading cause of disability worldwide, with low back pain being the single leading cause of disability globally. Other major musculoskeletal conditions include osteoarthritis, rheumatoid arthritis, gout, osteoporosis, and fibromyalgia. These conditions are characterised by pain (often persistent), limited mobility, reduced dexterity and functional ability, early retirement from work, and reduced ability to participate in social roles. WHO's Global Action Plan on Physical Activity and the rehabilitation framework both emphasise the importance of early intervention. Risk factors include ageing, obesity, physical inactivity, occupational hazards (heavy lifting, repetitive motions), smoking, and metabolic factors. Management strategies include physical and occupational therapy, exercise programmes (strength training, aerobic exercise), weight reduction, assistive devices, pain management (analgesics, NSAIDs), disease-modifying antirheumatic drugs (DMARDs) for inflammatory arthritides, and surgery where appropriate. Septic arthritis (joint infection) is a medical emergency requiring immediate hospitalisation, joint aspiration, and intravenous antibiotics to prevent permanent joint destruction."
+  },
+  {
+    "doc_id": "NHS-SYS-006",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Lupus – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/lupus/",
+    "red_flags": [
+      "Severe chest pain or breathlessness (lupus pleuritis or pericarditis)",
+      "Seizures or confusion in a patient with known lupus (neuropsychiatric lupus)",
+      "Significant reduction in urine output with leg swelling (lupus nephritis)",
+      "Very low blood counts causing bleeding or severe infection"
+    ],
+    "recommended_specialty_ar": "أمراض الروماتيزم والمناعة",
+    "recommended_specialty_en": "Rheumatology / Immunology",
+    "content": "Systemic lupus erythematosus (SLE or lupus) is a chronic autoimmune disease in which the immune system attacks healthy tissue throughout the body, causing inflammation and damage to multiple organ systems. It predominantly affects women of childbearing age, with a female-to-male ratio of approximately 9:1, and is more common and often more severe in people of African, Caribbean, and Asian descent. Lupus is characterised by periods of flare (worsening symptoms) and remission. Common features include a butterfly-shaped (malar) rash across the cheeks and nose, photosensitivity (skin rash worsening with sun exposure), joint pain and swelling (arthralgia and arthritis), extreme fatigue, mouth ulcers, hair loss, serositis (pleuritis and pericarditis), kidney disease (lupus nephritis), and haematological abnormalities (anaemia, leucopenia, thrombocytopenia). Diagnosis requires clinical assessment and laboratory tests including ANA, anti-dsDNA antibodies, complement levels (C3, C4), and urinalysis. Classification uses the 2019 EULAR/ACR criteria. Treatment is tailored to disease severity: hydroxychloroquine is the cornerstone of therapy for all patients; corticosteroids are used for acute flares; immunosuppressants (mycophenolate mofetil, azathioprine, cyclophosphamide, belimumab) are added for organ-threatening disease. Lupus in pregnancy requires specialist management due to increased risk of flares, pre-eclampsia, and neonatal lupus."
+  },
+  {
+    "doc_id": "WHO-SYS-007",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "systemic_fever_derm",
+    "title": "Dengue and Severe Dengue – WHO Fact Sheet",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+    "red_flags": [
+      "Severe abdominal pain or tenderness during dengue fever",
+      "Persistent vomiting with dengue",
+      "Bleeding from the gums, nose, or in the stool with fever",
+      "Rapid breathing or difficulty breathing with dengue",
+      "Fatigue, restlessness, or irritability during the critical phase (warning signs of severe dengue)"
+    ],
+    "recommended_specialty_ar": "الأمراض المعدية والباطنة العامة أو طوارئ المستشفى",
+    "recommended_specialty_en": "Infectious Diseases / Emergency Medicine",
+    "content": "Dengue is a viral mosquito-borne illness caused by any one of four dengue virus serotypes (DENV-1 to DENV-4), transmitted primarily by the Aedes aegypti mosquito. It is the most rapidly spreading mosquito-borne viral disease globally, with an estimated 390 million infections per year. Most infections (up to 75%) are asymptomatic. Symptomatic dengue presents with a sudden high fever (above 38.5°C), severe headache, pain behind the eyes, muscle and joint pain (hence the name 'breakbone fever'), nausea, vomiting, and a characteristic skin rash. The illness typically passes through three phases: febrile (days 1–3), critical (days 4–6), and recovery (days 7–10). The critical phase is when plasma leakage, haemorrhage, and organ dysfunction can occur. Warning signs of severe dengue that mandate immediate hospitalisation include severe abdominal pain, persistent vomiting, rapid breathing, bleeding gums, fatigue and restlessness, blood in vomit, and clinical deterioration as the fever subsides. Severe dengue can lead to dengue haemorrhagic fever, dengue shock syndrome, and death if not managed promptly. There is no specific antiviral treatment; management is supportive with careful fluid management and monitoring. Prevention relies on mosquito control and the dengue vaccine (Dengvaxia), which is recommended only for seropositive individuals."
+  },
+  {
+    "doc_id": "NHS-SYS-008",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Psoriasis – Symptoms, Causes & Treatment",
+    "url": "https://www.nhs.uk/conditions/psoriasis/",
+    "red_flags": [
+      "Erythrodermic psoriasis (generalised redness covering most of the body) – medical emergency",
+      "Pustular psoriasis with fever and systemic illness",
+      "Swollen, painful joints with psoriasis (psoriatic arthritis requiring urgent rheumatology assessment)",
+      "Psoriasis with severe chest pain (exclude psoriatic cardiovascular disease)"
+    ],
+    "recommended_specialty_ar": "أمراض الجلد (الأمراض الجلدية)",
+    "recommended_specialty_en": "Dermatology / Rheumatology (if joints involved)",
+    "content": "Psoriasis is a chronic, immune-mediated inflammatory skin condition characterised by well-defined, red or pink plaques covered with silvery-white scales. It affects approximately 2–3% of the global population and can develop at any age, with two peak incidences: between 15–35 years and 50–60 years. The most common form is plaque psoriasis (psoriasis vulgaris), typically affecting the scalp, elbows, knees, and lower back. Other forms include guttate psoriasis (small raindrop-shaped lesions, often triggered by streptococcal throat infection), inverse (flexural) psoriasis, pustular psoriasis (white sterile pustules), and erythrodermic psoriasis (a severe form with generalised skin redness and exfoliation that is a dermatological emergency). Psoriasis is associated with significant comorbidities including psoriatic arthritis (affecting 20–30% of patients), cardiovascular disease, metabolic syndrome, depression, and anxiety. Triggers include skin injury (Koebner phenomenon), infection, stress, smoking, alcohol, and certain medications (lithium, beta-blockers, antimalarials). Treatment is stepwise: topical therapies (corticosteroids, vitamin D analogues, coal tar, retinoids) for mild disease; phototherapy (narrowband UVB) for moderate disease; systemic agents (methotrexate, ciclosporin, acitretin) and biological therapies (TNF-inhibitors, IL-17 inhibitors, IL-23 inhibitors) for moderate-to-severe disease. Biologics have revolutionised the treatment of moderate-to-severe psoriasis, achieving skin clearance in a majority of patients."
+  },
+  {
+    "doc_id": "NHS-CARDIO-009",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Heart Failure – Symptoms, Causes & Urgent Warning Signs",
+    "url": "https://www.nhs.uk/conditions/heart-failure/",
+    "red_flags": [
+      "Sudden severe shortness of breath at rest or waking up gasping for air (paroxysmal nocturnal dyspnea)",
+      "Pink, frothy sputum with acute breathlessness (acute pulmonary edema)",
+      "Rapidly worsening ankle, leg, or abdominal swelling with sudden weight gain",
+      "Syncope, chest pain, or severe dizziness alongside known cardiac dysfunction"
+    ],
+    "recommended_specialty_ar": "أمراض القلب والأوعية الدموية / الباطنة العامة",
+    "recommended_specialty_en": "Cardiology / Internal Medicine",
+    "content": "Heart failure means the heart is unable to pump blood around the body properly, usually because it has become too stiff or weak. Common symptoms include breathlessness after activity or at rest, feeling tired most of the time, swollen ankles and legs (peripheral edema), and needing extra pillows to sleep flat (orthopnea). Causes include coronary heart disease, high blood pressure, cardiomyopathy, heart valve disease, and arrhythmias. Patients with acute decompensation or pink frothy sputum require immediate emergency care."
+  },
+  {
+    "doc_id": "NHS-CARDIO-010",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Asthma – Acute Exacerbation Red Flags & Respiratory Management",
+    "url": "https://www.nhs.uk/conditions/asthma/",
+    "red_flags": [
+      "Reliever inhaler (salbutamol) not relieving wheezing or breathlessness",
+      "Inability to speak full sentences, eat, or sleep due to breathing difficulty",
+      "Blue lips or fingernails (cyanosis) or silent chest on auscultation",
+      "Rapid breathing (tachypnea) with chest wall retractions"
+    ],
+    "recommended_specialty_ar": "الأمراض الصدرية والجهاز التنفسي / الحساسية والمناعة",
+    "recommended_specialty_en": "Pulmonology / Respiratory Medicine",
+    "content": "Asthma is a common long-term inflammatory condition of the airways causing wheezing, breathlessness, chest tightness, and coughing, often worse at night or early morning. Triggers include allergens, cold air, exercise, smoke, and viral respiratory infections. Treatment uses inhaled corticosteroids (preventer) and short-acting beta-agonists (reliever). Severe asthma attacks where the reliever inhaler fails or speech is limited are life-threatening emergencies requiring immediate hospital oxygen and nebulized bronchodilators."
+  },
+  {
+    "doc_id": "NHS-CARDIO-011",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Pneumonia – Lower Respiratory Infection Triage & Sepsis Red Flags",
+    "url": "https://www.nhs.uk/conditions/pneumonia/",
+    "red_flags": [
+      "Coughing up blood or rust-colored sputum with high fever and rigors",
+      "Rapid shallow breathing, chest pain on inspiration, or low oxygen saturation",
+      "New confusion, drowsiness, or difficulty waking in older adults",
+      "Bluish skin or lips and cold clammy extremities"
+    ],
+    "recommended_specialty_ar": "الأمراض الصدرية والجهاز التنفسي / الباطنة العامة",
+    "recommended_specialty_en": "Pulmonology / Internal Medicine",
+    "content": "Pneumonia is inflammation of the tissue in one or both lungs, usually caused by a bacterial or viral infection. Symptoms include a productive cough with yellow, green, or blood-stained phlegm, difficulty breathing, rapid heartbeat, high temperature, sweating, shivering, loss of appetite, and pleuritic chest pain. Mild cases are treated with rest, fluids, and oral antibiotics if bacterial, while severe pneumonia requires urgent hospital admission."
+  },
+  {
+    "doc_id": "MAYO-CARDIO-012",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "cardiopulmonary",
+    "title": "Deep Vein Thrombosis (DVT) – Unilateral Leg Swelling & Embolism Risk",
+    "url": "https://www.mayoclinic.org/diseases-conditions/deep-vein-thrombosis/symptoms-causes/syc-20352557",
+    "red_flags": [
+      "Sudden shortness of breath, sharp pleuritic chest pain, or coughing up blood (pulmonary embolism)",
+      "Unilateral calf or thigh swelling, warmth, redness, and cramping pain",
+      "Dizziness, lightheadedness, or fainting accompanying leg swelling"
+    ],
+    "recommended_specialty_ar": "جراحة الأوعية الدموية / أمراض القلب والباطنة",
+    "recommended_specialty_en": "Vascular Medicine / Cardiology",
+    "content": "Deep vein thrombosis (DVT) occurs when a blood clot forms in one or more deep veins, usually in the legs. Symptoms include unilateral leg swelling, cramping pain starting in the calf, red or discolored skin, and a feeling of warmth in the affected leg. Risk factors include prolonged immobility, recent surgery, pregnancy, cancer, and clotting disorders. DVT requires urgent evaluation because a clot can travel to the lungs and cause a life-threatening pulmonary embolism."
+  },
+  {
+    "doc_id": "WHO-CARDIO-013",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "cardiopulmonary",
+    "title": "Chronic Obstructive Pulmonary Disease (COPD) – WHO Fact Sheet",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)",
+    "red_flags": [
+      "Acute worsening of dyspnea with purulent sputum and confusion (hypercapnic respiratory failure)",
+      "Central cyanosis, drowsiness, or inability to clear airway secretions",
+      "New peripheral edema suggesting cor pulmonale"
+    ],
+    "recommended_specialty_ar": "الأمراض الصدرية والجهاز التنفسي",
+    "recommended_specialty_en": "Pulmonology / Respiratory Medicine",
+    "content": "Chronic obstructive pulmonary disease (COPD) is a progressive lung disease causing persistent airflow limitation and breathing difficulties, primarily caused by tobacco smoking and indoor or outdoor air pollution. Symptoms include chronic productive cough (smoker's cough), wheezing, progressive exertional breathlessness, and frequent chest infections. Management includes smoking cessation, inhaled bronchodilators, pulmonary rehabilitation, and prompt treatment of acute exacerbations."
+  },
+  {
+    "doc_id": "NHS-CARDIO-014",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "cardiopulmonary",
+    "title": "Pericarditis and Myocarditis – Positional Chest Pain Triage",
+    "url": "https://www.nhs.uk/conditions/pericarditis/",
+    "red_flags": [
+      "Sharp central chest pain accompanied by hypotension, muffled heart sounds, or severe breathlessness (cardiac tamponade)",
+      "Chest pain with syncope, sustained palpitations, or signs of acute heart failure",
+      "Chest pain indistinguishable from acute myocardial infarction"
+    ],
+    "recommended_specialty_ar": "أمراض القلب والأوعية الدموية",
+    "recommended_specialty_en": "Cardiology",
+    "content": "Pericarditis is inflammation of the protective sac surrounding the heart, often following a viral infection. It typically causes a sharp, stabbing central or left-sided chest pain that worsens when lying flat or breathing deeply and improves when sitting up and leaning forward. Because pericarditis symptoms mimic a heart attack, any acute chest pain requires urgent medical evaluation with ECG and cardiac biomarkers."
+  },
+  {
+    "doc_id": "NHS-NEURO-009",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Migraine – Aura, Photophobia & Stroke Differentiation",
+    "url": "https://www.nhs.uk/conditions/migraine/",
+    "red_flags": [
+      "Sudden explosive thunderclap headache reaching peak intensity within seconds",
+      "Headache with fever, neck stiffness, non-blanching rash, or confusion",
+      "New-onset severe headache with persistent unilateral weakness, slurred speech, or vision loss"
+    ],
+    "recommended_specialty_ar": "أمراض المخ والأعصاب",
+    "recommended_specialty_en": "Neurology",
+    "content": "A migraine is usually a moderate or severe headache felt as a throbbing pain on one side of the head, often accompanied by nausea, vomiting, and increased sensitivity to light (photophobia) and sound (phonophobia). Some people experience temporary visual or sensory aura warning signs before the headache starts. Management involves acute analgesics, triptans, antiemetics, and preventive therapy for frequent attacks."
+  },
+  {
+    "doc_id": "NHS-NEURO-010",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Bell's Palsy – Acute Facial Weakness vs Stroke Triage",
+    "url": "https://www.nhs.uk/conditions/bells-palsy/",
+    "red_flags": [
+      "Facial droop accompanied by arm or leg weakness, slurred speech, or severe vertigo (suspected stroke)",
+      "Facial paralysis with severe ear pain and vesicles in the ear canal (Ramsay Hunt syndrome)",
+      "Inability to close the eye completely risking corneal ulceration"
+    ],
+    "recommended_specialty_ar": "أمراض المخ والأعصاب / الأنف والأذن والحنجرة",
+    "recommended_specialty_en": "Neurology / ENT",
+    "content": "Bell's palsy causes temporary weakness or paralysis of the muscles on one side of the face, including the forehead, resulting in drooping of the mouth and difficulty closing the eye on the affected side. Unlike stroke, which usually spares the upper forehead, Bell's palsy affects the entire half of the face. Urgent medical assessment within 72 hours is essential to exclude stroke and start oral corticosteroids."
+  },
+  {
+    "doc_id": "NHS-NEURO-011",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Conjunctivitis and Red Eye – Ophthalmic Triage & Corneal Red Flags",
+    "url": "https://www.nhs.uk/conditions/conjunctivitis/",
+    "red_flags": [
+      "Moderate-to-severe eye pain, marked photophobia, or reduced visual acuity",
+      "Red eye in a contact lens wearer (suspected microbial keratitis)",
+      "Cloudy cornea, fixed dilated pupil, or halos around lights (acute glaucoma)"
+    ],
+    "recommended_specialty_ar": "طب وجراحة العيون",
+    "recommended_specialty_en": "Ophthalmology",
+    "content": "Conjunctivitis (red or pink eye) is inflammation of the conjunctiva caused by viral or bacterial infection or allergies. Typical symptoms include bloodshot eyes, burning or gritty sensation, watering, and sticky pus coating the eyelashes without severe pain or vision loss. Any red eye accompanied by severe pain, extreme light sensitivity, or blurred vision requires urgent ophthalmology evaluation."
+  },
+  {
+    "doc_id": "NHS-NEURO-012",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "neurological_ent_ophth",
+    "title": "Tonsillitis and Quinsy – Severe Sore Throat & Airway Red Flags",
+    "url": "https://www.nhs.uk/conditions/tonsillitis/",
+    "red_flags": [
+      "Difficulty breathing, stridor, drooling, or inability to swallow saliva (epiglottitis / airway compromise)",
+      "Severe unilateral throat pain with muffled 'hot potato' voice, trismus, and uvular deviation (peritonsillar abscess / quinsy)",
+      "High fever with neck stiffness or severe dehydration"
+    ],
+    "recommended_specialty_ar": "أمراض الأنف والأذن والحنجرة",
+    "recommended_specialty_en": "Otolaryngology (ENT)",
+    "content": "Tonsillitis is inflammation of the tonsils causing sore throat, pain on swallowing, high temperature, swollen neck lymph nodes, and white pus-filled spots on the tonsils. Most cases are viral and resolve within a week with rest, hydration, and analgesia. Severe unilateral swelling preventing mouth opening or swallowing requires urgent ENT drainage for suspected peritonsillar abscess."
+  },
+  {
+    "doc_id": "MAYO-NEURO-013",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "neurological_ent_ophth",
+    "title": "Peripheral Neuropathy – Glove-and-Stocking Numbness & Tingling",
+    "url": "https://www.mayoclinic.org/diseases-conditions/peripheral-neuropathy/symptoms-causes/syc-20352061",
+    "red_flags": [
+      "Rapidly ascending numbness and leg weakness over hours to days (Guillain-Barré syndrome)",
+      "Foot numbness accompanied by non-healing foot ulcers, redness, or fever (diabetic foot infection)",
+      "Numbness with loss of bowel or bladder control"
+    ],
+    "recommended_specialty_ar": "أمراض المخ والأعصاب / الغدد الصماء والسكري",
+    "recommended_specialty_en": "Neurology / Endocrinology",
+    "content": "Peripheral neuropathy results from damage to nerves outside the brain and spinal cord, most commonly due to diabetes mellitus, vitamin B12 deficiency, or autoimmune disease. Symptoms include gradual onset of numbness, prickling, or tingling in the feet or hands spreading upward, sharp jabbing or burning pain, and extreme sensitivity to touch. Evaluation includes blood glucose, HbA1c, vitamin B12 levels, and nerve conduction studies."
+  },
+  {
+    "doc_id": "MAYO-NEURO-014",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "neurological_ent_ophth",
+    "title": "Trigeminal Neuralgia – Electric-Shock Facial Pain Triage",
+    "url": "https://www.mayoclinic.org/diseases-conditions/trigeminal-neuralgia/symptoms-causes/syc-20353344",
+    "red_flags": [
+      "Facial pain accompanied by permanent facial numbness, hearing loss, or double vision",
+      "Temporal headache with jaw claudication and scalp tenderness in patients over 50 (giant cell arteritis)"
+    ],
+    "recommended_specialty_ar": "أمراض المخ والأعصاب",
+    "recommended_specialty_en": "Neurology",
+    "content": "Trigeminal neuralgia causes sudden, severe, electric-shock-like episodes of pain on one side of the face along the distribution of the trigeminal nerve. Attacks last from a few seconds to two minutes and are triggered by light touch, chewing, speaking, brushing teeth, or cold wind. Diagnosis is clinical with brain MRI to rule out vascular compression or demyelination, and first-line treatment is carbamazepine or oxcarbazepine."
+  },
+  {
+    "doc_id": "NHS-GI-009",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Appendicitis – Right Iliac Fossa Pain & Peritonitis Red Flags",
+    "url": "https://www.nhs.uk/conditions/appendicitis/",
+    "red_flags": [
+      "Pain migrating from the periumbilical area to the lower right abdomen with guarding and rebound tenderness",
+      "Sudden temporary relief of severe pain followed by rigid abdomen and high fever (perforated appendix)",
+      "Persistent vomiting, tachycardia, and inability to pass gas"
+    ],
+    "recommended_specialty_ar": "الجراحة العامة / طوارئ الجهاز الهضمي",
+    "recommended_specialty_en": "General Surgery / Emergency Medicine",
+    "content": "Appendicitis is painful swelling of the appendix that typically begins with a dull ache around the belly button before shifting to the lower right-hand side of the abdomen and becoming sharp and constant. Movement, coughing, or pressing on the area worsens the pain, often accompanied by nausea, loss of appetite, and low-grade fever. Suspected appendicitis is a surgical emergency requiring urgent hospital assessment."
+  },
+  {
+    "doc_id": "NHS-GI-010",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Gallstones and Acute Cholecystitis – Biliary Colic & Jaundice Triage",
+    "url": "https://www.nhs.uk/conditions/gallstones/",
+    "red_flags": [
+      "Right upper quadrant pain with high fever, rigors, and jaundice (Charcot's triad / acute cholangitis)",
+      "Severe persistent epigastric pain radiating to the back with vomiting (gallstone pancreatitis)",
+      "Yellowing of skin and eyes with dark urine and pale stools"
+    ],
+    "recommended_specialty_ar": "الجراحة العامة / الجهاز الهضمي والكبد",
+    "recommended_specialty_en": "General Surgery / Gastroenterology & Hepatology",
+    "content": "Gallstones can block bile ducts and trigger biliary colic—sudden, intense gripping pain in the upper right abdomen or center of the stomach lasting 1 to 5 hours, often after fatty meals and radiating to the right shoulder blade. If the gallbladder becomes infected (acute cholecystitis), pain becomes constant with fever and tenderness. Ultrasound and liver function tests guide surgical management."
+  },
+  {
+    "doc_id": "NHS-GI-011",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Irritable Bowel Syndrome (IBS) – Functional Bowel Symptoms & Red Flags",
+    "url": "https://www.nhs.uk/conditions/irritable-bowel-syndrome-ibs/",
+    "red_flags": [
+      "Rectal bleeding or blood mixed with stool",
+      "Unexplained weight loss or persistent diarrhea waking the patient from sleep",
+      "Iron-deficiency anemia or family history of bowel or ovarian cancer"
+    ],
+    "recommended_specialty_ar": "أمراض الجهاز الهضمي والباطنة العامة",
+    "recommended_specialty_en": "Gastroenterology / Internal Medicine",
+    "content": "Irritable bowel syndrome (IBS) is a common functional disorder affecting the digestive system, causing recurrent stomach cramps, bloating, excess gas, diarrhea, and constipation that fluctuate over time and are often relieved after passing stool. Management includes dietary adjustments (such as low-FODMAP guidance), soluble fiber, antispasmodics, and stress reduction once inflammatory or malignant red flags are excluded."
+  },
+  {
+    "doc_id": "NHS-GI-012",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "gastrointestinal",
+    "title": "Piles (Hemorrhoids) and Anal Fissure – Bright Red Rectal Bleeding Triage",
+    "url": "https://www.nhs.uk/conditions/piles-haemorrhoids/",
+    "red_flags": [
+      "Dark red or black tarry stools (melena) or large-volume rectal hemorrhage with dizziness",
+      "Rectal bleeding accompanied by unexplained weight loss, persistent change in bowel habit, or abdominal mass",
+      "Severe throbbing perianal swelling with high fever (perianal abscess)"
+    ],
+    "recommended_specialty_ar": "الجراحة العامة وجراحة القولون والشرج",
+    "recommended_specialty_en": "General & Colorectal Surgery",
+    "content": "Hemorrhoids (piles) are swollen blood vessels inside or around the bottom (rectum and anus). Symptoms include bright red blood on toilet paper after passing stool, an itchy or sore anus, and lumps hanging down around the anus. Anal fissures cause sharp tearing pain during bowel movements. High-fiber diet, hydration, and topical treatments help mild cases, while persistent bleeding requires medical examination."
+  },
+  {
+    "doc_id": "MAYO-GI-013",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "gastrointestinal",
+    "title": "Peptic Ulcer Disease – Epigastric Pain & Perforation/Bleeding Alarm Signs",
+    "url": "https://www.mayoclinic.org/diseases-conditions/peptic-ulcer/symptoms-causes/syc-20354223",
+    "red_flags": [
+      "Sudden, severe, agonizing upper abdominal pain with board-like abdominal rigidity (perforated ulcer)",
+      "Vomiting blood or dark coffee-ground material, or passing black tarry stools",
+      "Unexplained weight loss, early satiety, or persistent vomiting"
+    ],
+    "recommended_specialty_ar": "أمراض الجهاز الهضمي والكبد والمناظير",
+    "recommended_specialty_en": "Gastroenterology",
+    "content": "Peptic ulcers are open sores on the inside lining of the stomach (gastric ulcers) and upper small intestine (duodenal ulcers), most commonly caused by Helicobacter pylori infection or long-term NSAID pain reliever use. The classic symptom is burning stomach pain between meals or at night that temporarily improves with food or antacids. Upper endoscopy and H. pylori testing confirm the diagnosis."
+  },
+  {
+    "doc_id": "WHO-GI-014",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "gastrointestinal",
+    "title": "Cholera and Acute Watery Diarrheal Disease – Dehydration Triage",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/cholera",
+    "red_flags": [
+      "Profuse watery 'rice-water' diarrhea with sunken eyes, dry mucous membranes, lethargy, and low urine output (severe dehydration)",
+      "Inability to keep oral fluids down due to intractable vomiting",
+      "Cold clammy skin, rapid weak pulse, or altered consciousness (hypovolemic shock)"
+    ],
+    "recommended_specialty_ar": "أمراض الجهاز الهضمي / الحميات والأمراض المعدية",
+    "recommended_specialty_en": "Gastroenterology / Infectious Diseases",
+    "content": "Acute severe watery diarrhea caused by enteric pathogens such as Vibrio cholerae can lead to life-threatening dehydration and electrolyte imbalance within hours if untreated. Early administration of oral rehydration salts (ORS) treats most mild-to-moderate cases, while patients with severe dehydration or persistent vomiting require urgent intravenous fluid resuscitation."
+  },
+  {
+    "doc_id": "NHS-MSK-009",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Osteoarthritis – Degenerative Joint Pain, Stiffness & Mobility Triage",
+    "url": "https://www.nhs.uk/conditions/osteoarthritis/",
+    "red_flags": [
+      "Single hot, red, acutely swollen joint with fever and inability to bear weight (septic arthritis)",
+      "Sudden joint locking or acute trauma with deformity",
+      "Systemic symptoms such as unexplained weight loss or night sweats"
+    ],
+    "recommended_specialty_ar": "جراحة العظام والمفاصل / الروماتيزم والتأهيل",
+    "recommended_specialty_en": "Orthopedics / Rheumatology",
+    "content": "Osteoarthritis is a degenerative joint condition causing joints to become painful and stiff, most commonly affecting the knees, hips, and small joints of the hands. Pain typically worsens with weight-bearing movement and improves with rest, with brief morning stiffness lasting under 30 minutes and grating or crackling sensations (crepitus). Management focuses on targeted exercise, weight management, analgesia, and physiotherapy."
+  },
+  {
+    "doc_id": "NHS-MSK-010",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Gout – Acute Podagra & Crystal Arthropathy Triage",
+    "url": "https://www.nhs.uk/conditions/gout/",
+    "red_flags": [
+      "Hot, swollen, erythematous joint accompanied by high fever and chills (must exclude septic arthritis)",
+      "Rapidly spreading redness up the limb (cellulitis)"
+    ],
+    "recommended_specialty_ar": "أمراض الروماتيزم والمناعة / الباطنة العامة",
+    "recommended_specialty_en": "Rheumatology / Internal Medicine",
+    "content": "Gout is an inflammatory arthritis caused by uric acid crystals accumulating inside a joint. It typically causes sudden, severe throbbing pain, swelling, heat, and shiny red skin—most classically at the base of the big toe (podagra)—often starting overnight and peaking within hours. Acute flares are treated with NSAIDs or colchicine, followed by long-term urate-lowering therapy such as allopurinol."
+  },
+  {
+    "doc_id": "NHS-MSK-011",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Rheumatoid Arthritis – Symmetrical Inflammatory Polyarthritis Triage",
+    "url": "https://www.nhs.uk/conditions/rheumatoid-arthritis/",
+    "red_flags": [
+      "Neck pain with hand numbness, tingling, or walking difficulty (atlantoaxial subluxation / cervical myelopathy)",
+      "Single acutely hot swollen joint with fever (septic arthritis in immunosuppressed patient)",
+      "Sudden red painful eye (scleritis) or acute breathlessness"
+    ],
+    "recommended_specialty_ar": "أمراض الروماتيزم والمناعة",
+    "recommended_specialty_en": "Rheumatology",
+    "content": "Rheumatoid arthritis is a chronic autoimmune disease causing symmetrical pain, swelling, and stiffness in multiple joints—most commonly the small joints of the hands, wrists, and feet. Morning stiffness typically lasts more than 30 to 60 minutes and improves with gentle movement, often accompanied by fatigue. Early rheumatology referral for disease-modifying antirheumatic drugs (DMARDs) prevents permanent joint damage."
+  },
+  {
+    "doc_id": "MAYO-MSK-012",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "musculoskeletal",
+    "title": "Carpal Tunnel Syndrome – Median Nerve Compression in Hand & Wrist",
+    "url": "https://www.mayoclinic.org/diseases-conditions/carpal-tunnel-syndrome/symptoms-causes/syc-20355603",
+    "red_flags": [
+      "Visible wasting (atrophy) of the thumb base muscles or permanent loss of grip strength",
+      "Acute wrist swelling and numbness after trauma (acute compartment or fracture compression)"
+    ],
+    "recommended_specialty_ar": "جراحة العظام وجراحة اليد / أمراض المخ والأعصاب",
+    "recommended_specialty_en": "Orthopedics / Neurology",
+    "content": "Carpal tunnel syndrome is caused by pressure on the median nerve as it passes through the wrist. Symptoms include tingling, numbness, and burning pain in the thumb, index, middle, and ring fingers—frequently waking patients at night—along with hand weakness and dropping objects. Treatment starts with nocturnal wrist splinting and activity modification, progressing to corticosteroid injection or surgical release."
+  },
+  {
+    "doc_id": "MAYO-MSK-013",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "musculoskeletal",
+    "title": "Rotator Cuff Injury and Frozen Shoulder – Shoulder Pain Triage",
+    "url": "https://www.mayoclinic.org/diseases-conditions/rotator-cuff-injury/symptoms-causes/syc-20350225",
+    "red_flags": [
+      "Left shoulder pain accompanied by chest tightness, sweating, or shortness of breath (cardiac ischemia)",
+      "Complete inability to lift the arm after acute fall or trauma (acute tear or dislocation)",
+      "Hot swollen shoulder with fever (septic arthritis)"
+    ],
+    "recommended_specialty_ar": "جراحة العظام وإصابات الملاعب / العلاج الطبيعي",
+    "recommended_specialty_en": "Orthopedics / Sports Medicine",
+    "content": "Rotator cuff tendinitis or tears cause a dull ache deep in the shoulder that worsens when lifting the arm overhead, reaching behind the back, or lying on the affected side at night, often accompanied by arm weakness. Adhesive capsulitis (frozen shoulder) causes progressive stiffness and loss of both active and passive range of motion. Physiotherapy, targeted exercises, and imaging guide treatment."
+  },
+  {
+    "doc_id": "NHS-MSK-014",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "musculoskeletal",
+    "title": "Plantar Fasciitis – Heel Pain Triage & Mechanical Foot Care",
+    "url": "https://www.nhs.uk/conditions/plantar-fasciitis/",
+    "red_flags": [
+      "Heel pain with visible deformity, bruising, and inability to put any weight on the foot after trauma (calcaneal fracture)",
+      "Red, hot, swollen foot with fever or numbness in a diabetic patient (Charcot foot or infection)"
+    ],
+    "recommended_specialty_ar": "جراحة العظام والقدم والكاحل / العلاج الطبيعي",
+    "recommended_specialty_en": "Orthopedics / Podiatry",
+    "content": "Plantar fasciitis is inflammation of the thick band of tissue running across the bottom of the foot connecting the heel bone to the toes. The hallmark symptom is sharp stabbing pain under the heel or arch that is worst with the first steps out of bed in the morning or after prolonged rest, easing slightly with walking before returning after long standing. Supportive footwear, calf stretching, and rest relieve most cases."
+  },
+  {
+    "doc_id": "NHS-SYS-009",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Shingles (Herpes Zoster) – Dermatomal Blistering Rash & Ophthalmic Risk",
+    "url": "https://www.nhs.uk/conditions/shingles/",
+    "red_flags": [
+      "Rash involving the tip of the nose, forehead, or around the eye (herpes zoster ophthalmicus—sight-threatening emergency)",
+      "Widespread rash across multiple dermatomes in an immunocompromised patient",
+      "Severe headache, confusion, or facial weakness (Ramsay Hunt syndrome)"
+    ],
+    "recommended_specialty_ar": "الأمراض الجلدية والتناسلية / الباطنة العامة",
+    "recommended_specialty_en": "Dermatology / Internal Medicine",
+    "content": "Shingles is a reactivation of the varicella-zoster virus causing a painful, burning, or tingling sensation on one side of the body, followed days later by a red rash that develops into fluid-filled blisters along a single nerve band (dermatome) without crossing the midline. Early antiviral medication within 72 hours of rash onset shortens illness and reduces postherpetic neuralgia risk."
+  },
+  {
+    "doc_id": "NHS-SYS-010",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Cellulitis – Spreading Skin Erythema & Sepsis Red Flags",
+    "url": "https://www.nhs.uk/conditions/cellulitis/",
+    "red_flags": [
+      "Rapidly spreading red, hot, swollen skin accompanied by high fever, shivering, rapid heartbeat, or confusion (sepsis)",
+      "Severe pain out of proportion to skin appearance, blisters, or skin necrosis (necrotizing fasciitis)",
+      "Redness and swelling around the eye (orbital or periorbital cellulitis)"
+    ],
+    "recommended_specialty_ar": "الأمراض الجلدية / الباطنة العامة والجراحة",
+    "recommended_specialty_en": "Dermatology / Internal Medicine",
+    "content": "Cellulitis is an acute bacterial skin infection that causes a poorly demarcated area of red, hot, swollen, and tender skin, most commonly on the lower leg, often entering through a cut, insect bite, or cracked skin. Prompt oral antibiotics treat mild localized cellulitis, while systemic fever or rapid spread requires urgent hospital intravenous antibiotics."
+  },
+  {
+    "doc_id": "NHS-SYS-011",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Iron Deficiency Anemia – Pallor, Fatigue & Occult Bleeding Triage",
+    "url": "https://www.nhs.uk/conditions/iron-deficiency-anaemia/",
+    "red_flags": [
+      "Anemia symptoms accompanied by black tarry stools, vomiting blood, or rectal bleeding",
+      "Chest pain, shortness of breath at rest, or fainting due to severe anemia",
+      "Unexplained iron-deficiency anemia in men or postmenopausal women (requires GI malignancy screening)"
+    ],
+    "recommended_specialty_ar": "أمراض الدم / الباطنة العامة والجهاز الهضمي",
+    "recommended_specialty_en": "Hematology / Internal Medicine",
+    "content": "Iron deficiency anemia occurs when low iron levels reduce hemoglobin production, impairing oxygen transport. Symptoms include persistent tiredness, lack of energy, shortness of breath on exertion, noticeable heart palpitations, pale skin, headaches, and brittle nails. Evaluation involves a complete blood count (CBC), serum ferritin, iron supplementation, and identifying underlying blood loss or malabsorption."
+  },
+  {
+    "doc_id": "NHS-SYS-012",
+    "source": "NHS",
+    "license": "Open Government Licence v3.0",
+    "category": "systemic_fever_derm",
+    "title": "Hypothyroidism (Underactive Thyroid) – Fatigue, Cold Intolerance & Weight Gain",
+    "url": "https://www.nhs.uk/conditions/underactive-thyroid-hypothyroidism/",
+    "red_flags": [
+      "Severe drowsiness, hypothermia, slow heart rate, and confusion (myxedema coma—medical emergency)",
+      "Rapidly enlarging thyroid neck mass with hoarseness or difficulty swallowing"
+    ],
+    "recommended_specialty_ar": "الغدد الصماء والسكري / الباطنة العامة",
+    "recommended_specialty_en": "Endocrinology / Internal Medicine",
+    "content": "An underactive thyroid gland (hypothyroidism) does not produce enough thyroid hormones, slowing down the body's metabolism. Common symptoms include chronic tiredness, sensitivity to cold, unexplained weight gain, constipation, depression, dry skin, brittle hair, and muscle aches. Diagnosis is confirmed with TSH and free T4 blood tests and treated with daily levothyroxine."
+  },
+  {
+    "doc_id": "WHO-SYS-013",
+    "source": "WHO",
+    "license": "CC BY-NC-SA 3.0 IGO",
+    "category": "systemic_fever_derm",
+    "title": "Diabetes Mellitus – Hyperglycemia Symptoms & DKA Emergency Red Flags",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+    "red_flags": [
+      "Excessive thirst and urination accompanied by nausea, vomiting, abdominal pain, deep rapid breathing, fruity breath, or confusion (diabetic ketoacidosis / DKA)",
+      "Severe hypoglycemia with sweating, trembling, confusion, seizures, or loss of consciousness",
+      "Infected diabetic foot ulcer with spreading redness or fever"
+    ],
+    "recommended_specialty_ar": "الغدد الصماء والسكري / الباطنة العامة",
+    "recommended_specialty_en": "Endocrinology / Internal Medicine",
+    "content": "Diabetes is a chronic metabolic disease characterized by elevated blood glucose levels. Classic symptoms of hyperglycemia include excessive thirst (polydipsia), frequent urination (polyuria), unexplained weight loss, blurred vision, slow-healing wounds, and persistent fatigue. Vomiting, abdominal pain, and drowsiness with high blood sugar indicate life-threatening diabetic ketoacidosis requiring immediate emergency hospital treatment."
+  },
+  {
+    "doc_id": "MAYO-SYS-014",
+    "source": "Mayo Clinic",
+    "license": "Mayo Clinic Health Information Reference",
+    "category": "systemic_fever_derm",
+    "title": "Atopic Dermatitis (Eczema) – Pruritic Flexural Rash & Secondary Infection",
+    "url": "https://www.mayoclinic.org/diseases-conditions/atopic-dermatitis-eczema/symptoms-causes/syc-20353273",
+    "red_flags": [
+      "Widespread painful punched-out blisters on eczematous skin with fever (eczema herpeticum—urgent dermatology/antiviral care)",
+      "Yellow crusting, pus, spreading warmth, and fever indicating secondary bacterial skin infection"
+    ],
+    "recommended_specialty_ar": "الأمراض الجلدية والحساسية",
+    "recommended_specialty_en": "Dermatology",
+    "content": "Atopic dermatitis (eczema) is a chronic inflammatory skin condition causing dry, intensely itchy, inflamed skin patches, commonly in the inner elbows, behind the knees, hands, neck, and face. Scratching worsens inflammation and causes thickened, cracked, or weeping skin. Management relies on frequent emollient moisturizers, avoiding triggers, and short courses of topical corticosteroids."
   }
 ]
