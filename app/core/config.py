@@ -52,7 +52,7 @@ class Settings(BaseSettings):
         description="Sliding window duration in seconds.",
     )
 
-    # LLM & Agent Settings
+    # LLM & Agent Settings (Primary: Google Gemini, Secondary Fallback: SovereignEG)
     GEMINI_API_KEY: str = Field(
         default="",
         description="Google Gemini API key for non-emergency triage agent.",
@@ -60,6 +60,18 @@ class Settings(BaseSettings):
     GEMINI_MODEL: str = Field(
         default="gemini-2.5-flash",
         description="Default Gemini model identifier.",
+    )
+    SOVEREIGNEG_API_KEY: str = Field(
+        default="",
+        description="SovereignEG OpenAI-compatible API key for secondary LLM fallback.",
+    )
+    SOVEREIGNEG_BASE_URL: str = Field(
+        default="https://backend.sovereigneg.com/v1",
+        description="SovereignEG OpenAI-compatible API base URL.",
+    )
+    SOVEREIGNEG_MODEL: str = Field(
+        default="gemini-2.5-flash",
+        description="Default SovereignEG fallback model identifier.",
     )
 
     # Vector Database (Qdrant) Settings
@@ -99,6 +111,10 @@ class Settings(BaseSettings):
         default="edge-or-browser-fallback",
         description="Text-to-Speech synthesis provider or fallback strategy.",
     )
+    TTS_VOICE: str = Field(
+        default="ar-EG-SalmaNeural",
+        description="Default Arabic neural voice identifier for Edge TTS.",
+    )
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
@@ -135,6 +151,9 @@ RATE_LIMIT_REQUESTS = settings.RATE_LIMIT_REQUESTS
 RATE_LIMIT_WINDOW_SECONDS = settings.RATE_LIMIT_WINDOW_SECONDS
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 GEMINI_MODEL = settings.GEMINI_MODEL
+SOVEREIGNEG_API_KEY = settings.SOVEREIGNEG_API_KEY
+SOVEREIGNEG_BASE_URL = settings.SOVEREIGNEG_BASE_URL
+SOVEREIGNEG_MODEL = settings.SOVEREIGNEG_MODEL
 QDRANT_URL = settings.QDRANT_URL
 QDRANT_COLLECTION = settings.QDRANT_COLLECTION
 DATABASE_URL = settings.DATABASE_URL
@@ -143,3 +162,4 @@ GROQ_STT_MODEL = settings.GROQ_STT_MODEL
 GROQ_API_URL = settings.GROQ_API_URL
 VOICE_TIMEOUT_SECONDS = settings.VOICE_TIMEOUT_SECONDS
 TTS_PROVIDER = settings.TTS_PROVIDER
+TTS_VOICE = settings.TTS_VOICE

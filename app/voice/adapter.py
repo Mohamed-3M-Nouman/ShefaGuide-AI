@@ -12,10 +12,7 @@ import base64
 import inspect
 import io
 import logging
-import math
-import struct
 import time
-import wave
 
 import httpx
 
@@ -87,12 +84,14 @@ class VoiceAdapter:
         api_url: str | None = None,
         timeout_seconds: float | None = None,
         tts_provider: str | None = None,
+        tts_voice: str | None = None,
     ) -> None:
         self.api_key = api_key
         self.stt_model = stt_model
         self.api_url = api_url
         self.timeout_seconds = timeout_seconds
         self.tts_provider = tts_provider
+        self.tts_voice = tts_voice
 
     def _resolve_timeout(self) -> float:
         raw = (
@@ -121,6 +120,10 @@ class VoiceAdapter:
     def _resolve_tts_provider(self) -> str:
         raw = self.tts_provider if self.tts_provider is not None else settings.TTS_PROVIDER
         return (raw or "edge-or-browser-fallback").strip()
+
+    def _resolve_tts_voice(self) -> str:
+        raw = self.tts_voice if self.tts_voice is not None else settings.TTS_VOICE
+        return (raw or "ar-EG-SalmaNeural").strip()
 
     async def _request_groq_transcription(
         self,
@@ -237,24 +240,16 @@ class VoiceAdapter:
                 provider="groq-whisper",
             )
 
-    def _generate_tts_wav_bytes(self, spoken_text_ar: str) -> bytes:
-        """Generate a lightweight in-memory PCM WAV payload without writing files to disk."""
-        sample_rate = 8000
-        duration_sec = 0.04  # 40ms lightweight audio frame
-        num_samples = int(sample_rate * duration_sec)
-        freq_hz = 440.0
-        amplitude = 4000
+    async def _request_edge_tts_audio(self, spoken_text_ar: str) -> bytes:
+        """Synthesize Arabic speech strictly in memory using Edge TTS (returns MP3 bytes)."""
+        import edge_tts
 
+        voice = self._resolve_tts_voice()
+        communicate = edge_tts.Communicate(spoken_text_ar, voice=voice)
         buf = io.BytesIO()
-        with wave.open(buf, "wb") as wav_file:
-            wav_file.setnchannels(1)
-            wav_file.setsampwidth(2)  # 16-bit PCM
-            wav_file.setframerate(sample_rate)
-            frames = bytearray()
-            for i in range(num_samples):
-                sample = int(amplitude * math.sin(2.0 * math.pi * freq_hz * (i / sample_rate)))
-                frames.extend(struct.pack("<h", sample))
-            wav_file.writeframes(bytes(frames))
+        async for chunk in communicate.stream():
+            if chunk.get("type") == "audio" and chunk.get("data"):
+                buf.write(chunk["data"])
         return buf.getvalue()
 
     async def synthesize_speech(
@@ -262,30 +257,30 @@ class VoiceAdapter:
         text: str,
         include_disclaimer: bool = True,
     ) -> SynthesisResult:
-        """Synthesize Arabic speech in-memory with a strict 2.5s timeout and 100% disclaimer compliance."""
+        """Synthesize Arabic speech in-memory via Edge TTS with strict timeout and browser/text fallback."""
         start_t = time.perf_counter()
         timeout_s = self._resolve_timeout()
         provider_name = self._resolve_tts_provider()
         spoken_text_ar = ensure_spoken_disclaimer(text, include_disclaimer=include_disclaimer)
 
         try:
-            maybe_coro = self._generate_tts_wav_bytes(spoken_text_ar)
+            maybe_coro = self._request_edge_tts_audio(spoken_text_ar)
             if inspect.isawaitable(maybe_coro):
-                wav_bytes = await asyncio.wait_for(maybe_coro, timeout=timeout_s)
+                audio_bytes = await asyncio.wait_for(maybe_coro, timeout=timeout_s)
             else:
-                wav_bytes = maybe_coro
+                audio_bytes = maybe_coro
 
-            if not wav_bytes:
-                raise RuntimeError("Empty WAV buffer returned by TTS synthesis.")
+            if not audio_bytes:
+                raise RuntimeError("Empty audio buffer returned by Edge TTS.")
 
-            audio_b64 = base64.b64encode(wav_bytes).decode("ascii")
+            audio_b64 = base64.b64encode(audio_bytes).decode("ascii")
             elapsed_ms = round((time.perf_counter() - start_t) * 1000.0, 3)
             return SynthesisResult(
                 success=True,
                 spoken_text_ar=spoken_text_ar,
                 audio_base64=audio_b64,
-                mime_type="audio/wav",
-                provider=provider_name,
+                mime_type="audio/mpeg",
+                provider="edge-tts" if "edge" in provider_name.lower() else provider_name,
                 fallback_to_text=False,
                 latency_ms=elapsed_ms,
                 error_reason_ar=None,
@@ -297,11 +292,11 @@ class VoiceAdapter:
                 success=False,
                 spoken_text_ar=spoken_text_ar,
                 audio_base64=None,
-                mime_type="audio/wav",
-                provider=provider_name,
+                mime_type="audio/mpeg",
+                provider="browser-fallback",
                 fallback_to_text=True,
                 latency_ms=elapsed_ms,
-                error_reason_ar="انتهت مهلة توليد الصوت؛ يتم عرض الإرشادات الطبية نصياً.",
+                error_reason_ar="انتهت مهلة توليد الصوت؛ يتم التحويل لقارئ المتصفح أو العرض النصي.",
             )
         except Exception as exc:
             logger.warning("TTS synthesis fallback triggered: %s", exc)
@@ -310,11 +305,11 @@ class VoiceAdapter:
                 success=False,
                 spoken_text_ar=spoken_text_ar,
                 audio_base64=None,
-                mime_type="audio/wav",
-                provider=provider_name,
+                mime_type="audio/mpeg",
+                provider="browser-fallback",
                 fallback_to_text=True,
                 latency_ms=elapsed_ms,
-                error_reason_ar="تعذر توليد الصوت حالياً؛ يتم عرض الإرشادات الطبية نصياً.",
+                error_reason_ar="تعذر توليد الصوت من الخادم؛ يتم التحويل لقارئ المتصفح أو العرض النصي.",
             )
 
 
