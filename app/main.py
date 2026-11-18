@@ -444,8 +444,10 @@ def create_app() -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
+        from app.agent.tools import log_gemini_startup_status
         from app.db.crud import create_engine, init_db
 
+        log_gemini_startup_status()
         injected = getattr(app.state, "db_engine", None) is not None
         if not injected:
             engine = None

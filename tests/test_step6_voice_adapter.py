@@ -305,32 +305,28 @@ def test_missing_groq_api_key_graceful_degradation(
 def test_synthesize_speech_guarantees_disclaimer_and_in_memory_wav(
     async_runner: asyncio.Runner,
 ) -> None:
-    """Verify synthesize_speech always includes DEFAULT_DISCLAIMER_AR and returns valid in-memory WAV."""
+    """Verify synthesize_speech always includes DEFAULT_DISCLAIMER_AR and returns valid in-memory audio."""
     adapter = VoiceAdapter()
     rationale = "يرجى التوجه إلى طبيب أمراض الجهاز الهضمي للفحص الطبي."
+    mock_mp3 = b"ID3\x04\x00\x00\x00\x00\x00\x00mock-edge-tts-mp3"
 
-    result = async_runner.run(adapter.synthesize_speech(rationale, include_disclaimer=True))
-    result_idempotent = async_runner.run(
-        adapter.synthesize_speech(
-            f"{rationale}\n\n{DEFAULT_DISCLAIMER_AR}", include_disclaimer=True
+    with patch.object(adapter, "_request_edge_tts_audio", return_value=mock_mp3):
+        result = async_runner.run(adapter.synthesize_speech(rationale, include_disclaimer=True))
+        result_idempotent = async_runner.run(
+            adapter.synthesize_speech(
+                f"{rationale}\n\n{DEFAULT_DISCLAIMER_AR}", include_disclaimer=True
+            )
         )
-    )
 
     assert isinstance(result, SynthesisResult)
     assert result.success is True
     assert result.fallback_to_text is False
+    assert result.provider == "edge-tts"
     assert DEFAULT_DISCLAIMER_AR in result.spoken_text_ar
     assert rationale in result.spoken_text_ar
-    assert result.mime_type == "audio/wav"
+    assert result.mime_type == "audio/mpeg"
     assert result.audio_base64 is not None
-
-    # Validate the base64 payload decodes to a genuine RIFF/WAVE header in memory
-    wav_raw = base64.b64decode(result.audio_base64)
-    assert wav_raw.startswith(b"RIFF")
-    with wave.open(io.BytesIO(wav_raw), "rb") as wf:
-        assert wf.getnchannels() == 1
-        assert wf.getsampwidth() == 2
-        assert wf.getframerate() == 8000
+    assert base64.b64decode(result.audio_base64) == mock_mp3
 
     # Verify disclaimer is not duplicated if already present
     assert result_idempotent.spoken_text_ar.count(DEFAULT_DISCLAIMER_AR) == 1
@@ -345,7 +341,7 @@ def test_synthesize_speech_timeout_and_error_graceful_fallback(
 
     with patch.object(
         adapter,
-        "_generate_tts_wav_bytes",
+        "_request_edge_tts_audio",
         side_effect=asyncio.TimeoutError("Simulated TTS timeout > 2.5s"),
     ):
         res_timeout = async_runner.run(
@@ -354,6 +350,7 @@ def test_synthesize_speech_timeout_and_error_graceful_fallback(
 
     assert res_timeout.success is False
     assert res_timeout.fallback_to_text is True
+    assert res_timeout.provider == "browser-fallback"
     assert res_timeout.audio_base64 is None
     assert DEFAULT_DISCLAIMER_AR in res_timeout.spoken_text_ar
     assert rationale in res_timeout.spoken_text_ar

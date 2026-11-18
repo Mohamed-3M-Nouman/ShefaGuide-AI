@@ -162,7 +162,13 @@ export default function ChatInterface() {
         data: response,
         originalInput: text,
       });
-      recordSavedPass({ triageData: response, patientComplaint: text });
+      const isFinalTurn =
+        response?.urgency_level === 4 ||
+        response?.escalation_triggered === true ||
+        !response?.clarifying_questions?.length;
+      if (isFinalTurn) {
+        recordSavedPass({ triageData: response, patientComplaint: text });
+      }
     } catch (err) {
       if (err?.name === "AbortError") return;
       if (activeSessionIdRef.current !== targetSessionId) return;
@@ -679,9 +685,10 @@ export default function ChatInterface() {
                       <TriageCard
                         response={message.data}
                         patientComplaint={message.originalInput}
-                        onSelectClarifyingQuestion={(q) =>
-                          setInput((prev) => (prev ? `${prev} — ${q}: ` : `${q}: `))
-                        }
+                        onSelectClarifyingQuestion={(q) => {
+                          setInput((prev) => (prev ? `${prev} — ${q}: ` : `${q}: `));
+                          textareaRef.current?.focus();
+                        }}
                       />
                     </div>
                   </div>

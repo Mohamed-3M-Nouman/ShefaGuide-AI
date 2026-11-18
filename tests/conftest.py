@@ -10,12 +10,15 @@ from collections.abc import Generator
 
 import pytest
 
+import app.agent.tools as agent_tools
 from app.agent.session_store import session_store
 
 
 @pytest.fixture(autouse=True)
-def reset_session_store() -> Generator[None, None, None]:
-    """Reset the in-memory session store before and after every test (zero cross-test leakage)."""
+def reset_session_store(monkeypatch: pytest.MonkeyPatch) -> Generator[None, None, None]:
+    """Reset session store and isolate unit/gateway tests from live .env LLM API calls."""
+    monkeypatch.setattr(agent_tools, "_has_live_gemini_key", lambda: False)
+    monkeypatch.setattr(agent_tools, "_has_live_sovereigneg_key", lambda: False)
     session_store.reset()
     yield
     session_store.reset()
