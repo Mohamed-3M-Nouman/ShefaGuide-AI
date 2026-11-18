@@ -493,20 +493,22 @@ def test_voice_transcribe_and_synthesize_endpoints_and_aliases(
             assert stt_data.text == "عندي حرقان في فم المعدة"
             assert stt_data.fallback_to_text is False
 
-    for path in ("/api/v1/voice/synthesize", "/voice/synthesize"):
-        resp_tts = client.post(
-            path,
-            json={
-                "session_id": "sess_tts_ep",
-                "text": "يرجى مراجعة طبيب الجهاز الهضمي.",
-                "include_disclaimer": True,
-            },
-        )
-        assert resp_tts.status_code == 200
-        tts_data = SynthesisResult.model_validate(resp_tts.json())
-        assert tts_data.success is True
-        assert DEFAULT_DISCLAIMER_AR in tts_data.spoken_text_ar
-        assert tts_data.audio_base64 is not None
+    mock_mp3 = b"ID3\x04\x00\x00\x00\x00\x00\x00mock-edge-tts-mp3"
+    with patch("app.voice.adapter.VoiceAdapter._request_edge_tts_audio", return_value=mock_mp3):
+        for path in ("/api/v1/voice/synthesize", "/voice/synthesize"):
+            resp_tts = client.post(
+                path,
+                json={
+                    "session_id": "sess_tts_ep",
+                    "text": "يرجى مراجعة طبيب الجهاز الهضمي.",
+                    "include_disclaimer": True,
+                },
+            )
+            assert resp_tts.status_code == 200
+            tts_data = SynthesisResult.model_validate(resp_tts.json())
+            assert tts_data.success is True
+            assert DEFAULT_DISCLAIMER_AR in tts_data.spoken_text_ar
+            assert tts_data.audio_base64 is not None
 
     # Verify root /voice/triage alias with fallback_text (using local corpus fallback for fast test execution)
     monkeypatch.setattr("app.rag.retriever.retrieve_guidelines", lambda *a, **kw: [])
