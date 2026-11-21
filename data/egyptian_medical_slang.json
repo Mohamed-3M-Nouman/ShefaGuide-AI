@@ -3022,5 +3022,3745 @@
       "NHS-SYS-005",
       "NHS-SYS-012"
     ]
+  },
+  {
+    "slang_id": "EG-CARDIO-037",
+    "egyptian_phrases": [
+      "بصقت دم",
+      "جالي دم في البلغم",
+      "طلع دم مع السعال"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Hemoptysis (blood in sputum)",
+    "clinical_term_ar": "نفث الدم مع البلغم",
+    "is_red_flag": true,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-003",
+      "WHO-CARDIO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-038",
+    "egyptian_phrases": [
+      "بحس إن رجلي متورمين",
+      "رجليا منتفخين من تحت",
+      "كاحلي متورم"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Bilateral lower limb edema (possible cardiac origin)",
+    "clinical_term_ar": "وذمة الأطراف السفلية (محتملة القلبية المنشأ)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-039",
+    "egyptian_phrases": [
+      "بحس إن قلبي بيرجف",
+      "قلبي بيرتجف",
+      "جوايا حاجة بترجف"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Palpitations with trembling sensation",
+    "clinical_term_ar": "خفقان مع إحساس بالارتجاف",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "WHO-CARDIO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-040",
+    "egyptian_phrases": [
+      "بحس بضيقة في صدري من الشمال",
+      "جنبي الشمال بيوجعني",
+      "ألم في جانب الصدر الأيسر"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Left-sided chest pain",
+    "clinical_term_ar": "ألم في الجانب الأيسر من الصدر",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-001",
+      "NHS-CARDIO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-041",
+    "egyptian_phrases": [
+      "بحس بضيقة في الليل لما بانام",
+      "بصحي من نومي لاقلق نفسي",
+      "بقحق في الليل وأنا نايم"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Nocturnal dyspnea / possible sleep-disordered breathing",
+    "clinical_term_ar": "ضيق تنفس ليلي / احتمال اضطراب التنفس أثناء النوم",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-007",
+      "NHS-CARDIO-008"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-042",
+    "egyptian_phrases": [
+      "بشخر بشكل مزعج وبوقف عن التنفس",
+      "زوجتي بتقولي بوقف عن التنفس في الليل",
+      "نومي مقطع ومش مرتاح"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Suspected sleep apnea syndrome",
+    "clinical_term_ar": "اشتباه متلازمة توقف التنفس أثناء النوم",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-008",
+      "NHS-CARDIO-009"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-043",
+    "egyptian_phrases": [
+      "بتألم في جنبي لما باتنفس",
+      "كل ما باخد نفس بوجعني جنبي",
+      "لما بتنفس عميق بحس بوخز"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Pleuritic chest pain (pain on breathing)",
+    "clinical_term_ar": "ألم جنبي (يزداد بالتنفس)",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-010",
+      "WHO-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-044",
+    "egyptian_phrases": [
+      "صدري بيصفر لما باتنفس",
+      "في صوت زي الصفير في تنفسي",
+      "تنفسي فيه شهقة وصفير"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Wheezing / suspected bronchospasm",
+    "clinical_term_ar": "صفير في الصدر / اشتباه تشنج القصبات",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-011",
+      "NHS-CARDIO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-045",
+    "egyptian_phrases": [
+      "صدري بياخد نفس بصعوبة لما بمشي شوية",
+      "بتعب من أي مجهود بسيط",
+      "بقى مش قادر أعمل حاجة من غير ما أتعب"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Exertional dyspnea (shortness of breath on mild exertion)",
+    "clinical_term_ar": "ضيق تنفس عند المجهود",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-046",
+    "egyptian_phrases": [
+      "بحس إن الهواء مش كفاية",
+      "مش قادر آخد نفس كامل",
+      "حاسس إني بختنق"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Sensation of incomplete breathing / air hunger",
+    "clinical_term_ar": "إحساس بعدم اكتمال التنفس",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-007",
+      "NHS-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-047",
+    "egyptian_phrases": [
+      "صدري بيتألم بعد الأكل",
+      "بيجيلي ضغط في صدري بعد الأكل",
+      "وجع صدر بيجي بعد الوجبة"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Postprandial chest discomfort",
+    "clinical_term_ar": "ضيق في الصدر بعد الأكل",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-004"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-048",
+    "egyptian_phrases": [
+      "رجعت من كورونا ومش قادر أتنفس زي الأول",
+      "بعد المرض الأبيض لقيت صدري اتغير",
+      "من بعد الإصابة صدري ضعيف"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Post-viral respiratory symptoms (possible long COVID)",
+    "clinical_term_ar": "أعراض تنفسية ما بعد الإصابة الفيروسية",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-009",
+      "WHO-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-049",
+    "egyptian_phrases": [
+      "صدري انتفخ وبيوجعني",
+      "في هواء محبوس في صدري",
+      "صدري مليان هواء وبيتألم"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Suspected hyperinflation / air trapping",
+    "clinical_term_ar": "اشتباه انتفاخ الرئة / احتباس الهواء",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-010",
+      "NHS-CARDIO-011"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-050",
+    "egyptian_phrases": [
+      "بحس بوجع في رقبتي وفكي وقت الضغط",
+      "الألم بيوصل لفكي",
+      "وجع بينتشر لرقبتي من صدري"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Chest pain radiating to jaw and neck",
+    "clinical_term_ar": "ألم صدري يمتد للفك والرقبة",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-001",
+      "WHO-CARDIO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-051",
+    "egyptian_phrases": [
+      "صدري حساس للبرد",
+      "كل ما أكون في هواء بارد صدري بيضيق",
+      "البرد بيضيق صدري"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Cold-triggered chest tightness / suspected bronchial hypersensitivity",
+    "clinical_term_ar": "ضيق صدر يثيره البرد / اشتباه فرط حساسية الشعب",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-012",
+      "NHS-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-052",
+    "egyptian_phrases": [
+      "بحس بنبض سريع جداً فجأة وبعدين بيوقف",
+      "قلبي بيجري وبعدين بيتوقف فجأة",
+      "شيلة قلب سريعة وبعدين وقفت"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Paroxysmal palpitations with sudden termination",
+    "clinical_term_ar": "خفقان انتيابي مع توقف مفاجئ",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-003"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-053",
+    "egyptian_phrases": [
+      "ساقيا بيوجعوني لما بمشي وبيتحسنوا لما باقف",
+      "وجع في رجليا لما أمشي بعيد",
+      "تعب وألم في الساقين بالمشي"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Intermittent claudication (possible peripheral vascular involvement)",
+    "clinical_term_ar": "عرج متقطع (احتمال مشاركة وعائية محيطية)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-006",
+      "MAYO-CARDIO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-054",
+    "egyptian_phrases": [
+      "بحس إن قلبي بيلعب برا",
+      "قلبي بيتحرك بشكل غلط",
+      "ضربات قلبي مش منتظمة"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Irregular heartbeat / suspected arrhythmia",
+    "clinical_term_ar": "ضربات قلب غير منتظمة / اشتباه اضطراب النظم",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-003"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-055",
+    "egyptian_phrases": [
+      "ما عنديش نفس زي زمان",
+      "زهقت بسرعة من غير أسباب",
+      "طاقتي نزلت وصدري ضعيف"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Reduced exercise tolerance / decreased cardiopulmonary reserve",
+    "clinical_term_ar": "انخفاض القدرة على التحمل البدني",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-056",
+    "egyptian_phrases": [
+      "بحس بضغط على صدري زي إن حد قاعد عليه",
+      "في حاجة بتضغط على صدري",
+      "صدري مضغوط ومش قادر أتنفس"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Chest pressure sensation",
+    "clinical_term_ar": "إحساس بضغط على الصدر",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-001",
+      "NHS-CARDIO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-057",
+    "egyptian_phrases": [
+      "بسعل من سنين وصدري بيئن",
+      "معايا سعال مزمن من فترة طويلة",
+      "سعلتي ما بتقفش من شهور"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Chronic cough (> 3 months)",
+    "clinical_term_ar": "سعال مزمن (أكثر من 3 أشهر)",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-013",
+      "NHS-CARDIO-014"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-058",
+    "egyptian_phrases": [
+      "بحس إن ريحة حاجة بتصحيني من نومي وما أقدرش أتنفس",
+      "بفيق مخنوق من النوم",
+      "صحيت وأنا حاسس إني قريب من الاختناق"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Paroxysmal nocturnal dyspnea",
+    "clinical_term_ar": "نوبة ضيق تنفس ليلي مفاجئة",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-059",
+    "egyptian_phrases": [
+      "اتجلط رجلي وصدري بيوجعني",
+      "في جلطة في رجلي وصدري مش كويس",
+      "رجلي حمرا ومتورمة وصدري بيضيق"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Deep vein thrombosis with respiratory symptoms (suspected pulmonary embolism)",
+    "clinical_term_ar": "تخثر وريدي عميق مع أعراض تنفسية (اشتباه صمة رئوية)",
+    "is_red_flag": true,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-003",
+      "WHO-CARDIO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-060",
+    "egyptian_phrases": [
+      "صدري شادني من الجنب زي ما حد بيغرز فيه إبرة",
+      "وخز في جنب صدري",
+      "في إحساس زي الوخز في جنبي"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Sharp lateral chest pain (possible pleuritis)",
+    "clinical_term_ar": "وخز حاد جانبي في الصدر (احتمال التهاب الجنب)",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-010",
+      "WHO-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-061",
+    "egyptian_phrases": [
+      "بحس إن دمي مش بيتدفق كويس",
+      "أطرافي باردة من غير سبب",
+      "إيديا ورجليا دايماً باردين"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Peripheral circulatory insufficiency symptoms",
+    "clinical_term_ar": "أعراض قصور الدورة الدموية الطرفية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-006",
+      "NHS-CARDIO-014"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-062",
+    "egyptian_phrases": [
+      "سعالي فيه بلغم أخضر من أسبوعين",
+      "طلع مني بلغم غليظ أخضر اللون",
+      "بصاقي اتلون وعندي حرارة"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Purulent sputum with possible lower respiratory tract infection",
+    "clinical_term_ar": "بلغم قيحي مع اشتباه عدوى تنفسية سفلية",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-009",
+      "NHS-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-063",
+    "egyptian_phrases": [
+      "صدري اتسع من غير أسباب",
+      "بطني وصدري انتفخوا",
+      "جوفي منتفخ وصدري كمان"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Abdomino-thoracic distension (possible cardiac decompensation)",
+    "clinical_term_ar": "انتفاخ بطني وصدري (احتمال عدم تعويض قلبي)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-064",
+    "egyptian_phrases": [
+      "بحس بحرارة في صدري",
+      "صدري حارق من جوه",
+      "بحس إن صدري بيحترق من الداخل"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Burning sensation in chest / possible esophageal or cardiac origin",
+    "clinical_term_ar": "إحساس حرقة في الصدر / احتمال مريئي أو قلبي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-004"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-065",
+    "egyptian_phrases": [
+      "بحس إن قلبي وقف ثانية وبعدين اشتغل",
+      "قلبي وقف عن الضرب ثانية",
+      "في فترات قلبي بيوقف شوية"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Palpitations with pause sensation (possible ectopic beat)",
+    "clinical_term_ar": "خفقان مع إحساس بالتوقف (احتمال ضربات خارج الرحم)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-003"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-066",
+    "egyptian_phrases": [
+      "بحس إن المفصل اللي جنب صدري بيوجعني",
+      "في وجع في عظام الصدر",
+      "الضلوع بتوجعني"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Costochondral pain / suspected costochondritis",
+    "clinical_term_ar": "ألم غضروفي ضلعي / اشتباه التهاب غضاريف الضلوع",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-004",
+      "NHS-CARDIO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-067",
+    "egyptian_phrases": [
+      "عندي حرارة وصدري بيوجعني من أسبوع",
+      "اتعبت وصدري مش مرتاح من فترة",
+      "جالي وجع صدر مع سخونية"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Febrile chest pain / possible pericarditis or pneumonia",
+    "clinical_term_ar": "ألم صدري مع حمى / اشتباه التهاب التامور أو الالتهاب الرئوي",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-009",
+      "NHS-CARDIO-011"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-068",
+    "egyptian_phrases": [
+      "بشخر عالي وكتير",
+      "بحوس في نومي وبشخر",
+      "النوم بتاعي فيه شخير كتير"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Severe snoring / possible obstructive sleep apnea",
+    "clinical_term_ar": "شخير شديد / اشتباه انقطاع النفس الانسدادي النومي",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-008",
+      "NHS-CARDIO-009"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-069",
+    "egyptian_phrases": [
+      "بحس بدوار لما بوقف فجأة وقلبي بيدق بسرعة",
+      "لما بقوم بسرعة بحس بدوخة وقلبي بيجري",
+      "دوخة وخفقان لما أقوم"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Orthostatic symptoms with palpitations",
+    "clinical_term_ar": "أعراض انتصابية مع خفقان",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-070",
+    "egyptian_phrases": [
+      "صدري بيتألم لما باعطس",
+      "السعال بيزود الوجع في صدري",
+      "العطس بيوجع صدري"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Chest pain aggravated by coughing or sneezing",
+    "clinical_term_ar": "ألم صدري يزيد بالسعال أو العطس",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-010",
+      "NHS-CARDIO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-071",
+    "egyptian_phrases": [
+      "صوتي تغير وبحشرجة في صدري",
+      "في صوت غريب في صدري لما باتنفس",
+      "تنفسي فيه شهقة وحشرجة"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Respiratory stridor / abnormal breath sounds",
+    "clinical_term_ar": "صرير تنفسي / أصوات تنفس غير طبيعية",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-011",
+      "NHS-CARDIO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-072",
+    "egyptian_phrases": [
+      "بحس إن قلبي كبر",
+      "قالولي إن قلبي فيه ماية",
+      "الدكتور قالي إن القلب بيتعب"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Symptoms of suspected heart failure",
+    "clinical_term_ar": "أعراض اشتباه قصور القلب",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-073",
+    "egyptian_phrases": [
+      "بحس إن الدم بيوقف في رجلي",
+      "رجليا بتتنمل وبتحس إنها ماتت",
+      "رجليا بيخدر وبيتنمل"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Lower limb paresthesia with vascular symptoms",
+    "clinical_term_ar": "تنمل أطراف سفلية مع أعراض وعائية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-006",
+      "MAYO-CARDIO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-074",
+    "egyptian_phrases": [
+      "بحس إن نفسي قصير جداً لما بكلم حد",
+      "مقدرش أكمل جملة من غير ما آخد نفس",
+      "نفسي بيخلص وأنا بتكلم"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Dyspnea during speech / severe effort intolerance",
+    "clinical_term_ar": "ضيق تنفس أثناء الكلام / عدم تحمل شديد للمجهود",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-075",
+    "egyptian_phrases": [
+      "بحس بوجع في كتفي الشمال مش عارف منين",
+      "كتفي الشمال بيوجعني من غير سبب واضح",
+      "ألم غريب في الكتف الأيسر"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Left shoulder pain of possible cardiac origin",
+    "clinical_term_ar": "ألم الكتف الأيسر محتمل القلبية المنشأ",
+    "is_red_flag": true,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-001",
+      "NHS-CARDIO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-076",
+    "egyptian_phrases": [
+      "صدري شادني ومش قادر أنام على ضهري",
+      "لازم أنام على جنبي عشان أتنفس",
+      "مش قادر أنام مستلقي خالص"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Orthopnea (difficulty breathing when lying flat)",
+    "clinical_term_ar": "تعذر التنفس عند الاستلقاء",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-077",
+    "egyptian_phrases": [
+      "عندي سعال ناشف مستمر من شهرين",
+      "سعال جاف مزمن من غير بلغم",
+      "بسعل ناشف كل يوم من أشهر"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Persistent dry cough",
+    "clinical_term_ar": "سعال جاف مستمر",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-013",
+      "NHS-CARDIO-014"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-078",
+    "egyptian_phrases": [
+      "بحس إن الهواء مش بيوصل للرئة بشكل كامل",
+      "نفسي بيدخل بس ما بيوصلش",
+      "حاسس إن رئتي مش شغالة صح"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Sensation of inadequate ventilation",
+    "clinical_term_ar": "إحساس بعدم كفاية التهوية",
+    "is_red_flag": false,
+    "recommended_specialty": "أمراض الصدر والرئة",
+    "linked_doc_ids": [
+      "NHS-CARDIO-007",
+      "NHS-CARDIO-009"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-079",
+    "egyptian_phrases": [
+      "عروقي بارزة في رقبتي وصدري",
+      "العروق بتاعتي ظهرت في رقبتي",
+      "في عروق بارزة في رقبتي وأنا واقف"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Distended neck veins (possible elevated venous pressure)",
+    "clinical_term_ar": "تضخم أوردة الرقبة (احتمال ارتفاع الضغط الوريدي)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-005",
+      "NHS-CARDIO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-CARDIO-080",
+    "egyptian_phrases": [
+      "بحس بخفقان وعندي ضغط عالي",
+      "قلبي بيدق بسرعة ومعايا ضغط",
+      "خفقان مع ارتفاع في الضغط"
+    ],
+    "category": "cardiopulmonary",
+    "clinical_term_en": "Palpitations with hypertensive symptoms",
+    "clinical_term_ar": "خفقان مع أعراض ارتفاع ضغط الدم",
+    "is_red_flag": false,
+    "recommended_specialty": "طب القلب والأوعية الدموية",
+    "linked_doc_ids": [
+      "NHS-CARDIO-002",
+      "NHS-CARDIO-014"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-037",
+    "egyptian_phrases": [
+      "راسي بيوجعني لما باكون تعبان نفسياً",
+      "صداع التعب والضغط",
+      "وجع رأس من الإجهاد والضغط"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Tension-type headache",
+    "clinical_term_ar": "صداع التوتر",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-001",
+      "NHS-NEURO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-038",
+    "egyptian_phrases": [
+      "النور بيوجع عيني لما يجي صداع",
+      "مش قادر أشوف النور لما راسي بيوجعني",
+      "النور بيآذيني جداً لما أكون متألم"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Photophobia (light sensitivity during headache)",
+    "clinical_term_ar": "رهاب الضوء (حساسية للضوء مع الصداع)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-002",
+      "NHS-NEURO-003"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-039",
+    "egyptian_phrases": [
+      "بحس إن يدي بتتنمل من غير سبب",
+      "أصابعي بتخدر لما بصحى من النوم",
+      "خدر في أصابع إيدي الواحدة بس"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Unilateral hand/finger numbness",
+    "clinical_term_ar": "خدر في أصابع أو يد من جهة واحدة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-004",
+      "NHS-NEURO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-040",
+    "egyptian_phrases": [
+      "بحس إن الأرض بتتحرك تحتي",
+      "مش قادر أمشي مستقيم",
+      "توازني اختل وبتعثر في مشيتي"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Balance disturbance / ataxic gait",
+    "clinical_term_ar": "اضطراب التوازن / مشية ترنحية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-006",
+      "NHS-NEURO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-041",
+    "egyptian_phrases": [
+      "بصحى من النوم ومش قادر أتحرك لثواني",
+      "باصحى وجسمي متعطل",
+      "بفيق وأنا مش قادر أحرك أي حاجة لدقيقة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Sleep paralysis episodes",
+    "clinical_term_ar": "نوبات شلل النوم",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-008",
+      "NHS-NEURO-009"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-042",
+    "egyptian_phrases": [
+      "لساني بيتعقد وكلامي مش واضح",
+      "بتكلم وكلامي مش مفهوم فجأة",
+      "كلامي تلاشى وما عدتش قادر أتكلم صح"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Speech disturbance / dysarthria",
+    "clinical_term_ar": "اضطراب الكلام / عسر الكلام",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-003",
+      "NHS-NEURO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-043",
+    "egyptian_phrases": [
+      "بحس بضربات في راسي زي نبض",
+      "راسي بيدق زي قلبي من الألم",
+      "في نبضات قوية في راسي"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Pulsating headache (possible vascular headache)",
+    "clinical_term_ar": "صداع نابض (محتمل الأصل الوعائي)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-001",
+      "NHS-NEURO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-044",
+    "egyptian_phrases": [
+      "بشوف ضوء ووميض قبل الصداع",
+      "بشوف نجوم قبل ما راسي يوجعني",
+      "بشوف خطوط وضوء وبعدين بيجي الصداع"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Visual aura preceding headache",
+    "clinical_term_ar": "هالة بصرية سابقة للصداع",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-002",
+      "MAYO-NEURO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-045",
+    "egyptian_phrases": [
+      "إيدي بترجف وأنا ممسك حاجة",
+      "يدي بترتعش",
+      "رعشة في إيدي لما بحاول أكتب"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Hand tremor / action tremor",
+    "clinical_term_ar": "رعشة اليد / رعشة حركية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-005",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-046",
+    "egyptian_phrases": [
+      "بحس إن حاجة بترعش جوايا",
+      "جسمي ببيرتجف من جوه بس من برا مش واضح",
+      "بحس بارتجاف داخلي"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Internal tremor sensation",
+    "clinical_term_ar": "إحساس بارتجاف داخلي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-005",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-047",
+    "egyptian_phrases": [
+      "بحس بوجع شديد في وجهي زي صعقة كهربا",
+      "في ألم زي الوخز في وجهي فجأة",
+      "وجعي في وشي زي الحرق وبيجي فجأة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Sudden facial pain / possible trigeminal neuralgia",
+    "clinical_term_ar": "ألم وجه مفاجئ / اشتباه ألم العصب ثلاثي التوائم",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-004",
+      "MAYO-NEURO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-048",
+    "egyptian_phrases": [
+      "سمعي نزل في أذن واحدة",
+      "أذن واحدة بتسمع أحسن من التانية",
+      "بحس إن سمعي في الأذن اليمين اتقل"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Unilateral hearing loss",
+    "clinical_term_ar": "فقدان السمع في أذن واحدة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-009",
+      "NHS-NEURO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-049",
+    "egyptian_phrases": [
+      "بسمع دندنة في أذني طول اليوم",
+      "ودني بتوش ومش بتبطل",
+      "أذني بتزن من الصبح"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Tinnitus (ringing in the ear)",
+    "clinical_term_ar": "طنين الأذن",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-009",
+      "NHS-NEURO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-050",
+    "egyptian_phrases": [
+      "عيني اليمين مش شايفة كويس فجأة",
+      "شوفتي اتغيرت فجأة من غير سبب",
+      "بشوف بشكل ضبابي في عين واحدة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Sudden visual change in one eye",
+    "clinical_term_ar": "تغير مفاجئ في الرؤية في عين واحدة",
+    "is_red_flag": true,
+    "recommended_specialty": "طب العيون",
+    "linked_doc_ids": [
+      "NHS-NEURO-011",
+      "NHS-NEURO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-051",
+    "egyptian_phrases": [
+      "بشوف حاجتين بدل واحدة",
+      "شايف مزدوج",
+      "في صورتين لكل حاجة بشوفها"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Diplopia (double vision)",
+    "clinical_term_ar": "ازدواج الرؤية",
+    "is_red_flag": true,
+    "recommended_specialty": "طب العيون",
+    "linked_doc_ids": [
+      "NHS-NEURO-011",
+      "MAYO-NEURO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-052",
+    "egyptian_phrases": [
+      "بحس إن رجلي تقيلة ومش قادر أرفعها",
+      "رجليا زي المصنوعة من رصاص",
+      "رجلي تعبت وما بترفعش صح"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Lower limb weakness / possible motor deficit",
+    "clinical_term_ar": "ضعف في الأطراف السفلية / احتمال عجز حركي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-003",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-053",
+    "egyptian_phrases": [
+      "بحس بضعف في جسمي من جهة واحدة",
+      "الجانب الأيمن من جسمي ضعيف",
+      "نص جسمي تعبان والتاني مش"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Unilateral body weakness / possible hemiparesis",
+    "clinical_term_ar": "ضعف نصفي في الجسم / اشتباه شلل نصفي",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-003",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-054",
+    "egyptian_phrases": [
+      "بحس بوجع شديد حوالين عيني",
+      "في ضغط حوالين الحجاج",
+      "عيني بتوجعني من جواها"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Periorbital / retro-orbital pain",
+    "clinical_term_ar": "ألم حول الحجاج / خلف الحجاج",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-007",
+      "NHS-NEURO-008"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-055",
+    "egyptian_phrases": [
+      "زاكرتي بقت ضعيفة",
+      "بنسى الأشياء الصغيرة بسرعة",
+      "ذاكرتي مش زي زمان"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Memory decline / cognitive changes",
+    "clinical_term_ar": "تراجع الذاكرة / تغيرات معرفية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-004",
+      "MAYO-NEURO-014"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-056",
+    "egyptian_phrases": [
+      "بحس بحرق في رجليا بالليل",
+      "رجليا بتحرق في الليل",
+      "في وجع زي الحرق في رجليا"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Burning pain in legs (possible neuropathy)",
+    "clinical_term_ar": "ألم حارق في الأطراف (اشتباه اعتلال الأعصاب)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-005",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-057",
+    "egyptian_phrases": [
+      "أنفي انسد من جهة واحدة بس",
+      "أنفي الأيمن انسد دايماً",
+      "نص أنفي مسدود طول الوقت"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Unilateral nasal obstruction",
+    "clinical_term_ar": "انسداد أنفي من جهة واحدة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-009",
+      "NHS-NEURO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-058",
+    "egyptian_phrases": [
+      "صوتي تغير وبح وما رجعش",
+      "صوتي اتبح وفضل أسابيع",
+      "خسرت صوتي الحقيقي من فترة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Persistent hoarseness / dysphonia",
+    "clinical_term_ar": "بحة صوت مستمرة / عسر الصوت",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-010",
+      "NHS-NEURO-011"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-059",
+    "egyptian_phrases": [
+      "بحس إن الأرض بتلف حواليا",
+      "الدنيا بتدور من غير سبب",
+      "بجيلي نوبات دوران مفاجئة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Vertigo attacks (possible vestibular origin)",
+    "clinical_term_ar": "نوبات دوار (محتملة المنشأ الدهليزي)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-007",
+      "NHS-NEURO-009"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-060",
+    "egyptian_phrases": [
+      "بشوف ومضات ضوء في عيني",
+      "في ضوء بيومض في عيني بدون سبب",
+      "بيجيلي فلاش في عيني"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Photopsia (flashes of light)",
+    "clinical_term_ar": "وميض ضوئي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب العيون",
+    "linked_doc_ids": [
+      "NHS-NEURO-011",
+      "NHS-NEURO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-061",
+    "egyptian_phrases": [
+      "بشوف بقع سواء في مجال رؤيتي",
+      "في بقعة سوداء في شوفتي",
+      "شوفتي فيها نقطة ضبابية"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Visual scotoma / blind spot",
+    "clinical_term_ar": "نقطة عمياء / عتمة بصرية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب العيون",
+    "linked_doc_ids": [
+      "NHS-NEURO-011",
+      "MAYO-NEURO-013"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-062",
+    "egyptian_phrases": [
+      "بجيلي تقلص في يدي بدون ما أقصد",
+      "يدي بتتحرك لوحدها",
+      "أصابعي بتنقبض لوحدها أحياناً"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Myoclonic jerks / involuntary limb movements",
+    "clinical_term_ar": "تشنجات عضلية / حركات لا إرادية في الأطراف",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-004",
+      "NHS-NEURO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-063",
+    "egyptian_phrases": [
+      "بحس بصداع في الوجه مش في الرأس",
+      "وجعي في خدودي وجبهتي مش راسي",
+      "وجع تحت عيني وفوق أسناني"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Facial pressure / suspected sinusitis",
+    "clinical_term_ar": "ضغط وجهي / اشتباه التهاب الجيوب الأنفية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-008",
+      "NHS-NEURO-009"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-064",
+    "egyptian_phrases": [
+      "بحس بضغط في أذني زي ما حاجة انسدت",
+      "أذني مسدودة زي ما فيها حاجة",
+      "أذني مش مفتوحة وسمعي تقل"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Ear fullness / aural pressure",
+    "clinical_term_ar": "إحساس بامتلاء الأذن / ضغط أذني",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-009",
+      "NHS-NEURO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-065",
+    "egyptian_phrases": [
+      "بحس بخدر في وجهي من جهة واحدة",
+      "نص وشي بيتنمل",
+      "خد واحد بيخدر"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Unilateral facial numbness",
+    "clinical_term_ar": "خدر في نصف الوجه",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-003",
+      "NHS-NEURO-004"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-066",
+    "egyptian_phrases": [
+      "بلعي اتعب وبحس بصعوبة في البلع",
+      "الأكل بيتعلق في زوري",
+      "صعوبة في البلع من فترة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Dysphagia (difficulty swallowing)",
+    "clinical_term_ar": "عسر البلع",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-010",
+      "NHS-NEURO-011"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-067",
+    "egyptian_phrases": [
+      "بحس بوخز في رجليا لما بقعد فترة طويلة",
+      "رجليا بتتنمل وأنا قاعد",
+      "الوخز في رجليا بيجي لما أقعد طويل"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Positional leg paresthesia",
+    "clinical_term_ar": "وخز في الأطراف السفلية بأوضاع معينة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-005",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-068",
+    "egyptian_phrases": [
+      "بحس إن رأسي بيدور لما أقلب في السرير",
+      "الدوخة بتيجي لما أحرك دماغي بسرعة",
+      "كل ما بحرك راسي بيجيني دوخة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Positional vertigo / possible BPPV",
+    "clinical_term_ar": "دوار وضعي / اشتباه دوار الوضع الانتيابي الحميد",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-007",
+      "MAYO-NEURO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-069",
+    "egyptian_phrases": [
+      "صداع راسي بيجي في مكان واحد بس",
+      "وجعي في جانب من راسي بس",
+      "راسي بيوجعني من الجهة اليمين بس"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Unilateral headache",
+    "clinical_term_ar": "صداع أحادي الجانب",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-001",
+      "NHS-NEURO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-070",
+    "egyptian_phrases": [
+      "بحس إن عيني جافة ومتألمة",
+      "عيني بتحرق وجافة",
+      "عيني مش مرطبة وبتوجعني"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Dry eye syndrome symptoms",
+    "clinical_term_ar": "أعراض متلازمة جفاف العين",
+    "is_red_flag": false,
+    "recommended_specialty": "طب العيون",
+    "linked_doc_ids": [
+      "NHS-NEURO-011",
+      "NHS-NEURO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-071",
+    "egyptian_phrases": [
+      "بحس بضربات في عيني",
+      "في نبض في عيني بيوجعني",
+      "ضغط ونبض جوه عيني"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Pulsating eye pain / possible elevated intraocular pressure",
+    "clinical_term_ar": "ألم نابض في العين / اشتباه ارتفاع ضغط العين",
+    "is_red_flag": false,
+    "recommended_specialty": "طب العيون",
+    "linked_doc_ids": [
+      "NHS-NEURO-011",
+      "NHS-NEURO-012"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-072",
+    "egyptian_phrases": [
+      "بحس بوجع شديد في الأذن مع حرارة",
+      "أذني بتوجعني جداً ومعايا حرارة",
+      "وجع أذن مع سخونية"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Ear pain with fever / suspected otitis",
+    "clinical_term_ar": "ألم أذن مع حمى / اشتباه التهاب الأذن",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-009",
+      "NHS-NEURO-010"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-073",
+    "egyptian_phrases": [
+      "بحس بوجع زوري مزمن من شهور",
+      "زوري بيوجعني طول الوقت مش بس لما باتعب",
+      "في كتلة حاسسها في زوري"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Chronic throat discomfort / sensation of pharyngeal mass",
+    "clinical_term_ar": "انزعاج حلقي مزمن / إحساس بكتلة في البلعوم",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-010",
+      "NHS-NEURO-011"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-074",
+    "egyptian_phrases": [
+      "إيدي بتسقط الأشياء من غير ما أقصد",
+      "مقدرش أمسك حاجة كويس",
+      "بحس بضعف في قبضتي"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Hand grip weakness",
+    "clinical_term_ar": "ضعف في قبضة اليد",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-004",
+      "NHS-NEURO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-075",
+    "egyptian_phrases": [
+      "راسي بيوجعني بشدة فجأة زي ما حد ضربني",
+      "أشد صداع في حياتي جاء فجأة",
+      "صداع قاتل فجأة ومش كيفي"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Thunderclap headache (sudden severe headache)",
+    "clinical_term_ar": "صداع الرعد (صداع شديد مفاجئ)",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-001",
+      "MAYO-NEURO-002"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-076",
+    "egyptian_phrases": [
+      "بحس بنمل في وجهي وإيدي في نفس الوقت",
+      "الوجه والإيد بيخدروا مع بعض",
+      "خدر في إيدي والوجه مع بعض"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Combined facial and hand numbness",
+    "clinical_term_ar": "خدر في الوجه واليد معاً",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-003",
+      "NHS-NEURO-004"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-077",
+    "egyptian_phrases": [
+      "صوتي مش بيطلع زي ما أنا عايز",
+      "صوتي خفت وبح من غير سبب واضح",
+      "بتكلم وصوتي بيخفت لوحده"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Voice changes / possible vocal cord involvement",
+    "clinical_term_ar": "تغيرات في الصوت / احتمال مشاركة الحبال الصوتية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-NEURO-010",
+      "NHS-NEURO-011"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-078",
+    "egyptian_phrases": [
+      "بحس بوجع في رقبتي بيوصل لراسي",
+      "الوجع بيجي من رقبتي ويطلع في راسي",
+      "صداع مع ألم رقبة"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Cervicogenic headache (neck-originating headache)",
+    "clinical_term_ar": "صداع عنقي المنشأ",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-001",
+      "NHS-NEURO-006"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-079",
+    "egyptian_phrases": [
+      "بشوف نجوم لما بوقف بسرعة",
+      "بيجيني إعتام في الشوفة لما بقوم",
+      "لما بقوم بسرعة بشوف ودان"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Orthostatic visual changes (greying out on standing)",
+    "clinical_term_ar": "تغيرات بصرية انتصابية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-006",
+      "NHS-NEURO-007"
+    ]
+  },
+  {
+    "slang_id": "EG-NEURO-080",
+    "egyptian_phrases": [
+      "بحس بوجع بعد الأكل في الجنب والضهر",
+      "بعد الأكل بيجيني وجع في ظهري",
+      "مشكلة في ضهري بتزيد بعد الأكل"
+    ],
+    "category": "neurological_ent_ophth",
+    "clinical_term_en": "Back pain possibly worsened after eating",
+    "clinical_term_ar": "ألم ظهر يزيد بعد الأكل (قد يكون مصدره أعصاب)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأعصاب",
+    "linked_doc_ids": [
+      "NHS-NEURO-004",
+      "NHS-NEURO-005"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-037",
+    "egyptian_phrases": [
+      "بحس بحرقة في مؤخرتي لما باتغوط",
+      "الوجع بيجي لما باروح الحمام",
+      "حرقة شديدة في الفتحة"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Anal pain / possible anal fissure",
+    "clinical_term_ar": "ألم شرجي / اشتباه شرخ شرجي",
+    "is_red_flag": false,
+    "recommended_specialty": "الجراحة العامة وطب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-038",
+    "egyptian_phrases": [
+      "خرج دم أحمر مع البراز",
+      "لقيت دم في الحمام",
+      "البراز فيه دم أحمر"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Hematochezia (bright red rectal bleeding)",
+    "clinical_term_ar": "نزيف شرجي (دم أحمر مع البراز)",
+    "is_red_flag": true,
+    "recommended_specialty": "الجراحة العامة وطب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-039",
+    "egyptian_phrases": [
+      "عندي فستولا في مؤخرتي",
+      "في فتحة غلط قرب مؤخرتي",
+      "ناسور في المنطقة الشرجية"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Suspected anal fistula",
+    "clinical_term_ar": "اشتباه ناسور شرجي",
+    "is_red_flag": false,
+    "recommended_specialty": "الجراحة العامة",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-040",
+    "egyptian_phrases": [
+      "بحس بوجع في الجزء الأعلى من بطني قبل الأكل",
+      "بطني بيوجعني لما أصحى الصبح قبل الفطار",
+      "معدتي بتوجعني على الريق"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Epigastric pain on empty stomach / possible duodenal ulcer",
+    "clinical_term_ar": "ألم شرسوفي على الريق / اشتباه قرحة الاثني عشر",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-002",
+      "NHS-GI-003"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-041",
+    "egyptian_phrases": [
+      "بطني بيوجعني وبعدين بيتحسن بعد البراز",
+      "الوجع بيخف بعد ما باروح الحمام",
+      "وجع بطن بيروح بعد الحمام"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Abdominal pain relieved by defecation / possible IBS",
+    "clinical_term_ar": "ألم بطني يهدأ بالتبرز / اشتباه متلازمة الأمعاء المتهيجة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-007",
+      "WHO-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-042",
+    "egyptian_phrases": [
+      "بحس إن بطني منتفخة ومتضايقة طول اليوم",
+      "بطني غازات ومنتفخة",
+      "الغازات بتتعبني وبطني منتفخة"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Abdominal bloating and distension",
+    "clinical_term_ar": "انتفاخ وتمدد البطن",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-007",
+      "NHS-GI-008"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-043",
+    "egyptian_phrases": [
+      "اصفرت عيني وجلدي",
+      "لوني اصفر وعيني صفراء",
+      "لقيت نفسي أصفر وعيني بالوا"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Jaundice (yellowing of skin and eyes)",
+    "clinical_term_ar": "يرقان (اصفرار الجلد والعينين)",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "WHO-GI-014"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-044",
+    "egyptian_phrases": [
+      "بطني اتكبرت وامتلأت بمية",
+      "بطني نفخت وكتير",
+      "في مية في بطني وانتفخت"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Abdominal distension with possible ascites",
+    "clinical_term_ar": "انتفاخ بطني مع اشتباه استسقاء",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "NHS-GI-010"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-045",
+    "egyptian_phrases": [
+      "بحس بغثيان في الصبح لما بصحى",
+      "معدتي بتلف الصبح قبل الأكل",
+      "بيجيلي غثيان صباحي مستمر"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Morning nausea",
+    "clinical_term_ar": "غثيان صباحي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-001",
+      "NHS-GI-002"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-046",
+    "egyptian_phrases": [
+      "بقيت وزني نازل من غير ما أتبع رجيم",
+      "بفقد وزن من غير سبب",
+      "وزني بيقل من غير ما أعمل حاجة"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Unexplained weight loss",
+    "clinical_term_ar": "فقدان وزن غير مبرر",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-010",
+      "NHS-GI-011"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-047",
+    "egyptian_phrases": [
+      "برازي لونه اتغير لأسود",
+      "البراز بقى أسود زي الزيفت",
+      "برازي فيه دم قديم وبقى داكن"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Melena (black tarry stool - possible upper GI bleed)",
+    "clinical_term_ar": "براز أسود قطراني (اشتباه نزيف جهاز هضمي علوي)",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-003",
+      "NHS-GI-004"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-048",
+    "egyptian_phrases": [
+      "بحس بوجع في تحت ضلوعي الشمال",
+      "في وجع تحت الضلوع من الشمال",
+      "جنبي الأيسر تحت الضلوع بيوجعني"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Left hypochondriac pain",
+    "clinical_term_ar": "ألم تحت الضلوع من الجانب الأيسر",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-008",
+      "NHS-GI-009"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-049",
+    "egyptian_phrases": [
+      "بحس بوجع في تحت ضلوعي اليمين",
+      "كبدي بيوجعني",
+      "في وجع في جنبي الأيمن"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Right hypochondriac pain / possible hepatic origin",
+    "clinical_term_ar": "ألم تحت الضلوع من الجانب الأيمن / احتمال كبدي المنشأ",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "WHO-GI-014"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-050",
+    "egyptian_phrases": [
+      "بلعي تعبان وحاسس إن الأكل بيتوقف في الحلق",
+      "الأكل مش بينزل بسهولة",
+      "كل ما بآكل بحس إن الأكل واقف"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Dysphagia (difficulty swallowing food)",
+    "clinical_term_ar": "عسر البلع (صعوبة ابتلاع الطعام)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-001",
+      "NHS-GI-002"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-051",
+    "egyptian_phrases": [
+      "بحس بعدم ارتياح في السرة",
+      "وجع حوالين السرة",
+      "السرة بتوجعني وبطني بيلف"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Periumbilical pain",
+    "clinical_term_ar": "ألم حول السرة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-007",
+      "NHS-GI-008"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-052",
+    "egyptian_phrases": [
+      "بحس بحرقة في معدتي شديدة وبتجيلي جراح في بطني",
+      "معدتي بتحرق جداً",
+      "الحموضة بتعملي جراح في معدتي"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Severe gastric acidity / possible gastric erosion",
+    "clinical_term_ar": "حموضة شديدة / اشتباه تآكل المعدة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-002",
+      "NHS-GI-003"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-053",
+    "egyptian_phrases": [
+      "بحس بغثيان ورعشة وبطني بيلتوي",
+      "جالتني مغص شديد مع غثيان",
+      "وجع بطن حاد مع دوخة وغثيان"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Severe abdominal colic with nausea",
+    "clinical_term_ar": "مغص بطني شديد مع غثيان",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-004",
+      "NHS-GI-005"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-054",
+    "egyptian_phrases": [
+      "إسهالي فيه دم",
+      "الإسهال بيطلع دم أحمر",
+      "برازي سايل وفيه دم"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Bloody diarrhea",
+    "clinical_term_ar": "إسهال دموي",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-055",
+    "egyptian_phrases": [
+      "بحس بوجع شديد في يمين بطني من تحت",
+      "وجع حاد في جهة اليمين من تحت",
+      "جنبي الأيمن من تحت بيوجعني جداً"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Right iliac fossa pain / possible appendiceal irritation",
+    "clinical_term_ar": "ألم الحفرة الحرقفية اليمنى / اشتباه تهيج الزائدة",
+    "is_red_flag": true,
+    "recommended_specialty": "الجراحة العامة",
+    "linked_doc_ids": [
+      "NHS-GI-006",
+      "NHS-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-056",
+    "egyptian_phrases": [
+      "برازي بقى رفيع زي الخيط",
+      "البراز بقى ضيق جداً",
+      "شكل البراز اتغير وبقى رفيع"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Change in stool caliber (narrow stools)",
+    "clinical_term_ar": "تغير قطر البراز (براز رفيع)",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-010",
+      "NHS-GI-011"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-057",
+    "egyptian_phrases": [
+      "بشعر بأني مش فاضي من الحمام بشكل كامل",
+      "بعد ما باروح الحمام بحس إن في باقي",
+      "الحمام مش كافي وبحس إن في باقي"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Sensation of incomplete evacuation / tenesmus",
+    "clinical_term_ar": "إحساس بعدم اكتمال التبرز / زحير",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-058",
+    "egyptian_phrases": [
+      "بحس بوجع تحت الضلوع من اليمين بعد الأكل الدسم",
+      "بعد الأكل الدهني بيجيلي وجع تحت الضلوع",
+      "الأكل الدسم بيعملي وجع في جنبي"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Post-fatty meal right upper quadrant pain / possible biliary colic",
+    "clinical_term_ar": "ألم الربع العلوي الأيمن بعد الأكل الدهني / اشتباه مغص صفراوي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "MAYO-GI-013"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-059",
+    "egyptian_phrases": [
+      "بتقيأ دم",
+      "طلع مني دم لما اتقيأت",
+      "القيء فيه دم"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Hematemesis (vomiting blood)",
+    "clinical_term_ar": "قيء دموي",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-003",
+      "NHS-GI-004"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-060",
+    "egyptian_phrases": [
+      "إسهالي مستمر من أسبوعين",
+      "الإسهال مش بيوقف عندي من فترة",
+      "فضلت بيجيلي إسهال من أسبوعين"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Persistent diarrhea (> 2 weeks)",
+    "clinical_term_ar": "إسهال مستمر (أكثر من أسبوعين)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-061",
+    "egyptian_phrases": [
+      "إمساكي شديد وما بروحش الحمام من أيام",
+      "ما روحتش الحمام من 5 أيام",
+      "بقيت محتاجة أعمل مجهود كبير في الحمام"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Severe constipation",
+    "clinical_term_ar": "إمساك شديد",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-062",
+    "egyptian_phrases": [
+      "بحس بغثيان مستمر من غير ما أتقيأ",
+      "معدتي بتلف طول اليوم",
+      "غثيان مستمر من غير سبب واضح"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Chronic nausea without vomiting",
+    "clinical_term_ar": "غثيان مزمن دون قيء",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-001",
+      "NHS-GI-002"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-063",
+    "egyptian_phrases": [
+      "بحس بحرقة في صدري بعد الأكل",
+      "الحموضة بتطلع لصدري بعد الوجبة",
+      "حموضة بتطلع لفوق بعد الأكل"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Gastroesophageal reflux symptoms",
+    "clinical_term_ar": "أعراض ارتجاع المريء المعدي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-002",
+      "NHS-GI-003"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-064",
+    "egyptian_phrases": [
+      "اتعب كبدي واتورم",
+      "كبدي منتفخ وفيه مشكلة",
+      "الدكتور قالي كبدك اتضخم"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Hepatomegaly symptoms / suspected liver involvement",
+    "clinical_term_ar": "أعراض تضخم الكبد / اشتباه مشاركة كبدية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "WHO-GI-014"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-065",
+    "egyptian_phrases": [
+      "بشم ريحة البراز طول اليوم في فمي",
+      "ريحة فمي زي البراز",
+      "في ريحة وحشة جاية من جوايا"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Feculent breath / possible GI dysmotility",
+    "clinical_term_ar": "نفس بري / اشتباه اضطراب حركة الجهاز الهضمي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-001",
+      "NHS-GI-002"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-066",
+    "egyptian_phrases": [
+      "بحس بوجع حاد في بطني بيجي فجأة وبيروح",
+      "مغص حاد بيجي وبيروح لوحده",
+      "وجع بطن يجي فجأة ويمشي من غير سبب"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Intermittent acute abdominal pain",
+    "clinical_term_ar": "ألم بطني حاد متقطع",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-004",
+      "NHS-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-067",
+    "egyptian_phrases": [
+      "شهيتي للأكل اتقلت كتير",
+      "بقيت مش قادر آكل زي زمان",
+      "ما بقيتش قادر آكل حتى لو جعان"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Loss of appetite / anorexia",
+    "clinical_term_ar": "فقدان الشهية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-010",
+      "NHS-GI-011"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-068",
+    "egyptian_phrases": [
+      "بحس بوجع حاد في السرة ونزل لأسفل",
+      "الوجع بدأ في وسط بطني وروح لتحت اليمين",
+      "بطني بيوجعني وانتقل الوجع"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Migratory abdominal pain from periumbilical to right iliac",
+    "clinical_term_ar": "ألم بطني منتقل من السرة للحفرة الحرقفية اليمنى",
+    "is_red_flag": true,
+    "recommended_specialty": "الجراحة العامة",
+    "linked_doc_ids": [
+      "NHS-GI-006",
+      "NHS-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-069",
+    "egyptian_phrases": [
+      "برازي فاتح اللون جداً",
+      "برازي أبيض أو أصفر فاتح",
+      "لون الحمام بتاعي اتغير لفاتح"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Pale / acholic stools (possible biliary obstruction)",
+    "clinical_term_ar": "براز شاحب / فاقد الصبغة (اشتباه انسداد صفراوي)",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "WHO-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-070",
+    "egyptian_phrases": [
+      "بحس بعدم راحة في معدتي بعد الأكل بفترة بسيطة",
+      "بحس بامتلاء بعد أكل شوية بس",
+      "معدتي بتتملى بسرعة"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Early satiety / post-prandial fullness",
+    "clinical_term_ar": "شبع مبكر / امتلاء ما بعد الأكل",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-002",
+      "NHS-GI-003"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-071",
+    "egyptian_phrases": [
+      "بحس بوجع حاد في الظهر مع بطني",
+      "الوجع راح لضهري من بطني",
+      "بطني وضهري بيوجعوا مع بعض"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Abdominal pain radiating to back / possible pancreatic involvement",
+    "clinical_term_ar": "ألم بطني يمتد للظهر / اشتباه مشاركة البنكرياس",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-010",
+      "MAYO-GI-008"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-072",
+    "egyptian_phrases": [
+      "بحس بغصة في أسفل بطني يسار",
+      "وجع في الجهة اليسار من تحت بطني",
+      "جنب بطني الأيسر من تحت بيوجعني"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Left lower quadrant pain",
+    "clinical_term_ar": "ألم الربع السفلي الأيسر",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-007",
+      "NHS-GI-008"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-073",
+    "egyptian_phrases": [
+      "بحس بحرقة في مؤخرتي حتى من غير ما أروح الحمام",
+      "الفتحة بتحرق طول اليوم",
+      "حرقة مستمرة في الشرج"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Persistent anal burning / possible hemorrhoids or fissure",
+    "clinical_term_ar": "حرقة شرجية مستمرة / اشتباه بواسير أو شرخ",
+    "is_red_flag": false,
+    "recommended_specialty": "الجراحة العامة",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-074",
+    "egyptian_phrases": [
+      "بحس بغضب في بطني بعد أكل القمح",
+      "بطني بيتعب لما باكل خبز أو مكرونة",
+      "الدقيق بيعملي مشكلة في بطني"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "GI symptoms after gluten intake / possible gluten sensitivity",
+    "clinical_term_ar": "أعراض هضمية بعد تناول الغلوتين / اشتباه حساسية الغلوتين",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-007",
+      "WHO-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-075",
+    "egyptian_phrases": [
+      "بشوف مخاط في برازي",
+      "في مواد لزجة في الحمام بتاعي",
+      "برازي فيه مخاط"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Mucus in stool",
+    "clinical_term_ar": "مخاط في البراز",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-076",
+    "egyptian_phrases": [
+      "بحس بوجع حاد فجأة في كل بطني",
+      "بطني كله بيوجعني بشدة",
+      "وجع حاد في كل البطن من غير سبب"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Generalized acute abdominal pain",
+    "clinical_term_ar": "ألم بطني حاد معمم",
+    "is_red_flag": true,
+    "recommended_specialty": "الجراحة العامة",
+    "linked_doc_ids": [
+      "NHS-GI-004",
+      "NHS-GI-006"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-077",
+    "egyptian_phrases": [
+      "بحس بضغط وعدم ارتياح في الجانب الأيمن من بطني",
+      "كبدي منتفخ وفيه ضغط",
+      "في ثقل في يمين بطني"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Right upper quadrant heaviness / possible liver or gallbladder involvement",
+    "clinical_term_ar": "ثقل الربع العلوي الأيمن / اشتباه مشاركة كبد أو مرارة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
+    "linked_doc_ids": [
+      "NHS-GI-009",
+      "MAYO-GI-013"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-078",
+    "egyptian_phrases": [
+      "بحس بحرق في فمي لما بشرب حاجة حامضة",
+      "فمي حساس وبيتألم من الحموضة",
+      "بحس بحرقة في الحلق"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Oropharyngeal burning / possible esophageal irritation",
+    "clinical_term_ar": "حرقة فموية بلعومية / اشتباه تهيج المريء",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-002",
+      "NHS-GI-003"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-079",
+    "egyptian_phrases": [
+      "بحس بوجع في الأمعاء مع حرارة وإسهال",
+      "بطني بيوجعني مع إسهال وسخونية",
+      "مغص وإسهال مع حرارة"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Gastroenteritis symptoms (pain, diarrhea, fever)",
+    "clinical_term_ar": "أعراض التهاب المعدة والأمعاء (ألم، إسهال، حمى)",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-005",
+      "NHS-GI-007"
+    ]
+  },
+  {
+    "slang_id": "EG-GI-080",
+    "egyptian_phrases": [
+      "بحس بانتفاخ شديد في بطني بالليل",
+      "بطني بيانتفخ جداً في الليل",
+      "الغازات بتتراكم ليلاً"
+    ],
+    "category": "gastrointestinal",
+    "clinical_term_en": "Nocturnal abdominal bloating",
+    "clinical_term_ar": "انتفاخ بطني ليلي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الجهاز الهضمي",
+    "linked_doc_ids": [
+      "NHS-GI-007",
+      "NHS-GI-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-037",
+    "egyptian_phrases": [
+      "إيدي بتوجعني لما بمسك حاجة زمان",
+      "بيجيلي وجع في رصغتي لما بشتغل",
+      "وجع وخدر في معصمي وإيدي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Wrist and hand pain / possible carpal tunnel syndrome",
+    "clinical_term_ar": "ألم الرسغ واليد / اشتباه متلازمة النفق الرسغي",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-005",
+      "NHS-MSK-006"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-038",
+    "egyptian_phrases": [
+      "كتفي بيوجعني لما أرفع إيدي",
+      "الكتف بيوجعني لما بحاول أرفع دراعي",
+      "ما بقيتش قادر أرفع إيدي فوق من الوجع"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Shoulder pain with restricted elevation / possible rotator cuff issue",
+    "clinical_term_ar": "ألم الكتف مع تقييد الرفع / اشتباه مشكلة كفة الدوران",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-003",
+      "NHS-MSK-004"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-039",
+    "egyptian_phrases": [
+      "إيدي بتوجعني في الجانب الخارجي من الكوع",
+      "الكوع بيوجعني لما بحمل حاجة",
+      "وجع في كوعي من برا"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Lateral elbow pain / suspected lateral epicondylitis (tennis elbow)",
+    "clinical_term_ar": "ألم الكوع الجانبي / اشتباه التهاب اللقيمة الجانبية",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-004",
+      "NHS-MSK-005"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-040",
+    "egyptian_phrases": [
+      "ركبتي منتفخة وفيها مية",
+      "في سوائل في ركبتي",
+      "ركبتي انتفخت وحسيت بمية جوها"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Knee effusion (fluid in joint)",
+    "clinical_term_ar": "انصباب ركبة (سائل في المفصل)",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-007",
+      "NHS-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-041",
+    "egyptian_phrases": [
+      "عندي تهيج في أوتار قدمي",
+      "وجع في الوتر بتاع كعبي",
+      "الوتر في قدمي بيوجعني لما أمشي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Achilles tendinopathy",
+    "clinical_term_ar": "اعتلال وتر أخيل",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-009",
+      "NHS-MSK-010"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-042",
+    "egyptian_phrases": [
+      "بحس بوجع في مفصل الورك",
+      "الورك بيوجعني لما أمشي",
+      "في وجع في الفخذ من جهة المفصل"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Hip joint pain",
+    "clinical_term_ar": "ألم مفصل الورك",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-010",
+      "NHS-MSK-011"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-043",
+    "egyptian_phrases": [
+      "بحس بوجع في جانب الورك من برا",
+      "جنب فخذي من برا بيوجعني",
+      "الجانب الخارجي للفخذ بيوجعني"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Lateral hip pain / possible trochanteric bursitis",
+    "clinical_term_ar": "ألم الورك الجانبي / اشتباه التهاب الجراب المدور",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-010",
+      "MAYO-MSK-012"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-044",
+    "egyptian_phrases": [
+      "بحس بوجع في تحت القدم لما أوقف الصبح",
+      "باطن قدمي بيوجعني لما أوقف للأول",
+      "الصبح لما بوقف باطن رجلي بيؤلمني"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Plantar fascia pain / suspected plantar fasciitis",
+    "clinical_term_ar": "ألم اللفافة الأخمصية / اشتباه التهاب اللفافة الأخمصية",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-009",
+      "NHS-MSK-010"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-045",
+    "egyptian_phrases": [
+      "عضلاتي بتوجعني طول جسمي من غير ما أكون اتعب",
+      "كل عضلاتي بتوجعني",
+      "جسمي كله بيوجعني في العضلات"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Widespread myalgia / possible fibromyalgia",
+    "clinical_term_ar": "ألم عضلي منتشر / اشتباه الألم العضلي الليفي",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-MSK-012",
+      "MAYO-MSK-013"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-046",
+    "egyptian_phrases": [
+      "بصحى من النوم وإيدي بتوجعني وشادة",
+      "صباحاً مفاصلي شادة وبيوجعوني",
+      "الشد والوجع في المفاصل الصبح"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Morning joint stiffness",
+    "clinical_term_ar": "تيبس مفاصل الصباح",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-MSK-012",
+      "NHS-MSK-013"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-047",
+    "egyptian_phrases": [
+      "بحس بوجع في العمود الفقري الأسفل بيمتد للرجل",
+      "وجع ظهري بيوصل لرجلي",
+      "الوجع بيمشي من ضهري لرجلي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Low back pain radiating to leg / possible sciatica",
+    "clinical_term_ar": "ألم أسفل الظهر يمتد للرجل / اشتباه عرق النسا",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-001",
+      "NHS-MSK-002"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-048",
+    "egyptian_phrases": [
+      "بحس بحرقة في ظهري مع الوجع",
+      "ظهري بيحرق وبيوجعني",
+      "في وجع حارق في أسفل ظهري"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Burning low back pain",
+    "clinical_term_ar": "ألم حارق في أسفل الظهر",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-001",
+      "NHS-MSK-003"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-049",
+    "egyptian_phrases": [
+      "إيدي بتوجعني في الليل وبيصحيني من النوم",
+      "الوجع في معصمي والأصابع بيصحيني الليل",
+      "بفيق من النوم من وجع إيدي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Nocturnal hand/wrist pain (possible carpal tunnel syndrome)",
+    "clinical_term_ar": "ألم اليد والرسغ الليلي (اشتباه متلازمة النفق الرسغي)",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-005",
+      "MAYO-MSK-004"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-050",
+    "egyptian_phrases": [
+      "ركبتي بتطقطق لما أقوم من الكرسي",
+      "في صوت في ركبتي لما أتحرك",
+      "ركبتي بتعمل صوت عند الحركة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Knee crepitus (joint sounds with movement)",
+    "clinical_term_ar": "فرقعة الركبة (أصوات المفصل عند الحركة)",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-007",
+      "NHS-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-051",
+    "egyptian_phrases": [
+      "بحس بوجع في رقبتي بيوصل لكتفي",
+      "رقبتي شادة وبيوجعني الكتف",
+      "وجع من الرقبة للكتف"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Cervicobrachial pain (neck to shoulder/arm pain)",
+    "clinical_term_ar": "ألم عنقي-ذراعي",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-002",
+      "NHS-MSK-003"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-052",
+    "egyptian_phrases": [
+      "بحس بوجع في الكعب لما أمشي",
+      "كعبي بيوجعني مع كل خطوة",
+      "الوجع في الكعب بيمنعني من المشي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Heel pain (possible calcaneal spur or bursitis)",
+    "clinical_term_ar": "ألم الكعب (اشتباه شوكة الكعب أو التهاب الجراب)",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-009",
+      "NHS-MSK-010"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-053",
+    "egyptian_phrases": [
+      "إيدي بتتورم في المفاصل",
+      "أصابعي منتفخة في المفاصل",
+      "مفاصل أصابعي متورمة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Swollen finger joints",
+    "clinical_term_ar": "تورم مفاصل الأصابع",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-MSK-012",
+      "NHS-MSK-013"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-054",
+    "egyptian_phrases": [
+      "بحس بوجع في الكتف اليمين لما أنام عليه",
+      "مقدرش أنام على كتفي من الوجع",
+      "الوجع بيجي لما بنام على كتفي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Shoulder pain when lying on it",
+    "clinical_term_ar": "ألم الكتف عند الاستلقاء عليه",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-003",
+      "NHS-MSK-004"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-055",
+    "egyptian_phrases": [
+      "ظهري انكسر من فترة وبيوجعني لحد دلوقتي",
+      "عملت حادثة وظهري اتكسر وما اتعدلش",
+      "كسر في العمود الفقري قديم بيوجعني"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Chronic pain from old vertebral fracture",
+    "clinical_term_ar": "ألم مزمن من كسر فقري قديم",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-001",
+      "NHS-MSK-002"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-056",
+    "egyptian_phrases": [
+      "بحس بوجع في العضلة بين الرقبة والكتف",
+      "الكتف والرقبة شادين ووجع",
+      "في عضلة شادة بين رقبتي وكتفي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Trapezius muscle pain / myofascial trigger point",
+    "clinical_term_ar": "ألم عضلة الشبه منحرف / نقطة إشعال عضلية",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-002",
+      "NHS-MSK-003"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-057",
+    "egyptian_phrases": [
+      "إيدي بتتعقد في الصبح مش قادر أفتح أصابعي",
+      "أصابعي شادة الصبح وما بتتفتحش",
+      "أصابعي بتتعقد وأنا صاحي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Morning finger stiffness / possible trigger finger or inflammatory arthritis",
+    "clinical_term_ar": "تيبس أصابع الصباح / اشتباه الإصبع الزناد أو التهاب مفاصل التهابي",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-MSK-012",
+      "NHS-MSK-013"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-058",
+    "egyptian_phrases": [
+      "بحس بوجع تحت الركبة من الأمام",
+      "في وجع في العظمة اللي تحت ركبتي",
+      "وجع في مقدمة أسفل الركبة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Anterior knee pain / possible patellar tendinopathy",
+    "clinical_term_ar": "ألم أمامي الركبة / اشتباه اعتلال وتر الرضفة",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-007",
+      "NHS-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-059",
+    "egyptian_phrases": [
+      "ركبتي مش قادر أعدلها خالص",
+      "الركبة بقت متعقدة ومش بتتعدل",
+      "مش قادر أفرد رجلي من الركبة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Limited knee extension",
+    "clinical_term_ar": "تقييد في مد الركبة",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-007",
+      "NHS-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-060",
+    "egyptian_phrases": [
+      "بحس بوجع في العظام بعد الرياضة",
+      "عضلاتي وعظامي بتوجعني بعد الجيم",
+      "بعد التمرين بيجيلي وجع شديد في العضلات"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Exercise-induced muscle and bone pain",
+    "clinical_term_ar": "ألم عضلي وعظمي ما بعد التمرين",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-011",
+      "NHS-MSK-012"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-061",
+    "egyptian_phrases": [
+      "بحس بوجع في أسفل ظهري لما أوقف فترة طويلة",
+      "ظهري بيوجعني لما باقف طول",
+      "الوقوف بيرهق ظهري"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Low back pain aggravated by prolonged standing",
+    "clinical_term_ar": "ألم أسفل الظهر يزيد بالوقوف الطويل",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-001",
+      "NHS-MSK-002"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-062",
+    "egyptian_phrases": [
+      "بحس بضعف في الفخذ مش قادر أقوم من الكرسي بسهولة",
+      "فخذي ضعيف وما بأقومش من الكرسي بسهولة",
+      "صعب أقوم لوحدي من الوقفة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Proximal leg weakness / difficulty rising from chair",
+    "clinical_term_ar": "ضعف في عضلات الفخذ / صعوبة في النهوض من الكرسي",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-010",
+      "NHS-MSK-011"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-063",
+    "egyptian_phrases": [
+      "بحس بوجع في وسط ظهري بين الكتفين",
+      "الظهر الأوسط بيوجعني",
+      "وجع في مؤخرة الصدر بين كتفيا"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Mid-back / thoracic pain",
+    "clinical_term_ar": "ألم الظهر الأوسط / الصدري",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-001",
+      "NHS-MSK-002"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-064",
+    "egyptian_phrases": [
+      "بحس بضغط في عضلة ساقي",
+      "عضلة ساقي متضاغطة ومتألمة",
+      "في شد في عضلة رجلي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Calf muscle tightness / possible compartment syndrome or cramping",
+    "clinical_term_ar": "شد عضلة الساق / اشتباه تشنج أو متلازمة الحجرة",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-009",
+      "NHS-MSK-010"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-065",
+    "egyptian_phrases": [
+      "بحس بوجع في الكتف ومش قادر أحرك إيدي بحرية",
+      "كتفي متعقد ومش بيتحرك كويس",
+      "حركة كتفي محدودة ومؤلمة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Shoulder stiffness with restricted range of motion / possible frozen shoulder",
+    "clinical_term_ar": "تيبس الكتف مع تقييد الحركة / اشتباه الكتف المتجمد",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-003",
+      "MAYO-MSK-007"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-066",
+    "egyptian_phrases": [
+      "بحس بوجع في العظام لما الجو بيتغير",
+      "الجو البارد بيرهق مفاصلي",
+      "لما الجو بيتغير بيجيني وجع في المفاصل"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Weather-related joint pain / possible arthropathy",
+    "clinical_term_ar": "ألم مفاصل مرتبط بتغير الطقس / اشتباه اعتلال مفصلي",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-MSK-012",
+      "WHO-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-067",
+    "egyptian_phrases": [
+      "بحس بوجع في الكوع والساعد لما بشتغل بالكمبيوتر",
+      "الكوع بيوجعني بعد الشغل في الكمبيوتر",
+      "كوعي وساعدي متعبين من الشغل"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Work-related elbow and forearm pain / possible repetitive strain",
+    "clinical_term_ar": "ألم الكوع والساعد المرتبط بالعمل / اشتباه إجهاد متكرر",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-004",
+      "NHS-MSK-005"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-068",
+    "egyptian_phrases": [
+      "بحس بوجع في العظم من جوه مش في العضلة",
+      "الوجع جوا العظمة",
+      "وجع في داخل العظام وليس العضلات"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Bone pain (deep aching)",
+    "clinical_term_ar": "ألم العظام (وجع عميق)",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-013",
+      "NHS-MSK-014"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-069",
+    "egyptian_phrases": [
+      "إيدي الليلة اتفكك وما عرفتش أرفعها",
+      "فجأة ذراعي ما اشتغلتش صح",
+      "إيدي خانتني فجأة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Sudden arm weakness / possible nerve impingement",
+    "clinical_term_ar": "ضعف مفاجئ في الذراع / اشتباه ضغط على العصب",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-002",
+      "NHS-MSK-003"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-070",
+    "egyptian_phrases": [
+      "بحس بوجع في الفخذ من الأمام لما أمشي كتير",
+      "وجع في أمام الفخذ لما أتحرك",
+      "الجانب الأمامي من الفخذ بيوجعني"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Anterior thigh pain with activity",
+    "clinical_term_ar": "ألم أمامي الفخذ مع الحركة",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-010",
+      "NHS-MSK-011"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-071",
+    "egyptian_phrases": [
+      "بحس بوجع تحت إبطي لما أرفع إيدي",
+      "إبطي بيوجعني لما أمد إيدي",
+      "في وجع في الإبط من الأعلى"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Axillary pain with arm elevation",
+    "clinical_term_ar": "ألم الإبط عند رفع الذراع",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-003",
+      "NHS-MSK-004"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-072",
+    "egyptian_phrases": [
+      "بحس بوجع في الركبة من الجانب الداخلي",
+      "جانب ركبتي من جوه بيوجعني",
+      "الجانب الداخلي للركبة متألم"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Medial knee pain / possible medial collateral ligament strain",
+    "clinical_term_ar": "ألم الجانب الداخلي للركبة / اشتباه إجهاد الرباط الجانبي الأنسي",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-007",
+      "NHS-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-073",
+    "egyptian_phrases": [
+      "بحس بوجع في العضلات بعد مجهود بسيط",
+      "أي تعب صغير بيخلي عضلاتي تألم",
+      "عضلاتي سريعة التعب"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Myalgia with low exercise threshold",
+    "clinical_term_ar": "ألم عضلي مع عتبة مجهود منخفضة",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-MSK-012",
+      "MAYO-MSK-013"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-074",
+    "egyptian_phrases": [
+      "بحس بوجع في كعب قدمي الأول بالصبح",
+      "أول خطوة بالصبح بتوجعني",
+      "الخطوة الأولى دايماً صعبة ومؤلمة"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Start-up heel pain in the morning",
+    "clinical_term_ar": "ألم كعب بداية الصباح",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-009",
+      "NHS-MSK-010"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-075",
+    "egyptian_phrases": [
+      "بحس بوجع في الركبة بعد صعود الدرج",
+      "الدرج بيأثر على ركبتي",
+      "الركبة بتوجعني بعد صعود سلالم"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Knee pain aggravated by stair climbing",
+    "clinical_term_ar": "ألم الركبة يزيد بصعود السلم",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-007",
+      "NHS-MSK-008"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-076",
+    "egyptian_phrases": [
+      "بحس بوجع في رقبتي لما أنام على وسادة معينة",
+      "الوسادة بتعمل لي وجع رقبة",
+      "نومي بيأذي رقبتي"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Sleep-related neck pain",
+    "clinical_term_ar": "ألم الرقبة المرتبط بوضعية النوم",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-002",
+      "NHS-MSK-003"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-077",
+    "egyptian_phrases": [
+      "إيدي الواحدة ضعيفة أكتر من التانية",
+      "بحس بفرق في قوة الإيدين",
+      "إيد أقوى من التانية"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Asymmetric upper limb weakness",
+    "clinical_term_ar": "ضعف غير متماثل في الأطراف العلوية",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-005",
+      "NHS-MSK-006"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-078",
+    "egyptian_phrases": [
+      "بحس بضغط وألم في الظهر لما أجلس في الشغل",
+      "الجلوس الطويل بيرهق ظهري",
+      "ظهري بيوجعني بعد الجلوس الطويل"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Back pain with prolonged sitting / possible postural strain",
+    "clinical_term_ar": "ألم الظهر مع الجلوس الطويل / اشتباه إجهاد وضعي",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-001",
+      "NHS-MSK-002"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-079",
+    "egyptian_phrases": [
+      "بحس بانتفاخ في مفصل الكوع",
+      "الكوع انتفخ فجأة",
+      "مفصل الكوع متورم"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Elbow joint swelling / possible olecranon bursitis",
+    "clinical_term_ar": "تورم مفصل الكوع / اشتباه التهاب جراب المرفق",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-004",
+      "MAYO-MSK-012"
+    ]
+  },
+  {
+    "slang_id": "EG-MSK-080",
+    "egyptian_phrases": [
+      "بحس بوجع في العظام في الليل فقط",
+      "العظام بتوجعني لما بنام",
+      "وجع العظام الليلي بيصحيني"
+    ],
+    "category": "musculoskeletal",
+    "clinical_term_en": "Nocturnal bone pain",
+    "clinical_term_ar": "ألم العظام الليلي",
+    "is_red_flag": false,
+    "recommended_specialty": "جراحة العظام",
+    "linked_doc_ids": [
+      "NHS-MSK-013",
+      "NHS-MSK-014"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-037",
+    "egyptian_phrases": [
+      "عندي حرارة عالية مع وجع في العظام وكسل شديد",
+      "سخونية وجسمي كله بيوجعني",
+      "حرارة وأوجاع في الجسم كله"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "High fever with myalgia / possible viral illness",
+    "clinical_term_ar": "حمى مرتفعة مع ألم عضلي / اشتباه مرض فيروسي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-001",
+      "WHO-SYS-003"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-038",
+    "egyptian_phrases": [
+      "عندي حرارة بتجي وبتروح",
+      "السخونية بتيجي كل أسبوع",
+      "بيجيني حمى متقطعة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Recurrent fever / possible malaria or periodic fever",
+    "clinical_term_ar": "حمى متكررة / اشتباه ملاريا أو حمى دورية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-002",
+      "WHO-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-039",
+    "egyptian_phrases": [
+      "بحس بكسل وثقل شديد في جسمي من غير أسباب",
+      "جسمي تقيل وما بقدرش أعمل حاجة",
+      "إرهاق شديد من غير سبب واضح"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Unexplained fatigue and malaise",
+    "clinical_term_ar": "إرهاق وتعب غير مبرر",
+    "is_red_flag": false,
+    "recommended_specialty": "الطب الباطني",
+    "linked_doc_ids": [
+      "NHS-SYS-001",
+      "NHS-SYS-002"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-040",
+    "egyptian_phrases": [
+      "جلدي بيحكك من غير ما يبقى فيه طفح",
+      "بيجيلي حكة شديدة في جسمي",
+      "حكة في جسمي من غير حبوب"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Generalized pruritus without rash (possible systemic cause)",
+    "clinical_term_ar": "حكة معممة بدون طفح (محتملة المنشأ الجهازي)",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-007",
+      "NHS-SYS-008"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-041",
+    "egyptian_phrases": [
+      "بحس بحرارة مع تعرق شديد بالليل",
+      "بفوق من النوم وأنا مبلول من العرق",
+      "تعرق ليلي شديد مع حرارة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Night sweats with low-grade fever",
+    "clinical_term_ar": "تعرق ليلي مع حمى خفيفة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-002",
+      "NHS-SYS-003"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-042",
+    "egyptian_phrases": [
+      "جلدي بيطلع فيه بقع حمرا بعد الشمس",
+      "لما بتعرض للشمس جلدي بيتحسس",
+      "بقع حمرا بتظهر بعد الشمس"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Photosensitive skin rash",
+    "clinical_term_ar": "طفح جلدي حساس للضوء",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-008",
+      "NHS-SYS-009"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-043",
+    "egyptian_phrases": [
+      "شعري بيتساقط كتير جداً",
+      "بقيت أفقد شعر كتير في وقت قصير",
+      "الشعر بيطلع مع الماشط"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Excessive hair loss / possible systemic or hormonal cause",
+    "clinical_term_ar": "تساقط شعر مفرط / احتمال سبب جهازي أو هرموني",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-009",
+      "NHS-SYS-010"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-044",
+    "egyptian_phrases": [
+      "وزني زاد بسرعة من غير ما آكل أكتر",
+      "بكسب وزن بسرعة مع نفس الأكل",
+      "وزني بيزيد بدون سبب واضح"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Unexplained weight gain",
+    "clinical_term_ar": "زيادة وزن غير مبررة",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-045",
+    "egyptian_phrases": [
+      "وزني بيقل من غير رجيم",
+      "بفقد وزن بدون ما أعمل حاجة",
+      "وزني نازل بسرعة ومش عارف ليه"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Unexplained weight loss",
+    "clinical_term_ar": "نقص وزن غير مبرر",
+    "is_red_flag": true,
+    "recommended_specialty": "الطب الباطني",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-046",
+    "egyptian_phrases": [
+      "عيني اتصفرت ومفيش وجع",
+      "لاحظت صفرة في عيني",
+      "الصفرا بدت في عيني وجلدي"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Jaundice (possible hepatic or hemolytic cause)",
+    "clinical_term_ar": "يرقان (محتمل الأصل الكبدي أو الانحلالي)",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "WHO-SYS-013"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-047",
+    "egyptian_phrases": [
+      "بحس بغصة وبرودة في جسمي وحرارة ومفيش تحسن",
+      "السخونية مش بتقل من أيام",
+      "الحرارة مستمرة ومش بتستجاوب للدواء"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Persistent fever not responding to antipyretics",
+    "clinical_term_ar": "حمى مستمرة لا تستجيب لخافضات الحرارة",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-001",
+      "NHS-SYS-002"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-048",
+    "egyptian_phrases": [
+      "بحس بحرارة مع ألم في المفاصل والجلد",
+      "سخونية ومفاصل بتوجعني مع طفح جلدي",
+      "حمى مع طفح وأوجاع"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Fever with arthralgia and rash / possible viral or autoimmune",
+    "clinical_term_ar": "حمى مع ألم مفاصل وطفح / اشتباه فيروسي أو مناعي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-004"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-049",
+    "egyptian_phrases": [
+      "بحس بغدة في رقبتي منتفخة",
+      "في غدة متضخمة في عنقي",
+      "غدد رقبتي منتفخين من فترة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Cervical lymphadenopathy",
+    "clinical_term_ar": "تضخم العقد الليمفاوية العنقية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-004",
+      "NHS-SYS-005"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-050",
+    "egyptian_phrases": [
+      "جلدي بيتبهق وبتظهر فيه بقع فاتحة",
+      "جلدي فيه بقع بيضاء منتشرة",
+      "في أماكن في جلدي فقدت لونها"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Depigmented skin patches / possible vitiligo",
+    "clinical_term_ar": "بقع جلدية منزوعة الصبغة / اشتباه البهاق",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-009",
+      "NHS-SYS-010"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-051",
+    "egyptian_phrases": [
+      "بحس بعطش شديد وبشرب مية كتير جداً",
+      "بشرب مية كتير وبروح الحمام أكتر",
+      "عطشان طول الوقت وبروح الحمام كتير"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Polydipsia and polyuria / possible blood sugar dysregulation",
+    "clinical_term_ar": "كثرة العطش وكثرة التبول / اشتباه اضطراب سكر الدم",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-052",
+    "egyptian_phrases": [
+      "بحس بضعف عام وشحوب وما بقدرش أشتغل",
+      "شايل نفسي ووجهي شاحب",
+      "وشي شاحب وأنا دايماً تعبان"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Pallor with weakness / possible anemia",
+    "clinical_term_ar": "شحوب مع ضعف / اشتباه فقر الدم",
+    "is_red_flag": false,
+    "recommended_specialty": "الطب الباطني",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-053",
+    "egyptian_phrases": [
+      "بيجيلي نزيف في اللثة بدون سبب",
+      "بحس بنزيف من فمي من اللثة",
+      "لثتي بتنزف من غير سبب"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Spontaneous gingival bleeding / possible coagulopathy",
+    "clinical_term_ar": "نزيف لثوي تلقائي / اشتباه اضطراب تخثر",
+    "is_red_flag": true,
+    "recommended_specialty": "الطب الباطني",
+    "linked_doc_ids": [
+      "NHS-SYS-004",
+      "WHO-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-054",
+    "egyptian_phrases": [
+      "بيجيلي كدمات بدون ما أضرب حاجة",
+      "كدمات بتظهر على جسمي من غير أسباب",
+      "جلدي بيتكدم بسهولة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Easy bruising / possible coagulation disorder",
+    "clinical_term_ar": "تكدم سهل / اشتباه اضطراب تخثر",
+    "is_red_flag": false,
+    "recommended_specialty": "الطب الباطني",
+    "linked_doc_ids": [
+      "NHS-SYS-004",
+      "NHS-SYS-005"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-055",
+    "egyptian_phrases": [
+      "جلدي بيتقشر ويتخشخش في أماكن معينة",
+      "جلدي بيتقشر وبيتفرفش",
+      "بقع تقشر في الجلد مع حكة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Scaling skin patches / possible psoriasis or eczema",
+    "clinical_term_ar": "بقع تقشرية / اشتباه صداف أو إكزيما",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-008",
+      "NHS-SYS-009"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-056",
+    "egyptian_phrases": [
+      "بحس بحرارة ووجع في الجسم بعد سفر",
+      "رجعت من السفر وعندي حرارة وكسل",
+      "بعد السفر جالتني حمى"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Post-travel fever / possible imported infection",
+    "clinical_term_ar": "حمى ما بعد السفر / اشتباه عدوى مستوردة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-002",
+      "WHO-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-057",
+    "egyptian_phrases": [
+      "درجة حرارتي عالية مع برعم حمرا على جلدي",
+      "جالتني حبوب حمرا مع سخونية",
+      "طفح جلدي مع حرارة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Fever with maculopapular rash",
+    "clinical_term_ar": "حمى مع طفح حطاطي بقعي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "WHO-SYS-003"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-058",
+    "egyptian_phrases": [
+      "بحس بوجع في مفاصل صغيرة زي أصابع إيدي وبحرارة",
+      "مفاصل أصابعي بتوجعني مع سخونية",
+      "وجع مفاصل الأصابع والحرارة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Small joint arthralgia with fever / possible reactive arthritis",
+    "clinical_term_ar": "ألم المفاصل الصغيرة مع حمى / اشتباه التهاب مفاصل تفاعلي",
+    "is_red_flag": false,
+    "recommended_specialty": "الروماتولوجيا",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-004"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-059",
+    "egyptian_phrases": [
+      "بيجيلي نزيف من الأنف مش عارف سببه",
+      "أنفي بيتنزف من غير سبب واضح",
+      "نزيف أنف متكرر"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Recurrent epistaxis / possible coagulopathy or hypertension",
+    "clinical_term_ar": "نزيف أنف متكرر / اشتباه اضطراب تخثر أو ارتفاع ضغط",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأنف والأذن والحنجرة",
+    "linked_doc_ids": [
+      "NHS-SYS-004",
+      "NHS-SYS-005"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-060",
+    "egyptian_phrases": [
+      "بحس بحرقة عند التبول",
+      "التبول بيوجعني وبيحرق",
+      "بول بيحرق ومتكرر"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Dysuria / suspected urinary tract infection",
+    "clinical_term_ar": "حرقة عند التبول / اشتباه التهاب المسالك البولية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب المسالك البولية",
+    "linked_doc_ids": [
+      "NHS-SYS-006",
+      "NHS-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-061",
+    "egyptian_phrases": [
+      "جلدي بيتحسس من الصابون والعطور",
+      "جلدي حساس وبيتأثر من المنتجات",
+      "جلدي بيتهيج من العطور والمستحضرات"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Contact dermatitis symptoms",
+    "clinical_term_ar": "أعراض التهاب الجلد التماسي",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-008",
+      "NHS-SYS-009"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-062",
+    "egyptian_phrases": [
+      "بحس بوجع في العضلات مع حرارة خفيفة",
+      "أوجاع جسم مع سخونية بسيطة",
+      "كسل شديد وعضلات بتوجع مع حرارة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Myalgia with low-grade fever / possible viral syndrome",
+    "clinical_term_ar": "ألم عضلي مع حمى خفيفة / اشتباه متلازمة فيروسية",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-001",
+      "NHS-SYS-003"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-063",
+    "egyptian_phrases": [
+      "بول لونه اتغير لأصفر غامق جداً",
+      "بولي داكن من فترة",
+      "لون بولي بقى أصفر غامق"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Dark urine / possible dehydration or liver involvement",
+    "clinical_term_ar": "بول داكن / اشتباه جفاف أو مشاركة كبدية",
+    "is_red_flag": false,
+    "recommended_specialty": "الطب الباطني",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-064",
+    "egyptian_phrases": [
+      "جلدي بيحمر وبيتورم في أماكن معينة",
+      "بقع حمرا ومنتفخة في جسمي",
+      "جلدي بيتهيج وبيتورم"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Localized skin erythema and swelling",
+    "clinical_term_ar": "احمرار وتورم جلدي موضعي",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-008",
+      "NHS-SYS-009"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-065",
+    "egyptian_phrases": [
+      "بحس بالبرد طول اليوم حتى في الصيف",
+      "بردان طول الوقت حتى في الحر",
+      "جسمي بارد طول الوقت مش مهما الجو"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Persistent cold intolerance / possible thyroid dysfunction",
+    "clinical_term_ar": "عدم تحمل البرد المستمر / اشتباه خلل الغدة الدرقية",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "MAYO-SYS-014"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-066",
+    "egyptian_phrases": [
+      "بحس بالحر طول اليوم وبتعرق كتير",
+      "أنا دايماً حارق وبتعرق",
+      "جسمي سخن طول الوقت وبعرق بسرعة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Heat intolerance with excessive sweating / possible hyperthyroidism",
+    "clinical_term_ar": "عدم تحمل الحرارة مع تعرق مفرط / اشتباه فرط نشاط الغدة الدرقية",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "MAYO-SYS-014"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-067",
+    "egyptian_phrases": [
+      "بحس بانتفاخ في رقبتي من الأمام",
+      "في تضخم في رقبتي من قدام",
+      "رقبتي منتفخة من الأمام"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Anterior neck swelling / suspected thyroid enlargement",
+    "clinical_term_ar": "تورم أمامي الرقبة / اشتباه تضخم الغدة الدرقية",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-068",
+    "egyptian_phrases": [
+      "جلدي جاف وبيتشقق في الشتاء والصيف",
+      "جلدي مش بيتحمل الجفاف",
+      "جلدي جاف كتير ومتشقق"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Severe dry skin / possible xerosis or systemic cause",
+    "clinical_term_ar": "جلد جاف شديد / اشتباه جفاف جلدي أو سبب جهازي",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-009",
+      "NHS-SYS-010"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-069",
+    "egyptian_phrases": [
+      "بحس بوجع في الحلق مع حرارة وغدد متضخمة",
+      "زوري وجعني مع سخونية وغدد رقبة",
+      "وجع حلق وغدد رقبة وحرارة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Sore throat with fever and lymphadenopathy",
+    "clinical_term_ar": "التهاب حلق مع حمى وتضخم غدد",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-004"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-070",
+    "egyptian_phrases": [
+      "جلدي بيطلع فيه حبوب زي الماية",
+      "في فقاعات في جلدي",
+      "بيجيلي بثور مائية في الجلد"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Vesicular skin rash (fluid-filled blisters)",
+    "clinical_term_ar": "طفح حويصلي (بثور مائية في الجلد)",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-008",
+      "NHS-SYS-009"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-071",
+    "egyptian_phrases": [
+      "بحس بحرارة وبحكة شديدة في جسمي",
+      "سخونية وجلدي بيحكك",
+      "حرارة مع حكة جلد شديدة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Fever with generalized pruritus",
+    "clinical_term_ar": "حمى مع حكة جلدية معممة",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-072",
+    "egyptian_phrases": [
+      "بحس بحرارة بدون أعراض تانية بارزة",
+      "معايا سخونية بس ومفيش حاجة ثانية",
+      "حمى بدون أعراض واضحة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Fever of unknown origin (without obvious focus)",
+    "clinical_term_ar": "حمى مجهولة المصدر",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-002",
+      "WHO-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-073",
+    "egyptian_phrases": [
+      "جلدي بيخرج منه شيء زي الحلقات الحمرا",
+      "في دواير حمرا بتظهر في جلدي",
+      "بقع حمرا دايرية بتظهر في جسمي"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Erythematous annular lesions (ring-like skin lesions)",
+    "clinical_term_ar": "آفات جلدية حمامية حلقية",
+    "is_red_flag": false,
+    "recommended_specialty": "الأمراض الجلدية",
+    "linked_doc_ids": [
+      "NHS-SYS-008",
+      "NHS-SYS-009"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-074",
+    "egyptian_phrases": [
+      "بول فيه دم",
+      "بولي لونه أحمر أو وردي",
+      "لاحظت دم في بولي"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Hematuria (blood in urine)",
+    "clinical_term_ar": "بول دموي",
+    "is_red_flag": true,
+    "recommended_specialty": "طب المسالك البولية",
+    "linked_doc_ids": [
+      "NHS-SYS-006",
+      "NHS-SYS-007"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-075",
+    "egyptian_phrases": [
+      "بحس بضيق في التنفس مع طفح جلدي وتورم في الوش",
+      "وشي انتفخ فجأة مع صعوبة في التنفس",
+      "تورم سريع في الوش مع ضيق تنفس"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Angioedema with respiratory compromise / severe allergic reaction",
+    "clinical_term_ar": "وذمة وعائية مع تعارض تنفسي / تفاعل تحسسي شديد",
+    "is_red_flag": true,
+    "recommended_specialty": "طب الحساسية والمناعة",
+    "linked_doc_ids": [
+      "NHS-SYS-007",
+      "WHO-SYS-003"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-076",
+    "egyptian_phrases": [
+      "بحس بكسل وبرود في الجلد وشعري بقى خشن",
+      "جلدي بقى جاف وخشن وشعري تغير",
+      "جلدي وشعري تغيروا مع تعب عام"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Dry skin with coarse hair and fatigue / possible hypothyroidism",
+    "clinical_term_ar": "جلد جاف مع شعر خشن وإرهاق / اشتباه قصور الغدة الدرقية",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "MAYO-SYS-014"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-077",
+    "egyptian_phrases": [
+      "بحس بتورم في ساقيا مع حرارة",
+      "رجليا منتفخين مع سخونية",
+      "وذمة رجلين مع حمى"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Leg edema with fever / possible infectious or systemic cause",
+    "clinical_term_ar": "وذمة الأطراف السفلية مع حمى / اشتباه سبب معدي أو جهازي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-004"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-078",
+    "egyptian_phrases": [
+      "بحس بالتعب بعد أكل السكريات بشكل غريب",
+      "بعد الأكل الحلو بحس بدوخة وتعب",
+      "السكريات بتعملي تعب ودوخة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Post-prandial fatigue / possible blood sugar dysregulation",
+    "clinical_term_ar": "إرهاق ما بعد الأكل / اشتباه اضطراب سكر الدم",
+    "is_red_flag": false,
+    "recommended_specialty": "الغدد الصماء والسكر",
+    "linked_doc_ids": [
+      "NHS-SYS-005",
+      "NHS-SYS-006"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-079",
+    "egyptian_phrases": [
+      "جالتني بقع حمرا في وشي مع حرارة",
+      "الوجه اتلون أحمر مع سخونية",
+      "وجهي بيحمر ومعايا حرارة"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Facial flushing with fever / possible systemic cause",
+    "clinical_term_ar": "احمرار الوجه مع حمى / اشتباه سبب جهازي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-004"
+    ]
+  },
+  {
+    "slang_id": "EG-SYS-080",
+    "egyptian_phrases": [
+      "بحس بوجع في الحلق مع بقع بيضاء",
+      "زوري فيه بقع بيضاء مع وجع",
+      "لقيت بقع بيضاء في حلقي مع سخونية"
+    ],
+    "category": "systemic_fever_derm",
+    "clinical_term_en": "Pharyngeal exudate with sore throat / possible streptococcal pharyngitis",
+    "clinical_term_ar": "إفرازات بلعومية مع التهاب حلق / اشتباه التهاب بلعوم عقدي",
+    "is_red_flag": false,
+    "recommended_specialty": "طب الأمراض المعدية",
+    "linked_doc_ids": [
+      "NHS-SYS-003",
+      "NHS-SYS-004"
+    ]
   }
 ]

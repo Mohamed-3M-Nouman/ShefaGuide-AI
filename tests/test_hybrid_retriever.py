@@ -32,8 +32,8 @@ def retriever() -> HybridRetriever:
 
 def test_corpus_has_25_unique_guideline_chunks() -> None:
     chunks = load_corpus(IN_MEMORY.corpus_path)
-    assert len(chunks) == 70
-    assert len({chunk.doc_id for chunk in chunks}) == 70
+    assert len(chunks) == 150
+    assert len({chunk.doc_id for chunk in chunks}) == 150
 
 
 def test_passages_cover_every_word_and_have_stable_ids() -> None:
