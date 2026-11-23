@@ -3049,7 +3049,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Bilateral lower limb edema (possible cardiac origin)",
-    "clinical_term_ar": "وذمة الأطراف السفلية (محتملة القلبية المنشأ)",
+    "clinical_term_ar": "وذمة الأطراف السفلية",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3117,7 +3117,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Suspected sleep apnea syndrome",
-    "clinical_term_ar": "اشتباه متلازمة توقف التنفس أثناء النوم",
+    "clinical_term_ar": "توقف التنفس أثناء النوم المتكرر",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3134,7 +3134,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Pleuritic chest pain (pain on breathing)",
-    "clinical_term_ar": "ألم جنبي (يزداد بالتنفس)",
+    "clinical_term_ar": "ألم جنبي",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3151,7 +3151,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Wheezing / suspected bronchospasm",
-    "clinical_term_ar": "صفير في الصدر / اشتباه تشنج القصبات",
+    "clinical_term_ar": "صفير في الصدر",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3236,7 +3236,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Suspected hyperinflation / air trapping",
-    "clinical_term_ar": "اشتباه انتفاخ الرئة / احتباس الهواء",
+    "clinical_term_ar": "احتباس الهواء وضيق التنفس",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3270,7 +3270,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Cold-triggered chest tightness / suspected bronchial hypersensitivity",
-    "clinical_term_ar": "ضيق صدر يثيره البرد / اشتباه فرط حساسية الشعب",
+    "clinical_term_ar": "ضيق صدر يثيره البرد",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3304,7 +3304,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Intermittent claudication (possible peripheral vascular involvement)",
-    "clinical_term_ar": "عرج متقطع (احتمال مشاركة وعائية محيطية)",
+    "clinical_term_ar": "عرج متقطع",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3321,7 +3321,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Irregular heartbeat / suspected arrhythmia",
-    "clinical_term_ar": "ضربات قلب غير منتظمة / اشتباه اضطراب النظم",
+    "clinical_term_ar": "ضربات قلب غير منتظمة",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3372,7 +3372,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Chronic cough (> 3 months)",
-    "clinical_term_ar": "سعال مزمن (أكثر من 3 أشهر)",
+    "clinical_term_ar": "سعال مزمن",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3406,7 +3406,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Deep vein thrombosis with respiratory symptoms (suspected pulmonary embolism)",
-    "clinical_term_ar": "تخثر وريدي عميق مع أعراض تنفسية (اشتباه صمة رئوية)",
+    "clinical_term_ar": "تخثر وريدي عميق مع أعراض تنفسية",
     "is_red_flag": true,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3423,7 +3423,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Sharp lateral chest pain (possible pleuritis)",
-    "clinical_term_ar": "وخز حاد جانبي في الصدر (احتمال التهاب الجنب)",
+    "clinical_term_ar": "وخز حاد جانبي في الصدر",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3457,7 +3457,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Purulent sputum with possible lower respiratory tract infection",
-    "clinical_term_ar": "بلغم قيحي مع اشتباه عدوى تنفسية سفلية",
+    "clinical_term_ar": "بلغم قيحي",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3474,7 +3474,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Abdomino-thoracic distension (possible cardiac decompensation)",
-    "clinical_term_ar": "انتفاخ بطني وصدري (احتمال عدم تعويض قلبي)",
+    "clinical_term_ar": "انتفاخ بطني وصدري",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3508,7 +3508,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Palpitations with pause sensation (possible ectopic beat)",
-    "clinical_term_ar": "خفقان مع إحساس بالتوقف (احتمال ضربات خارج الرحم)",
+    "clinical_term_ar": "خفقان مع إحساس بالتوقف",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3525,7 +3525,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Costochondral pain / suspected costochondritis",
-    "clinical_term_ar": "ألم غضروفي ضلعي / اشتباه التهاب غضاريف الضلوع",
+    "clinical_term_ar": "ألم غضروفي ضلعي",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3542,7 +3542,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Febrile chest pain / possible pericarditis or pneumonia",
-    "clinical_term_ar": "ألم صدري مع حمى / اشتباه التهاب التامور أو الالتهاب الرئوي",
+    "clinical_term_ar": "ألم صدري مع حمى",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3559,7 +3559,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Severe snoring / possible obstructive sleep apnea",
-    "clinical_term_ar": "شخير شديد / اشتباه انقطاع النفس الانسدادي النومي",
+    "clinical_term_ar": "شخير شديد",
     "is_red_flag": false,
     "recommended_specialty": "أمراض الصدر والرئة",
     "linked_doc_ids": [
@@ -3627,7 +3627,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Symptoms of suspected heart failure",
-    "clinical_term_ar": "أعراض اشتباه قصور القلب",
+    "clinical_term_ar": "ضيق التنفس وتورم الأطراف",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3746,7 +3746,7 @@
     ],
     "category": "cardiopulmonary",
     "clinical_term_en": "Distended neck veins (possible elevated venous pressure)",
-    "clinical_term_ar": "تضخم أوردة الرقبة (احتمال ارتفاع الضغط الوريدي)",
+    "clinical_term_ar": "تضخم أوردة الرقبة",
     "is_red_flag": false,
     "recommended_specialty": "طب القلب والأوعية الدموية",
     "linked_doc_ids": [
@@ -3797,7 +3797,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Photophobia (light sensitivity during headache)",
-    "clinical_term_ar": "رهاب الضوء (حساسية للضوء مع الصداع)",
+    "clinical_term_ar": "رهاب الضوء",
     "is_red_flag": false,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -3882,7 +3882,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Pulsating headache (possible vascular headache)",
-    "clinical_term_ar": "صداع نابض (محتمل الأصل الوعائي)",
+    "clinical_term_ar": "صداع نابض",
     "is_red_flag": false,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -3950,7 +3950,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Sudden facial pain / possible trigeminal neuralgia",
-    "clinical_term_ar": "ألم وجه مفاجئ / اشتباه ألم العصب ثلاثي التوائم",
+    "clinical_term_ar": "ألم وجه مفاجئ",
     "is_red_flag": false,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -4052,7 +4052,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Unilateral body weakness / possible hemiparesis",
-    "clinical_term_ar": "ضعف نصفي في الجسم / اشتباه شلل نصفي",
+    "clinical_term_ar": "ضعف نصفي في الجسم",
     "is_red_flag": true,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -4103,7 +4103,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Burning pain in legs (possible neuropathy)",
-    "clinical_term_ar": "ألم حارق في الأطراف (اشتباه اعتلال الأعصاب)",
+    "clinical_term_ar": "ألم حارق في الأطراف",
     "is_red_flag": false,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -4154,7 +4154,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Vertigo attacks (possible vestibular origin)",
-    "clinical_term_ar": "نوبات دوار (محتملة المنشأ الدهليزي)",
+    "clinical_term_ar": "نوبات دوار",
     "is_red_flag": false,
     "recommended_specialty": "طب الأنف والأذن والحنجرة",
     "linked_doc_ids": [
@@ -4222,7 +4222,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Facial pressure / suspected sinusitis",
-    "clinical_term_ar": "ضغط وجهي / اشتباه التهاب الجيوب الأنفية",
+    "clinical_term_ar": "ضغط وجهي",
     "is_red_flag": false,
     "recommended_specialty": "طب الأنف والأذن والحنجرة",
     "linked_doc_ids": [
@@ -4307,7 +4307,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Positional vertigo / possible BPPV",
-    "clinical_term_ar": "دوار وضعي / اشتباه دوار الوضع الانتيابي الحميد",
+    "clinical_term_ar": "دوار وضعي",
     "is_red_flag": false,
     "recommended_specialty": "طب الأنف والأذن والحنجرة",
     "linked_doc_ids": [
@@ -4341,7 +4341,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Dry eye syndrome symptoms",
-    "clinical_term_ar": "أعراض متلازمة جفاف العين",
+    "clinical_term_ar": "أعراض جفاف العين",
     "is_red_flag": false,
     "recommended_specialty": "طب العيون",
     "linked_doc_ids": [
@@ -4358,7 +4358,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Pulsating eye pain / possible elevated intraocular pressure",
-    "clinical_term_ar": "ألم نابض في العين / اشتباه ارتفاع ضغط العين",
+    "clinical_term_ar": "ألم نابض في العين",
     "is_red_flag": false,
     "recommended_specialty": "طب العيون",
     "linked_doc_ids": [
@@ -4375,7 +4375,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Ear pain with fever / suspected otitis",
-    "clinical_term_ar": "ألم أذن مع حمى / اشتباه التهاب الأذن",
+    "clinical_term_ar": "ألم أذن مع حمى",
     "is_red_flag": false,
     "recommended_specialty": "طب الأنف والأذن والحنجرة",
     "linked_doc_ids": [
@@ -4426,7 +4426,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Thunderclap headache (sudden severe headache)",
-    "clinical_term_ar": "صداع الرعد (صداع شديد مفاجئ)",
+    "clinical_term_ar": "صداع الرعد",
     "is_red_flag": true,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -4511,7 +4511,7 @@
     ],
     "category": "neurological_ent_ophth",
     "clinical_term_en": "Back pain possibly worsened after eating",
-    "clinical_term_ar": "ألم ظهر يزيد بعد الأكل (قد يكون مصدره أعصاب)",
+    "clinical_term_ar": "ألم ظهر يزيد بعد الأكل",
     "is_red_flag": false,
     "recommended_specialty": "طب الأعصاب",
     "linked_doc_ids": [
@@ -4528,7 +4528,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Anal pain / possible anal fissure",
-    "clinical_term_ar": "ألم شرجي / اشتباه شرخ شرجي",
+    "clinical_term_ar": "ألم شرجي",
     "is_red_flag": false,
     "recommended_specialty": "الجراحة العامة وطب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4545,7 +4545,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Hematochezia (bright red rectal bleeding)",
-    "clinical_term_ar": "نزيف شرجي (دم أحمر مع البراز)",
+    "clinical_term_ar": "نزيف شرجي",
     "is_red_flag": true,
     "recommended_specialty": "الجراحة العامة وطب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4562,7 +4562,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Suspected anal fistula",
-    "clinical_term_ar": "اشتباه ناسور شرجي",
+    "clinical_term_ar": "إفرازات وألم شرجي مزمن",
     "is_red_flag": false,
     "recommended_specialty": "الجراحة العامة",
     "linked_doc_ids": [
@@ -4579,7 +4579,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Epigastric pain on empty stomach / possible duodenal ulcer",
-    "clinical_term_ar": "ألم شرسوفي على الريق / اشتباه قرحة الاثني عشر",
+    "clinical_term_ar": "ألم شرسوفي على الريق",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4596,7 +4596,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Abdominal pain relieved by defecation / possible IBS",
-    "clinical_term_ar": "ألم بطني يهدأ بالتبرز / اشتباه متلازمة الأمعاء المتهيجة",
+    "clinical_term_ar": "ألم بطني يهدأ بالتبرز",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4630,7 +4630,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Jaundice (yellowing of skin and eyes)",
-    "clinical_term_ar": "يرقان (اصفرار الجلد والعينين)",
+    "clinical_term_ar": "يرقان",
     "is_red_flag": true,
     "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
     "linked_doc_ids": [
@@ -4647,7 +4647,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Abdominal distension with possible ascites",
-    "clinical_term_ar": "انتفاخ بطني مع اشتباه استسقاء",
+    "clinical_term_ar": "انتفاخ بطني",
     "is_red_flag": true,
     "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
     "linked_doc_ids": [
@@ -4698,7 +4698,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Melena (black tarry stool - possible upper GI bleed)",
-    "clinical_term_ar": "براز أسود قطراني (اشتباه نزيف جهاز هضمي علوي)",
+    "clinical_term_ar": "براز أسود قطراني",
     "is_red_flag": true,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4749,7 +4749,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Dysphagia (difficulty swallowing food)",
-    "clinical_term_ar": "عسر البلع (صعوبة ابتلاع الطعام)",
+    "clinical_term_ar": "عسر البلع",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4783,7 +4783,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Severe gastric acidity / possible gastric erosion",
-    "clinical_term_ar": "حموضة شديدة / اشتباه تآكل المعدة",
+    "clinical_term_ar": "حموضة شديدة",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4834,7 +4834,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Right iliac fossa pain / possible appendiceal irritation",
-    "clinical_term_ar": "ألم الحفرة الحرقفية اليمنى / اشتباه تهيج الزائدة",
+    "clinical_term_ar": "ألم الحفرة الحرقفية اليمنى",
     "is_red_flag": true,
     "recommended_specialty": "الجراحة العامة",
     "linked_doc_ids": [
@@ -4851,7 +4851,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Change in stool caliber (narrow stools)",
-    "clinical_term_ar": "تغير قطر البراز (براز رفيع)",
+    "clinical_term_ar": "تغير قطر البراز",
     "is_red_flag": true,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4885,7 +4885,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Post-fatty meal right upper quadrant pain / possible biliary colic",
-    "clinical_term_ar": "ألم الربع العلوي الأيمن بعد الأكل الدهني / اشتباه مغص صفراوي",
+    "clinical_term_ar": "ألم الربع العلوي الأيمن بعد الأكل الدهني",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4919,7 +4919,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Persistent diarrhea (> 2 weeks)",
-    "clinical_term_ar": "إسهال مستمر (أكثر من أسبوعين)",
+    "clinical_term_ar": "إسهال مستمر",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -4987,7 +4987,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Hepatomegaly symptoms / suspected liver involvement",
-    "clinical_term_ar": "أعراض تضخم الكبد / اشتباه مشاركة كبدية",
+    "clinical_term_ar": "أعراض تضخم الكبد",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
     "linked_doc_ids": [
@@ -5004,7 +5004,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Feculent breath / possible GI dysmotility",
-    "clinical_term_ar": "نفس بري / اشتباه اضطراب حركة الجهاز الهضمي",
+    "clinical_term_ar": "رائحة نفس كريهة واضطراب الهضم",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -5072,7 +5072,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Pale / acholic stools (possible biliary obstruction)",
-    "clinical_term_ar": "براز شاحب / فاقد الصبغة (اشتباه انسداد صفراوي)",
+    "clinical_term_ar": "براز شاحب / فاقد الصبغة",
     "is_red_flag": true,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -5106,7 +5106,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Abdominal pain radiating to back / possible pancreatic involvement",
-    "clinical_term_ar": "ألم بطني يمتد للظهر / اشتباه مشاركة البنكرياس",
+    "clinical_term_ar": "ألم بطني يمتد للظهر",
     "is_red_flag": true,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -5140,7 +5140,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Persistent anal burning / possible hemorrhoids or fissure",
-    "clinical_term_ar": "حرقة شرجية مستمرة / اشتباه بواسير أو شرخ",
+    "clinical_term_ar": "حرقة شرجية مستمرة",
     "is_red_flag": false,
     "recommended_specialty": "الجراحة العامة",
     "linked_doc_ids": [
@@ -5157,7 +5157,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "GI symptoms after gluten intake / possible gluten sensitivity",
-    "clinical_term_ar": "أعراض هضمية بعد تناول الغلوتين / اشتباه حساسية الغلوتين",
+    "clinical_term_ar": "أعراض هضمية بعد تناول الغلوتين",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -5208,7 +5208,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Right upper quadrant heaviness / possible liver or gallbladder involvement",
-    "clinical_term_ar": "ثقل الربع العلوي الأيمن / اشتباه مشاركة كبد أو مرارة",
+    "clinical_term_ar": "ثقل الربع العلوي الأيمن",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي وأمراض الكبد",
     "linked_doc_ids": [
@@ -5225,7 +5225,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Oropharyngeal burning / possible esophageal irritation",
-    "clinical_term_ar": "حرقة فموية بلعومية / اشتباه تهيج المريء",
+    "clinical_term_ar": "حرقة فموية بلعومية",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -5242,7 +5242,7 @@
     ],
     "category": "gastrointestinal",
     "clinical_term_en": "Gastroenteritis symptoms (pain, diarrhea, fever)",
-    "clinical_term_ar": "أعراض التهاب المعدة والأمعاء (ألم، إسهال، حمى)",
+    "clinical_term_ar": "أعراض التهاب المعدة والأمعاء",
     "is_red_flag": false,
     "recommended_specialty": "طب الجهاز الهضمي",
     "linked_doc_ids": [
@@ -5276,7 +5276,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Wrist and hand pain / possible carpal tunnel syndrome",
-    "clinical_term_ar": "ألم الرسغ واليد / اشتباه متلازمة النفق الرسغي",
+    "clinical_term_ar": "ألم الرسغ واليد",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5293,7 +5293,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Shoulder pain with restricted elevation / possible rotator cuff issue",
-    "clinical_term_ar": "ألم الكتف مع تقييد الرفع / اشتباه مشكلة كفة الدوران",
+    "clinical_term_ar": "ألم الكتف مع تقييد الرفع",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5310,7 +5310,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Lateral elbow pain / suspected lateral epicondylitis (tennis elbow)",
-    "clinical_term_ar": "ألم الكوع الجانبي / اشتباه التهاب اللقيمة الجانبية",
+    "clinical_term_ar": "ألم الكوع الجانبي",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5327,7 +5327,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Knee effusion (fluid in joint)",
-    "clinical_term_ar": "انصباب ركبة (سائل في المفصل)",
+    "clinical_term_ar": "انصباب ركبة",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5378,7 +5378,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Lateral hip pain / possible trochanteric bursitis",
-    "clinical_term_ar": "ألم الورك الجانبي / اشتباه التهاب الجراب المدور",
+    "clinical_term_ar": "ألم الورك الجانبي",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5395,7 +5395,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Plantar fascia pain / suspected plantar fasciitis",
-    "clinical_term_ar": "ألم اللفافة الأخمصية / اشتباه التهاب اللفافة الأخمصية",
+    "clinical_term_ar": "ألم اللفافة الأخمصية",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5412,7 +5412,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Widespread myalgia / possible fibromyalgia",
-    "clinical_term_ar": "ألم عضلي منتشر / اشتباه الألم العضلي الليفي",
+    "clinical_term_ar": "ألم عضلي منتشر",
     "is_red_flag": false,
     "recommended_specialty": "الروماتولوجيا",
     "linked_doc_ids": [
@@ -5446,7 +5446,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Low back pain radiating to leg / possible sciatica",
-    "clinical_term_ar": "ألم أسفل الظهر يمتد للرجل / اشتباه عرق النسا",
+    "clinical_term_ar": "ألم أسفل الظهر يمتد للرجل",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5480,7 +5480,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Nocturnal hand/wrist pain (possible carpal tunnel syndrome)",
-    "clinical_term_ar": "ألم اليد والرسغ الليلي (اشتباه متلازمة النفق الرسغي)",
+    "clinical_term_ar": "ألم اليد والرسغ الليلي",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5497,7 +5497,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Knee crepitus (joint sounds with movement)",
-    "clinical_term_ar": "فرقعة الركبة (أصوات المفصل عند الحركة)",
+    "clinical_term_ar": "فرقعة الركبة",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5531,7 +5531,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Heel pain (possible calcaneal spur or bursitis)",
-    "clinical_term_ar": "ألم الكعب (اشتباه شوكة الكعب أو التهاب الجراب)",
+    "clinical_term_ar": "ألم الكعب",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5616,7 +5616,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Morning finger stiffness / possible trigger finger or inflammatory arthritis",
-    "clinical_term_ar": "تيبس أصابع الصباح / اشتباه الإصبع الزناد أو التهاب مفاصل التهابي",
+    "clinical_term_ar": "تيبس أصابع الصباح",
     "is_red_flag": false,
     "recommended_specialty": "الروماتولوجيا",
     "linked_doc_ids": [
@@ -5633,7 +5633,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Anterior knee pain / possible patellar tendinopathy",
-    "clinical_term_ar": "ألم أمامي الركبة / اشتباه اعتلال وتر الرضفة",
+    "clinical_term_ar": "ألم أمامي الركبة",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5735,7 +5735,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Calf muscle tightness / possible compartment syndrome or cramping",
-    "clinical_term_ar": "شد عضلة الساق / اشتباه تشنج أو متلازمة الحجرة",
+    "clinical_term_ar": "شد عضلة الساق",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5752,7 +5752,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Shoulder stiffness with restricted range of motion / possible frozen shoulder",
-    "clinical_term_ar": "تيبس الكتف مع تقييد الحركة / اشتباه الكتف المتجمد",
+    "clinical_term_ar": "تيبس الكتف مع تقييد الحركة",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5769,7 +5769,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Weather-related joint pain / possible arthropathy",
-    "clinical_term_ar": "ألم مفاصل مرتبط بتغير الطقس / اشتباه اعتلال مفصلي",
+    "clinical_term_ar": "ألم مفاصل مرتبط بتغير الطقس",
     "is_red_flag": false,
     "recommended_specialty": "الروماتولوجيا",
     "linked_doc_ids": [
@@ -5786,7 +5786,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Work-related elbow and forearm pain / possible repetitive strain",
-    "clinical_term_ar": "ألم الكوع والساعد المرتبط بالعمل / اشتباه إجهاد متكرر",
+    "clinical_term_ar": "ألم الكوع والساعد المرتبط بالعمل",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5803,7 +5803,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Bone pain (deep aching)",
-    "clinical_term_ar": "ألم العظام (وجع عميق)",
+    "clinical_term_ar": "ألم العظام",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5820,7 +5820,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Sudden arm weakness / possible nerve impingement",
-    "clinical_term_ar": "ضعف مفاجئ في الذراع / اشتباه ضغط على العصب",
+    "clinical_term_ar": "ضعف مفاجئ في الذراع",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5871,7 +5871,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Medial knee pain / possible medial collateral ligament strain",
-    "clinical_term_ar": "ألم الجانب الداخلي للركبة / اشتباه إجهاد الرباط الجانبي الأنسي",
+    "clinical_term_ar": "ألم الجانب الداخلي للركبة",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5973,7 +5973,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Back pain with prolonged sitting / possible postural strain",
-    "clinical_term_ar": "ألم الظهر مع الجلوس الطويل / اشتباه إجهاد وضعي",
+    "clinical_term_ar": "ألم الظهر مع الجلوس الطويل",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -5990,7 +5990,7 @@
     ],
     "category": "musculoskeletal",
     "clinical_term_en": "Elbow joint swelling / possible olecranon bursitis",
-    "clinical_term_ar": "تورم مفصل الكوع / اشتباه التهاب جراب المرفق",
+    "clinical_term_ar": "تورم مفصل الكوع",
     "is_red_flag": false,
     "recommended_specialty": "جراحة العظام",
     "linked_doc_ids": [
@@ -6024,7 +6024,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "High fever with myalgia / possible viral illness",
-    "clinical_term_ar": "حمى مرتفعة مع ألم عضلي / اشتباه مرض فيروسي",
+    "clinical_term_ar": "حمى مرتفعة مع ألم عضلي",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6041,7 +6041,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Recurrent fever / possible malaria or periodic fever",
-    "clinical_term_ar": "حمى متكررة / اشتباه ملاريا أو حمى دورية",
+    "clinical_term_ar": "حمى متكررة",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6075,7 +6075,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Generalized pruritus without rash (possible systemic cause)",
-    "clinical_term_ar": "حكة معممة بدون طفح (محتملة المنشأ الجهازي)",
+    "clinical_term_ar": "حكة معممة بدون طفح",
     "is_red_flag": false,
     "recommended_specialty": "الأمراض الجلدية",
     "linked_doc_ids": [
@@ -6177,7 +6177,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Jaundice (possible hepatic or hemolytic cause)",
-    "clinical_term_ar": "يرقان (محتمل الأصل الكبدي أو الانحلالي)",
+    "clinical_term_ar": "يرقان",
     "is_red_flag": true,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6211,7 +6211,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Fever with arthralgia and rash / possible viral or autoimmune",
-    "clinical_term_ar": "حمى مع ألم مفاصل وطفح / اشتباه فيروسي أو مناعي",
+    "clinical_term_ar": "حمى مع ألم مفاصل وطفح",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6245,7 +6245,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Depigmented skin patches / possible vitiligo",
-    "clinical_term_ar": "بقع جلدية منزوعة الصبغة / اشتباه البهاق",
+    "clinical_term_ar": "بقع جلدية منزوعة الصبغة",
     "is_red_flag": false,
     "recommended_specialty": "الأمراض الجلدية",
     "linked_doc_ids": [
@@ -6262,7 +6262,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Polydipsia and polyuria / possible blood sugar dysregulation",
-    "clinical_term_ar": "كثرة العطش وكثرة التبول / اشتباه اضطراب سكر الدم",
+    "clinical_term_ar": "كثرة العطش وكثرة التبول",
     "is_red_flag": false,
     "recommended_specialty": "الغدد الصماء والسكر",
     "linked_doc_ids": [
@@ -6279,7 +6279,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Pallor with weakness / possible anemia",
-    "clinical_term_ar": "شحوب مع ضعف / اشتباه فقر الدم",
+    "clinical_term_ar": "شحوب مع ضعف",
     "is_red_flag": false,
     "recommended_specialty": "الطب الباطني",
     "linked_doc_ids": [
@@ -6296,7 +6296,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Spontaneous gingival bleeding / possible coagulopathy",
-    "clinical_term_ar": "نزيف لثوي تلقائي / اشتباه اضطراب تخثر",
+    "clinical_term_ar": "نزيف لثوي تلقائي",
     "is_red_flag": true,
     "recommended_specialty": "الطب الباطني",
     "linked_doc_ids": [
@@ -6313,7 +6313,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Easy bruising / possible coagulation disorder",
-    "clinical_term_ar": "تكدم سهل / اشتباه اضطراب تخثر",
+    "clinical_term_ar": "تكدم سهل",
     "is_red_flag": false,
     "recommended_specialty": "الطب الباطني",
     "linked_doc_ids": [
@@ -6330,7 +6330,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Scaling skin patches / possible psoriasis or eczema",
-    "clinical_term_ar": "بقع تقشرية / اشتباه صداف أو إكزيما",
+    "clinical_term_ar": "بقع تقشرية",
     "is_red_flag": false,
     "recommended_specialty": "الأمراض الجلدية",
     "linked_doc_ids": [
@@ -6347,7 +6347,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Post-travel fever / possible imported infection",
-    "clinical_term_ar": "حمى ما بعد السفر / اشتباه عدوى مستوردة",
+    "clinical_term_ar": "حمى ما بعد السفر",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6381,7 +6381,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Small joint arthralgia with fever / possible reactive arthritis",
-    "clinical_term_ar": "ألم المفاصل الصغيرة مع حمى / اشتباه التهاب مفاصل تفاعلي",
+    "clinical_term_ar": "ألم المفاصل الصغيرة مع حمى",
     "is_red_flag": false,
     "recommended_specialty": "الروماتولوجيا",
     "linked_doc_ids": [
@@ -6398,7 +6398,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Recurrent epistaxis / possible coagulopathy or hypertension",
-    "clinical_term_ar": "نزيف أنف متكرر / اشتباه اضطراب تخثر أو ارتفاع ضغط",
+    "clinical_term_ar": "نزيف أنف متكرر",
     "is_red_flag": false,
     "recommended_specialty": "طب الأنف والأذن والحنجرة",
     "linked_doc_ids": [
@@ -6415,7 +6415,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Dysuria / suspected urinary tract infection",
-    "clinical_term_ar": "حرقة عند التبول / اشتباه التهاب المسالك البولية",
+    "clinical_term_ar": "حرقة عند التبول",
     "is_red_flag": false,
     "recommended_specialty": "طب المسالك البولية",
     "linked_doc_ids": [
@@ -6449,7 +6449,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Myalgia with low-grade fever / possible viral syndrome",
-    "clinical_term_ar": "ألم عضلي مع حمى خفيفة / اشتباه متلازمة فيروسية",
+    "clinical_term_ar": "ألم عضلي مع حمى خفيفة",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6466,7 +6466,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Dark urine / possible dehydration or liver involvement",
-    "clinical_term_ar": "بول داكن / اشتباه جفاف أو مشاركة كبدية",
+    "clinical_term_ar": "بول داكن",
     "is_red_flag": false,
     "recommended_specialty": "الطب الباطني",
     "linked_doc_ids": [
@@ -6500,7 +6500,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Persistent cold intolerance / possible thyroid dysfunction",
-    "clinical_term_ar": "عدم تحمل البرد المستمر / اشتباه خلل الغدة الدرقية",
+    "clinical_term_ar": "عدم تحمل البرد المستمر",
     "is_red_flag": false,
     "recommended_specialty": "الغدد الصماء والسكر",
     "linked_doc_ids": [
@@ -6517,7 +6517,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Heat intolerance with excessive sweating / possible hyperthyroidism",
-    "clinical_term_ar": "عدم تحمل الحرارة مع تعرق مفرط / اشتباه فرط نشاط الغدة الدرقية",
+    "clinical_term_ar": "عدم تحمل الحرارة مع تعرق مفرط",
     "is_red_flag": false,
     "recommended_specialty": "الغدد الصماء والسكر",
     "linked_doc_ids": [
@@ -6534,7 +6534,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Anterior neck swelling / suspected thyroid enlargement",
-    "clinical_term_ar": "تورم أمامي الرقبة / اشتباه تضخم الغدة الدرقية",
+    "clinical_term_ar": "تورم أمامي الرقبة",
     "is_red_flag": false,
     "recommended_specialty": "الغدد الصماء والسكر",
     "linked_doc_ids": [
@@ -6551,7 +6551,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Severe dry skin / possible xerosis or systemic cause",
-    "clinical_term_ar": "جلد جاف شديد / اشتباه جفاف جلدي أو سبب جهازي",
+    "clinical_term_ar": "جلد جاف شديد",
     "is_red_flag": false,
     "recommended_specialty": "الأمراض الجلدية",
     "linked_doc_ids": [
@@ -6585,7 +6585,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Vesicular skin rash (fluid-filled blisters)",
-    "clinical_term_ar": "طفح حويصلي (بثور مائية في الجلد)",
+    "clinical_term_ar": "طفح حويصلي",
     "is_red_flag": false,
     "recommended_specialty": "الأمراض الجلدية",
     "linked_doc_ids": [
@@ -6687,7 +6687,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Dry skin with coarse hair and fatigue / possible hypothyroidism",
-    "clinical_term_ar": "جلد جاف مع شعر خشن وإرهاق / اشتباه قصور الغدة الدرقية",
+    "clinical_term_ar": "جلد جاف مع شعر خشن وإرهاق",
     "is_red_flag": false,
     "recommended_specialty": "الغدد الصماء والسكر",
     "linked_doc_ids": [
@@ -6704,7 +6704,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Leg edema with fever / possible infectious or systemic cause",
-    "clinical_term_ar": "وذمة الأطراف السفلية مع حمى / اشتباه سبب معدي أو جهازي",
+    "clinical_term_ar": "وذمة الأطراف السفلية مع حمى",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6721,7 +6721,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Post-prandial fatigue / possible blood sugar dysregulation",
-    "clinical_term_ar": "إرهاق ما بعد الأكل / اشتباه اضطراب سكر الدم",
+    "clinical_term_ar": "إرهاق ما بعد الأكل",
     "is_red_flag": false,
     "recommended_specialty": "الغدد الصماء والسكر",
     "linked_doc_ids": [
@@ -6738,7 +6738,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Facial flushing with fever / possible systemic cause",
-    "clinical_term_ar": "احمرار الوجه مع حمى / اشتباه سبب جهازي",
+    "clinical_term_ar": "احمرار الوجه مع حمى",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [
@@ -6755,7 +6755,7 @@
     ],
     "category": "systemic_fever_derm",
     "clinical_term_en": "Pharyngeal exudate with sore throat / possible streptococcal pharyngitis",
-    "clinical_term_ar": "إفرازات بلعومية مع التهاب حلق / اشتباه التهاب بلعوم عقدي",
+    "clinical_term_ar": "إفرازات بلعومية مع التهاب حلق",
     "is_red_flag": false,
     "recommended_specialty": "طب الأمراض المعدية",
     "linked_doc_ids": [

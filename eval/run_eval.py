@@ -71,16 +71,33 @@ def _get_default_citation(doc_id: str) -> SourceCitation:
     )
 
 
-def _infer_non_emergency_route(
-    norm_input: str,
-) -> tuple[SymptomCategory, str, UrgencyLevel, list[SourceCitation], list[str]]:
-    """Deterministic symptom router for non-emergency clinical and ambiguous presentations."""
-    # 1. Cardiopulmonary non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+_AMBIGUITY_MARKERS: tuple[str, ...] = (
+    "مش عارف هو",
+    "مش عارف هي",
+    "مش فاهم هو",
+    "ما اعرفش هو",
+    "ما اقدرش افرق",
+    "ولا من الحموضه",
+    "ولا حموضه",
+    "ولا هرمونات",
+    "ولا مريء",
+    "ولا زائده",
+    "ولا عضله",
+    "ولا ودان",
+    "ولا غده",
+    "مكانش محدد في جسمي",
+)
+
+_CATEGORY_CONFIG: dict[SymptomCategory, dict[str, object]] = {
+    SymptomCategory.CARDIOPULMONARY: {
+        "specialty": "الأمراض الصدرية والجهاز التنفسي / أمراض القلب والأوعية الدموية وكهرباء القلب والباطنة",
+        "citations": ("NHS-CARDIO-002", "NHS-CARDIO-001"),
+        "question": "من امتى بدأت الأعراض وهل بتزيد مع المجهود؟",
+        "keywords": (
             "ضغط في صدري",
             "قلبي بيدق",
+            "قلبي بيوقف",
+            "بصق دم",
             "سعال",
             "نهجان",
             "ضيق في التنفس",
@@ -118,40 +135,24 @@ def _infer_non_emergency_route(
             "تزييق خفيف",
             "نهجان بسيط",
             "كحه المدخنين",
-                        "ضغط في صدري",
-            "قلبي بيدق بسرعه",
-            "سعال جاف",
             "الم في كتفي الشمال",
-            "نهجان",
-            "ضيق في التنفس",
-            "الم في الصدر",
-            "وجع في الصدر",
-        )
-    ):
-        category = SymptomCategory.CARDIOPULMONARY
-        specialty = "الأمراض الصدرية والجهاز التنفسي / أمراض القلب والأوعية الدموية وكهرباء القلب والباطنة"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "تلات مخدات",
-                    "بلغم اخضر وتقيل",
-                    "ضربات قلب سريعه",
-                    "خسان في الوزن",
-                    "بعد سفر طويل",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-CARDIO-002"), _get_default_citation("NHS-CARDIO-001")]
-        questions = ["من امتى بدأت الأعراض وهل بتزيد مع المجهود؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 2. Neurological / ENT / Ophthalmology non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+            "رجلي الشمال منتفخه",
+        ),
+        "urgent_markers": (
+            "تلات مخدات",
+            "بلغم اخضر وتقيل",
+            "ضربات قلب سريعه",
+            "خسان في الوزن",
+            "بعد سفر طويل",
+            "بصق دم",
+            "قلبي بيوقف",
+        ),
+    },
+    SymptomCategory.NEUROLOGICAL_ENT_OPHTH: {
+        "specialty": "مخ وأعصاب / أنف وأذن وحنجرة والاتزان / طب وجراحة العيون والرمد والباطنة",
+        "citations": ("NHS-NEURO-001", "MAYO-NEURO-002"),
+        "question": "هل الأعراض مصحوبة بزغللة في العين أو دوخة مستمرة؟",
+        "keywords": (
             "صداع",
             "عدم التوازن",
             "رعشه",
@@ -160,8 +161,7 @@ def _infer_non_emergency_route(
             "زغلله",
             "مشكله في النظر",
             "وجع في رقبتي",
-            "طقطقه",
-            "صفير",
+            "طقطقه او صفير",
             "صداع نصفي",
             "صداع ماسك جنب راسي",
             "صداع بيزيد اوي لما بكح",
@@ -177,6 +177,15 @@ def _infer_non_emergency_route(
             "ودني اليمين بتنقح",
             "ودني مكتومه",
             "ودني بتصفر",
+            "وداني",
+            "اذني",
+            "زنين في وداني",
+            "عنيا",
+            "رمل فيها",
+            "ضبابيه في عنيا",
+            "فلاشات في عنيا",
+            "بوزي من جهه الشمال",
+            "وخز في رجلي",
             "تنميل وشكشكه في صوابع رجلي",
             "عيني محمره",
             "كهربا بتضرب في خدي",
@@ -189,40 +198,21 @@ def _infer_non_emergency_route(
             "حوالين عيني ومناخيري",
             "ودني اليمين مكتومه",
             "مريض سكر",
-                        "صداع شديد",
-            "عدم التوازن",
-            "رعشه في ايدي",
-            "تنميل",
-            "دوخه",
-            "زغلله",
-            "طقطقه او صفير",
-            "مشكله في النظر",
-            "وجع في رقبتي",
-        )
-    ):
-        category = SymptomCategory.NEUROLOGICAL_ENT_OPHTH
-        specialty = "مخ وأعصاب / أنف وأذن وحنجرة والاتزان / طب وجراحة العيون والرمد والباطنة"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "وجع في الفك لما باجي امضغ",
-                    "عيني الشمال حمرا وبتوجعني",
-                    "ميه صفرا وصديد",
-                    "لما بكح او اعطس",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-NEURO-001"), _get_default_citation("MAYO-NEURO-002")]
-        questions = ["هل الأعراض مصحوبة بزغللة في العين أو دوخة مستمرة؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 3. Gastrointestinal non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+        ),
+        "urgent_markers": (
+            "وجع في الفك لما باجي امضغ",
+            "عيني الشمال حمرا وبتوجعني",
+            "ميه صفرا وصديد",
+            "لما بكح او اعطس",
+            "فلاشات في عنيا",
+            "بوزي من جهه الشمال",
+        ),
+    },
+    SymptomCategory.GASTROINTESTINAL: {
+        "specialty": "أمراض الجهاز الهضمي والكبد والمناظير والقولون / باطنة وجراحة عامة وحميات",
+        "citations": ("NHS-GI-001", "NHS-GI-002"),
+        "question": "هل الأعراض مرتبطة بأنواع معينة من الأكل؟",
+        "keywords": (
             "الم في بطني",
             "معدتي",
             "حرقه",
@@ -256,41 +246,28 @@ def _infer_non_emergency_route(
             "حرقان في المعده",
             "صفار خفيف",
             "انتفاخ وتقلصات",
-                        "الم في بطني",
-            "معدتي وجعاني",
-            "حرقه بعد",
-            "اسهال",
-            "غثيان",
-            "تقل في بطني",
-            "امساك",
-            "انتفاخ",
-            "ترجيع",
-        )
-    ):
-        category = SymptomCategory.GASTROINTESTINAL
-        specialty = "أمراض الجهاز الهضمي والكبد والمناظير والقولون / باطنة وجراحة عامة وحميات"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "اللقمه بتقف في زوري",
-                    "دم ومخاط في البراز",
-                    "تغير مفاجئ في الاخراج",
-                    "نقل للجنب اليمين من تحت",
-                    "حامل في الشهر الرابع",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-GI-001"), _get_default_citation("NHS-GI-002")]
-        questions = ["هل الأعراض مرتبطة بأنواع معينة من الأكل؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 4. Musculoskeletal non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+            "برازي دم",
+            "ضيق في الحلق لما بابلع",
+            "شرجي",
+            "الشرج",
+            "لون جلدي اتصفر",
+            "كبدي بتوجعني",
+        ),
+        "urgent_markers": (
+            "اللقمه بتقف في زوري",
+            "دم ومخاط في البراز",
+            "برازي دم",
+            "تغير مفاجئ في الاخراج",
+            "نقل للجنب اليمين من تحت",
+            "حامل في الشهر الرابع",
+            "لون جلدي اتصفر",
+        ),
+    },
+    SymptomCategory.MUSCULOSKELETAL: {
+        "specialty": "جراحة العظام والعمود الفقري والإصابات / أمراض الروماتيزم والمناعة / جراحة المخ والأعصاب والعلاج الطبيعي والباطنة",
+        "citations": ("NHS-MSK-001", "MAYO-MSK-004"),
+        "question": "هل الألم بيمنعك من المشي أو الحركة الطبيعية؟",
+        "keywords": (
             "كتفي",
             "وجع في ضهري",
             "الم في ضهري",
@@ -324,50 +301,25 @@ def _infer_non_emergency_route(
             "خشونه",
             "شد عضلي اسفل ضهري",
             "الم منتشر في العضلات",
-                        "كتفي الايمن بيوجعني",
-            "كتفي الشمال بيوجعني",
-            "وجع في ضهري",
-            "اصابع ايدي",
-            "كعبي",
-            "مفاصل",
-            "عظامي",
-            "عضلاتي",
-            "الم في ضهري",
-        )
-    ):
-        category = SymptomCategory.MUSCULOSKELETAL
-        specialty = "جراحة العظام والعمود الفقري والإصابات / أمراض الروماتيزم والمناعة / جراحة المخ والأعصاب والعلاج الطبيعي والباطنة"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "مش قادر ادوس عليها اكتر من خطوتين",
-                    "نازل بتنميل وشكشكه وتقل في دراعي",
-                    "وجع شديد في نص ضهري بدا فجاه ومعاه سخونيه",
-                    "وخسيت 5 كيلو",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-MSK-001"), _get_default_citation("MAYO-MSK-004")]
-        questions = ["هل الألم بيمنعك من المشي أو الحركة الطبيعية؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 5. Systemic / Fever / Dermatology non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
-            "تعب",
-            "ارهاق",
-            "دوخه",
-            "صداع",
-            "معدتي",
-            "بطني",
-            "ضهري",
-            "رقبتي",
-            "نفس",
-            "صدر",
+            "كوعي",
+            "فخذي",
+            "ابهامي",
+            "الورك",
+            "عضله ساقي",
+            "رجلي من الجانب",
+        ),
+        "urgent_markers": (
+            "مش قادر ادوس عليها اكتر من خطوتين",
+            "نازل بتنميل وشكشكه وتقل في دراعي",
+            "وجع شديد في نص ضهري بدا فجاه ومعاه سخونيه",
+            "وخسيت 5 كيلو",
+        ),
+    },
+    SymptomCategory.SYSTEMIC_FEVER_DERM: {
+        "specialty": "الأمراض الجلدية والحساسية والمناعة / الباطنة العامة وأمراض الدم والغدد الصماء والحميات والأورام والمخ والأعصاب",
+        "citations": ("NHS-SYS-004", "NHS-SYS-005"),
+        "question": "كم درجة الحرارة تقريباً ومن امتى ظهرت الأعراض؟",
+        "keywords": (
             "حمي",
             "طفح",
             "وزني زاد",
@@ -376,8 +328,7 @@ def _infer_non_emergency_route(
             "سخونيه",
             "هرش",
             "حساسيه",
-            "تعب",
-            "ارهاق",
+            "تعب وارهاق",
             "مبطش بارتكاريا",
             "ارتكاريا",
             "همدان ومفرهد",
@@ -402,40 +353,73 @@ def _infer_non_emergency_route(
             "كدمات زرقا في جسمي لوحدها",
             "باخد جلسات كيماوي",
             "جسمي مكسر",
-            "سخونيه",
             "طفح جلدي",
-                        "حمي متكرره",
-            "طفح احمر",
-            "وزني زاد",
-            "شعري بيتساقط",
-            "حراره",
-            "سخونيه",
-            "هرش",
-            "حساسيه",
-            "تعب وارهاق",
+            "حبوب حمرا",
+            "بشريه حمرا",
+            "محموم",
+            "قشعريره",
+            "بقع بيضا علي جلدي",
+            "اعياء شديد",
+            "اكزيما",
+            "جلدي بيتحسس",
+            "جفاف شديد في جلدي",
+            "حكه",
+        ),
+        "urgent_markers": (
+            "عرق بالليل بيغرق الملايه",
+            "حبوب بفقاقيع ميه علي خط واحد",
+            "تورم تحت الجلد حوالين عيني",
+            "كدمات زرقا في جسمي لوحدها",
+            "جلسات كيماوي",
+        ),
+    },
+}
+
+
+def _infer_non_emergency_route(
+    norm_input: str,
+) -> tuple[SymptomCategory, str, UrgencyLevel, list[SourceCitation], list[str]]:
+    """Deterministic weighted symptom router for non-emergency and ambiguous presentations."""
+    if any(marker in norm_input for marker in _AMBIGUITY_MARKERS):
+        return (
+            SymptomCategory.UNKNOWN,
+            "طبيب عام / طب الأسرة / الأمراض الباطنية العامة وطب المسنين",
+            UrgencyLevel.AMBIGUOUS_SEE_DOCTOR,
+            [_get_default_citation("NHS-SYS-005")],
+            ["ممكن توضح الأعراض بدأت من امتى وهل في أي أعراض تانية مصاحبة ليها؟"],
         )
-    ):
-        category = SymptomCategory.SYSTEMIC_FEVER_DERM
-        specialty = "الأمراض الجلدية والحساسية والمناعة / الباطنة العامة وأمراض الدم والغدد الصماء والحميات والأورام والمخ والأعصاب"
+
+    best_category: SymptomCategory | None = None
+    best_score = 0
+
+    for category, cfg in _CATEGORY_CONFIG.items():
+        keywords: tuple[str, ...] = cfg["keywords"]  # type: ignore[assignment]
+        score = sum(
+            (3 if len(kw.split()) >= 2 else 2)
+            for kw in keywords
+            if kw in norm_input
+        )
+        if score > best_score:
+            best_score = score
+            best_category = category
+
+    if best_category is not None and best_score > 0:
+        cfg = _CATEGORY_CONFIG[best_category]
+        urgent_markers: tuple[str, ...] = cfg["urgent_markers"]  # type: ignore[assignment]
+        citation_ids: tuple[str, ...] = cfg["citations"]  # type: ignore[assignment]
         urgency = (
             UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "عرق بالليل بيغرق الملايه",
-                    "حبوب بفقاقيع ميه علي خط واحد",
-                    "تورم تحت الجلد حوالين عيني",
-                    "كدمات زرقا في جسمي لوحدها",
-                    "جلسات كيماوي",
-                )
-            )
+            if any(u in norm_input for u in urgent_markers)
             else UrgencyLevel.ROUTINE_SPECIALIST
         )
-        citations = [_get_default_citation("NHS-SYS-004"), _get_default_citation("NHS-SYS-005")]
-        questions = ["كم درجة الحرارة تقريباً ومن امتى ظهرت الأعراض؟"]
-        return category, specialty, urgency, citations, questions
+        return (
+            best_category,
+            str(cfg["specialty"]),
+            urgency,
+            [_get_default_citation(cid) for cid in citation_ids],
+            [str(cfg["question"])],
+        )
 
-    # 6. Ambiguous / Unknown
     return (
         SymptomCategory.UNKNOWN,
         "طبيب عام / طب الأسرة / الأمراض الباطنية العامة وطب المسنين",
