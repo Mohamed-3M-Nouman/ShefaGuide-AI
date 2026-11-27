@@ -157,6 +157,7 @@ def test_normalize_dialect_node_matches_slang_under_15ms_and_ignores_negated() -
 
 def test_clinical_assessment_route_and_supremacy_rule_enforcement() -> None:
     """7. Verify clinical_assessment_node enforces final_urgency = max(rule_urgency, llm_urgency)."""
+
     # Simulate an LLM/assessor returning Level 1 (ROUTINE_SPECIALIST) when rule_urgency is Level 3
     def _mock_low_urgency_assessor(state: TriageState):
         from app.services.triage_service import get_default_citation

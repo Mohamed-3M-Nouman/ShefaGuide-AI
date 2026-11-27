@@ -190,7 +190,9 @@ def test_non_emergency_interaction_is_not_enqueued(tmp_path: Path) -> None:
 def test_escalation_status_lifecycle(tmp_path: Path) -> None:
     async def scenario(factory: async_sessionmaker[AsyncSession]) -> None:
         async with factory() as session, session.begin():
-            _, escalation = await log_interaction(session, _sensitive_record(), ["ألم ضاغط في الصدر"])
+            _, escalation = await log_interaction(
+                session, _sensitive_record(), ["ألم ضاغط في الصدر"]
+            )
             assert escalation is not None
             escalation_id = escalation.id
 
@@ -290,4 +292,3 @@ def test_main_persist_audit_log_background_task(tmp_path: Path) -> None:
         app.state.db_engine = None
 
     _run(scenario, tmp_path)
-

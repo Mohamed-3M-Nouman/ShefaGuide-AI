@@ -126,7 +126,9 @@ class AuditLog(Base):
     recommended_specialty: Mapped[str | None] = mapped_column(ScrubbedText)
     rationale: Mapped[str | None] = mapped_column(ScrubbedText)
     retrieved_doc_ids: Mapped[list[str]] = mapped_column(ScrubbedJSON, nullable=False, default=list)
-    tool_calls: Mapped[list[dict[str, Any]]] = mapped_column(ScrubbedJSON, nullable=False, default=list)
+    tool_calls: Mapped[list[dict[str, Any]]] = mapped_column(
+        ScrubbedJSON, nullable=False, default=list
+    )
     escalation_triggered: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     latency_ms: Mapped[float | None] = mapped_column(Float)
 
@@ -155,7 +157,9 @@ class EscalationQueue(Base):
         DateTime(timezone=True), nullable=False, default=_utcnow, index=True
     )
     symptom_category: Mapped[str] = mapped_column(String(32), nullable=False, default="unknown")
-    detected_red_flags: Mapped[list[str]] = mapped_column(ScrubbedJSON, nullable=False, default=list)
+    detected_red_flags: Mapped[list[str]] = mapped_column(
+        ScrubbedJSON, nullable=False, default=list
+    )
     scrubbed_summary: Mapped[str | None] = mapped_column(ScrubbedText)
     status: Mapped[str] = mapped_column(
         String(16), nullable=False, default=EscalationStatus.PENDING.value, index=True

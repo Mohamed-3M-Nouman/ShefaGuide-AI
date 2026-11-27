@@ -26,6 +26,7 @@ services:
       - RATE_LIMIT=15/minute
       - RATE_LIMIT_REQUESTS=15
       - RATE_LIMIT_WINDOW_SECONDS=60
+      - SUPERVISOR_API_KEY=${SUPERVISOR_API_KEY:-shefaguide_supervisor_dev_key}
       - QDRANT_URL=http://qdrant:6333
       - QDRANT_COLLECTION=shefaguide_medical_chunks
       - DATABASE_URL=postgresql+asyncpg://shefaguide:shefaguide_secret@postgres:5432/shefaguide_audit
@@ -68,6 +69,21 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: http://localhost:8000
+        VITE_SUPERVISOR_KEY: ${SUPERVISOR_API_KEY:-shefaguide_supervisor_dev_key}
+    container_name: shefaguide-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      fastapi-backend:
+        condition: service_healthy
     restart: unless-stopped
 
 volumes:

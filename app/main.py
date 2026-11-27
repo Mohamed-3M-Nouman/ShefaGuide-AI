@@ -9,12 +9,14 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import re
+import secrets
 import time
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import APIRouter, BackgroundTasks, FastAPI, Query, Request, status
+from fastapi import APIRouter, BackgroundTasks, Depends, FastAPI, Header, Query, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
@@ -58,6 +60,22 @@ SSE_STREAM_HEADERS: dict[str, str] = {
     "Connection": "keep-alive",
     "X-Accel-Buffering": "no",
 }
+
+
+def require_supervisor_key(
+    x_supervisor_key: str | None = Header(default=None, alias="X-Supervisor-Key"),
+    supervisor_key: str | None = Query(default=None),
+) -> None:
+    """Enforce FR-11 X-Supervisor-Key auth when SUPERVISOR_API_KEY is configured."""
+    expected = (settings.SUPERVISOR_API_KEY or "").strip()
+    if not expected:
+        return
+    provided = (x_supervisor_key or supervisor_key or "").strip()
+    if not provided or not secrets.compare_digest(provided, expected):
+        raise StarletteHTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or missing X-Supervisor-Key header",
+        )
 
 
 def _format_datetime(dt: Any) -> str | None:
@@ -448,6 +466,27 @@ def create_app() -> FastAPI:
         from app.db.crud import create_engine, init_db
 
         log_gemini_startup_status()
+        if os.getenv("SKIP_QDRANT_AUTO_INGEST", "").lower() not in ("1", "true", "yes"):
+            try:
+                from app.rag.ingest import ingest_corpus
+                from app.rag.vector_store import RAGSettings, create_qdrant_client
+
+                rag_cfg = RAGSettings()
+                q_client = create_qdrant_client(rag_cfg)
+                try:
+                    needs_ingest = not q_client.collection_exists(rag_cfg.collection_name)
+                    if not needs_ingest:
+                        info = q_client.get_collection(rag_cfg.collection_name)
+                        needs_ingest = (info.points_count or 0) == 0
+                    if needs_ingest:
+                        indexed = ingest_corpus(q_client, rag_cfg)
+                        logger.info(
+                            "Auto-ingested %d medical guideline passages into Qdrant.", indexed
+                        )
+                finally:
+                    q_client.close()
+            except Exception as exc:
+                logger.warning("Qdrant auto-ingest skipped on startup: %s", exc)
         injected = getattr(app.state, "db_engine", None) is not None
         if not injected:
             engine = None
@@ -547,9 +586,7 @@ def create_app() -> FastAPI:
         )
 
     @app.exception_handler(StarletteHTTPException)
-    async def http_exception_handler(
-        request: Request, exc: StarletteHTTPException
-    ) -> JSONResponse:
+    async def http_exception_handler(request: Request, exc: StarletteHTTPException) -> JSONResponse:
         """Handle HTTP errors on triage and voice routes safely."""
         path = request.url.path
         if _is_triage_path(path):
@@ -971,6 +1008,7 @@ def create_app() -> FastAPI:
         "/escalations/stream",
         summary="Real-Time Zero-PHI Server-Sent Events (SSE) Emergency Escalation Stream",
         tags=["Supervisor Dashboard"],
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def stream_escalations(
         replay_recent: bool = Query(default=True),
@@ -994,6 +1032,7 @@ def create_app() -> FastAPI:
         response_model=EscalationListResponse,
         summary="List Zero-PHI Escalations for Supervisor Dashboard",
         tags=["Supervisor Dashboard"],
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def get_escalations(
         status: str | None = Query(default=None),
@@ -1037,6 +1076,7 @@ def create_app() -> FastAPI:
         response_model=EscalationItem,
         summary="Acknowledge or Resolve Escalation Alert",
         tags=["Supervisor Dashboard"],
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def patch_escalation(
         escalation_id: str,
@@ -1119,6 +1159,7 @@ def create_app() -> FastAPI:
         response_model=AuditLogsResponse,
         summary="List Zero-PHI Anonymized Interaction Audit Logs",
         tags=["Supervisor Dashboard"],
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def get_audit_logs(
         limit: int = Query(default=50, ge=1, le=500),
@@ -1146,7 +1187,9 @@ def create_app() -> FastAPI:
                         recommended_specialty=r.recommended_specialty,
                         retrieved_doc_ids=_safe_str_list(r.retrieved_doc_ids),
                         escalation_triggered=r.escalation_triggered,
-                        latency_ms=round(float(r.latency_ms), 2) if r.latency_ms is not None else None,
+                        latency_ms=round(float(r.latency_ms), 2)
+                        if r.latency_ms is not None
+                        else None,
                     )
                     for r in records
                 ]
@@ -1266,6 +1309,7 @@ def create_app() -> FastAPI:
     @app.get(
         "/escalations/stream",
         include_in_schema=False,
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def stream_escalations_alias(
         replay_recent: bool = Query(default=True),
@@ -1284,6 +1328,7 @@ def create_app() -> FastAPI:
         "/escalations",
         response_model=EscalationListResponse,
         include_in_schema=False,
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def escalations_alias(
         status: str | None = Query(default=None),
@@ -1295,6 +1340,7 @@ def create_app() -> FastAPI:
         "/escalations/{escalation_id}",
         response_model=EscalationItem,
         include_in_schema=False,
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def patch_escalation_alias(
         escalation_id: str,
@@ -1306,6 +1352,7 @@ def create_app() -> FastAPI:
         "/audit-logs",
         response_model=AuditLogsResponse,
         include_in_schema=False,
+        dependencies=[Depends(require_supervisor_key)],
     )
     async def audit_logs_alias(
         limit: int = Query(default=50, ge=1, le=500),

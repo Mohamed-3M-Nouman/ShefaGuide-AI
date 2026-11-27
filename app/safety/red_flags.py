@@ -15,7 +15,9 @@ _ALEF_VARIANTS = re.compile(r"[إأآٱ]")
 _TATWEEL = re.compile(r"\u0640")
 _DIACRITICS = re.compile(r"[\u064B-\u065F\u0670]")
 
-_SLANG_PATH: Path = Path(__file__).resolve().parent.parent.parent / "data" / "egyptian_medical_slang.json"
+_SLANG_PATH: Path = (
+    Path(__file__).resolve().parent.parent.parent / "data" / "egyptian_medical_slang.json"
+)
 
 
 def normalize_arabic(text: str) -> str:

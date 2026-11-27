@@ -54,8 +54,8 @@ SPECIALTY_SYSTEM_PROMPT: str = (
     "اتبع القواعد التالية بدقة حسب حالة المحادثة:\n"
     "أ) التحيات والدردشة العامة والأسئلة غير الطبية (مثل: 'ازيك', 'سلام عليكم', 'بتعمل ايه؟', 'انت مين؟', أو أي سؤال عام بدون شكوى جسدية):\n"
     "   - رحّب بالمريض بلطف ودفء بالعامية المصرية وعرّف نفسك كـ 'مساعد الفرز الطبي المبدئي (ShefaGuide AI)'، واسأله عن حاله اليوم، وادعُه لوصف أي أعراض جسدية يشعر بها.\n"
-    "   - اجعل `recommended_specialty_ar` حرفياً: \"مساعد الفرز الطبي المبدئي (يرجى وصف الأعراض)\".\n"
-    "   - اجعل `clarifying_questions` حرفياً: [\"ما هي الأعراض التي تشعر بها حالياً؟\", \"منذ متى بدأت هذه الأعراض؟\"].\n"
+    '   - اجعل `recommended_specialty_ar` حرفياً: "مساعد الفرز الطبي المبدئي (يرجى وصف الأعراض)".\n'
+    '   - اجعل `clarifying_questions` حرفياً: ["ما هي الأعراض التي تشعر بها حالياً؟", "منذ متى بدأت هذه الأعراض؟"].\n'
     "ب) الأعراض البسيطة أو الجولة الأولى (دورة الحوار 1 وبدون علامات خطر طارئة):\n"
     "   - لا تبالغ في التوجيه لتخصصات دقيقة لحالات بسيطة! مثلاً: 'مصدع شوية' بدون أعراض عصبية مقلقة لا يذهب فوراً لـ 'مخ وأعصاب'، بل يُوجّه مبدئياً إلى 'طب الأسرة / باطنة عامة' مع أسئلة هادئة ومطمئنة (مثل: مدة الصداع، هل مرتبط بقلة النوم أو الإجهاد، هل في أعراض مصاحبة).\n"
     "   - طمئن المريض أولاً وتفاعل مع شكواه بكلام مصري دافئ، ثم ادمج سؤالاً أو سؤالين محددين ومنطقيين داخل `rationale_ar`، مع وضع نفس الأسئلة (1 إلى 2 سؤالاً) في `clarifying_questions`.\n"
@@ -202,7 +202,9 @@ def log_gemini_startup_status() -> bool:
     if is_live:
         _log_gemini_runtime_mode(True, "")
     elif _has_live_sovereigneg_key():
-        _log_gemini_runtime_mode(False, "primary GEMINI_API_KEY missing; SovereignEG fallback ready")
+        _log_gemini_runtime_mode(
+            False, "primary GEMINI_API_KEY missing; SovereignEG fallback ready"
+        )
     else:
         _log_gemini_runtime_mode(False, "missing or placeholder GEMINI_API_KEY")
     return is_live
@@ -278,9 +280,7 @@ def _invoke_structured(
     """Invoke `.with_structured_output(output_schema)` and validate into `output_schema`."""
     if prefer_function_calling:
         try:
-            structured_llm = client.with_structured_output(
-                output_schema, method="function_calling"
-            )
+            structured_llm = client.with_structured_output(output_schema, method="json_mode")
         except TypeError:
             structured_llm = client.with_structured_output(output_schema)
     else:
@@ -358,7 +358,7 @@ def symptom_severity_tool(
 
     slang_context = json.dumps(matched_slang_terms or [], ensure_ascii=False)
     prompt = (
-        f"{SEVERITY_SYSTEM_PROMPT}\n\n"
+        f"{SEVERITY_SYSTEM_PROMPT}\nReturn valid JSON matching keys: assessed_urgency (integer 1-4), symptom_category (MUST be strictly one of: 'cardiopulmonary', 'neurological_ent_ophth', 'gastrointestinal', 'musculoskeletal', 'systemic_fever_derm', 'unknown'), red_flag_suspected (boolean), clinical_reasoning_ar (string).\n\n"
         f"شكوى المريض (بعد تنقية البيانات الشخصية): {scrubbed_input}\n"
         f"المصطلحات العامية المرصودة: {slang_context}"
     )
@@ -417,7 +417,7 @@ def specialty_mapping_tool(
         for c in available_citations
     ]
     prompt = (
-        f"{SPECIALTY_SYSTEM_PROMPT}\n\n"
+        f"{SPECIALTY_SYSTEM_PROMPT}\nReturn valid JSON matching keys: recommended_specialty_ar, rationale_ar, clarifying_questions, selected_doc_ids.\n\n"
         f"رقم دورة الحوار الحالية: {clarification_count + 1} من أصل 3\n"
         f"سياق المحادثة المجمع للمريض: {scrubbed_input}\n"
         f"تصنيف الأعراض: {symptom_category.value}\n"
@@ -435,9 +435,7 @@ def specialty_mapping_tool(
             mapped.rationale_ar,
             mapped.recommended_specialty_ar,
         )
-        selected_ids = list(mapped.selected_doc_ids) or [
-            c.doc_id for c in available_citations
-        ]
+        selected_ids = list(mapped.selected_doc_ids) or [c.doc_id for c in available_citations]
         return SpecialtyMappingOutput(
             recommended_specialty_ar=mapped.recommended_specialty_ar,
             rationale_ar=safe_rationale,

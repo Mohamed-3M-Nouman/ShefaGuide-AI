@@ -1,17 +1,27 @@
-"""Shared pytest fixtures: isolate the process-wide ephemeral session store between tests.
-
-Several gateway tests reuse static `session_id`s; since multi-turn merging is keyed by
-`session_id`, the singleton `session_store` must start empty for every test.
-"""
+"""Shared pytest fixtures: isolate ephemeral session store and attach default supervisor test header."""
 
 from __future__ import annotations
 
 from collections.abc import Generator
+from typing import Any
 
 import pytest
+from starlette.testclient import TestClient
 
 import app.agent.tools as agent_tools
 from app.agent.session_store import session_store
+from app.core.config import settings
+
+_ORIG_TESTCLIENT_INIT = TestClient.__init__
+
+
+def _patched_testclient_init(self: TestClient, *args: Any, **kwargs: Any) -> None:
+    if kwargs.get("headers") is None:
+        kwargs["headers"] = {"X-Supervisor-Key": settings.SUPERVISOR_API_KEY}
+    _ORIG_TESTCLIENT_INIT(self, *args, **kwargs)
+
+
+TestClient.__init__ = _patched_testclient_init  # type: ignore[method-assign]
 
 
 @pytest.fixture(autouse=True)

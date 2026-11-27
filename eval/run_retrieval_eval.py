@@ -112,8 +112,14 @@ def format_report(report: RecallReport) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--persistent", action="store_true", help="query the configured Qdrant instead of a fresh in-memory index")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "--persistent",
+        action="store_true",
+        help="query the configured Qdrant instead of a fresh in-memory index",
+    )
     parser.add_argument("--k", type=int, default=DEFAULT_TOP_K)
     args = parser.parse_args()
 

@@ -4,6 +4,8 @@ import {
   patchEscalationStatus,
   fetchAuditLogs,
   createEscalationEventSource,
+  getSupervisorKey,
+  setSupervisorKey,
 } from "../services/api";
 
 export default function Dashboard() {
@@ -23,6 +25,7 @@ export default function Dashboard() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [liveAlert, setLiveAlert] = useState(null);
   const [isConnectedSSE, setIsConnectedSSE] = useState(false);
+  const [supervisorKeyInput, setSupervisorKeyInput] = useState(() => getSupervisorKey());
 
   const eventSourceRef = useRef(null);
   const alertDismissTimeoutRef = useRef(null);
@@ -297,7 +300,16 @@ export default function Dashboard() {
             </p>
           </div>
 
-          <button
+          <div className="flex flex-wrap items-center gap-2">
+            <input
+              type="password"
+              value={supervisorKeyInput}
+              onChange={(e) => { setSupervisorKeyInput(e.target.value); setSupervisorKey(e.target.value); }}
+              placeholder="X-Supervisor-Key"
+              aria-label="X-Supervisor-Key"
+              className="font-en rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+            />
+            <button
             type="button"
             onClick={reloadAllData}
             disabled={isLoading}
@@ -305,6 +317,7 @@ export default function Dashboard() {
           >
             <span>{isLoading ? "جاري التحديث..." : "🔄 تحديث البيانات"}</span>
           </button>
+          </div>
         </header>
 
         {/* Live SSE Alert Banner */}

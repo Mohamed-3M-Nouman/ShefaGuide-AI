@@ -221,9 +221,7 @@ def _stem(token: str) -> str:
     return token
 
 
-_STEMMED_NON_CUES: frozenset[str] = frozenset(
-    _stem(word) for word in _STOPWORDS | _GENERIC_WORDS
-)
+_STEMMED_NON_CUES: frozenset[str] = frozenset(_stem(word) for word in _STOPWORDS | _GENERIC_WORDS)
 
 
 @dataclass(frozen=True)
@@ -295,9 +293,7 @@ class DialectNormalizer:
         self.lexicon_path = Path(lexicon_path)
         self.min_partial_score = min_partial_score
         self._entries: tuple[_LexiconEntry, ...] = self._load_entries(self.lexicon_path)
-        self._master_pattern, self._group_to_entry_idx = self._build_master_pattern(
-            self._entries
-        )
+        self._master_pattern, self._group_to_entry_idx = self._build_master_pattern(self._entries)
         self._cue_index: dict[tuple[str, str], tuple[_Cue, ...]] = self._build_cue_index(
             self._entries
         )
@@ -325,9 +321,7 @@ class DialectNormalizer:
             exact_pattern = re.compile(
                 rf"(?<![{_ARABIC_LETTERS}\d])[وبف]?(?:{alternation})", re.IGNORECASE
             )
-            phrase_stems = [
-                [t.stem for t in _content_tokens(normalize_arabic(p))] for p in phrases
-            ]
+            phrase_stems = [[t.stem for t in _content_tokens(normalize_arabic(p))] for p in phrases]
             phrase_bigrams = tuple(frozenset(_bigrams(stems)) for stems in phrase_stems)
             leading_bigrams = frozenset(
                 (stems[0], stems[1]) for stems in phrase_stems if len(stems) >= 2
@@ -411,7 +405,9 @@ class DialectNormalizer:
         """Find Egyptian slang expressions in a PII-scrubbed complaint and map them to clinical terms."""
         started = time.perf_counter()
         if not isinstance(text, str) or not text.strip():
-            return NormalizationResult(input_text=text if isinstance(text, str) else "", normalized_text="")
+            return NormalizationResult(
+                input_text=text if isinstance(text, str) else "", normalized_text=""
+            )
 
         normalized = normalize_arabic(text)
         matches: list[tuple[float, SlangMatch]] = []
@@ -441,7 +437,9 @@ class DialectNormalizer:
                 matches.append(
                     (
                         float("inf"),
-                        self._build_match(entry, normalized, found.start(), found.end(), MatchType.EXACT, 1.0),
+                        self._build_match(
+                            entry, normalized, found.start(), found.end(), MatchType.EXACT, 1.0
+                        ),
                     )
                 )
 
@@ -466,7 +464,12 @@ class DialectNormalizer:
                 (
                     candidate.score,
                     self._build_match(
-                        entry, normalized, candidate.start, candidate.end, MatchType.PARTIAL, confidence
+                        entry,
+                        normalized,
+                        candidate.start,
+                        candidate.end,
+                        MatchType.PARTIAL,
+                        confidence,
                     ),
                 )
             )
@@ -569,4 +572,3 @@ def normalize_egyptian_dialect(text: str) -> dict[str, Any]:
         "linked_doc_ids": list(result.linked_doc_ids),
         "has_red_flag": result.has_red_flag,
     }
-

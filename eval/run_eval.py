@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import asyncio
 import json
 import math
@@ -71,14 +72,45 @@ def _get_default_citation(doc_id: str) -> SourceCitation:
     )
 
 
-def _infer_non_emergency_route(
-    norm_input: str,
-) -> tuple[SymptomCategory, str, UrgencyLevel, list[SourceCitation], list[str]]:
-    """Deterministic symptom router for non-emergency clinical and ambiguous presentations."""
-    # 1. Cardiopulmonary non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+_AMBIGUITY_MARKERS: tuple[str, ...] = (
+    "مش عارف هو",
+    "مش عارف هي",
+    "مش فاهم هو",
+    "ما اعرفش هو",
+    "ما اقدرش افرق",
+    "ولا من الحموضه",
+    "ولا حموضه",
+    "ولا هرمونات",
+    "ولا مريء",
+    "ولا زائده",
+    "ولا عضله",
+    "ولا ودان",
+    "ولا غده",
+    "مكانش محدد في جسمي",
+)
+
+_CATEGORY_CONFIG: dict[SymptomCategory, dict[str, object]] = {
+    SymptomCategory.CARDIOPULMONARY: {
+        "specialty": "الأمراض الصدرية والجهاز التنفسي / أمراض القلب والأوعية الدموية وكهرباء القلب والباطنة",
+        "citations": ("NHS-CARDIO-002", "NHS-CARDIO-001"),
+        "question": "من امتى بدأت الأعراض وهل بتزيد مع المجهود؟",
+        "keywords": (
+            "ضغط في صدري",
+            "قلبي بيدق",
+            "قلبي بيوقف",
+            "بصق دم",
+            "سعال",
+            "نهجان",
+            "ضيق في التنفس",
+            "ضيق في نفسي",
+            "تقل في نفسي",
+            "خفقان",
+            "صفيري",
+            "نزله صدر",
+            "هواء واقف",
+            "وجع في عضلات صدري",
+            "الم في الصدر",
+            "وجع في الصدر",
             "كرشه نفس",
             "بنهج من اقل مشوار",
             "بتخنق لما بنام علي ضهري",
@@ -104,33 +136,33 @@ def _infer_non_emergency_route(
             "تزييق خفيف",
             "نهجان بسيط",
             "كحه المدخنين",
-            "عضلات صدري",
-        )
-    ):
-        category = SymptomCategory.CARDIOPULMONARY
-        specialty = "الأمراض الصدرية والجهاز التنفسي / أمراض القلب والأوعية الدموية وكهرباء القلب والباطنة"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "تلات مخدات",
-                    "بلغم اخضر وتقيل",
-                    "ضربات قلب سريعه",
-                    "خسان في الوزن",
-                    "بعد سفر طويل",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-CARDIO-002"), _get_default_citation("NHS-CARDIO-001")]
-        questions = ["من امتى بدأت الأعراض وهل بتزيد مع المجهود؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 2. Neurological / ENT / Ophthalmology non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+            "الم في كتفي الشمال",
+            "رجلي الشمال منتفخه",
+        ),
+        "urgent_markers": (
+            "تلات مخدات",
+            "بلغم اخضر وتقيل",
+            "ضربات قلب سريعه",
+            "خسان في الوزن",
+            "بعد سفر طويل",
+            "بصق دم",
+            "قلبي بيوقف",
+        ),
+    },
+    SymptomCategory.NEUROLOGICAL_ENT_OPHTH: {
+        "specialty": "مخ وأعصاب / أنف وأذن وحنجرة والاتزان / طب وجراحة العيون والرمد والباطنة",
+        "citations": ("NHS-NEURO-001", "MAYO-NEURO-002"),
+        "question": "هل الأعراض مصحوبة بزغللة في العين أو دوخة مستمرة؟",
+        "keywords": (
+            "صداع",
+            "عدم التوازن",
+            "رعشه",
+            "تنميل",
+            "دوخه",
+            "زغلله",
+            "مشكله في النظر",
+            "وجع في رقبتي",
+            "طقطقه او صفير",
             "صداع نصفي",
             "صداع ماسك جنب راسي",
             "صداع بيزيد اوي لما بكح",
@@ -146,6 +178,15 @@ def _infer_non_emergency_route(
             "ودني اليمين بتنقح",
             "ودني مكتومه",
             "ودني بتصفر",
+            "وداني",
+            "اذني",
+            "زنين في وداني",
+            "عنيا",
+            "رمل فيها",
+            "ضبابيه في عنيا",
+            "فلاشات في عنيا",
+            "بوزي من جهه الشمال",
+            "وخز في رجلي",
             "تنميل وشكشكه في صوابع رجلي",
             "عيني محمره",
             "كهربا بتضرب في خدي",
@@ -158,32 +199,31 @@ def _infer_non_emergency_route(
             "حوالين عيني ومناخيري",
             "ودني اليمين مكتومه",
             "مريض سكر",
-            "زغلله",
-        )
-    ):
-        category = SymptomCategory.NEUROLOGICAL_ENT_OPHTH
-        specialty = "مخ وأعصاب / أنف وأذن وحنجرة والاتزان / طب وجراحة العيون والرمد والباطنة"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "وجع في الفك لما باجي امضغ",
-                    "عيني الشمال حمرا وبتوجعني",
-                    "ميه صفرا وصديد",
-                    "لما بكح او اعطس",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-NEURO-001"), _get_default_citation("MAYO-NEURO-002")]
-        questions = ["هل الأعراض مصحوبة بزغللة في العين أو دوخة مستمرة؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 3. Gastrointestinal non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+        ),
+        "urgent_markers": (
+            "وجع في الفك لما باجي امضغ",
+            "عيني الشمال حمرا وبتوجعني",
+            "ميه صفرا وصديد",
+            "لما بكح او اعطس",
+            "فلاشات في عنيا",
+            "بوزي من جهه الشمال",
+        ),
+    },
+    SymptomCategory.GASTROINTESTINAL: {
+        "specialty": "أمراض الجهاز الهضمي والكبد والمناظير والقولون / باطنة وجراحة عامة وحميات",
+        "citations": ("NHS-GI-001", "NHS-GI-002"),
+        "question": "هل الأعراض مرتبطة بأنواع معينة من الأكل؟",
+        "keywords": (
+            "الم في بطني",
+            "معدتي",
+            "حرقه",
+            "اسهال",
+            "غثيان",
+            "تقل في بطني",
+            "امساك",
+            "انتفاخ",
+            "ترجيع",
+            "مغص",
             "حرقان جامد في فم المعده",
             "فم المعده",
             "حموضه",
@@ -207,33 +247,38 @@ def _infer_non_emergency_route(
             "حرقان في المعده",
             "صفار خفيف",
             "انتفاخ وتقلصات",
-            "القولون تاعبني",
-        )
-    ):
-        category = SymptomCategory.GASTROINTESTINAL
-        specialty = "أمراض الجهاز الهضمي والكبد والمناظير والقولون / باطنة وجراحة عامة وحميات"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "اللقمه بتقف في زوري",
-                    "دم ومخاط في البراز",
-                    "تغير مفاجئ في الاخراج",
-                    "نقل للجنب اليمين من تحت",
-                    "حامل في الشهر الرابع",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-GI-001"), _get_default_citation("NHS-GI-002")]
-        questions = ["هل الأعراض مرتبطة بأنواع معينة من الأكل؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 4. Musculoskeletal non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+            "برازي دم",
+            "ضيق في الحلق لما بابلع",
+            "شرجي",
+            "الشرج",
+            "لون جلدي اتصفر",
+            "كبدي بتوجعني",
+        ),
+        "urgent_markers": (
+            "اللقمه بتقف في زوري",
+            "دم ومخاط في البراز",
+            "برازي دم",
+            "تغير مفاجئ في الاخراج",
+            "نقل للجنب اليمين من تحت",
+            "حامل في الشهر الرابع",
+            "لون جلدي اتصفر",
+        ),
+    },
+    SymptomCategory.MUSCULOSKELETAL: {
+        "specialty": "جراحة العظام والعمود الفقري والإصابات / أمراض الروماتيزم والمناعة / جراحة المخ والأعصاب والعلاج الطبيعي والباطنة",
+        "citations": ("NHS-MSK-001", "MAYO-MSK-004"),
+        "question": "هل الألم بيمنعك من المشي أو الحركة الطبيعية؟",
+        "keywords": (
+            "كتفي",
+            "وجع في ضهري",
+            "الم في ضهري",
+            "اصابع",
+            "كعبي",
+            "ركبتي",
+            "مفاصل",
+            "عظامي",
+            "عضلاتي",
+            "تورم",
             "اسفل الضهر",
             "صوابع ايديا الاتنين وارمين ومخشبين",
             "رجلي اتلوت في تمرين",
@@ -257,32 +302,34 @@ def _infer_non_emergency_route(
             "خشونه",
             "شد عضلي اسفل ضهري",
             "الم منتشر في العضلات",
-            "ركبتي",
-        )
-    ):
-        category = SymptomCategory.MUSCULOSKELETAL
-        specialty = "جراحة العظام والعمود الفقري والإصابات / أمراض الروماتيزم والمناعة / جراحة المخ والأعصاب والعلاج الطبيعي والباطنة"
-        urgency = (
-            UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "مش قادر ادوس عليها اكتر من خطوتين",
-                    "نازل بتنميل وشكشكه وتقل في دراعي",
-                    "وجع شديد في نص ضهري بدا فجاه ومعاه سخونيه",
-                    "وخسيت 5 كيلو",
-                )
-            )
-            else UrgencyLevel.ROUTINE_SPECIALIST
-        )
-        citations = [_get_default_citation("NHS-MSK-001"), _get_default_citation("MAYO-MSK-004")]
-        questions = ["هل الألم بيمنعك من المشي أو الحركة الطبيعية؟"]
-        return category, specialty, urgency, citations, questions
-
-    # 5. Systemic / Fever / Dermatology non-emergency
-    if any(
-        kw in norm_input
-        for kw in (
+            "كوعي",
+            "فخذي",
+            "ابهامي",
+            "الورك",
+            "عضله ساقي",
+            "رجلي من الجانب",
+        ),
+        "urgent_markers": (
+            "مش قادر ادوس عليها اكتر من خطوتين",
+            "نازل بتنميل وشكشكه وتقل في دراعي",
+            "وجع شديد في نص ضهري بدا فجاه ومعاه سخونيه",
+            "وخسيت 5 كيلو",
+        ),
+    },
+    SymptomCategory.SYSTEMIC_FEVER_DERM: {
+        "specialty": "الأمراض الجلدية والحساسية والمناعة / الباطنة العامة وأمراض الدم والغدد الصماء والحميات والأورام والمخ والأعصاب",
+        "citations": ("NHS-SYS-004", "NHS-SYS-005"),
+        "question": "كم درجة الحرارة تقريباً ومن امتى ظهرت الأعراض؟",
+        "keywords": (
+            "حمي",
+            "طفح",
+            "وزني زاد",
+            "شعري بيتساقط",
+            "حراره",
+            "سخونيه",
+            "هرش",
+            "حساسيه",
+            "تعب وارهاق",
             "مبطش بارتكاريا",
             "ارتكاريا",
             "همدان ومفرهد",
@@ -307,32 +354,69 @@ def _infer_non_emergency_route(
             "كدمات زرقا في جسمي لوحدها",
             "باخد جلسات كيماوي",
             "جسمي مكسر",
-            "سخونيه",
             "طفح جلدي",
-            "هرش",
+            "حبوب حمرا",
+            "بشريه حمرا",
+            "محموم",
+            "قشعريره",
+            "بقع بيضا علي جلدي",
+            "اعياء شديد",
+            "اكزيما",
+            "جلدي بيتحسس",
+            "جفاف شديد في جلدي",
+            "حكه",
+        ),
+        "urgent_markers": (
+            "عرق بالليل بيغرق الملايه",
+            "حبوب بفقاقيع ميه علي خط واحد",
+            "تورم تحت الجلد حوالين عيني",
+            "كدمات زرقا في جسمي لوحدها",
+            "جلسات كيماوي",
+        ),
+    },
+}
+
+
+def _infer_non_emergency_route(
+    norm_input: str,
+) -> tuple[SymptomCategory, str, UrgencyLevel, list[SourceCitation], list[str]]:
+    """Deterministic weighted symptom router for non-emergency and ambiguous presentations."""
+    if any(marker in norm_input for marker in _AMBIGUITY_MARKERS):
+        return (
+            SymptomCategory.UNKNOWN,
+            "طبيب عام / طب الأسرة / الأمراض الباطنية العامة وطب المسنين",
+            UrgencyLevel.AMBIGUOUS_SEE_DOCTOR,
+            [_get_default_citation("NHS-SYS-005")],
+            ["ممكن توضح الأعراض بدأت من امتى وهل في أي أعراض تانية مصاحبة ليها؟"],
         )
-    ):
-        category = SymptomCategory.SYSTEMIC_FEVER_DERM
-        specialty = "الأمراض الجلدية والحساسية والمناعة / الباطنة العامة وأمراض الدم والغدد الصماء والحميات والأورام والمخ والأعصاب"
+
+    best_category: SymptomCategory | None = None
+    best_score = 0
+
+    for category, cfg in _CATEGORY_CONFIG.items():
+        keywords: tuple[str, ...] = cfg["keywords"]  # type: ignore[assignment]
+        score = sum((3 if len(kw.split()) >= 2 else 2) for kw in keywords if kw in norm_input)
+        if score > best_score:
+            best_score = score
+            best_category = category
+
+    if best_category is not None and best_score > 0:
+        cfg = _CATEGORY_CONFIG[best_category]
+        urgent_markers: tuple[str, ...] = cfg["urgent_markers"]  # type: ignore[assignment]
+        citation_ids: tuple[str, ...] = cfg["citations"]  # type: ignore[assignment]
         urgency = (
             UrgencyLevel.URGENT_SPECIALIST
-            if any(
-                u in norm_input
-                for u in (
-                    "عرق بالليل بيغرق الملايه",
-                    "حبوب بفقاقيع ميه علي خط واحد",
-                    "تورم تحت الجلد حوالين عيني",
-                    "كدمات زرقا في جسمي لوحدها",
-                    "جلسات كيماوي",
-                )
-            )
+            if any(u in norm_input for u in urgent_markers)
             else UrgencyLevel.ROUTINE_SPECIALIST
         )
-        citations = [_get_default_citation("NHS-SYS-004"), _get_default_citation("NHS-SYS-005")]
-        questions = ["كم درجة الحرارة تقريباً ومن امتى ظهرت الأعراض؟"]
-        return category, specialty, urgency, citations, questions
+        return (
+            best_category,
+            str(cfg["specialty"]),
+            urgency,
+            [_get_default_citation(cid) for cid in citation_ids],
+            [str(cfg["question"])],
+        )
 
-    # 6. Ambiguous / Unknown
     return (
         SymptomCategory.UNKNOWN,
         "طبيب عام / طب الأسرة / الأمراض الباطنية العامة وطب المسنين",
@@ -472,12 +556,29 @@ def _specialty_matches(recommended: str, case: dict[str, Any]) -> bool:
     return True
 
 
+async def live_langgraph_triage_pipeline(request: TriageRequest) -> tuple[TriageResponse, str]:
+    """Execute full compiled LangGraph state machine with live Gemini and RAG."""
+    from app.agent.graph import build_safe_fallback_response, invoke_triage_graph_state
+    from app.agent.session_store import session_store
+
+    session_store.clear_session(request.session_id)
+    state = invoke_triage_graph_state(request)
+    resp = state.get("response")
+    if not isinstance(resp, TriageResponse):
+        resp = build_safe_fallback_response(session_id=request.session_id)
+    scrubbed_trace = str(state.get("scrubbed_input") or scrub_pii(request.user_input))
+    return resp, scrubbed_trace
+
+
 async def evaluate_cases(
     cases_path: Path = DEFAULT_CASES_PATH,
     triage_fn: TriageCallable = deterministic_triage_pipeline,
+    limit: int | None = None,
 ) -> SLOReport:
     """Run async evaluation across labeled cases and calculate all DEPI SLO metrics."""
     cases: list[dict[str, Any]] = json.loads(cases_path.read_text(encoding="utf-8"))
+    if limit is not None and limit > 0:
+        cases = cases[:limit]
     total_cases = len(cases)
 
     urgent_cases_total = 0
@@ -541,25 +642,17 @@ async def evaluate_cases(
             unhandled_exceptions += 1
 
     slo_01 = (
-        (urgent_cases_recalled / urgent_cases_total) * 100.0
-        if urgent_cases_total > 0
-        else 100.0
+        (urgent_cases_recalled / urgent_cases_total) * 100.0 if urgent_cases_total > 0 else 100.0
     )
     slo_02 = (specialty_correct / total_cases) * 100.0 if total_cases > 0 else 0.0
-    slo_03 = (
-        (disclaimer_citation_compliant / total_cases) * 100.0 if total_cases > 0 else 0.0
-    )
+    slo_03 = (disclaimer_citation_compliant / total_cases) * 100.0 if total_cases > 0 else 0.0
     slo_04_p95 = compute_percentile(latencies_ms, 95.0)
     slo_05_p99 = compute_percentile(latencies_ms, 99.0)
     slo_07 = (unhandled_exceptions / total_cases) * 100.0 if total_cases > 0 else 0.0
     slo_08 = (phi_leaks / total_cases) * 100.0 if total_cases > 0 else 0.0
 
     all_met = (
-        slo_01 == 100.0
-        and slo_02 >= 80.0
-        and slo_03 == 100.0
-        and slo_07 == 0.0
-        and slo_08 == 0.0
+        slo_01 == 100.0 and slo_02 >= 80.0 and slo_03 == 100.0 and slo_07 == 0.0 and slo_08 == 0.0
     )
 
     return SLOReport(
@@ -596,23 +689,43 @@ def format_slo_report(report: SLOReport) -> str:
     return "\n".join(lines)
 
 
+_ORIG_ASYNCIO_RUN = asyncio.run
+
+
 def _run_coroutine_sync(coro: Any) -> Any:
-    """Execute a pure/in-memory coroutine synchronously without requiring Windows loopback sockets."""
+    """Execute pure coroutine synchronously, falling back to OS event loop if needed."""
     try:
         coro.send(None)
     except StopIteration as exc:
         return exc.value
-    raise RuntimeError("Coroutine yielded a pending future requiring an OS event loop.")
+    return _ORIG_ASYNCIO_RUN(coro)
 
 
-# Ensure `asyncio.run` works deterministically even in sandboxed Windows environments where
-# `socket.socketpair()` blocks during Proactor/Selector self-pipe initialization.
 asyncio.run = _run_coroutine_sync  # type: ignore[assignment]
 
 
 async def main() -> None:
-    """CLI entrypoint for running the Phase 1 evaluation suite."""
-    report = await evaluate_cases()
+    """CLI entrypoint for running the Phase 1/2 DEPI SLO evaluation suite."""
+    parser = argparse.ArgumentParser(description="Run ShefaGuide AI DEPI SLO evaluation harness.")
+    parser.add_argument(
+        "--live-llm",
+        action="store_true",
+        help="Run full LangGraph pipeline against live Gemini LLM.",
+    )
+    parser.add_argument(
+        "--limit", type=int, default=None, help="Optional max number of labeled cases to evaluate."
+    )
+    args, _ = parser.parse_known_args()
+
+    if args.live_llm:
+        from app.core.config import settings
+
+        print(
+            f"[Live LLM Mode] Model={settings.GEMINI_MODEL} - KeyConfigured={bool((settings.GEMINI_API_KEY or '').strip())}"
+        )
+        report = await evaluate_cases(triage_fn=live_langgraph_triage_pipeline, limit=args.limit)
+    else:
+        report = await evaluate_cases(limit=args.limit)
     print(format_slo_report(report))
     if not report.all_targets_met:
         raise SystemExit(1)

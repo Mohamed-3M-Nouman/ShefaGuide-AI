@@ -92,7 +92,7 @@ def test_env_example_documents_all_required_keys() -> None:
 
 def test_config_exposes_step2_settings_and_defaults() -> None:
     """4. Verify app/core/config.py exposes GEMINI_MODEL, QDRANT_URL, QDRANT_COLLECTION, and DATABASE_URL."""
-    assert settings.GEMINI_MODEL == "gemini-2.5-flash"
+    assert settings.GEMINI_MODEL == "gemini-3.8-flash"
     assert settings.QDRANT_URL == "http://localhost:6333"
     assert settings.QDRANT_COLLECTION == "shefaguide_medical_chunks"
     assert (
@@ -103,7 +103,7 @@ def test_config_exposes_step2_settings_and_defaults() -> None:
     assert isinstance(settings.GEMINI_API_KEY, str)
 
     # Module-level exports
-    assert GEMINI_MODEL == "gemini-2.5-flash"
+    assert GEMINI_MODEL == "gemini-3.8-flash"
     assert QDRANT_URL == "http://localhost:6333"
     assert QDRANT_COLLECTION == "shefaguide_medical_chunks"
     assert (

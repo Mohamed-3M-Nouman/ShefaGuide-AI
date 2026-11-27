@@ -79,7 +79,9 @@ class SourceCitation(BaseModel):
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
-    doc_id: str = Field(..., min_length=1, description="Unique document chunk identifier in corpus.")
+    doc_id: str = Field(
+        ..., min_length=1, description="Unique document chunk identifier in corpus."
+    )
     source: Literal["WHO", "NHS", "Mayo Clinic"] = Field(
         ..., description="Approved medical knowledge source."
     )
@@ -93,7 +95,9 @@ class TriageRequest(BaseModel):
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
-    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
+    session_id: str = Field(
+        ..., min_length=1, description="Unique conversation session identifier."
+    )
     user_input: str = Field(
         ...,
         min_length=2,
@@ -172,7 +176,10 @@ class TriageResponse(BaseModel):
                     "ROUTINE_SPECIALIST or URGENT_SPECIALIST."
                 )
 
-        if self.urgency_level == UrgencyLevel.EMERGENCY_ESCALATION and not self.escalation_triggered:
+        if (
+            self.urgency_level == UrgencyLevel.EMERGENCY_ESCALATION
+            and not self.escalation_triggered
+        ):
             raise ValueError(
                 "escalation_triggered must be True when urgency_level is EMERGENCY_ESCALATION."
             )
@@ -264,12 +271,19 @@ class VoiceTranscribeRequest(BaseModel):
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
-    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
-    audio_base64: str | None = Field(
-        default=None, description="Base64-encoded patient audio payload (processed strictly in-memory)."
+    session_id: str = Field(
+        ..., min_length=1, description="Unique conversation session identifier."
     )
-    filename: str = Field(default="audio.webm", description="Audio filename hint for MIME/format detection.")
-    language: str = Field(default="ar", description="BCP-47 / ISO-639-1 language code (default Arabic).")
+    audio_base64: str | None = Field(
+        default=None,
+        description="Base64-encoded patient audio payload (processed strictly in-memory).",
+    )
+    filename: str = Field(
+        default="audio.webm", description="Audio filename hint for MIME/format detection."
+    )
+    language: str = Field(
+        default="ar", description="BCP-47 / ISO-639-1 language code (default Arabic)."
+    )
     fallback_text: str | None = Field(
         default=None, description="Optional client-side text fallback if STT fails or times out."
     )
@@ -293,7 +307,9 @@ class VoiceSynthesizeRequest(BaseModel):
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
-    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
+    session_id: str = Field(
+        ..., min_length=1, description="Unique conversation session identifier."
+    )
     text: str = Field(..., min_length=1, description="Arabic text to synthesize into speech.")
     include_disclaimer: bool = Field(
         default=True,
@@ -321,9 +337,12 @@ class VoiceTriageRequest(BaseModel):
 
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
-    session_id: str = Field(..., min_length=1, description="Unique conversation session identifier.")
+    session_id: str = Field(
+        ..., min_length=1, description="Unique conversation session identifier."
+    )
     audio_base64: str | None = Field(
-        default=None, description="Base64-encoded patient audio payload (processed strictly in-memory)."
+        default=None,
+        description="Base64-encoded patient audio payload (processed strictly in-memory).",
     )
     filename: str = Field(default="audio.webm", description="Audio filename hint.")
     language: str = Field(default="ar", description="Language hint for STT (default 'ar').")

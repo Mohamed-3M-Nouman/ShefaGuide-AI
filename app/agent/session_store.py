@@ -141,7 +141,9 @@ class EphemeralSessionStore:
                 record.scrubbed_history.append(safe_turn)
                 if len(record.scrubbed_history) > MAX_HISTORY_TURNS:
                     record.scrubbed_history = record.scrubbed_history[-MAX_HISTORY_TURNS:]
-                record.clarification_count = max(record.clarification_count + 1, clarification_count or 0)
+                record.clarification_count = max(
+                    record.clarification_count + 1, clarification_count or 0
+                )
 
             record.cumulative_negated_red_flags = _merge_unique(
                 record.cumulative_negated_red_flags, negated_red_flags

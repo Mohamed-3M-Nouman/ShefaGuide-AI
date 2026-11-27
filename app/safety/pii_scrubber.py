@@ -19,9 +19,7 @@ EGYPTIAN_PHONE_PATTERN: re.Pattern[str] = re.compile(
 )
 
 # 3. Email addresses
-EMAIL_PATTERN: re.Pattern[str] = re.compile(
-    r"\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b"
-)
+EMAIL_PATTERN: re.Pattern[str] = re.compile(r"\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b")
 
 # 4. Common Arabic & Egyptian self-identification name patterns:
 # e.g., "أنا اسمي أحمد محمد", "اسمي منى علي", "أنا مدام سلوى حسن", "اسمي الحاج سيد إبراهيم"
@@ -32,9 +30,7 @@ _STOP_WORDS: str = (
     r"محتاج|عايز|عايزة|حامل|مريض|مريضة|باخد|بآخد|تعبان|تعبانة|مش|في|مساعد"
 )
 
-_HONORIFICS: str = (
-    r"مدام|الحاج|الحاجة|الأستاذ|الاستاذ|الكابتن|مهندس|المهندس|دكتور|الدكتور"
-)
+_HONORIFICS: str = r"مدام|الحاج|الحاجة|الأستاذ|الاستاذ|الكابتن|مهندس|المهندس|دكتور|الدكتور"
 
 ARABIC_NAME_INTRO_PATTERN: re.Pattern[str] = re.compile(
     rf"(?P<prefix>(?:^|(?<=[\s،,]))(?:(?:أنا|انا)\s+(?:اسمي|إسمي|المريض|المريضة)|(?:اسمي|إسمي)|الاسم\s*[:\-]?|(?:أنا|انا)(?=\s+(?:{_HONORIFICS})\b))\s+)"

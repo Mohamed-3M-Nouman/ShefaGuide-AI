@@ -157,9 +157,7 @@ def test_valid_egyptian_arabic_triage(client: TestClient) -> None:
         "في ترجيع دم كتير من الصبح والبول قاطع خالص",
     ],
 )
-def test_red_flag_emergency_fast_path_latency(
-    client: TestClient, emergency_input: str
-) -> None:
+def test_red_flag_emergency_fast_path_latency(client: TestClient, emergency_input: str) -> None:
     """Verify acute red flags escalate to EMERGENCY_4 in under 100ms."""
     payload = {
         "session_id": "test-emergency-001",
@@ -173,7 +171,7 @@ def test_red_flag_emergency_fast_path_latency(
 
     assert response.status_code == 200
     # Latency requirement: under 100ms
-    assert elapsed_seconds < 0.100, f"Latency {elapsed_seconds*1000:.2f}ms exceeded 100ms target"
+    assert elapsed_seconds < 0.100, f"Latency {elapsed_seconds * 1000:.2f}ms exceeded 100ms target"
 
     parsed = TriageResponse.model_validate(response.json())
     assert parsed.urgency_level == UrgencyLevel.EMERGENCY_4

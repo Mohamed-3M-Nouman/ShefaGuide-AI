@@ -147,7 +147,9 @@ def ensure_collection(client: QdrantClient, settings: RAGSettings, recreate: boo
         settings.collection_name, field_name="doc_id", field_schema=models.PayloadSchemaType.KEYWORD
     )
     client.create_payload_index(
-        settings.collection_name, field_name="category", field_schema=models.PayloadSchemaType.KEYWORD
+        settings.collection_name,
+        field_name="category",
+        field_schema=models.PayloadSchemaType.KEYWORD,
     )
 
 
@@ -207,7 +209,9 @@ def ingest_corpus(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     parser.add_argument("--recreate", action="store_true", help="drop and rebuild the collection")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")

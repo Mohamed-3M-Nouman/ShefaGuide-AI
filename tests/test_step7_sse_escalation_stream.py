@@ -181,7 +181,9 @@ def test_broadcaster_max_events_and_heartbeat_async(
     """Verify max_events=1 and heartbeat frame emission on EscalationBroadcaster.stream_events."""
     broadcaster = EscalationBroadcaster(maxlen=10)
 
-    async def _exercise_heartbeat_and_live_push() -> tuple[list[tuple[str, dict[str, Any]]], list[tuple[str, dict[str, Any]]]]:
+    async def _exercise_heartbeat_and_live_push() -> tuple[
+        list[tuple[str, dict[str, Any]]], list[tuple[str, dict[str, Any]]]
+    ]:
         # Case A: No events published -> emits `connected` then 1 `heartbeat` when max_events=1
         hb_chunks: list[str] = []
         async for chunk in broadcaster.stream_events(

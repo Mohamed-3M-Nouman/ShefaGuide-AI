@@ -58,7 +58,7 @@ class Settings(BaseSettings):
         description="Google Gemini API key for non-emergency triage agent.",
     )
     GEMINI_MODEL: str = Field(
-        default="gemini-2.5-flash",
+        default="gemini-3.8-flash",
         description="Default Gemini model identifier.",
     )
     SOVEREIGNEG_API_KEY: str = Field(
@@ -70,7 +70,7 @@ class Settings(BaseSettings):
         description="SovereignEG OpenAI-compatible API base URL.",
     )
     SOVEREIGNEG_MODEL: str = Field(
-        default="gemini-2.5-flash",
+        default="gemini-3.8-flash",
         description="Default SovereignEG fallback model identifier.",
     )
 
@@ -82,6 +82,10 @@ class Settings(BaseSettings):
     QDRANT_COLLECTION: str = Field(
         default="shefaguide_medical_chunks",
         description="Qdrant collection name for clinical guideline chunks.",
+    )
+
+    SUPERVISOR_API_KEY: str = Field(
+        default="", description="Shared secret token for X-Supervisor-Key header."
     )
 
     # Audit Database (PostgreSQL) Settings
@@ -156,6 +160,7 @@ SOVEREIGNEG_BASE_URL = settings.SOVEREIGNEG_BASE_URL
 SOVEREIGNEG_MODEL = settings.SOVEREIGNEG_MODEL
 QDRANT_URL = settings.QDRANT_URL
 QDRANT_COLLECTION = settings.QDRANT_COLLECTION
+SUPERVISOR_API_KEY = settings.SUPERVISOR_API_KEY
 DATABASE_URL = settings.DATABASE_URL
 GROQ_API_KEY = settings.GROQ_API_KEY
 GROQ_STT_MODEL = settings.GROQ_STT_MODEL
