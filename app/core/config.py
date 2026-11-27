@@ -58,7 +58,7 @@ class Settings(BaseSettings):
         description="Google Gemini API key for non-emergency triage agent.",
     )
     GEMINI_MODEL: str = Field(
-        default="gemini-2.5-flash",
+        default="gemini-3.8-flash",
         description="Default Gemini model identifier.",
     )
     SOVEREIGNEG_API_KEY: str = Field(
@@ -70,7 +70,7 @@ class Settings(BaseSettings):
         description="SovereignEG OpenAI-compatible API base URL.",
     )
     SOVEREIGNEG_MODEL: str = Field(
-        default="gemini-2.5-flash",
+        default="gemini-3.8-flash",
         description="Default SovereignEG fallback model identifier.",
     )
 
