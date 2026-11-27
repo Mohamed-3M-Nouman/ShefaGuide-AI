@@ -100,13 +100,10 @@ class EscalationBroadcaster:
         event: dict[str, Any] = {
             "event_id": str(payload.get("event_id") or uuid.uuid4()),
             "session_id": _sanitize_session_id(payload.get("session_id")),
-            "timestamp": str(
-                payload.get("timestamp") or datetime.now(UTC).isoformat()
-            ),
+            "timestamp": str(payload.get("timestamp") or datetime.now(UTC).isoformat()),
             "symptom_category": cat_str,
             "recommended_specialty": _sanitize_text(
-                payload.get("recommended_specialty")
-                or "طوارئ المستشفى فوراً / اتصال بالإسعاف (123)"
+                payload.get("recommended_specialty") or "طوارئ المستشفى فوراً / اتصال بالإسعاف (123)"
             ),
             "detected_red_flags": scrubbed_flags,
             "urgency_level": urg_int,

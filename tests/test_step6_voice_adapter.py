@@ -74,9 +74,7 @@ def reset_voice_and_rate_limiter(monkeypatch: pytest.MonkeyPatch) -> Generator[N
 
 
 @pytest.fixture
-def client(
-    tmp_path: Path, async_runner: asyncio.Runner
-) -> Generator[TestClient, None, None]:
+def client(tmp_path: Path, async_runner: asyncio.Runner) -> Generator[TestClient, None, None]:
     """TestClient backed by an isolated NullPool SQLite database for Zero-PHI audit verification."""
     db_file = tmp_path / "step6_voice_audit.db"
     engine = create_engine(f"sqlite+aiosqlite:///{db_file}", poolclass=NullPool)
@@ -366,9 +364,7 @@ def test_e2e_voice_triage_red_flag_escalation_and_zero_phi_leakage(
     """Verify POST /api/v1/voice/triage with red-flag + PII triggers Level 4 escalation and 0% PHI leakage."""
     monkeypatch.setattr(settings, "GROQ_API_KEY", "gsk_live_mock_key")
 
-    red_flag_with_pii = (
-        "اسمي أحمد ورقمي 01012345678، حاسس بطابوقة على صدري ومسمعة في دراعي الشمال"
-    )
+    red_flag_with_pii = "اسمي أحمد ورقمي 01012345678، حاسس بطابوقة على صدري ومسمعة في دراعي الشمال"
     mock_response = MagicMock()
     mock_response.status_code = 200
     mock_response.raise_for_status = MagicMock()
@@ -410,9 +406,7 @@ def test_e2e_voice_triage_red_flag_escalation_and_zero_phi_leakage(
     audit_resp = client.get("/api/v1/audit-logs")
     assert audit_resp.status_code == 200
     audit_items = audit_resp.json()["items"]
-    log_entry = next(
-        (i for i in audit_items if i["session_id"] == "sess_voice_redflag_01"), None
-    )
+    log_entry = next((i for i in audit_items if i["session_id"] == "sess_voice_redflag_01"), None)
     assert log_entry is not None
     assert "01012345678" not in log_entry["scrubbed_input"]
     assert "أحمد" not in log_entry["scrubbed_input"]
@@ -422,9 +416,7 @@ def test_e2e_voice_triage_red_flag_escalation_and_zero_phi_leakage(
     esc_resp = client.get("/api/v1/escalations?status=pending")
     assert esc_resp.status_code == 200
     esc_items = esc_resp.json()["items"]
-    esc_entry = next(
-        (e for e in esc_items if e["session_id"] == "sess_voice_redflag_01"), None
-    )
+    esc_entry = next((e for e in esc_items if e["session_id"] == "sess_voice_redflag_01"), None)
     assert esc_entry is not None
     assert "01012345678" not in (esc_entry.get("scrubbed_summary") or "")
 

@@ -59,9 +59,7 @@ EMERGENCY_SPECIALTY_AR: str = (
     "وجراحة العظام والكسور والروماتيزم والباطنة والحميات والحساسية والجلدية)"
 )
 
-REJECTION_SPECIALTY_AR: str = (
-    "طبيب مختص (أمراض صدرية / عظام وروماتيزم / أطفال وجهاز هضمي / مخ وأعصاب وأنف وأذن / جلدية وحساسية / عيون / باطنة)"
-)
+REJECTION_SPECIALTY_AR: str = "طبيب مختص (أمراض صدرية / عظام وروماتيزم / أطفال وجهاز هضمي / مخ وأعصاب وأنف وأذن / جلدية وحساسية / عيون / باطنة)"
 
 MAX_CLARIFICATION_SPECIALTY_AR: str = "طب الأسرة / طوارئ الباطنة العامة (تقييم طبي مباشر)"
 
@@ -72,7 +70,9 @@ MAX_CLARIFICATION_RATIONALE_AR: str = (
 )
 
 
-def _merge_unique(base: list[str] | tuple[str, ...], extra: list[str] | tuple[str, ...]) -> list[str]:
+def _merge_unique(
+    base: list[str] | tuple[str, ...], extra: list[str] | tuple[str, ...]
+) -> list[str]:
     """Order-preserving union of two string sequences."""
     merged = list(base)
     for item in extra:
@@ -188,9 +188,7 @@ def scrub_and_validate_node(state: TriageState) -> TriageState:
     max_reached = clarification_count >= MAX_CLARIFICATION_TURNS
 
     # Red flags on the combined multi-turn picture
-    rf_combined = (
-        evaluate_red_flags(scrubbed_input) if prior_history else rf_current
-    )
+    rf_combined = evaluate_red_flags(scrubbed_input) if prior_history else rf_current
     combined_has_red_flag = rf_combined.urgency_level == UrgencyLevel.EMERGENCY_ESCALATION
     rf_eval = rf_combined if combined_has_red_flag or not current_has_red_flag else rf_current
 
@@ -422,8 +420,7 @@ def safe_rejection_node(state: TriageState) -> TriageState:
     """Safe Rejection Node: Returns Level 3 TriageResponse on prompt injection or prescription request."""
     session_id = state.get("session_id", "fallback-session")
     rationale_ar = (
-        state.get("rejection_reason_ar")
-        or "يرجى التوجه لطبيب مختص لتقييم الحالة بشكل آمن ودقيق."
+        state.get("rejection_reason_ar") or "يرجى التوجه لطبيب مختص لتقييم الحالة بشكل آمن ودقيق."
     )
     citations = [get_default_citation("NHS-SYS-004")]
     final_urgency = UrgencyLevel.AMBIGUOUS_SEE_DOCTOR

@@ -47,14 +47,32 @@ SAFE_MEDICATION_REJECTION_AR: str = (
 )
 
 PROMPT_INJECTION_PATTERNS: tuple[re.Pattern[str], ...] = (
-    re.compile(r"ignore\s+(?:all\s+)?(?:previous|prior|above|safety)\s+(?:instructions|guardrails|rules)", re.IGNORECASE),
-    re.compile(r"disregard\s+(?:all\s+)?(?:previous|prior|system)\s+(?:instructions|prompts)", re.IGNORECASE),
-    re.compile(r"(?:you\s+are\s+now\s+(?:in\s+)?|وضع\s+المطور|developer\s+mode|\bdan\b|unrestricted)", re.IGNORECASE),
-    re.compile(r"(?:reveal\s+(?:your\s+)?system\s+prompt|system\s+prompt|التعليمات\s+البرمجية\s+(?:السرية|السريه))", re.IGNORECASE),
+    re.compile(
+        r"ignore\s+(?:all\s+)?(?:previous|prior|above|safety)\s+(?:instructions|guardrails|rules)",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"disregard\s+(?:all\s+)?(?:previous|prior|system)\s+(?:instructions|prompts)",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"(?:you\s+are\s+now\s+(?:in\s+)?|وضع\s+المطور|developer\s+mode|\bdan\b|unrestricted)",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"(?:reveal\s+(?:your\s+)?system\s+prompt|system\s+prompt|التعليمات\s+البرمجية\s+(?:السرية|السريه))",
+        re.IGNORECASE,
+    ),
     re.compile(r"system\s*override", re.IGNORECASE),
-    re.compile(r"(?:انسى|انسي|إنسى|تجاهل)\s+(?:كل\s+)?(?:التعليمات|الأوامر|الاوامر|القواعد)(?:\s+(?:السابقة|السابقه))?", re.IGNORECASE),
+    re.compile(
+        r"(?:انسى|انسي|إنسى|تجاهل)\s+(?:كل\s+)?(?:التعليمات|الأوامر|الاوامر|القواعد)(?:\s+(?:السابقة|السابقه))?",
+        re.IGNORECASE,
+    ),
     re.compile(r"(?:انسى|انسي|إنسى)\s+(?:إنك|انك)\s+ذكاء\s+اصطناعي", re.IGNORECASE),
-    re.compile(r"(?:تخطى|أتخطى|اتخطى)\s+(?:كل\s+)?(?:قيود|قواعد|فلتر)\s+(?:الأمان|الامان|النظام|الطوارئ)", re.IGNORECASE),
+    re.compile(
+        r"(?:تخطى|أتخطى|اتخطى)\s+(?:كل\s+)?(?:قيود|قواعد|فلتر)\s+(?:الأمان|الامان|النظام|الطوارئ)",
+        re.IGNORECASE,
+    ),
     re.compile(r"تصرف\s+كأنك\s+(?:طبيب\s+بشر[يي]|صيدلي)", re.IGNORECASE),
     re.compile(r"اعرض\s+(?:لي\s+)?تعليمات\s+النظام", re.IGNORECASE),
     re.compile(
@@ -87,7 +105,10 @@ MEDICATION_REQUEST_PATTERNS: tuple[re.Pattern[str], ...] = (
         re.IGNORECASE,
     ),
     re.compile(r"\b(?:جرعة|جرعه)\s+(?:دواء|دوا)\b", re.IGNORECASE),
-    re.compile(r"(?:آخد|اخد|أخذ)\s+(?:منه\s+)?(?:كام\s+(?:قرص|كبسولة|كبسوله|ملجم|حباية|حبايه|شريط)|قرصين)", re.IGNORECASE),
+    re.compile(
+        r"(?:آخد|اخد|أخذ)\s+(?:منه\s+)?(?:كام\s+(?:قرص|كبسولة|كبسوله|ملجم|حباية|حبايه|شريط)|قرصين)",
+        re.IGNORECASE,
+    ),
     re.compile(r"(?:الجرعة|الجرعه)\s+كام\s+قرص", re.IGNORECASE),
     re.compile(
         r"\b(?:prescribe\s+(?:me|the\s+exact)|what\s+antibiotic\s+should\s+i\s+take|give\s+me\s+a\s+prescription|medication\s+dosage\s+for)\b",

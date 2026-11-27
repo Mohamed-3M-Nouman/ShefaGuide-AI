@@ -395,11 +395,7 @@ def _infer_non_emergency_route(
 
     for category, cfg in _CATEGORY_CONFIG.items():
         keywords: tuple[str, ...] = cfg["keywords"]  # type: ignore[assignment]
-        score = sum(
-            (3 if len(kw.split()) >= 2 else 2)
-            for kw in keywords
-            if kw in norm_input
-        )
+        score = sum((3 if len(kw.split()) >= 2 else 2) for kw in keywords if kw in norm_input)
         if score > best_score:
             best_score = score
             best_category = category
@@ -561,16 +557,16 @@ def _specialty_matches(recommended: str, case: dict[str, Any]) -> bool:
 
 
 async def live_langgraph_triage_pipeline(request: TriageRequest) -> tuple[TriageResponse, str]:
-    '''Execute full compiled LangGraph state machine with live Gemini and RAG.'''
+    """Execute full compiled LangGraph state machine with live Gemini and RAG."""
     from app.agent.graph import build_safe_fallback_response, invoke_triage_graph_state
     from app.agent.session_store import session_store
 
     session_store.clear_session(request.session_id)
     state = invoke_triage_graph_state(request)
-    resp = state.get('response')
+    resp = state.get("response")
     if not isinstance(resp, TriageResponse):
         resp = build_safe_fallback_response(session_id=request.session_id)
-    scrubbed_trace = str(state.get('scrubbed_input') or scrub_pii(request.user_input))
+    scrubbed_trace = str(state.get("scrubbed_input") or scrub_pii(request.user_input))
     return resp, scrubbed_trace
 
 
@@ -580,7 +576,7 @@ async def evaluate_cases(
     limit: int | None = None,
 ) -> SLOReport:
     """Run async evaluation across labeled cases and calculate all DEPI SLO metrics."""
-    cases: list[dict[str, Any]] = json.loads(cases_path.read_text(encoding='utf-8'))
+    cases: list[dict[str, Any]] = json.loads(cases_path.read_text(encoding="utf-8"))
     if limit is not None and limit > 0:
         cases = cases[:limit]
     total_cases = len(cases)
@@ -646,25 +642,17 @@ async def evaluate_cases(
             unhandled_exceptions += 1
 
     slo_01 = (
-        (urgent_cases_recalled / urgent_cases_total) * 100.0
-        if urgent_cases_total > 0
-        else 100.0
+        (urgent_cases_recalled / urgent_cases_total) * 100.0 if urgent_cases_total > 0 else 100.0
     )
     slo_02 = (specialty_correct / total_cases) * 100.0 if total_cases > 0 else 0.0
-    slo_03 = (
-        (disclaimer_citation_compliant / total_cases) * 100.0 if total_cases > 0 else 0.0
-    )
+    slo_03 = (disclaimer_citation_compliant / total_cases) * 100.0 if total_cases > 0 else 0.0
     slo_04_p95 = compute_percentile(latencies_ms, 95.0)
     slo_05_p99 = compute_percentile(latencies_ms, 99.0)
     slo_07 = (unhandled_exceptions / total_cases) * 100.0 if total_cases > 0 else 0.0
     slo_08 = (phi_leaks / total_cases) * 100.0 if total_cases > 0 else 0.0
 
     all_met = (
-        slo_01 == 100.0
-        and slo_02 >= 80.0
-        and slo_03 == 100.0
-        and slo_07 == 0.0
-        and slo_08 == 0.0
+        slo_01 == 100.0 and slo_02 >= 80.0 and slo_03 == 100.0 and slo_07 == 0.0 and slo_08 == 0.0
     )
 
     return SLOReport(
@@ -705,7 +693,7 @@ _ORIG_ASYNCIO_RUN = asyncio.run
 
 
 def _run_coroutine_sync(coro: Any) -> Any:
-    '''Execute pure coroutine synchronously, falling back to OS event loop if needed.'''
+    """Execute pure coroutine synchronously, falling back to OS event loop if needed."""
     try:
         coro.send(None)
     except StopIteration as exc:
@@ -717,15 +705,24 @@ asyncio.run = _run_coroutine_sync  # type: ignore[assignment]
 
 
 async def main() -> None:
-    '''CLI entrypoint for running the Phase 1/2 DEPI SLO evaluation suite.'''
-    parser = argparse.ArgumentParser(description='Run ShefaGuide AI DEPI SLO evaluation harness.')
-    parser.add_argument('--live-llm', action='store_true', help='Run full LangGraph pipeline against live Gemini LLM.')
-    parser.add_argument('--limit', type=int, default=None, help='Optional max number of labeled cases to evaluate.')
+    """CLI entrypoint for running the Phase 1/2 DEPI SLO evaluation suite."""
+    parser = argparse.ArgumentParser(description="Run ShefaGuide AI DEPI SLO evaluation harness.")
+    parser.add_argument(
+        "--live-llm",
+        action="store_true",
+        help="Run full LangGraph pipeline against live Gemini LLM.",
+    )
+    parser.add_argument(
+        "--limit", type=int, default=None, help="Optional max number of labeled cases to evaluate."
+    )
     args, _ = parser.parse_known_args()
 
     if args.live_llm:
         from app.core.config import settings
-        print(f'[Live LLM Mode] Model={settings.GEMINI_MODEL} - KeyConfigured={bool((settings.GEMINI_API_KEY or "").strip())}')
+
+        print(
+            f"[Live LLM Mode] Model={settings.GEMINI_MODEL} - KeyConfigured={bool((settings.GEMINI_API_KEY or '').strip())}"
+        )
         report = await evaluate_cases(triage_fn=live_langgraph_triage_pipeline, limit=args.limit)
     else:
         report = await evaluate_cases(limit=args.limit)
@@ -734,5 +731,5 @@ async def main() -> None:
         raise SystemExit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

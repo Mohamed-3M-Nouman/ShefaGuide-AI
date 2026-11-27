@@ -237,7 +237,9 @@ def _fallback_local_citations(complaint: str, top_k: int) -> list[SourceCitation
         # First priority: chunks whose doc_id is linked by dialect matches
         for chunk in chunks:
             if chunk.doc_id in linked_doc_ids:
-                source_lit = chunk.source if chunk.source in ("WHO", "NHS", "Mayo Clinic") else "WHO"
+                source_lit = (
+                    chunk.source if chunk.source in ("WHO", "NHS", "Mayo Clinic") else "WHO"
+                )
                 citations.append(
                     SourceCitation(
                         doc_id=chunk.doc_id,
@@ -253,8 +255,12 @@ def _fallback_local_citations(complaint: str, top_k: int) -> list[SourceCitation
         # Second priority: match primary category
         if norm_result.primary_category != SymptomCategory.UNKNOWN:
             for chunk in chunks:
-                if chunk.category == norm_result.primary_category and chunk.doc_id not in [c.doc_id for c in citations]:
-                    source_lit = chunk.source if chunk.source in ("WHO", "NHS", "Mayo Clinic") else "WHO"
+                if chunk.category == norm_result.primary_category and chunk.doc_id not in [
+                    c.doc_id for c in citations
+                ]:
+                    source_lit = (
+                        chunk.source if chunk.source in ("WHO", "NHS", "Mayo Clinic") else "WHO"
+                    )
                     citations.append(
                         SourceCitation(
                             doc_id=chunk.doc_id,
@@ -270,7 +276,9 @@ def _fallback_local_citations(complaint: str, top_k: int) -> list[SourceCitation
         # Third priority: fill remaining slots from corpus
         for chunk in chunks:
             if chunk.doc_id not in [c.doc_id for c in citations]:
-                source_lit = chunk.source if chunk.source in ("WHO", "NHS", "Mayo Clinic") else "WHO"
+                source_lit = (
+                    chunk.source if chunk.source in ("WHO", "NHS", "Mayo Clinic") else "WHO"
+                )
                 citations.append(
                     SourceCitation(
                         doc_id=chunk.doc_id,
@@ -314,4 +322,3 @@ def retrieve_guidelines(complaint: str, top_k: int = DEFAULT_TOP_K) -> list[Sour
         logger.warning("HybridRetriever runtime error, falling back to local corpus: %s", exc)
 
     return _fallback_local_citations(complaint, top_k)
-

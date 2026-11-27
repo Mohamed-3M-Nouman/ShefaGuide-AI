@@ -121,7 +121,9 @@ def _infer_non_emergency_route(
         )
     ):
         category = SymptomCategory.CARDIOPULMONARY
-        specialty = "الأمراض الصدرية والجهاز التنفسي / أمراض القلب والأوعية الدموية وكهرباء القلب والباطنة"
+        specialty = (
+            "الأمراض الصدرية والجهاز التنفسي / أمراض القلب والأوعية الدموية وكهرباء القلب والباطنة"
+        )
         urgency = (
             UrgencyLevel.URGENT_SPECIALIST
             if any(
@@ -360,4 +362,3 @@ async def process_triage(request: TriageRequest) -> TriageResponse:
     from app.agent.graph import run_triage_agent
 
     return await run_triage_agent(request)
-

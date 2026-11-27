@@ -84,7 +84,9 @@ class Settings(BaseSettings):
         description="Qdrant collection name for clinical guideline chunks.",
     )
 
-    SUPERVISOR_API_KEY: str = Field(default="", description="Shared secret token for X-Supervisor-Key header.")
+    SUPERVISOR_API_KEY: str = Field(
+        default="", description="Shared secret token for X-Supervisor-Key header."
+    )
 
     # Audit Database (PostgreSQL) Settings
     DATABASE_URL: str = Field(

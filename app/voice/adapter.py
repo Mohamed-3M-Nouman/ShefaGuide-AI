@@ -76,12 +76,25 @@ def ensure_spoken_disclaimer(text: str, include_disclaimer: bool = True) -> str:
 
 def _normalize_egyptian_tts_text(text: str) -> str:
     import re
+
     t = re.sub(r"\(?\b123\b\)?", "واحد اتنين تلاتة", text)
     t = re.sub(r"\(?\b122\b\)?", "واحد اتنين اتنين", t)
     t = re.sub(r"\(?\b180\b\)?", "واحد تمانية صفر", t)
     t = re.sub(r"\(?\b121\b\)?", "واحد اتنين واحد", t)
     t = re.sub(r"(?m)\s*\d+[\.\-\)]\s*", "", t)
-    d = {"0":"صفر","1":"واحد","2":"اتنين","3":"تلاتة","4":"أربعة","5":"خمسة","6":"ستة","7":"سبعة","8":"تمانية","9":"تسعة","10":"عشرة"}
+    d = {
+        "0": "صفر",
+        "1": "واحد",
+        "2": "اتنين",
+        "3": "تلاتة",
+        "4": "أربعة",
+        "5": "خمسة",
+        "6": "ستة",
+        "7": "سبعة",
+        "8": "تمانية",
+        "9": "تسعة",
+        "10": "عشرة",
+    }
     t = re.sub(r"\b10\b", "عشرة", t)
     t = re.sub(r"\b[0-9]\b", lambda m: d[m.group(0)], t)
     return t.strip()
@@ -254,8 +267,15 @@ class VoiceAdapter:
             )
 
     async def _request_edge_tts_audio(self, spoken_text_ar: str) -> bytes:
-        import os, base64, struct, httpx, re, edge_tts
+        import base64
+        import os
+        import re
+        import struct
+
+        import edge_tts
+        import httpx
         from dotenv import load_dotenv
+
         load_dotenv()
         normalized = _normalize_egyptian_tts_text(spoken_text_ar)
         cache = getattr(self, "_audio_cache", None)
@@ -265,7 +285,47 @@ class VoiceAdapter:
         if normalized in cache:
             self._last_mime, cached_bytes = cache[normalized]
             return cached_bytes
-        eg_map = [(r"\bايه\b", "إِيه"), (r"\bإيه\b", "إِيه"), (r"\bده\b", "دَه"), (r"\bدي\b", "دِي"), (r"\bدول\b", "دُول"), (r"\bاللي\b", "اللِّي"), (r"\bمش\b", "مِش"), (r"\bمفيش\b", "مَفِيش"), (r"\bما فيش\b", "مَفِيش"), (r"\bعشان\b", "عَشَان"), (r"\bعلشان\b", "عَلَشَان"), (r"\bدلوقتي\b", "دِلْوَقْتِي"), (r"\bبقالك\b", "بَقَالَك"), (r"\bبتحس\b", "بِتْحِسّ"), (r"\bبييجي\b", "بِيِيجِي"), (r"\bبيمشي\b", "بِيِمْشِي"), (r"\bكويس\b", "كْوَيِّس"), (r"\bمتقلقش\b", "مَتِقْلَقْش"), (r"\bقولي\b", "قُولِّي"), (r"\bلي\b", "لِيَّا"), (r"\bليه\b", "لِيه"), (r"\bزي\b", "زَيّ"), (r"\bكده\b", "كِدَه"), (r"\bبرضه\b", "بَرْضُه"), (r"\bخالص\b", "خَالِص"), (r"\bأوي\b", "قَوِي"), (r"\bحاجة\b", "حَاجَة"), (r"\bتعبان\b", "تَعْبَان"), (r"\bأهلا\b", "أَهْلًا"), (r"\bأهلاً\b", "أَهْلًا"), (r"\bبيك\b", "بِيك"), (r"\bيا غالي\b", "يَا غَالِي"), (r"\bخد نفس\b", "خُد نَفَس"), (r"\bواطمن\b", "وَاطَّمِّن"), (r"\bشوية\b", "شْوَيَّة"), (r"\bبتاع\b", "بِتَاع"), (r"\bبتاعت\b", "بِتَاعِت"), (r"\bإزيك\b", "إِزَّيَّك"), (r"\bعامل\b", "عَامِل")]
+        eg_map = [
+            (r"\bايه\b", "إِيه"),
+            (r"\bإيه\b", "إِيه"),
+            (r"\bده\b", "دَه"),
+            (r"\bدي\b", "دِي"),
+            (r"\bدول\b", "دُول"),
+            (r"\bاللي\b", "اللِّي"),
+            (r"\bمش\b", "مِش"),
+            (r"\bمفيش\b", "مَفِيش"),
+            (r"\bما فيش\b", "مَفِيش"),
+            (r"\bعشان\b", "عَشَان"),
+            (r"\bعلشان\b", "عَلَشَان"),
+            (r"\bدلوقتي\b", "دِلْوَقْتِي"),
+            (r"\bبقالك\b", "بَقَالَك"),
+            (r"\bبتحس\b", "بِتْحِسّ"),
+            (r"\bبييجي\b", "بِيِيجِي"),
+            (r"\bبيمشي\b", "بِيِمْشِي"),
+            (r"\bكويس\b", "كْوَيِّس"),
+            (r"\bمتقلقش\b", "مَتِقْلَقْش"),
+            (r"\bقولي\b", "قُولِّي"),
+            (r"\bلي\b", "لِيَّا"),
+            (r"\bليه\b", "لِيه"),
+            (r"\bزي\b", "زَيّ"),
+            (r"\bكده\b", "كِدَه"),
+            (r"\bبرضه\b", "بَرْضُه"),
+            (r"\bخالص\b", "خَالِص"),
+            (r"\bأوي\b", "قَوِي"),
+            (r"\bحاجة\b", "حَاجَة"),
+            (r"\bتعبان\b", "تَعْبَان"),
+            (r"\bأهلا\b", "أَهْلًا"),
+            (r"\bأهلاً\b", "أَهْلًا"),
+            (r"\bبيك\b", "بِيك"),
+            (r"\bيا غالي\b", "يَا غَالِي"),
+            (r"\bخد نفس\b", "خُد نَفَس"),
+            (r"\bواطمن\b", "وَاطَّمِّن"),
+            (r"\bشوية\b", "شْوَيَّة"),
+            (r"\bبتاع\b", "بِتَاع"),
+            (r"\bبتاعت\b", "بِتَاعِت"),
+            (r"\bإزيك\b", "إِزَّيَّك"),
+            (r"\bعامل\b", "عَامِل"),
+        ]
         eg_text = normalized
         for pat, rep in eg_map:
             eg_text = re.sub(pat, rep, eg_text)
@@ -280,13 +340,38 @@ class VoiceAdapter:
                     "Read the exact words verbatim without adding or removing anything:\n\n"
                     f"{eg_text}"
                 )
-                payload = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Orus"}}}}}
+                payload = {
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {
+                        "responseModalities": ["AUDIO"],
+                        "speechConfig": {
+                            "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Orus"}}
+                        },
+                    },
+                }
                 async with httpx.AsyncClient(timeout=45.0) as client:
                     resp = await client.post(url, json=payload)
                 if resp.status_code == 200:
                     data = resp.json()
-                    pcm = base64.b64decode(data["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
-                    wav_hdr = struct.pack("<4sI4s4sIHHIIHH4sI", b"RIFF", 36 + len(pcm), b"WAVE", b"fmt ", 16, 1, 1, 24000, 48000, 2, 16, b"data", len(pcm))
+                    pcm = base64.b64decode(
+                        data["candidates"][0]["content"]["parts"][0]["inlineData"]["data"]
+                    )
+                    wav_hdr = struct.pack(
+                        "<4sI4s4sIHHIIHH4sI",
+                        b"RIFF",
+                        36 + len(pcm),
+                        b"WAVE",
+                        b"fmt ",
+                        16,
+                        1,
+                        1,
+                        24000,
+                        48000,
+                        2,
+                        16,
+                        b"data",
+                        len(pcm),
+                    )
                     wav_bytes = wav_hdr + pcm
                     self._last_mime = "audio/wav"
                     cache[normalized] = ("audio/wav", wav_bytes)
@@ -299,15 +384,32 @@ class VoiceAdapter:
                 el_voice = os.getenv("ELEVENLABS_VOICE_ID", "").strip()
                 if not el_voice:
                     async with httpx.AsyncClient(timeout=15.0) as vc:
-                        vr = await vc.get("https://api.elevenlabs.io/v1/voices", headers={"xi-api-key": el_key})
+                        vr = await vc.get(
+                            "https://api.elevenlabs.io/v1/voices", headers={"xi-api-key": el_key}
+                        )
                         if vr.status_code == 200:
-                            eg_v = [v["voice_id"] for v in vr.json().get("voices", []) if "egypt" in (str(v.get("labels",""))+str(v.get("name",""))).lower() or "arab" in (str(v.get("labels",""))+str(v.get("name",""))).lower()]
+                            eg_v = [
+                                v["voice_id"]
+                                for v in vr.json().get("voices", [])
+                                if "egypt"
+                                in (str(v.get("labels", "")) + str(v.get("name", ""))).lower()
+                                or "arab"
+                                in (str(v.get("labels", "")) + str(v.get("name", ""))).lower()
+                            ]
                             el_voice = eg_v[0] if eg_v else "pNInz6obpgDQGcFmaJgB"
                         else:
                             el_voice = "pNInz6obpgDQGcFmaJgB"
                 el_url = f"https://api.elevenlabs.io/v1/text-to-speech/{el_voice}"
-                el_headers = {"xi-api-key": el_key, "Content-Type": "application/json", "Accept": "audio/mpeg"}
-                el_payload = {"text": eg_text, "model_id": "eleven_multilingual_v2", "voice_settings": {"stability": 0.35, "similarity_boost": 0.80, "style": 0.45}}
+                el_headers = {
+                    "xi-api-key": el_key,
+                    "Content-Type": "application/json",
+                    "Accept": "audio/mpeg",
+                }
+                el_payload = {
+                    "text": eg_text,
+                    "model_id": "eleven_multilingual_v2",
+                    "voice_settings": {"stability": 0.35, "similarity_boost": 0.80, "style": 0.45},
+                }
                 async with httpx.AsyncClient(timeout=30.0) as client:
                     el_resp = await client.post(el_url, headers=el_headers, json=el_payload)
                 if el_resp.status_code == 200 and el_resp.content:
@@ -318,7 +420,10 @@ class VoiceAdapter:
                 logger.warning("ElevenLabs TTS fallback: %s", exc)
         self._last_mime = "audio/mpeg"
         voice = self._resolve_tts_voice()
-        parts = [c.strip() for c in re.split(r'(?<=[.!؟?\n])\s+', eg_text) if c.strip()] or [eg_text]
+        parts = [c.strip() for c in re.split(r"(?<=[.!؟?\n])\s+", eg_text) if c.strip()] or [
+            eg_text
+        ]
+
         async def _synth_part(chunk_text: str) -> bytes:
             comm = edge_tts.Communicate(chunk_text, voice=voice, rate="-6%")
             buf = io.BytesIO()
@@ -326,6 +431,7 @@ class VoiceAdapter:
                 if item.get("type") == "audio" and item.get("data"):
                     buf.write(item["data"])
             return buf.getvalue()
+
         audio_parts = await asyncio.gather(*(_synth_part(pt) for pt in parts))
         mp3_bytes = b"".join(audio_parts)
         cache[normalized] = ("audio/mpeg", mp3_bytes)

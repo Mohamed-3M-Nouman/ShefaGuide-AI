@@ -47,14 +47,11 @@ def test_urgency_level_supremacy_comparison() -> None:
         UrgencyLevel.EMERGENCY_ESCALATION
     )
     assert (
-        apply_supremacy_rule(
-            UrgencyLevel.EMERGENCY_ESCALATION, UrgencyLevel.ROUTINE_SPECIALIST
-        )
+        apply_supremacy_rule(UrgencyLevel.EMERGENCY_ESCALATION, UrgencyLevel.ROUTINE_SPECIALIST)
         == UrgencyLevel.EMERGENCY_ESCALATION
     )
     assert (
-        apply_supremacy_rule(None, UrgencyLevel.URGENT_SPECIALIST)
-        == UrgencyLevel.URGENT_SPECIALIST
+        apply_supremacy_rule(None, UrgencyLevel.URGENT_SPECIALIST) == UrgencyLevel.URGENT_SPECIALIST
     )
 
 
@@ -356,9 +353,7 @@ def test_phase1_audit_fixes_and_zero_false_positives() -> None:
     cases = {c["case_id"]: c for c in json.loads(cases_path.read_text(encoding="utf-8"))}
     slang_list = json.loads(slang_path.read_text(encoding="utf-8"))
     slang_by_id = {s["slang_id"]: s for s in slang_list}
-    chunks_by_id = {
-        ch["doc_id"]: ch for ch in json.loads(chunks_path.read_text(encoding="utf-8"))
-    }
+    chunks_by_id = {ch["doc_id"]: ch for ch in json.loads(chunks_path.read_text(encoding="utf-8"))}
 
     # Fix 1: EVAL-093 adversarial non-emergency
     eval_093 = cases["EVAL-093"]
@@ -394,6 +389,6 @@ def test_phase1_audit_fixes_and_zero_false_positives() -> None:
         assert check_red_flags(cases[cid]["user_input"]) is None, f"False positive on {cid}"
     for idx in range(61, 81):
         cid = f"EVAL-{idx:03d}"
-        assert (
-            check_red_flags(cases[cid]["user_input"]) == UrgencyLevel.EMERGENCY_ESCALATION
-        ), f"Missed red flag on {cid}"
+        assert check_red_flags(cases[cid]["user_input"]) == UrgencyLevel.EMERGENCY_ESCALATION, (
+            f"Missed red flag on {cid}"
+        )

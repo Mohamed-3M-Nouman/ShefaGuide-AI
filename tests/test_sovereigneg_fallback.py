@@ -79,7 +79,9 @@ class _MockSovereignEGChatOpenAI:
         self.init_kwargs = init_kwargs or {}
         self.calls: list[tuple[str, str | None]] = []
 
-    def with_structured_output(self, schema: type, method: str | None = None) -> _StructuredCallable:
+    def with_structured_output(
+        self, schema: type, method: str | None = None
+    ) -> _StructuredCallable:
         def _run(prompt: str) -> Any:
             self.calls.append((schema.__name__, method))
             if self.error is not None:

@@ -247,9 +247,7 @@ async def list_escalations(
     query = select(EscalationQueue).order_by(EscalationQueue.created_at.desc()).limit(limit)
     if status is not None:
         status_val = (
-            status.value
-            if isinstance(status, EscalationStatus)
-            else str(status).strip().lower()
+            status.value if isinstance(status, EscalationStatus) else str(status).strip().lower()
         )
         if status_val in ("all", ""):
             status_val = None
@@ -282,7 +280,6 @@ async def list_audit_logs(
     avg_latency_ms = round(float(avg_latency), 2) if avg_latency is not None else 0.0
 
     return items, total_count, escalated_count, avg_latency_ms
-
 
 
 async def list_audit_logs_for_session(
