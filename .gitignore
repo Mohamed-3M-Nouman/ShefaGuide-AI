@@ -5,3 +5,6 @@ __pycache__/
 .cache/
 .env
 .agents/
+*.pyc
+node_modules/
+dist/

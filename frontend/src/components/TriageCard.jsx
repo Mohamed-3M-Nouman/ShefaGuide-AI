@@ -283,68 +283,28 @@ export default function TriageCard({
     setIsLoadingAudio(true);
 
     const bodyText = buildSpokenBodyText();
-    const fallbackFullText = `${bodyText}\n\n${finalDisclaimer}`.trim();
     const controller = new AbortController();
     abortControllerRef.current = controller;
-
+    const audio = new Audio();
+    audio.preload = "auto";
+    audioRef.current = audio;
     try {
-      const synthResult = await synthesizeVoice({
-        session_id: session_id || "client-voice",
-        text: bodyText,
-        include_disclaimer: true,
-        signal: controller.signal,
-      });
-
+      const synthResult = await synthesizeVoice({ session_id: session_id || "client-voice", text: bodyText, include_disclaimer: false, signal: controller.signal });
       if (controller.signal.aborted) return;
-
-      const spokenWithDisclaimer =
-        synthResult?.spoken_text_ar || fallbackFullText;
-
-      if (synthResult?.success && synthResult?.audio_base64) {
-        const audioMime = synthResult.mime_type || "audio/mpeg";
-        const audioUrl = base64ToBlobUrl(synthResult.audio_base64, audioMime);
-        objectUrlRef.current = audioUrl;
-
-        const audio = new Audio(audioUrl);
-        audioRef.current = audio;
-
-        const cleanupObjectUrl = () => {
-          if (objectUrlRef.current === audioUrl) {
-            URL.revokeObjectURL(audioUrl);
-            objectUrlRef.current = null;
-          }
-        };
-
-        audio.onplay = () => {
-          setIsPlayingAudio(true);
-          setIsLoadingAudio(false);
-        };
-        audio.onended = () => {
-          cleanupObjectUrl();
-          setIsPlayingAudio(false);
-          setIsLoadingAudio(false);
-        };
-        audio.onerror = () => {
-          cleanupObjectUrl();
-          playBrowserSpeechSynthesis(spokenWithDisclaimer);
-        };
-
-        try {
-          await audio.play();
-        } catch {
-          cleanupObjectUrl();
-          playBrowserSpeechSynthesis(spokenWithDisclaimer);
-        }
-      } else {
-        playBrowserSpeechSynthesis(spokenWithDisclaimer);
-      }
+      if (!synthResult?.success || !synthResult?.audio_base64) throw new Error(synthResult?.error_reason_ar || "فشل توليد الصوت");
+      const audioUrl = base64ToBlobUrl(synthResult.audio_base64, synthResult.mime_type || "audio/mpeg");
+      objectUrlRef.current = audioUrl;
+      audio.src = audioUrl;
+      const cleanupObjectUrl = () => { if (objectUrlRef.current === audioUrl) { URL.revokeObjectURL(audioUrl); objectUrlRef.current = null; } };
+      audio.onplay = () => { setIsPlayingAudio(true); setIsLoadingAudio(false); };
+      audio.onended = () => { cleanupObjectUrl(); setIsPlayingAudio(false); setIsLoadingAudio(false); };
+      audio.onerror = () => { cleanupObjectUrl(); setIsPlayingAudio(false); setIsLoadingAudio(false); setAudioError("تعذر تشغيل ملف الصوت في المتصفح."); };
+      await audio.play();
     } catch (err) {
-      if (err?.name === "AbortError" || controller.signal.aborted) {
-        setIsLoadingAudio(false);
-        setIsPlayingAudio(false);
-        return;
-      }
-      playBrowserSpeechSynthesis(fallbackFullText);
+      if (err?.name === "AbortError" || controller.signal.aborted) { setIsLoadingAudio(false); setIsPlayingAudio(false); return; }
+      setIsPlayingAudio(false);
+      setIsLoadingAudio(false);
+      setAudioError(err?.message || "المتصفح منع تشغيل الصوت التلقائي؛ اضغط مرة أخرى.");
     } finally {
       if (abortControllerRef.current === controller) {
         abortControllerRef.current = null;

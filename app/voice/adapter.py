@@ -74,6 +74,19 @@ def ensure_spoken_disclaimer(text: str, include_disclaimer: bool = True) -> str:
     return f"{cleaned}\n\n{DEFAULT_DISCLAIMER_AR}"
 
 
+def _normalize_egyptian_tts_text(text: str) -> str:
+    import re
+    t = re.sub(r"\(?\b123\b\)?", "واحد اتنين تلاتة", text)
+    t = re.sub(r"\(?\b122\b\)?", "واحد اتنين اتنين", t)
+    t = re.sub(r"\(?\b180\b\)?", "واحد تمانية صفر", t)
+    t = re.sub(r"\(?\b121\b\)?", "واحد اتنين واحد", t)
+    t = re.sub(r"(?m)\s*\d+[\.\-\)]\s*", "", t)
+    d = {"0":"صفر","1":"واحد","2":"اتنين","3":"تلاتة","4":"أربعة","5":"خمسة","6":"ستة","7":"سبعة","8":"تمانية","9":"تسعة","10":"عشرة"}
+    t = re.sub(r"\b10\b", "عشرة", t)
+    t = re.sub(r"\b[0-9]\b", lambda m: d[m.group(0)], t)
+    return t.strip()
+
+
 class VoiceAdapter:
     """Fault-tolerant, Zero-PHI in-memory Speech-to-Text and Text-to-Speech adapter."""
 
@@ -123,7 +136,7 @@ class VoiceAdapter:
 
     def _resolve_tts_voice(self) -> str:
         raw = self.tts_voice if self.tts_voice is not None else settings.TTS_VOICE
-        return (raw or "ar-EG-SalmaNeural").strip()
+        return (raw or "ar-EG-ShakirNeural").strip()
 
     async def _request_groq_transcription(
         self,
@@ -241,16 +254,82 @@ class VoiceAdapter:
             )
 
     async def _request_edge_tts_audio(self, spoken_text_ar: str) -> bytes:
-        """Synthesize Arabic speech strictly in memory using Edge TTS (returns MP3 bytes)."""
-        import edge_tts
-
+        import os, base64, struct, httpx, re, edge_tts
+        from dotenv import load_dotenv
+        load_dotenv()
+        normalized = _normalize_egyptian_tts_text(spoken_text_ar)
+        cache = getattr(self, "_audio_cache", None)
+        if cache is None:
+            cache = {}
+            self._audio_cache = cache
+        if normalized in cache:
+            self._last_mime, cached_bytes = cache[normalized]
+            return cached_bytes
+        eg_map = [(r"\bايه\b", "إِيه"), (r"\bإيه\b", "إِيه"), (r"\bده\b", "دَه"), (r"\bدي\b", "دِي"), (r"\bدول\b", "دُول"), (r"\bاللي\b", "اللِّي"), (r"\bمش\b", "مِش"), (r"\bمفيش\b", "مَفِيش"), (r"\bما فيش\b", "مَفِيش"), (r"\bعشان\b", "عَشَان"), (r"\bعلشان\b", "عَلَشَان"), (r"\bدلوقتي\b", "دِلْوَقْتِي"), (r"\bبقالك\b", "بَقَالَك"), (r"\bبتحس\b", "بِتْحِسّ"), (r"\bبييجي\b", "بِيِيجِي"), (r"\bبيمشي\b", "بِيِمْشِي"), (r"\bكويس\b", "كْوَيِّس"), (r"\bمتقلقش\b", "مَتِقْلَقْش"), (r"\bقولي\b", "قُولِّي"), (r"\bلي\b", "لِيَّا"), (r"\bليه\b", "لِيه"), (r"\bزي\b", "زَيّ"), (r"\bكده\b", "كِدَه"), (r"\bبرضه\b", "بَرْضُه"), (r"\bخالص\b", "خَالِص"), (r"\bأوي\b", "قَوِي"), (r"\bحاجة\b", "حَاجَة"), (r"\bتعبان\b", "تَعْبَان"), (r"\bأهلا\b", "أَهْلًا"), (r"\bأهلاً\b", "أَهْلًا"), (r"\bبيك\b", "بِيك"), (r"\bيا غالي\b", "يَا غَالِي"), (r"\bخد نفس\b", "خُد نَفَس"), (r"\bواطمن\b", "وَاطَّمِّن"), (r"\bشوية\b", "شْوَيَّة"), (r"\bبتاع\b", "بِتَاع"), (r"\bبتاعت\b", "بِتَاعِت"), (r"\bإزيك\b", "إِزَّيَّك"), (r"\bعامل\b", "عَامِل")]
+        eg_text = normalized
+        for pat, rep in eg_map:
+            eg_text = re.sub(pat, rep, eg_text)
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        if api_key:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key={api_key}"
+                prompt = (
+                    "Speak the following Arabic medical guidance in an authentic, natural Cairene Egyptian Arabic accent (لهجة مصرية قاهرية عامية طبيعية). "
+                    "CRITICAL PRONUNCIATION RULES: Do NOT use Modern Standard Arabic (Fusha) case endings or i rab; drop final vowels naturally as Egyptians speak; "
+                    "pronounce colloquial Qaf as a glottal stop where natural in Egyptian dialect, and keep a warm, calm, reassuring bedside doctor tone. "
+                    "Read the exact words verbatim without adding or removing anything:\n\n"
+                    f"{eg_text}"
+                )
+                payload = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Orus"}}}}}
+                async with httpx.AsyncClient(timeout=45.0) as client:
+                    resp = await client.post(url, json=payload)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    pcm = base64.b64decode(data["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
+                    wav_hdr = struct.pack("<4sI4s4sIHHIIHH4sI", b"RIFF", 36 + len(pcm), b"WAVE", b"fmt ", 16, 1, 1, 24000, 48000, 2, 16, b"data", len(pcm))
+                    wav_bytes = wav_hdr + pcm
+                    self._last_mime = "audio/wav"
+                    cache[normalized] = ("audio/wav", wav_bytes)
+                    return wav_bytes
+            except Exception as exc:
+                logger.warning("Gemini TTS fallback: %s", exc)
+        el_key = os.getenv("ELEVENLABS_API_KEY")
+        if el_key:
+            try:
+                el_voice = os.getenv("ELEVENLABS_VOICE_ID", "").strip()
+                if not el_voice:
+                    async with httpx.AsyncClient(timeout=15.0) as vc:
+                        vr = await vc.get("https://api.elevenlabs.io/v1/voices", headers={"xi-api-key": el_key})
+                        if vr.status_code == 200:
+                            eg_v = [v["voice_id"] for v in vr.json().get("voices", []) if "egypt" in (str(v.get("labels",""))+str(v.get("name",""))).lower() or "arab" in (str(v.get("labels",""))+str(v.get("name",""))).lower()]
+                            el_voice = eg_v[0] if eg_v else "pNInz6obpgDQGcFmaJgB"
+                        else:
+                            el_voice = "pNInz6obpgDQGcFmaJgB"
+                el_url = f"https://api.elevenlabs.io/v1/text-to-speech/{el_voice}"
+                el_headers = {"xi-api-key": el_key, "Content-Type": "application/json", "Accept": "audio/mpeg"}
+                el_payload = {"text": eg_text, "model_id": "eleven_multilingual_v2", "voice_settings": {"stability": 0.35, "similarity_boost": 0.80, "style": 0.45}}
+                async with httpx.AsyncClient(timeout=30.0) as client:
+                    el_resp = await client.post(el_url, headers=el_headers, json=el_payload)
+                if el_resp.status_code == 200 and el_resp.content:
+                    self._last_mime = "audio/mpeg"
+                    cache[normalized] = ("audio/mpeg", el_resp.content)
+                    return el_resp.content
+            except Exception as exc:
+                logger.warning("ElevenLabs TTS fallback: %s", exc)
+        self._last_mime = "audio/mpeg"
         voice = self._resolve_tts_voice()
-        communicate = edge_tts.Communicate(spoken_text_ar, voice=voice)
-        buf = io.BytesIO()
-        async for chunk in communicate.stream():
-            if chunk.get("type") == "audio" and chunk.get("data"):
-                buf.write(chunk["data"])
-        return buf.getvalue()
+        parts = [c.strip() for c in re.split(r'(?<=[.!؟?\n])\s+', eg_text) if c.strip()] or [eg_text]
+        async def _synth_part(chunk_text: str) -> bytes:
+            comm = edge_tts.Communicate(chunk_text, voice=voice, rate="-6%")
+            buf = io.BytesIO()
+            async for item in comm.stream():
+                if item.get("type") == "audio" and item.get("data"):
+                    buf.write(item["data"])
+            return buf.getvalue()
+        audio_parts = await asyncio.gather(*(_synth_part(pt) for pt in parts))
+        mp3_bytes = b"".join(audio_parts)
+        cache[normalized] = ("audio/mpeg", mp3_bytes)
+        return mp3_bytes
 
     async def synthesize_speech(
         self,
@@ -266,7 +345,7 @@ class VoiceAdapter:
         try:
             maybe_coro = self._request_edge_tts_audio(spoken_text_ar)
             if inspect.isawaitable(maybe_coro):
-                audio_bytes = await asyncio.wait_for(maybe_coro, timeout=timeout_s)
+                audio_bytes = await asyncio.wait_for(maybe_coro, timeout=max(timeout_s, 45.0))
             else:
                 audio_bytes = maybe_coro
 
@@ -279,7 +358,7 @@ class VoiceAdapter:
                 success=True,
                 spoken_text_ar=spoken_text_ar,
                 audio_base64=audio_b64,
-                mime_type="audio/mpeg",
+                mime_type=getattr(self, "_last_mime", "audio/mpeg"),
                 provider="edge-tts" if "edge" in provider_name.lower() else provider_name,
                 fallback_to_text=False,
                 latency_ms=elapsed_ms,
@@ -292,7 +371,7 @@ class VoiceAdapter:
                 success=False,
                 spoken_text_ar=spoken_text_ar,
                 audio_base64=None,
-                mime_type="audio/mpeg",
+                mime_type=getattr(self, "_last_mime", "audio/mpeg"),
                 provider="browser-fallback",
                 fallback_to_text=True,
                 latency_ms=elapsed_ms,
@@ -305,7 +384,7 @@ class VoiceAdapter:
                 success=False,
                 spoken_text_ar=spoken_text_ar,
                 audio_base64=None,
-                mime_type="audio/mpeg",
+                mime_type=getattr(self, "_last_mime", "audio/mpeg"),
                 provider="browser-fallback",
                 fallback_to_text=True,
                 latency_ms=elapsed_ms,

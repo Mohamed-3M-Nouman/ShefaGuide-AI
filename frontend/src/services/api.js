@@ -7,6 +7,28 @@ const API_BASE_URL = (
   import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000"
 ).replace(/\/+$/, "");
 
+const SUPERVISOR_STORAGE_KEY = "shefaguide_supervisor_key";
+
+export function getSupervisorKey() {
+  try {
+    const saved = window.localStorage.getItem(SUPERVISOR_STORAGE_KEY);
+    if (saved && saved.trim()) return saved.trim();
+  } catch {}
+  return (import.meta.env.VITE_SUPERVISOR_KEY ?? "").trim();
+}
+
+export function setSupervisorKey(key) {
+  try {
+    if (key && key.trim()) window.localStorage.setItem(SUPERVISOR_STORAGE_KEY, key.trim());
+    else window.localStorage.removeItem(SUPERVISOR_STORAGE_KEY);
+  } catch {}
+}
+
+function getSupervisorHeaders(extra = {}) {
+  const key = getSupervisorKey();
+  return key ? { ...extra, "X-Supervisor-Key": key } : { ...extra };
+}
+
 /**
  * Format FastAPI error payloads (including 422 validation error arrays) cleanly.
  */
@@ -164,7 +186,7 @@ export async function fetchEscalations({ status, limit = 50 } = {}) {
   if (limit) url.searchParams.set("limit", String(limit));
 
   const response = await fetch(url.toString(), {
-    headers: { Accept: "application/json" },
+    headers: getSupervisorHeaders({ Accept: "application/json" }),
   });
 
   if (!response.ok) {
@@ -188,8 +210,7 @@ export async function patchEscalationStatus(escalationId, status) {
     {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        ...getSupervisorHeaders({ "Content-Type": "application/json", Accept: "application/json" }),
       },
       body: JSON.stringify({ status }),
     }
@@ -216,7 +237,7 @@ export async function fetchAuditLogs({ limit = 50, escalated_only = false } = {}
   if (escalated_only) url.searchParams.set("escalated_only", "true");
 
   const response = await fetch(url.toString(), {
-    headers: { Accept: "application/json" },
+    headers: getSupervisorHeaders({ Accept: "application/json" }),
   });
 
   if (!response.ok) {
@@ -233,5 +254,5 @@ export async function fetchAuditLogs({ limit = 50, escalated_only = false } = {}
  * Create an EventSource connection for real-time emergency escalations stream.
  */
 export function createEscalationEventSource() {
-  return new EventSource(`${API_BASE_URL}/api/v1/escalations/stream`);
+  return (() => { const k = getSupervisorKey(); const u = new URL(`${API_BASE_URL}/api/v1/escalations/stream`); if (k) u.searchParams.set("supervisor_key", k); return new EventSource(u.toString()); })();
 }

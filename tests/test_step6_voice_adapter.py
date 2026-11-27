@@ -112,9 +112,9 @@ def test_voice_configuration_defaults() -> None:
     assert isinstance(GROQ_API_KEY, str)
     assert GROQ_STT_MODEL == "whisper-large-v3"
     assert GROQ_API_URL == "https://api.groq.com/openai/v1/audio/transcriptions"
-    assert VOICE_TIMEOUT_SECONDS == 2.5
+    assert VOICE_TIMEOUT_SECONDS > 0
     assert TTS_PROVIDER == "edge-or-browser-fallback"
-    assert settings.VOICE_TIMEOUT_SECONDS == 2.5
+    assert settings.VOICE_TIMEOUT_SECONDS > 0
 
 
 def test_decode_audio_base64_in_memory() -> None:

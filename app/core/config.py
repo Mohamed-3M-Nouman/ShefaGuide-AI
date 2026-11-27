@@ -84,6 +84,8 @@ class Settings(BaseSettings):
         description="Qdrant collection name for clinical guideline chunks.",
     )
 
+    SUPERVISOR_API_KEY: str = Field(default="", description="Shared secret token for X-Supervisor-Key header.")
+
     # Audit Database (PostgreSQL) Settings
     DATABASE_URL: str = Field(
         default="postgresql+asyncpg://shefaguide:shefaguide_secret@localhost:5432/shefaguide_audit",
@@ -156,6 +158,7 @@ SOVEREIGNEG_BASE_URL = settings.SOVEREIGNEG_BASE_URL
 SOVEREIGNEG_MODEL = settings.SOVEREIGNEG_MODEL
 QDRANT_URL = settings.QDRANT_URL
 QDRANT_COLLECTION = settings.QDRANT_COLLECTION
+SUPERVISOR_API_KEY = settings.SUPERVISOR_API_KEY
 DATABASE_URL = settings.DATABASE_URL
 GROQ_API_KEY = settings.GROQ_API_KEY
 GROQ_STT_MODEL = settings.GROQ_STT_MODEL

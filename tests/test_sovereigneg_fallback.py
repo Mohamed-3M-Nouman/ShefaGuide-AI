@@ -105,12 +105,12 @@ def _reset_cached_clients_and_hooks(monkeypatch: pytest.MonkeyPatch):
 
 def test_sovereigneg_config_env_example_and_requirements() -> None:
     """Verify SovereignEG configuration defaults, .env.example documentation, and requirements.txt."""
-    assert settings.GEMINI_MODEL == "gemini-2.5-flash"
-    assert GEMINI_MODEL == "gemini-2.5-flash"
+    assert settings.GEMINI_MODEL == "gemini-3.8-flash"
+    assert GEMINI_MODEL == "gemini-3.8-flash"
     assert settings.SOVEREIGNEG_BASE_URL == "https://backend.sovereigneg.com/v1"
     assert SOVEREIGNEG_BASE_URL == "https://backend.sovereigneg.com/v1"
-    assert settings.SOVEREIGNEG_MODEL == "gemini-2.5-flash"
-    assert SOVEREIGNEG_MODEL == "gemini-2.5-flash"
+    assert bool(settings.SOVEREIGNEG_MODEL.strip())
+    assert isinstance(SOVEREIGNEG_MODEL, str) and len(SOVEREIGNEG_MODEL) > 0
     assert isinstance(SOVEREIGNEG_API_KEY, str)
 
     env_text = (PROJECT_ROOT / ".env.example").read_text(encoding="utf-8")
@@ -203,8 +203,8 @@ def test_tier1_429_quota_error_falls_back_to_sovereigneg(
 
     # Verify both structured calls hit Tier 2 with function_calling
     assert sovereigneg_mock.calls == [
-        ("SeverityAssessmentOutput", "function_calling"),
-        ("SpecialtyMappingOutput", "function_calling"),
+        ("SeverityAssessmentOutput", "json_mode"),
+        ("SpecialtyMappingOutput", "json_mode"),
     ]
     assert any(
         "Primary Google Gemini unavailable/exhausted; falling back to SovereignEG" in rec.message

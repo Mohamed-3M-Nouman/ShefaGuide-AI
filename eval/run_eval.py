@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import asyncio
 import json
 import math
@@ -559,12 +560,29 @@ def _specialty_matches(recommended: str, case: dict[str, Any]) -> bool:
     return True
 
 
+async def live_langgraph_triage_pipeline(request: TriageRequest) -> tuple[TriageResponse, str]:
+    '''Execute full compiled LangGraph state machine with live Gemini and RAG.'''
+    from app.agent.graph import build_safe_fallback_response, invoke_triage_graph_state
+    from app.agent.session_store import session_store
+
+    session_store.clear_session(request.session_id)
+    state = invoke_triage_graph_state(request)
+    resp = state.get('response')
+    if not isinstance(resp, TriageResponse):
+        resp = build_safe_fallback_response(session_id=request.session_id)
+    scrubbed_trace = str(state.get('scrubbed_input') or scrub_pii(request.user_input))
+    return resp, scrubbed_trace
+
+
 async def evaluate_cases(
     cases_path: Path = DEFAULT_CASES_PATH,
     triage_fn: TriageCallable = deterministic_triage_pipeline,
+    limit: int | None = None,
 ) -> SLOReport:
     """Run async evaluation across labeled cases and calculate all DEPI SLO metrics."""
-    cases: list[dict[str, Any]] = json.loads(cases_path.read_text(encoding="utf-8"))
+    cases: list[dict[str, Any]] = json.loads(cases_path.read_text(encoding='utf-8'))
+    if limit is not None and limit > 0:
+        cases = cases[:limit]
     total_cases = len(cases)
 
     urgent_cases_total = 0
@@ -683,27 +701,38 @@ def format_slo_report(report: SLOReport) -> str:
     return "\n".join(lines)
 
 
+_ORIG_ASYNCIO_RUN = asyncio.run
+
+
 def _run_coroutine_sync(coro: Any) -> Any:
-    """Execute a pure/in-memory coroutine synchronously without requiring Windows loopback sockets."""
+    '''Execute pure coroutine synchronously, falling back to OS event loop if needed.'''
     try:
         coro.send(None)
     except StopIteration as exc:
         return exc.value
-    raise RuntimeError("Coroutine yielded a pending future requiring an OS event loop.")
+    return _ORIG_ASYNCIO_RUN(coro)
 
 
-# Ensure `asyncio.run` works deterministically even in sandboxed Windows environments where
-# `socket.socketpair()` blocks during Proactor/Selector self-pipe initialization.
 asyncio.run = _run_coroutine_sync  # type: ignore[assignment]
 
 
 async def main() -> None:
-    """CLI entrypoint for running the Phase 1 evaluation suite."""
-    report = await evaluate_cases()
+    '''CLI entrypoint for running the Phase 1/2 DEPI SLO evaluation suite.'''
+    parser = argparse.ArgumentParser(description='Run ShefaGuide AI DEPI SLO evaluation harness.')
+    parser.add_argument('--live-llm', action='store_true', help='Run full LangGraph pipeline against live Gemini LLM.')
+    parser.add_argument('--limit', type=int, default=None, help='Optional max number of labeled cases to evaluate.')
+    args, _ = parser.parse_known_args()
+
+    if args.live_llm:
+        from app.core.config import settings
+        print(f'[Live LLM Mode] Model={settings.GEMINI_MODEL} - KeyConfigured={bool((settings.GEMINI_API_KEY or "").strip())}')
+        report = await evaluate_cases(triage_fn=live_langgraph_triage_pipeline, limit=args.limit)
+    else:
+        report = await evaluate_cases(limit=args.limit)
     print(format_slo_report(report))
     if not report.all_targets_met:
         raise SystemExit(1)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     asyncio.run(main())

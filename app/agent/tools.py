@@ -279,7 +279,7 @@ def _invoke_structured(
     if prefer_function_calling:
         try:
             structured_llm = client.with_structured_output(
-                output_schema, method="function_calling"
+                output_schema, method="json_mode"
             )
         except TypeError:
             structured_llm = client.with_structured_output(output_schema)
@@ -358,7 +358,7 @@ def symptom_severity_tool(
 
     slang_context = json.dumps(matched_slang_terms or [], ensure_ascii=False)
     prompt = (
-        f"{SEVERITY_SYSTEM_PROMPT}\n\n"
+        f"{SEVERITY_SYSTEM_PROMPT}\nReturn valid JSON matching keys: assessed_urgency (integer 1-4), symptom_category (MUST be strictly one of: 'cardiopulmonary', 'neurological_ent_ophth', 'gastrointestinal', 'musculoskeletal', 'systemic_fever_derm', 'unknown'), red_flag_suspected (boolean), clinical_reasoning_ar (string).\n\n"
         f"شكوى المريض (بعد تنقية البيانات الشخصية): {scrubbed_input}\n"
         f"المصطلحات العامية المرصودة: {slang_context}"
     )
@@ -417,7 +417,7 @@ def specialty_mapping_tool(
         for c in available_citations
     ]
     prompt = (
-        f"{SPECIALTY_SYSTEM_PROMPT}\n\n"
+        f"{SPECIALTY_SYSTEM_PROMPT}\nReturn valid JSON matching keys: recommended_specialty_ar, rationale_ar, clarifying_questions, selected_doc_ids.\n\n"
         f"رقم دورة الحوار الحالية: {clarification_count + 1} من أصل 3\n"
         f"سياق المحادثة المجمع للمريض: {scrubbed_input}\n"
         f"تصنيف الأعراض: {symptom_category.value}\n"
